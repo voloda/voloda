@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Visual Studio 2012 debugger does not break after attaching to C#/.NET process  &middot; My personal notes</title>
+  <title>Jenkinsfile Sample Utilizing Docker Slave Agent  &middot; My personal notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,25 +14,25 @@
 
 <meta name="description" content="My personal notes on various topics" />
 
-<meta name="keywords" content="development, dotNET, ">
+<meta name="keywords" content="docker, jenkins, ">
 
 
-<meta property="og:title" content="Visual Studio 2012 debugger does not break after attaching to C#/.NET process  &middot; My personal notes ">
+<meta property="og:title" content="Jenkinsfile Sample Utilizing Docker Slave Agent  &middot; My personal notes ">
 <meta property="og:site_name" content="My personal notes"/>
-<meta property="og:url" content="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" />
+<meta property="og:url" content="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2014-12-18T00:00:00Z" />
-<meta property="og:article:modified_time" content="2014-12-18T00:00:00Z" />
+<meta property="og:article:published_time" content="2017-10-25T00:00:00Z" />
+<meta property="og:article:modified_time" content="2017-10-25T00:00:00Z" />
 
   
     
-<meta property="og:article:tag" content="development">
+<meta property="og:article:tag" content="docker">
     
-<meta property="og:article:tag" content="dotNET">
+<meta property="og:article:tag" content="jenkins">
     
   
 
@@ -40,9 +40,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Visual Studio 2012 debugger does not break after attaching to C#/.NET process" />
+<meta name="twitter:title" content="Jenkinsfile Sample Utilizing Docker Slave Agent" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" />
+<meta name="twitter:url" content="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" />
 <meta name="twitter:domain" content="https://voloda.github.io/">
   
 
@@ -51,21 +51,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Visual Studio 2012 debugger does not break after attaching to C#/.NET process",
+    "headline": "Jenkinsfile Sample Utilizing Docker Slave Agent",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2014-12-18",
+    "datePublished": "2017-10-25",
     "description": "",
-    "wordCount": 233
+    "wordCount": 127
   }
 </script>
   
 
 
 
-<link rel="canonical" href="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" />
+<link rel="canonical" href="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.30.2" />
@@ -144,37 +144,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1>Visual Studio 2012 debugger does not break after attaching to C#/.NET process
+    <h1>Jenkinsfile Sample Utilizing Docker Slave Agent
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2014-12-18">18 Dec, 2014</time>
+  <time datetime="2017-10-25">25 Oct, 2017</time>
 </small>
 
 
   <small>
-  &middot; Read in about 2 min
-  &middot; (233 words)
+  &middot; Read in about 1 min
+  &middot; (127 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f&amp;title=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f&amp;title=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -182,9 +182,9 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.github.io/tags/development" class="label label-primary">development</a>
+  <a href="https://voloda.github.io/tags/docker" class="label label-primary">docker</a>
   
-  <a href="https://voloda.github.io/tags/dotnet" class="label label-primary">dotNET</a>
+  <a href="https://voloda.github.io/tags/jenkins" class="label label-primary">jenkins</a>
   
 
 
@@ -197,27 +197,67 @@
 </div>
 
       <div class="content">
-  <p>I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.</p>
+  <pre><code>pipeline {
+  agent none
 
-<p>Symptoms were that the debugger attached to the process but neither &lsquo;Break All&rsquo; worked. The same applied for any preset breakpoint.</p>
+  environment {
+    RELEASE_NUMBER = '17.1.1'
+    VERSION_NUMBER = VersionNumber(versionNumberString: '17.1.1.${BUILDS_ALL_TIME}')
+  }
 
-<p>For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via <code>Debug.Assert()</code> or <code>Debugger.Break()</code> calls put directly into code I had never motivation to really look for a solution nor reinstall the Visual Studio.</p>
 
-<p>Today I really wanted to attach to a process to see what is going on inside and the issue happened again.</p>
+  stages {
+    stage('Checkout from GIT'){
+      agent any
+      steps {
+        script {
+          currentBuild.displayName = &quot;#${VERSION_NUMBER}&quot;
+        }
+        checkout scm
+      }
+    }
+    stage('NUGET package restore') {
+      agent { label 'nuget' }
+      steps {
+            echo 'Restoring nuget packages'
+            bat '&quot;%NUGET_PATH%&quot; restore TestSolution.sln'
+            dir ('.') {
+              stash 'sources'
+            }
+      }
+    }
+    stage('Build') {
+      agent { label 'dotNET_4.7'}
+      steps {
+        dir ('.') {
+          unstash 'sources'
+        }
 
-<p>After a bit of playing I realized that in the case that debugger works after attaching correctly the &lsquo;Attach to Process&rsquo; Visual Studio dialog looks like this (see &lsquo;Attach to&rsquo; field):
-<img src="/img/visual-studio/visual_studio_debugger_does_recognize_process_type.png" alt="visual_studio_debugger_does_recognize_process_type.png" /></p>
+        bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.exe\&quot; TestSolution.sln /p:Configuration=Release /p:Platform=\&quot;Any CPU\&quot;&quot;
 
-<p>For my process it didn&rsquo;t work this time and &lsquo;Attach to Process&rsquo; dialog looked like this (again see &lsquo;Attach to&rsquo; field):
-<img src="/img/visual-studio/visual_studio_debugger_does_not_recognize_process_type.png" alt="visual_studio_debugger_does_not_recognize_process_type.png" /></p>
+        dir ('TestSolution/bin') {
+          stash 'bins'
+        }
+        withCredentials([usernamePassword(credentialsId: 'cdd06d32-f11d-446c-8687-3debc9dba901', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+          bat &quot;git tag 'j-${VERSION_NUMBER}'&quot;
 
-<p>Apparently Visual Studio in some cases does not properly detect the type of the process and does not use correct debugger settings.</p>
+          bat &quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@git.server.net/TestSolution2.git --tags&quot;
+        }
+      }
+    }
+    stage('Archive') {
+      agent any
+      steps {
+        dir ('TestSolution/bin') {
+          unstash 'bins'
+        }
+        archive '**/bin/Release/**.dll'
+      }
+    }
+  }
 
-<p>In order to solve my issue I finally found the &lsquo;Select&hellip;&rsquo; button following &lsquo;Attach to&rsquo; field where you can disable automatic detection of the process type and manually select a different one.</p>
-
-<p><img src="/img/visual-studio/visual_studio_debugger_does_not_recognize_process_select_code_type.png" alt="visual_studio_debugger_does_not_recognize_process_select_code_type.png " /></p>
-
-<p>After selecting &lsquo;Manager (v4.5, 4.0)&rsquo; and attaching debugger to process again everything worked well.</p>
+}
+</code></pre>
 
 </div>
 
@@ -225,22 +265,22 @@
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f&amp;title=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f&amp;title=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -249,18 +289,12 @@
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" title="How to release unmanaged library loaded into managed .NET code">
+          <a href="https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/" title="Jenkins Server Setup On Windows">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="https://voloda.github.io/2017/10/jenkins-docker-slave-windows-build-agent/" title="Jenkins Docker Slave Windows Build Agent">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   

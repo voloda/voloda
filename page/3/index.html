@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Posts  &middot; My personal notes</title>
+  <title>My personal notes </title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -17,9 +17,9 @@
 <meta name="keywords" content="">
 
 
-<meta property="og:title" content="Posts  &middot; My personal notes ">
+<meta property="og:title" content="My personal notes ">
 <meta property="og:site_name" content="My personal notes"/>
-<meta property="og:url" content="https://voloda.github.io/post/" />
+<meta property="og:url" content="https://voloda.github.io/" />
 <meta property="og:locale" content="en-us">
 
 
@@ -27,9 +27,9 @@
 
 
 
-<link href="https://voloda.github.io/post/index.xml" rel="alternate" type="application/rss+xml" title="Posts" />
+<link href="https://voloda.github.io/index.xml" rel="alternate" type="application/rss+xml" title="My personal notes" />
 
-<link rel="canonical" href="https://voloda.github.io/post/" />
+<link rel="canonical" href="https://voloda.github.io/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.30.2" />
@@ -76,7 +76,7 @@
           <ul class="nav navbar-nav navbar-right">
             
             
-            <li class="">
+            <li class="active">
 
               <a href="https://voloda.github.io/" >
                 
@@ -102,105 +102,145 @@
   </header>
 
 
-<div id="main-content" class="container">
-  <header>
-    <h1>Posts
-</h1>
-
-  </header>
-  
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-sm-12">
+        
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+  <h2><a href="https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-10-25">25 Oct, 2017</time>
+  <time datetime="2014-12-03">3 Dec, 2014</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.github.io/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.github.io/tags/development" class="label label-primary">development</a>
   
-  <a href="https://voloda.github.io/tags/jenkins" class="label label-primary">jenkins</a>
+  <a href="https://voloda.github.io/tags/dotnet" class="label label-primary">dotNET</a>
   
 
 
   </div>
 </div>
 
-
+    <p>
   
+  
+    Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
+And what is wrong with it?
+It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
+  <h2><a href="https://voloda.github.io/2014/11/unity-registration-validator/">Unity Registration Validator</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-10-17">17 Oct, 2017</time>
+  <time datetime="2014-11-25">25 Nov, 2014</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.github.io/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.github.io/tags/codeproject" class="label label-primary">CodeProject</a>
   
-  <a href="https://voloda.github.io/tags/jenkins" class="label label-primary">jenkins</a>
+  <a href="https://voloda.github.io/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="https://voloda.github.io/tags/development" class="label label-primary">development</a>
   
 
 
   </div>
 </div>
 
+    <p>
+  
+  
+    Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
+Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
+Let&rsquo;s consider following classes:
+public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&rsquo;s setup some test case:
+  
 
-  
-  
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.github.io/2014/11/unity-registration-validator/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+        
 <nav>
   <ul class="pagination">
     
 
 
-<li  class="disabled" >
-  <a aria-label="First" href="https://voloda.github.io//post/">
+<li >
+  <a aria-label="First" href="https://voloda.github.io//">
     <span aria-hidden="true">&laquo;&laquo;</span>
   </a>
 </li>
 
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
+<li >
+  <a aria-label="Previous" href="https://voloda.github.io//page/2/">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
 
-<li  class="active" >
-  <a href="https://voloda.github.io//post/">
+<li >
+  <a href="https://voloda.github.io//">
     1
     </a>
 </li>
 
 <li >
-  <a href="https://voloda.github.io//post/page/2/">
+  <a href="https://voloda.github.io//page/2/">
     2
     </a>
 </li>
 
-<li >
-  <a href="https://voloda.github.io//post/page/3/">
+<li  class="active" >
+  <a href="https://voloda.github.io//page/3/">
     3
     </a>
 </li>
 
 
-<li >
-  <a aria-label="Next" href="https://voloda.github.io//post/page/2/">
+<li  class="disabled" >
+  <a aria-label="Next" href="#">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>
-<li >
-  <a aria-label="Last" href="https://voloda.github.io//post/page/3/">
+<li  class="disabled" >
+  <a aria-label="Last" href="https://voloda.github.io//page/3/">
     <span aria-hidden="true">&raquo;&raquo;</span>
   </a>
 </li>
@@ -210,7 +250,12 @@
 </nav>
 
 
-</div>
+      </div>
+      
+    </div>
+
+  </div>
+
     
 <footer class="footer hidden-print">
   <div class="container">
