@@ -211,51 +211,51 @@ accidently inject a dependency from a child container to the parent container wh
 <p>When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.</p>
 
 <p>Let&rsquo;s consider following classes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> IServiceDependency
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">interface</span> IServiceDependency
 {
 }
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> IService
+<span style="color:#00f">public</span> <span style="color:#00f">interface</span> IService
 {
 }
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ServiceDependency</span> : IServiceDependency
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">ServiceDependency</span> : IServiceDependency
 {
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">string</span> _dep1;
+    <span style="color:#00f">private</span> <span style="color:#00f">readonly</span> <span style="color:#2b91af">string</span> _dep1;
 
-    <span style="color:#66d9ef">public</span> ServiceDependency(<span style="color:#66d9ef">string</span> dep1)
+    <span style="color:#00f">public</span> ServiceDependency(<span style="color:#2b91af">string</span> dep1)
     {
         _dep1 = dep1;
     }
 }
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Service</span> : IService
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Service</span> : IService
 {
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> IServiceDependency _dependency;
+    <span style="color:#00f">private</span> <span style="color:#00f">readonly</span> IServiceDependency _dependency;
 
-    <span style="color:#66d9ef">public</span> Service(IServiceDependency dependency)
+    <span style="color:#00f">public</span> Service(IServiceDependency dependency)
     {
         _dependency = dependency;
     }
 }</code></pre></div>
 <p>Now let&rsquo;s setup some test case:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#a6e22e">[Test]</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ServiceResolutionViaTwoDifferentChildContainersShouldFail()
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">[Test]
+<span style="color:#00f">public</span> <span style="color:#00f">void</span> ServiceResolutionViaTwoDifferentChildContainersShouldFail()
 {
-    <span style="color:#66d9ef">var</span> rootContainer = <span style="color:#66d9ef">new</span> UnityContainer();
+    <span style="color:#2b91af">var</span> rootContainer = <span style="color:#00f">new</span> UnityContainer();
 
-    rootContainer.RegisterType&lt;IService, Service&gt;(<span style="color:#66d9ef">new</span> ContainerControlledLifetimeManager());
-    <span style="color:#66d9ef">var</span> childContainer = rootContainer.CreateChildContainer();
-    <span style="color:#66d9ef">var</span> childContainer2 = rootContainer.CreateChildContainer();
+    rootContainer.RegisterType&lt;IService, Service&gt;(<span style="color:#00f">new</span> ContainerControlledLifetimeManager());
+    <span style="color:#2b91af">var</span> childContainer = rootContainer.CreateChildContainer();
+    <span style="color:#2b91af">var</span> childContainer2 = rootContainer.CreateChildContainer();
 
-    childContainer.RegisterInstance&lt;IServiceDependency&gt;(<span style="color:#66d9ef">new</span> ServiceDependency(<span style="color:#e6db74">&#34;Dep1&#34;</span>));
-    childContainer2.RegisterInstance&lt;IServiceDependency&gt;(<span style="color:#66d9ef">new</span> ServiceDependency(<span style="color:#e6db74">&#34;Dep2&#34;</span>));
+    childContainer.RegisterInstance&lt;IServiceDependency&gt;(<span style="color:#00f">new</span> ServiceDependency(<span style="color:#a31515">&#34;Dep1&#34;</span>));
+    childContainer2.RegisterInstance&lt;IServiceDependency&gt;(<span style="color:#00f">new</span> ServiceDependency(<span style="color:#a31515">&#34;Dep2&#34;</span>));
 
-    <span style="color:#66d9ef">var</span> childContainerResult1 = childContainer.Resolve&lt;IService&gt;();
-    <span style="color:#66d9ef">var</span> childContainerResult2 = childContainer.Resolve&lt;IService&gt;();
+    <span style="color:#2b91af">var</span> childContainerResult1 = childContainer.Resolve&lt;IService&gt;();
+    <span style="color:#2b91af">var</span> childContainerResult2 = childContainer.Resolve&lt;IService&gt;();
 
-    <span style="color:#66d9ef">var</span> childContainer2Result1 = childContainer.Resolve&lt;IService&gt;();
-    <span style="color:#66d9ef">var</span> childContainer2Result2 = childContainer.Resolve&lt;IService&gt;();
+    <span style="color:#2b91af">var</span> childContainer2Result1 = childContainer.Resolve&lt;IService&gt;();
+    <span style="color:#2b91af">var</span> childContainer2Result2 = childContainer.Resolve&lt;IService&gt;();
 
     Assert.AreEqual(childContainerResult1, childContainerResult2);
     Assert.AreEqual(childContainer2Result1, childContainer2Result2);
@@ -297,7 +297,7 @@ accidently inject a dependency from a child container to the parent container wh
 <li>The extension is available as a <a href="https://www.nuget.org/packages/UnityRegistrationValidator"><strong>Nuget package</strong></a>.</li>
 </ul></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">var</span> rootContainer = <span style="color:#66d9ef">new</span> UnityContainer();
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#2b91af">var</span> rootContainer = <span style="color:#00f">new</span> UnityContainer();
 rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();</code></pre></div>
 <h1 id="following-rules-are-enforced-after-registering-extension">Following rules are enforced after registering extension</h1>
 

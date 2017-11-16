@@ -58,7 +58,7 @@
     },
     "datePublished": "2014-12-03",
     "description": "",
-    "wordCount": 502
+    "wordCount": 505
   }
 </script>
   
@@ -156,7 +156,7 @@
 
   <small>
   &middot; Read in about 3 min
-  &middot; (502 words)
+  &middot; (505 words)
   &middot; 
 <span class="share-box">Share this on:
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2014%2f12%2fhow-to-release-unmanaged-library-loaded-into-managed-dotnet-code%2f" onclick="window.open(this.href, 'mywin',
@@ -221,115 +221,115 @@ You can use P-Invoke to import following standard WinAPI functions for dynamical
 </ul>
 
 <p>We will use following wrapping class:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">internal</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UnsafeMethods</span>
-{<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]</span>
-    <span style="color:#66d9ef">internal</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">static</span> IntPtr LoadLibrary(<span style="color:#66d9ef">string</span> libraryName);<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]</span>
-    <span style="color:#66d9ef">internal</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> FreeLibrary(IntPtr hModule);<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]</span>
-    <span style="color:#66d9ef">internal</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">static</span> IntPtr GetProcAddress(IntPtr hModule, <span style="color:#66d9ef">string</span> procName);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">internal</span> <span style="color:#00f">static</span> <span style="color:#00f">class</span> <span style="color:#2b91af">UnsafeMethods</span>
+{
+    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]
+    <span style="color:#00f">internal</span> <span style="color:#00f">extern</span> <span style="color:#00f">static</span> IntPtr LoadLibrary(<span style="color:#2b91af">string</span> libraryName);
+    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]
+    <span style="color:#00f">internal</span> <span style="color:#00f">extern</span> <span style="color:#00f">static</span> <span style="color:#2b91af">bool</span> FreeLibrary(IntPtr hModule);
+    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]
+    <span style="color:#00f">internal</span> <span style="color:#00f">extern</span> <span style="color:#00f">static</span> IntPtr GetProcAddress(IntPtr hModule, <span style="color:#2b91af">string</span> procName);
 }</code></pre></div>
 <p>We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#75715e">// int multiply(int value1, int value2);
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">int</span> MultiplyDelegate(<span style="color:#66d9ef">int</span> value1, <span style="color:#66d9ef">int</span> value2);
-<span style="color:#75715e">// int str2int(const char *input);
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">int</span> Str2IntDelegate(<span style="color:#a6e22e">[MarshalAs(UnmanagedType.LPStr)]</span><span style="color:#66d9ef">string</span> source);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#008000">// int multiply(int value1, int value2);
+</span><span style="color:#008000"></span><span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> MultiplyDelegate(<span style="color:#2b91af">int</span> value1, <span style="color:#2b91af">int</span> value2);
+<span style="color:#008000">// int str2int(const char *input);
+</span><span style="color:#008000"></span><span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]<span style="color:#2b91af">string</span> source);</code></pre></div>
 <p>Now we can create implement our class calling external DLL functionality with <code>IDisposable</code> interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as <code>Multiply()</code> and <code>Str2Int()</code>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExternalHelpers</span>: IDisposable
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">ExternalHelpers</span>: IDisposable
 {
-    <span style="color:#75715e">#region Private members
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> IntPtr _libraryHandle;
-    <span style="color:#66d9ef">private</span> MultiplyDelegate _multiply;
-    <span style="color:#66d9ef">private</span> Str2IntDelegate _str2Int;
-    <span style="color:#75715e">#endregion
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">#region External functions delegates
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// int multiply(int value1, int value2);
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">int</span> MultiplyDelegate(<span style="color:#66d9ef">int</span> value1, <span style="color:#66d9ef">int</span> value2);
-    <span style="color:#75715e">// int str2int(const char *input);
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">int</span> Str2IntDelegate(<span style="color:#a6e22e">[MarshalAs(UnmanagedType.LPStr)]</span><span style="color:#66d9ef">string</span> source);
-    <span style="color:#75715e">#endregion
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">public</span> ExternalHelpers()
+    <span style="color:#00f">#region Private members
+</span><span style="color:#00f"></span>    <span style="color:#00f">private</span> IntPtr _libraryHandle;
+    <span style="color:#00f">private</span> MultiplyDelegate _multiply;
+    <span style="color:#00f">private</span> Str2IntDelegate _str2Int;
+    <span style="color:#00f">#endregion
+</span><span style="color:#00f"></span>
+    <span style="color:#00f">#region External functions delegates
+</span><span style="color:#00f"></span>    <span style="color:#008000">// int multiply(int value1, int value2);
+</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> MultiplyDelegate(<span style="color:#2b91af">int</span> value1, <span style="color:#2b91af">int</span> value2);
+    <span style="color:#008000">// int str2int(const char *input);
+</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]<span style="color:#2b91af">string</span> source);
+    <span style="color:#00f">#endregion
+</span><span style="color:#00f"></span>
+    <span style="color:#00f">public</span> ExternalHelpers()
     {
-        <span style="color:#75715e">// dynamically load DLL using WinAPI
-</span><span style="color:#75715e"></span>        _libraryHandle = UnsafeMethods.LoadLibrary(<span style="color:#e6db74">@&#34;testing.dll&#34;</span>);
+        <span style="color:#008000">// dynamically load DLL using WinAPI
+</span><span style="color:#008000"></span>        _libraryHandle = UnsafeMethods.LoadLibrary(<span style="color:#a31515">@&#34;testing.dll&#34;</span>);
 
-        <span style="color:#66d9ef">if</span> (_libraryHandle == IntPtr.Zero)
+        <span style="color:#00f">if</span> (_libraryHandle == IntPtr.Zero)
             Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        <span style="color:#75715e">// import functions as delegates using GetProcAddress
-</span><span style="color:#75715e"></span>        _multiply = LoadExternalFunction&lt;MultiplyDelegate&gt;(<span style="color:#e6db74">@&#34;multiply&#34;</span>);
-        _str2Int = LoadExternalFunction&lt;Str2IntDelegate&gt;(<span style="color:#e6db74">@&#34;str2int&#34;</span>);
+        <span style="color:#008000">// import functions as delegates using GetProcAddress
+</span><span style="color:#008000"></span>        _multiply = LoadExternalFunction&lt;MultiplyDelegate&gt;(<span style="color:#a31515">@&#34;multiply&#34;</span>);
+        _str2Int = LoadExternalFunction&lt;Str2IntDelegate&gt;(<span style="color:#a31515">@&#34;str2int&#34;</span>);
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Multiply(<span style="color:#66d9ef">int</span> value1, <span style="color:#66d9ef">int</span> value2)
+    <span style="color:#00f">public</span> <span style="color:#2b91af">int</span> Multiply(<span style="color:#2b91af">int</span> value1, <span style="color:#2b91af">int</span> value2)
     {
-        <span style="color:#75715e">// call method using delegate
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> _multiply(value1, value2);
+        <span style="color:#008000">// call method using delegate
+</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> _multiply(value1, value2);
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Str2Int(<span style="color:#66d9ef">string</span> source)
+    <span style="color:#00f">public</span> <span style="color:#2b91af">int</span> Str2Int(<span style="color:#2b91af">string</span> source)
     {
-        <span style="color:#75715e">// call method using delegate
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> _str2Int(source);
+        <span style="color:#008000">// call method using delegate
+</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> _str2Int(source);
     }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Dispose()
+    <span style="color:#00f">public</span> <span style="color:#00f">void</span> Dispose()
     {
-        Dispose(<span style="color:#66d9ef">true</span>);
+        Dispose(<span style="color:#00f">true</span>);
 
-        GC.SuppressFinalize(<span style="color:#66d9ef">this</span>);
+        GC.SuppressFinalize(<span style="color:#00f">this</span>);
     }
 
     ~ExternalHelpers()
     {
-        Dispose(<span style="color:#66d9ef">false</span>);
+        Dispose(<span style="color:#00f">false</span>);
     }
 
-    <span style="color:#75715e">#region Private helper methods
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> T LoadExternalFunction&lt;T&gt;(<span style="color:#66d9ef">string</span> functionName)
-        <span style="color:#66d9ef">where</span> T: <span style="color:#66d9ef">class</span>
+    <span style="color:#00f">#region Private helper methods
+</span><span style="color:#00f"></span>    <span style="color:#00f">private</span> T LoadExternalFunction&lt;T&gt;(<span style="color:#2b91af">string</span> functionName)
+        <span style="color:#00f">where</span> T: <span style="color:#00f">class</span>
     {
         Debug.Assert(!String.IsNullOrEmpty(functionName));
-        <span style="color:#75715e">// load function pointer
-</span><span style="color:#75715e"></span>        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
+        <span style="color:#008000">// load function pointer
+</span><span style="color:#008000"></span>        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
 
-        <span style="color:#66d9ef">if</span> (functionPointer == IntPtr.Zero)
+        <span style="color:#00f">if</span> (functionPointer == IntPtr.Zero)
             Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        <span style="color:#75715e">// Marshal to requested delegate
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> Marshal.GetDelegateForFunctionPointer(functionPointer, <span style="color:#66d9ef">typeof</span>(T)) <span style="color:#66d9ef">as</span> T;
+        <span style="color:#008000">// Marshal to requested delegate
+</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> Marshal.GetDelegateForFunctionPointer(functionPointer, <span style="color:#00f">typeof</span>(T)) <span style="color:#00f">as</span> T;
     }
 
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Dispose(<span style="color:#66d9ef">bool</span> disposing)
+    <span style="color:#00f">private</span> <span style="color:#00f">void</span> Dispose(<span style="color:#2b91af">bool</span> disposing)
     {
-        <span style="color:#66d9ef">if</span> (disposing)
+        <span style="color:#00f">if</span> (disposing)
         {
-            _multiply = <span style="color:#66d9ef">null</span>;
-            _str2Int = <span style="color:#66d9ef">null</span>;
+            _multiply = <span style="color:#00f">null</span>;
+            _str2Int = <span style="color:#00f">null</span>;
         }
 
-        <span style="color:#66d9ef">if</span> (_libraryHandle != IntPtr.Zero)
+        <span style="color:#00f">if</span> (_libraryHandle != IntPtr.Zero)
         {
-            <span style="color:#66d9ef">if</span> (!UnsafeMethods.FreeLibrary(_libraryHandle))
+            <span style="color:#00f">if</span> (!UnsafeMethods.FreeLibrary(_libraryHandle))
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
 
             _libraryHandle = IntPtr.Zero;
         }
     }
-    <span style="color:#75715e">#endregion
-</span><span style="color:#75715e"></span>}</code></pre></div>
+    <span style="color:#00f">#endregion
+</span><span style="color:#00f"></span>}</code></pre></div>
 <p>And finally - we can use it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span><span style="color:#a6e22e">[]</span> args)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">static</span> <span style="color:#00f">void</span> Main(<span style="color:#2b91af">string</span>[] args)
 {
-    using(ExternalHelpers e = <span style="color:#66d9ef">new</span> ExternalHelpers())
+    using(ExternalHelpers e = <span style="color:#00f">new</span> ExternalHelpers())
     {
-        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> value1 = <span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> value2 = <span style="color:#ae81ff">3</span>;
-        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> strValue = <span style="color:#e6db74">&#34;345&#34;</span>;
+        <span style="color:#00f">const</span> <span style="color:#2b91af">int</span> value1 = 2;
+        <span style="color:#00f">const</span> <span style="color:#2b91af">int</span> value2 = 3;
+        <span style="color:#00f">const</span> <span style="color:#2b91af">string</span> strValue = <span style="color:#a31515">&#34;345&#34;</span>;
 
-        Console.WriteLine(<span style="color:#e6db74">&#34;{0} * {1} = {2}&#34;</span>, value1, value2, e.Multiply(value1, value2));
-        Console.WriteLine(<span style="color:#e6db74">&#34;{0} =&gt; {1}&#34;</span>, strValue, e.Str2Int(strValue));
+        Console.WriteLine(<span style="color:#a31515">&#34;{0} * {1} = {2}&#34;</span>, value1, value2, e.Multiply(value1, value2));
+        Console.WriteLine(<span style="color:#a31515">&#34;{0} =&gt; {1}&#34;</span>, strValue, e.Str2Int(strValue));
     }
 
     Console.ReadKey();
