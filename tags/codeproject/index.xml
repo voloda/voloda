@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Codeproject on My personal notes</title>
-    <link>https://voloda.github.io/tags/codeproject/</link>
-    <description>Recent content in Codeproject on My personal notes</description>
+    <title>CodeProject on My personal notes</title>
+    <link>/tags/codeproject/</link>
+    <description>Recent content in CodeProject on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 25 Nov 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.github.io/tags/codeproject/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/codeproject/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Unity Registration Validator</title>
-      <link>https://voloda.github.io/2014/11/unity-registration-validator/</link>
+      <link>/2014/11/unity-registration-validator/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2014/11/unity-registration-validator/</guid>
+      <guid>/2014/11/unity-registration-validator/</guid>
       <description>Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
 Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &amp;lsquo;singletons&amp;rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
 Let&amp;rsquo;s consider following classes:
