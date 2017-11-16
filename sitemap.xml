@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://voloda.github.io/2017/11/something-about-git/</loc>
+    <lastmod>2017-11-14T22:17:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/notes/chocolatey/setup-on-dev-machine-and-useful-packages/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/2014/11/unity-registration-validator/</loc>
+    <lastmod>2017-11-14T22:17:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/categories/chocolatey/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/tags/codeproject/</loc>
+    <lastmod>2017-11-14T22:17:31+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/tags/development/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/tags/dotnet/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/</loc>
+    <lastmod>2017-11-14T22:17:31+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/post/</loc>
+    <lastmod>2017-11-14T22:17:31+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/tags/</loc>
+    <lastmod>2017-11-14T22:17:31+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/tutorials/</loc>
+    <lastmod>2017-11-15T00:38:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chocolatey on My personal notes</title>
+    <link>https://voloda.github.io/categories/chocolatey/</link>
+    <description>Recent content in Chocolatey on My personal notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://voloda.github.io/categories/chocolatey/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chocolatey setup on DEV machine &#43; useful packages</title>
+      <link>https://voloda.github.io/notes/chocolatey/setup-on-dev-machine-and-useful-packages/</link>
+      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/notes/chocolatey/setup-on-dev-machine-and-useful-packages/</guid>
+      <description> Upgrade all packages  choco outdated  List available upgrades  cup all -y  List local Packages  chocolatey list -localonly  Packages choco install -y git --params=&#39;/NoShellIntegration&#39; choco install -y poshgit choco install -y gittfs choco install -y far choco install -y atom choco install -y chefdk choco install -y winmerge  </description>
+    </item>
+    
+  </channel>
+</rss>
