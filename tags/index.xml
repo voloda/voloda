@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on My personal notes</title>
-    <link>/tags/</link>
+    <link>https://voloda.github.io/tags/</link>
     <description>Recent content in Tags on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 25 Nov 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://voloda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>CodeProject</title>
-      <link>/tags/codeproject/</link>
+      <link>https://voloda.github.io/tags/codeproject/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/codeproject/</guid>
+      <guid>https://voloda.github.io/tags/codeproject/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Development</title>
-      <link>/tags/development/</link>
+      <link>https://voloda.github.io/tags/development/</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/development/</guid>
+      <guid>https://voloda.github.io/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>/tags/docker/</link>
+      <link>https://voloda.github.io/tags/docker/</link>
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/docker/</guid>
+      <guid>https://voloda.github.io/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DotNET</title>
-      <link>/tags/dotnet/</link>
+      <link>https://voloda.github.io/tags/dotnet/</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dotnet/</guid>
+      <guid>https://voloda.github.io/tags/dotnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jenkins</title>
-      <link>/tags/jenkins/</link>
+      <link>https://voloda.github.io/tags/jenkins/</link>
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/jenkins/</guid>
+      <guid>https://voloda.github.io/tags/jenkins/</guid>
       <description></description>
     </item>
     
