@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DotNET on My personal notes</title>
+    <title>DotNET on My personal notes on various topics</title>
     <link>http://voloda.bazilisek.net/tags/dotnet/</link>
-    <description>Recent content in DotNET on My personal notes</description>
+    <description>Recent content in DotNET on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 Mar 2015 00:00:00 +0000</lastBuildDate>
