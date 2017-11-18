@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Powerbuilder on My personal notes</title>
-    <link>https://voloda.github.io/tags/powerbuilder/</link>
+    <link>https://voloda.bazilisek.net/tags/powerbuilder/</link>
     <description>Recent content in Powerbuilder on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 May 2010 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.github.io/tags/powerbuilder/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://voloda.bazilisek.net/tags/powerbuilder/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Using CVS as source control for Sybase PowerBuilder</title>
-      <link>https://voloda.github.io/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</link>
+      <link>https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</guid>
+      <guid>https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</guid>
       <description>This article in short describes, how to use CVS for Powerbuilder. This solution we are using for about 6 years and it works very good.
 PBL problems The main difficulty of the Sybase Power Builder is in PBL libraries. PBL libraries are binary libraries containing both - sources and precompiled sources. This solution causes many problems:
  PBLs are also very inclinable to faults (in Power Builder 7 it was not very surprissing that after fullrebuild failure were PBLs completely broken).</description>
@@ -24,10 +24,10 @@ PBL problems The main difficulty of the Sybase Power Builder is in PBL libraries
     
     <item>
       <title>Using SVN as source control for Sybase PowerBuilder</title>
-      <link>https://voloda.github.io/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</link>
+      <link>https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</guid>
+      <guid>https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</guid>
       <description>This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another article).
 CVS we were are using for about 6 years and it was working perfectly.
 But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.</description>

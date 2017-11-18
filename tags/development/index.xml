@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Development on My personal notes</title>
-    <link>https://voloda.github.io/tags/development/</link>
+    <link>https://voloda.bazilisek.net/tags/development/</link>
     <description>Recent content in Development on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.github.io/tags/development/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://voloda.bazilisek.net/tags/development/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Having fun with Chef</title>
-      <link>https://voloda.github.io/2015/09/having-fun-with-chef/</link>
+      <link>https://voloda.bazilisek.net/2015/09/having-fun-with-chef/</link>
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2015/09/having-fun-with-chef/</guid>
+      <guid>https://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
       <description>Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
 There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
 Setup Client side Chef client can run in two modes:
@@ -25,10 +25,10 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
     
     <item>
       <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</title>
-      <link>https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
+      <link>https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
+      <guid>https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
       <description>Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
 As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
 Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.</description>
@@ -36,10 +36,10 @@ Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In ord
     
     <item>
       <title>Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</title>
-      <link>https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</link>
+      <link>https://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</link>
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
+      <guid>https://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
       <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
 Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
  How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
@@ -47,10 +47,10 @@ Setting up the data and parameters for stored procedure takes some time and ther
     
     <item>
       <title>Visual Studio 2012 debugger does not break after attaching to C#/.NET process</title>
-      <link>https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</link>
+      <link>https://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</guid>
+      <guid>https://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</guid>
       <description>I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.
 Symptoms were that the debugger attached to the process but neither &amp;lsquo;Break All&amp;rsquo; worked. The same applied for any preset breakpoint.
 For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via Debug.Assert() or Debugger.</description>
@@ -58,10 +58,10 @@ For some time I thought that Visual Studio installation for somehow corrupted on
     
     <item>
       <title>How to release unmanaged library loaded into managed .NET code</title>
-      <link>https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</link>
+      <link>https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</link>
       <pubDate>Wed, 03 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</guid>
+      <guid>https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</guid>
       <description>Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
 And what is wrong with it?
 It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!</description>
@@ -69,10 +69,10 @@ It forces to unload ALL instances of the DLL library currently loaded within pro
     
     <item>
       <title>Unity Registration Validator</title>
-      <link>https://voloda.github.io/2014/11/unity-registration-validator/</link>
+      <link>https://voloda.bazilisek.net/2014/11/unity-registration-validator/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2014/11/unity-registration-validator/</guid>
+      <guid>https://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
       <description>Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
 Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &amp;lsquo;singletons&amp;rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
 Let&amp;rsquo;s consider following classes:
@@ -81,10 +81,10 @@ public interface IServiceDependency { } public interface IService { } public cla
     
     <item>
       <title>DbKeeperNet - How to seed ASP.NET users and roles</title>
-      <link>https://voloda.github.io/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
+      <link>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
+      <guid>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
       <description>Introduction It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.
 DbKeeperNet is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: MSSQL, SQLite, Firebird, MySQL, Oracle.</description>
     </item>

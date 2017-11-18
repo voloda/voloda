@@ -2,120 +2,120 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on My personal notes</title>
-    <link>https://voloda.github.io/tags/</link>
+    <link>https://voloda.bazilisek.net/tags/</link>
     <description>Recent content in Tags on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 24 Nov 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://voloda.bazilisek.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>.NET</title>
-      <link>https://voloda.github.io/tags/.net/</link>
+      <link>https://voloda.bazilisek.net/tags/.net/</link>
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/.net/</guid>
+      <guid>https://voloda.bazilisek.net/tags/.net/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Chef</title>
-      <link>https://voloda.github.io/tags/chef/</link>
+      <link>https://voloda.bazilisek.net/tags/chef/</link>
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/chef/</guid>
+      <guid>https://voloda.bazilisek.net/tags/chef/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CodeProject</title>
-      <link>https://voloda.github.io/tags/codeproject/</link>
+      <link>https://voloda.bazilisek.net/tags/codeproject/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/codeproject/</guid>
+      <guid>https://voloda.bazilisek.net/tags/codeproject/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Codeproject</title>
-      <link>https://voloda.github.io/tags/codeproject/</link>
+      <link>https://voloda.bazilisek.net/tags/codeproject/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/codeproject/</guid>
+      <guid>https://voloda.bazilisek.net/tags/codeproject/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cvs</title>
-      <link>https://voloda.github.io/tags/cvs/</link>
+      <link>https://voloda.bazilisek.net/tags/cvs/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/cvs/</guid>
+      <guid>https://voloda.bazilisek.net/tags/cvs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Development</title>
-      <link>https://voloda.github.io/tags/development/</link>
+      <link>https://voloda.bazilisek.net/tags/development/</link>
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/development/</guid>
+      <guid>https://voloda.bazilisek.net/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://voloda.github.io/tags/docker/</link>
+      <link>https://voloda.bazilisek.net/tags/docker/</link>
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/docker/</guid>
+      <guid>https://voloda.bazilisek.net/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DotNET</title>
-      <link>https://voloda.github.io/tags/dotnet/</link>
+      <link>https://voloda.bazilisek.net/tags/dotnet/</link>
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/dotnet/</guid>
+      <guid>https://voloda.bazilisek.net/tags/dotnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jenkins</title>
-      <link>https://voloda.github.io/tags/jenkins/</link>
+      <link>https://voloda.bazilisek.net/tags/jenkins/</link>
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/jenkins/</guid>
+      <guid>https://voloda.bazilisek.net/tags/jenkins/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Powerbuilder</title>
-      <link>https://voloda.github.io/tags/powerbuilder/</link>
+      <link>https://voloda.bazilisek.net/tags/powerbuilder/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/powerbuilder/</guid>
+      <guid>https://voloda.bazilisek.net/tags/powerbuilder/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SQL</title>
-      <link>https://voloda.github.io/tags/sql/</link>
+      <link>https://voloda.bazilisek.net/tags/sql/</link>
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/sql/</guid>
+      <guid>https://voloda.bazilisek.net/tags/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Svn</title>
-      <link>https://voloda.github.io/tags/svn/</link>
+      <link>https://voloda.bazilisek.net/tags/svn/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/tags/svn/</guid>
+      <guid>https://voloda.bazilisek.net/tags/svn/</guid>
       <description></description>
     </item>
     

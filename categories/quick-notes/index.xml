@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quick Notes on My personal notes</title>
-    <link>https://voloda.github.io/categories/quick-notes/</link>
+    <link>https://voloda.bazilisek.net/categories/quick-notes/</link>
     <description>Recent content in Quick Notes on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 17 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.github.io/categories/quick-notes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://voloda.bazilisek.net/categories/quick-notes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Jenkins Server Setup On Windows</title>
-      <link>https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/</link>
+      <link>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/</guid>
+      <guid>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
       <description>Jenkinks server setup Server setup  See http://jenkinks.io/download Open http://localhost:8080/  Slave setup  Install Chocolatey (see instructions on web) Install Google Chrome  choco install -y googlechrome  Install Java  choco install -y javaruntime  Install git  choco install -y git /NoShellIntegration  VS2017 build Tools  choco install -y visualstudio2017buildtools  Installing packages after the service start may require service restart Login to master via Chrome Configure Global Security and setup TCP port for JNLP agents Add new Node 17 Download the java file and run it  In menu it allows to Install Windows Service This may need to change the Jenkinks server URL in settings  Setup labels to distribute load across nodes conditionally  Tools  Chrome  https://dl.</description>
     </item>
     
