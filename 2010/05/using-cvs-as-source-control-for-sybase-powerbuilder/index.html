@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Jenkinsfile Sample Utilizing Docker Slave Agent  &middot; My personal notes</title>
+  <title>Using CVS as source control for Sybase PowerBuilder  &middot; My personal notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,25 +14,25 @@
 
 <meta name="description" content="My personal notes on various topics" />
 
-<meta name="keywords" content="docker, jenkins, ">
+<meta name="keywords" content="powerbuilder, cvs, ">
 
 
-<meta property="og:title" content="Jenkinsfile Sample Utilizing Docker Slave Agent  &middot; My personal notes ">
+<meta property="og:title" content="Using CVS as source control for Sybase PowerBuilder  &middot; My personal notes ">
 <meta property="og:site_name" content="My personal notes"/>
-<meta property="og:url" content="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" />
+<meta property="og:url" content="https://voloda.github.io/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2017-10-25T00:00:00Z" />
-<meta property="og:article:modified_time" content="2017-10-25T00:00:00Z" />
+<meta property="og:article:published_time" content="2010-05-15T00:00:00Z" />
+<meta property="og:article:modified_time" content="2010-05-15T00:00:00Z" />
 
   
     
-<meta property="og:article:tag" content="docker">
+<meta property="og:article:tag" content="powerbuilder">
     
-<meta property="og:article:tag" content="jenkins">
+<meta property="og:article:tag" content="cvs">
     
   
 
@@ -40,9 +40,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Jenkinsfile Sample Utilizing Docker Slave Agent" />
+<meta name="twitter:title" content="Using CVS as source control for Sybase PowerBuilder" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" />
+<meta name="twitter:url" content="https://voloda.github.io/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/" />
 <meta name="twitter:domain" content="https://voloda.github.io/">
   
 
@@ -51,21 +51,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Jenkinsfile Sample Utilizing Docker Slave Agent",
+    "headline": "Using CVS as source control for Sybase PowerBuilder",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2017-10-25",
+    "datePublished": "2010-05-15",
     "description": "",
-    "wordCount": 127
+    "wordCount": 458
   }
 </script>
   
 
 
 
-<link rel="canonical" href="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" />
+<link rel="canonical" href="https://voloda.github.io/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.30.2" />
@@ -144,37 +144,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1>Jenkinsfile Sample Utilizing Docker Slave Agent
+    <h1>Using CVS as source control for Sybase PowerBuilder
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-10-25">25 Oct, 2017</time>
+  <time datetime="2010-05-15">15 May, 2010</time>
 </small>
 
 
   <small>
-  &middot; Read in about 1 min
-  &middot; (127 words)
+  &middot; Read in about 3 min
+  &middot; (458 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Using%20CVS%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f&amp;title=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f&amp;title=Using%20CVS%20as%20source%20control%20for%20Sybase%20PowerBuilder" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Using%20CVS%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -182,9 +182,9 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.github.io/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.github.io/tags/powerbuilder" class="label label-primary">powerbuilder</a>
   
-  <a href="https://voloda.github.io/tags/jenkins" class="label label-primary">jenkins</a>
+  <a href="https://voloda.github.io/tags/cvs" class="label label-primary">cvs</a>
   
 
 
@@ -197,67 +197,63 @@
 </div>
 
       <div class="content">
-  <pre><code>pipeline {
-  agent none
+  
 
-  environment {
-    RELEASE_NUMBER = '17.1.1'
-    VERSION_NUMBER = VersionNumber(versionNumberString: '17.1.1.${BUILDS_ALL_TIME}')
-  }
+<p>This article in short describes, how to use CVS for Powerbuilder. This solution we are using for about 6 years and it works very good.</p>
 
+<h1 id="pbl-problems">PBL problems</h1>
 
-  stages {
-    stage('Checkout from GIT'){
-      agent any
-      steps {
-        script {
-          currentBuild.displayName = &quot;#${VERSION_NUMBER}&quot;
-        }
-        checkout scm
-      }
-    }
-    stage('NUGET package restore') {
-      agent { label 'nuget' }
-      steps {
-            echo 'Restoring nuget packages'
-            bat '&quot;%NUGET_PATH%&quot; restore TestSolution.sln'
-            dir ('.') {
-              stash 'sources'
-            }
-      }
-    }
-    stage('Build') {
-      agent { label 'dotNET_4.7'}
-      steps {
-        dir ('.') {
-          unstash 'sources'
-        }
+<p>The main difficulty of the Sybase Power Builder is in PBL libraries. PBL libraries are binary libraries containing both - sources and precompiled sources. This solution causes many problems:</p>
 
-        bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.exe\&quot; TestSolution.sln /p:Configuration=Release /p:Platform=\&quot;Any CPU\&quot;&quot;
+<ul>
+<li>PBLs are also very inclinable to faults (in Power Builder 7 it was not very surprissing that after fullrebuild failure were PBLs completely broken).</li>
+<li>Object sources saved in PBLs are not easily comparable.</li>
+<li>Also built-in support for inefficience (sources are checked-out to temporary PBL library, offline access is not very comfortable etc).</li>
+<li>In the case of multiple developers working on the same project this causes many problems with sources synchronization (you can use many utilities, but it was always hell after one week track all changes and put them together - it tooks for about half a day per week and it was quiet often, that some changes were lost).</li>
+</ul>
 
-        dir ('TestSolution/bin') {
-          stash 'bins'
-        }
-        withCredentials([usernamePassword(credentialsId: 'cdd06d32-f11d-446c-8687-3debc9dba901', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-          bat &quot;git tag 'j-${VERSION_NUMBER}'&quot;
+<h1 id="solution">Solution</h1>
 
-          bat &quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@git.server.net/TestSolution2.git --tags&quot;
-        }
-      }
-    }
-    stage('Archive') {
-      agent any
-      steps {
-        dir ('TestSolution/bin') {
-          unstash 'bins'
-        }
-        archive '**/bin/Release/**.dll'
-      }
-    }
-  }
+<ul>
+<li>Use CVS as source control (use can use both *nix or Windows solution).</li>
+<li>Use TortoiseCVS (or any other free CVS GUI clients) for access to sources.</li>
+<li>Use Winmerge or any other free utility for sources differencies comparison.</li>
+<li>Export all sources into CVS project source tree (the best way is to export every PBL library into the separate directory in the CVS source tree).</li>
+<li>On building machine use PowerGen for project compilation and PBLs restore. In each build you can take your PBLs from the scratch (PowerGen can resolve all dependecies between objects and import them back into PBLs in the correct order).</li>
+<li>Every developer takes fresh PBLs after every build.</li>
+</ul>
 
-}
-</code></pre>
+<h1 id="editing-sources">Editing sources</h1>
+
+<ul>
+<li>Every developer can take fresh PBLs generated by PowerGen after build.</li>
+<li>Before change perform Update command on existing object.</li>
+<li>Import this object from CVS sandbox into your work PBL (replacing existing one).</li>
+<li>Perform any required changes.</li>
+<li>Export modified object from working PBL to the CVS sandbox.</li>
+<li>Execute Commit command on the exported object in CVS sandbox, provide proper comment and send it to the CVS source control.</li>
+</ul>
+
+<h1 id="benefits">Benefits</h1>
+
+<ul>
+<li>All sources are stored in plain text (including datawindows).</li>
+<li>All changes are simply trackable (from Power Builder 9 (?8?) this works much better, because in previous versions Power Builder changes order of methods on every save) - at least you know who and why made the change.</li>
+<li>You can simply resolve any conflicts (no more hell with sharing and synchronizing PBLs between developers).</li>
+<li>PBLs cann&rsquo;t contain any old errors from rebuilding etc.</li>
+<li>You can also connect additional actions to every souce file commit/checkout/tag and automatically connect those into other company systems.</li>
+</ul>
+
+<p>You can also use tags and branches for tracking your builds.</p>
+
+<h1 id="links">Links</h1>
+
+<ul>
+<li><a href="http://www.tortoisecvs.org/">TortoiseCVS</a></li>
+<li><a href="http://winmerge.org/">WinMerge</a></li>
+<li><a href="http://en.wikipedia.org/wiki/PowerBuilder">Sybase Power Builder on Wiki</a></li>
+<li><a href="http://www.ecrane.com/">PowerGen</a></li>
+</ul>
 
 </div>
 
@@ -265,22 +261,22 @@
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Using%20CVS%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f&amp;title=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f&amp;title=Using%20CVS%20as%20source%20control%20for%20Sybase%20PowerBuilder" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2017%2f10%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Using%20CVS%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2010%2f05%2fusing-cvs-as-source-control-for-sybase-powerbuilder%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -289,12 +285,18 @@
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/" title="Jenkins Server Setup On Windows">
+          <a href="https://voloda.github.io/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" title="Using SVN as source control for Sybase PowerBuilder">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
+    
+      <li class="next">
+        <a href="https://voloda.github.io/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/" title="DbKeeperNet - How to seed ASP.NET users and roles">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
     
     </ul> </nav>
   
