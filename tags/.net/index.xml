@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>.NET on My personal notes</title>
-    <link>https://voloda.bazilisek.net/tags/.net/</link>
+    <link>http://voloda.bazilisek.net/tags/.net/</link>
     <description>Recent content in .NET on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 24 Nov 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.bazilisek.net/tags/.net/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://voloda.bazilisek.net/tags/.net/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DbKeeperNet - How to seed ASP.NET users and roles</title>
-      <link>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
+      <link>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
+      <guid>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
       <description>Introduction It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.
 DbKeeperNet is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: MSSQL, SQLite, Firebird, MySQL, Oracle.</description>
     </item>

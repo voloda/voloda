@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chef on My personal notes</title>
-    <link>https://voloda.bazilisek.net/tags/chef/</link>
+    <link>http://voloda.bazilisek.net/tags/chef/</link>
     <description>Recent content in Chef on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://voloda.bazilisek.net/tags/chef/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://voloda.bazilisek.net/tags/chef/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Having fun with Chef</title>
-      <link>https://voloda.bazilisek.net/2015/09/having-fun-with-chef/</link>
+      <link>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</link>
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
+      <guid>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
       <description>Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
 There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
 Setup Client side Chef client can run in two modes:
