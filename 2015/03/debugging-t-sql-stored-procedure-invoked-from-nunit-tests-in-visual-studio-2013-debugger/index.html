@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger  &middot; My personal notes</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="My personal notes on various topics" />
+
+<meta name="keywords" content="development, SQL, dotNET, ">
+
+
+<meta property="og:title" content="Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger  &middot; My personal notes ">
+<meta property="og:site_name" content="My personal notes"/>
+<meta property="og:url" content="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2015-03-10T00:00:00Z" />
+<meta property="og:article:modified_time" content="2015-03-10T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="development">
+    
+<meta property="og:article:tag" content="SQL">
+    
+<meta property="og:article:tag" content="dotNET">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/" />
+<meta name="twitter:domain" content="https://voloda.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2015-03-10",
+    "description": "",
+    "wordCount": 760
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://voloda.github.io/css/bootswatch/simplex/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://voloda.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://voloda.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://voloda.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://voloda.github.io/" >
+                
+                Home
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://voloda.github.io/post/" >
+                
+                Posts
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2015-03-10">10 Mar, 2015</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 4 min
+  &middot; (760 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Debugging%20T-SQL%20Stored%20Procedure%20Invoked%20From%20NUnit%20Tests%20In%20Visual%20Studio%202013%20Debugger&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f&amp;title=Debugging%20T-SQL%20Stored%20Procedure%20Invoked%20From%20NUnit%20Tests%20In%20Visual%20Studio%202013%20Debugger" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Debugging%20T-SQL%20Stored%20Procedure%20Invoked%20From%20NUnit%20Tests%20In%20Visual%20Studio%202013%20Debugger&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://voloda.github.io/tags/development" class="label label-primary">development</a>
+  
+  <a href="https://voloda.github.io/tags/sql" class="label label-primary">SQL</a>
+  
+  <a href="https://voloda.github.io/tags/dotnet" class="label label-primary">dotNET</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  
+
+<p>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in <strong>Team City</strong>.</p>
+
+<p>Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:</p>
+
+<ul>
+<li>How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the <strong>SQL Server Management Studio</strong>.</li>
+<li>How to stub some of the data so the complex parts of queries can be easily verified.</li>
+</ul>
+
+<p>In the end I got working debugging with following setup:</p>
+
+<ul>
+<li>Stored procedures written in T-SQL for MSSQL.</li>
+<li>Each stored procedure is covered by unit tests written in NUnit.
+
+<ul>
+<li>Thanks to tip of my colleague MSSQL guru <em>Lubos</em> I was able quickly setup SQL Server snapshots to be able revert the database quickly to its initial state.</li>
+<li><em>Lubos</em> also proposed very simple way on how to <strong>stub</strong> some data in procedures.</li>
+</ul></li>
+<li>In order to be able quickly check what is going on inside the stored procedure use the Visual Studio 2013 debugger including the ability to step into the stored procedure.</li>
+</ul>
+
+<h1 id="using-stubs-for-data-used-inside-stored-procedures">Using stubs for data used inside stored procedures</h1>
+
+<ul>
+<li>Motivation here is that it is not always simple enough or even practical setup all the required data directly in the database.
+
+<ul>
+<li>Downside obviously is that since you are about to alter the stored procedure you have to be very careful.</li>
+</ul></li>
+<li>My colleague proposed a very simple way for this purpose which seems to work:
+
+<ul>
+<li>Before running tests take a database snapshot so you can easily revert back.</li>
+<li>Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">[Stub1]
+<span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> [MyInvoices]
+[#Stub1]</code></pre></div>
+<ul>
+<li>Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">[Stub1]
+<span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> #MyInvoices
+[#Stub1] </code></pre></div>
+<ul>
+<li>Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.</li>
+</ul>
+
+<h1 id="how-to-enable-t-sql-debugging-in-visual-studio-2013">How to enable T-SQL debugging in Visual Studio 2013</h1>
+
+<p>This was the most tricky part of the whole procedure and it may be specific to my setup (MSSQL 2008 R2, VS2013).</p>
+
+<ul>
+<li>As a prerequisite the <em>Application debugging</em> and <em>SQL/CLR debugging</em> must be enabled for the SQL Server in the <em>SQL Server Object Explorer</em>.</li>
+<li>There are two ways how to get to <em>SQL Server Object Explorer</em>:
+
+<ul>
+<li>Directly open <em>SQL Server Object Explorer</em> via Visual Studio menu <em>VIEW</em>:
+<img src="/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png" alt="Open SQL Server Object Explorer in VS 2013 menu" /></li>
+<li>Alternatively use <em>Server Explorer</em>:
+
+<ul>
+<li>Firstly add a connection to your database</li>
+<li>Then right click using mouse on registered database and select <em>Browse in SQL Server Object Explorer</em>:
+<img src="/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg" alt="Open SQL Server Object Explorer from Server Explorer in VS2013" /></li>
+</ul></li>
+</ul></li>
+<li>Once you get into the <em>SQL Server Object Explorer</em> enable both debugging options as visible on picture below:
+ <img src="/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png" alt="Enable debugging in SQL Server Object Explorer from VS2013" /></li>
+</ul>
+
+<h1 id="running-tests">Running tests</h1>
+
+<ul>
+<li>Running tests just for verification purposes is very simple and basically any NUnit runner can be used.</li>
+<li>In our case for the standard purpose serves very well Jetbrains Resharper.</li>
+</ul>
+
+<h1 id="debugging-tests">Debugging tests</h1>
+
+<ul>
+<li>Unfortunately this didn&rsquo;t work with built-in R# test runner.</li>
+<li>Instead I use <strong>NUnit-x86.exe</strong> runner (I simply needed to force the process bitness to 32bits but I suppose that <strong>NUnit.exe</strong> will work as well):
+
+<ul>
+<li>Load test assembly into NUnit runner.</li>
+<li>Attach Visual Studio 2013 debugger to running process.</li>
+<li>Important part here is to have enabled both - <strong>Managed code</strong> and <strong>T-SQL</strong> code debugging prior to attaching to he <strong>NUnit-x86.exe</strong> process:
+<img src="/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg" alt="Attaching to NUnit with enabled T-SQL debugging" /></li>
+<li>Now set a .breakpoint in .NET code just around the code which is responsible for invocation of the stored procedure you are interested in, for example <code>SqlDbCommand.Execute()</code>.</li>
+<li>Run unit test from the NUnit runner and have it hit the breakpoint in Visual Studio.</li>
+<li>Now from the _<strong>SQL Server Object Explorer</strong> open the body of stored procedure (just double-click on it),</li>
+<li>Set a breakpoint inside the procedure.</li>
+<li>And step thru the .NET code which is about to invoke the procedure.</li>
+<li>If everything works well for you you are now inside the stored procedure and you can debug it.</li>
+</ul></li>
+</ul>
+
+<h1 id="watching-data-inside-the-stored-procedure">Watching data inside the stored procedure</h1>
+
+<ul>
+<li>You can easily watch content of any variable inside the stored procedure.</li>
+<li>I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+<ul>
+<li>At the place you would check the content add following statement (obviously adjusted for correct table/variable name):</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">  <span style="color:#00f">DECLARE</span> @v XML = (<span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> #<span style="color:#00f">Parameters</span> <span style="color:#00f">FOR</span> XML AUTO, ROOT(<span style="color:#a31515">&#39;MyRoot&#39;</span>))</code></pre></div>
+<ul>
+<li>Once you will hit the statement in the debugger you can easily watch the content of <code>@v</code> and visualize it for example via <em>XML Visualizer</em>.</li>
+</ul>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Debugging%20T-SQL%20Stored%20Procedure%20Invoked%20From%20NUnit%20Tests%20In%20Visual%20Studio%202013%20Debugger&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f&amp;title=Debugging%20T-SQL%20Stored%20Procedure%20Invoked%20From%20NUnit%20Tests%20In%20Visual%20Studio%202013%20Debugger" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Debugging%20T-SQL%20Stored%20Procedure%20Invoked%20From%20NUnit%20Tests%20In%20Visual%20Studio%202013%20Debugger&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fdebugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" title="Visual Studio 2012 debugger does not break after attaching to C#/.NET process">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" title="Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/notes/chocolatey/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/09/having-fun-with-chef/">Having fun with Chef</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/">Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+    
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Year</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/year/2017">2017 (4)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (3)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/chocolatey">Chocolatey (1)</a></li><li><a href="/categories/quick-notes">Quick Notes (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/development">development (6)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+    
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+<script src="https://voloda.github.io/js/jquery.min.js"></script>
+<script src="https://voloda.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://voloda.github.io/js/highlight.pack.js"></script>
+<script src="https://voloda.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','UA-8950020-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

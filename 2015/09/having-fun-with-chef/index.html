@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Having fun with Chef  &middot; My personal notes</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="My personal notes on various topics" />
+
+<meta name="keywords" content="development, chef, ">
+
+
+<meta property="og:title" content="Having fun with Chef  &middot; My personal notes ">
+<meta property="og:site_name" content="My personal notes"/>
+<meta property="og:url" content="https://voloda.github.io/2015/09/having-fun-with-chef/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2015-09-14T00:00:00Z" />
+<meta property="og:article:modified_time" content="2015-09-14T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="development">
+    
+<meta property="og:article:tag" content="chef">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Having fun with Chef" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://voloda.github.io/2015/09/having-fun-with-chef/" />
+<meta name="twitter:domain" content="https://voloda.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Having fun with Chef",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2015-09-14",
+    "description": "",
+    "wordCount": 377
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://voloda.github.io/2015/09/having-fun-with-chef/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://voloda.github.io/css/bootswatch/simplex/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://voloda.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://voloda.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://voloda.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://voloda.github.io/" >
+                
+                Home
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://voloda.github.io/post/" >
+                
+                Posts
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Having fun with Chef
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2015-09-14">14 Sep, 2015</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 2 min
+  &middot; (377 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Having%20fun%20with%20Chef&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f&amp;title=Having%20fun%20with%20Chef" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Having%20fun%20with%20Chef&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://voloda.github.io/tags/development" class="label label-primary">development</a>
+  
+  <a href="https://voloda.github.io/tags/chef" class="label label-primary">chef</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Recently I had chance to evaluate usage of <em>Chef</em> for deployment of web service on project I am working on.</p>
+
+<p>There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.</p>
+
+<h1 id="setup">Setup</h1>
+
+<h2 id="client-side">Client side</h2>
+
+<p><em>Chef client</em> can run in two modes:</p>
+
+<h3 id="standalone-called-chef-solo">Standalone called chef solo</h3>
+
+<ul>
+<li>Uses <em>chef-solo</em> command without attempts to access the server</li>
+<li>Works greatly for development of <em>cookbooks</em> or just for simple setup of the environment.</li>
+<li>Allows to define <em>environment</em> in <em>JSON</em> config file.</li>
+<li><em>Node</em> specific information has to be defined</li>
+</ul>
+
+<h3 id="client-server-mode">Client-server mode</h3>
+
+<ul>
+<li>Requires installed <em>chef server</em>.</li>
+<li>Allows to bootstrap newly provisioned machine very easily.</li>
+<li>Per-node setup can be maintained on the server.</li>
+</ul>
+
+<h2 id="server-side">Server side</h2>
+
+<ul>
+<li><em>Chef server</em> has to be installed on a <em>Linux</em> machine, there is no installation for <em>Windows</em>.</li>
+<li>Setup is pretty straightforward and well documented and I was able to perform it even with my outdated <em>Linux</em> knowledge.
+
+<ul>
+<li>The WebUI is paid feature but for me as a developer the command line turned out to be much better understandable.</li>
+</ul></li>
+</ul>
+
+<h3 id="deployment-artifacts">Deployment Artifacts</h3>
+
+<p>Although it allows to save files as a part of cookbook it seems to be pretty bad idea. Better is to have deployment packages available on some artifact server.</p>
+
+<h1 id="creating-first-cookbook">Creating first cookbook</h1>
+
+<ul>
+<li>For development the <em>Chef development kit</em> can be installed:
+
+<ul>
+<li>For initial playing with <em>cookbook</em> the client seems to be sufficient but development kit has some advanced features like static analysis, testing support etc. More to come&hellip;</li>
+</ul></li>
+<li><em>knife</em> command helps here quite a bit although manual setup is obviously possible.</li>
+<li>It is best to maintain cookbook repository in <em>GIT</em>.
+
+<ul>
+<li>For example dependency installation command is integrated with <em>git</em>.</li>
+</ul></li>
+</ul>
+
+<h2 id="create-cookbook">Create cookbook</h2>
+
+<ul>
+<li>In git repository which will contain cookbook run:
+<code>cmd
+knife cookbook create COOKBOOK_NAME
+</code></li>
+<li>Review created files to add documentation as needed.</li>
+<li>To install any dependencies run:
+
+<ul>
+<li>This by default works with <em>master</em> branch. See other parameters to make it working on current branch.</li>
+<li>Dependency can be installed/managed manually as well if <em>git</em> is not available.
+<code>cmd
+knife cookbook site install COOKBOOK_NAME
+</code></li>
+</ul></li>
+<li>Define dependencies in <em>metadata.rb</em> file
+
+<ul>
+<li>Each dependency can contain version information to maintain compatibility.</li>
+</ul></li>
+</ul>
+
+<h1 id="quick-links">Quick links</h1>
+
+<ul>
+<li><a href="http://www.pluralsight.com/courses/meet-chef">Pluralsight intro</a></li>
+<li><a href="https://docs.chef.io/knife_cookbook.html">Chef - knife cookbook</a></li>
+<li><a href="https://docs.chef.io/knife_cookbook_site.html">Chef - knife cookbook site</a></li>
+<li><a href="https://docs.chef.io/chef_solo.html">Chef solo</a></li>
+</ul>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Having%20fun%20with%20Chef&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f&amp;title=Having%20fun%20with%20Chef" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Having%20fun%20with%20Chef&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2015%2f09%2fhaving-fun-with-chef%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" title="Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="https://voloda.github.io/2016/10/cyclocomputer-garmin-edge-520-experience/" title="Cyclocomputer Garmin Edge 520 - experience">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/notes/chocolatey/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/09/having-fun-with-chef/">Having fun with Chef</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/">Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+    
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Year</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/year/2017">2017 (4)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (3)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/chocolatey">Chocolatey (1)</a></li><li><a href="/categories/quick-notes">Quick Notes (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/development">development (6)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+    
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+<script src="https://voloda.github.io/js/jquery.min.js"></script>
+<script src="https://voloda.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://voloda.github.io/js/highlight.pack.js"></script>
+<script src="https://voloda.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','UA-8950020-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

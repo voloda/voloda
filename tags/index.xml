@@ -6,10 +6,19 @@
     <description>Recent content in Tags on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://voloda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chef</title>
+      <link>https://voloda.github.io/tags/chef/</link>
+      <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/tags/chef/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>CodeProject</title>
@@ -21,9 +30,18 @@
     </item>
     
     <item>
+      <title>Codeproject</title>
+      <link>https://voloda.github.io/tags/codeproject/</link>
+      <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/tags/codeproject/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Development</title>
       <link>https://voloda.github.io/tags/development/</link>
-      <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>https://voloda.github.io/tags/development/</guid>
       <description></description>
@@ -41,7 +59,7 @@
     <item>
       <title>DotNET</title>
       <link>https://voloda.github.io/tags/dotnet/</link>
-      <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>https://voloda.github.io/tags/dotnet/</guid>
       <description></description>
@@ -53,6 +71,15 @@
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://voloda.github.io/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>https://voloda.github.io/tags/sql/</link>
+      <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/tags/sql/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on My personal notes</title>
+    <link>https://voloda.github.io/tags/sql/</link>
+    <description>Recent content in SQL on My personal notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Mar 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://voloda.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</title>
+      <link>https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</link>
+      <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
+      <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
+Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
+ How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
+    </item>
+    
+  </channel>
+</rss>

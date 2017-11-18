@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab  &middot; My personal notes</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="My personal notes on various topics" />
+
+<meta name="keywords" content="dotNET, development, codeproject, ">
+
+
+<meta property="og:title" content="Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab  &middot; My personal notes ">
+<meta property="og:site_name" content="My personal notes"/>
+<meta property="og:url" content="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2015-03-16T00:00:00Z" />
+<meta property="og:article:modified_time" content="2015-03-16T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="dotNET">
+    
+<meta property="og:article:tag" content="development">
+    
+<meta property="og:article:tag" content="codeproject">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" />
+<meta name="twitter:domain" content="https://voloda.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2015-03-16",
+    "description": "",
+    "wordCount": 390
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://voloda.github.io/css/bootswatch/simplex/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://voloda.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://voloda.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://voloda.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://voloda.github.io/" >
+                
+                Home
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://voloda.github.io/post/" >
+                
+                Posts
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2015-03-16">16 Mar, 2015</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 2 min
+  &middot; (390 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Introducing%20.NET%20C%23%20Inversion%20Of%20Control%20and%20Microsoft%20Unity%20Hands-On%20Lab&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f&amp;title=Introducing%20.NET%20C%23%20Inversion%20Of%20Control%20and%20Microsoft%20Unity%20Hands-On%20Lab" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Introducing%20.NET%20C%23%20Inversion%20Of%20Control%20and%20Microsoft%20Unity%20Hands-On%20Lab&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://voloda.github.io/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="https://voloda.github.io/tags/development" class="label label-primary">development</a>
+  
+  <a href="https://voloda.github.io/tags/codeproject" class="label label-primary">codeproject</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  
+
+<h1 id="introduction">Introduction</h1>
+
+<p>During past few months we introduced and heavily extended usage of <em>Microsoft Unity IoC container</em> in our code base as a part of the effort to make the code more loosely coupled.</p>
+
+<p>As a result of those changes we now even more than before also rely on <em>Inversion Of Control</em> or more specifically <em>Dependency Injection</em>.</p>
+
+<p>Thus both <em>Microsoft Unity</em> and <em>IoC/DI</em> are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.</p>
+
+<p>After brief discussion within the team we agreed that the best way how to handle it would be to:</p>
+
+<ul>
+<li>Collect some solid resources describing the IoC/DI.
+
+<ul>
+<li>Martin Fowler is obviously first choice - though differences between IoC and DI are better explained in different resources :-).</li>
+</ul></li>
+<li>Provide hands-on lab project which will cover all the specifics for:
+
+<ul>
+<li>Inversion Of Control/Dependency injection.</li>
+<li>Microsoft Unity Container.</li>
+<li>Will serve as a self-training material.</li>
+</ul></li>
+<li>We will publish it on Github under MIT license.</li>
+</ul>
+
+<h1 id="target-audience">Target audience</h1>
+
+<p>.NET Software developers/engineers and architects who:</p>
+
+<ul>
+<li>Would and are willing to learn about IoC/DI.</li>
+<li>Are familiar IoC/DI but would learn about Microsoft Unity IoC container.</li>
+<li>Would learn about possible challenges which usage of the MS Unity can bring.</li>
+</ul>
+
+<h1 id="training-materials">Training materials</h1>
+
+<p>With my colleagues we prepared set of projects which allows everybody to play with all the stuff on reasonably sized projects.</p>
+
+<p>Brief introduction can be found <a href="https://github.com/IoCHowTo/IoCTasks/blob/master/README.md">here</a>.</p>
+
+<h2 id="github-projects">Github projects</h2>
+
+<p>If you are either familiar with Github or if you would use this as an opportunity to learn more about it you can just fork/clone repositories below.</p>
+
+<ul>
+<li><a href="https://github.com/IoCHowTo/IoCTasks">https://github.com/IoCHowTo/IoCTasks</a>
+
+<ul>
+<li>This repository contains initial Readme.md file with references as well as brief introduction.</li>
+</ul></li>
+<li><a href="https://github.com/IoCHowTo/IoCTasksSolutions">https://github.com/IoCHowTo/IoCTasksSolutions</a>
+
+<ul>
+<li>This repository contains individual sample solutions for each project above.</li>
+</ul></li>
+</ul>
+
+<h2 id="direct-access">Direct access</h2>
+
+<p>In the case that you do not like Git/Github you can use direct links below to get the latest version of training projects as well as sample solutions in form of ZIP packages:</p>
+
+<ul>
+<li><a href="https://github.com/IoCHowTo/IoCTasks/archive/master.zip">https://github.com/IoCHowTo/IoCTasks</a></li>
+<li><a href="https://github.com/IoCHowTo/IoCTasksSolutions/archive/master.zip">https://github.com/IoCHowTo/IoCTasksSolutions</a></li>
+</ul>
+
+<h1 id="contributions">Contributions</h1>
+
+<p>If you will find something which needs to be fixed or if you have some interesting sample task just send it as a Github pull request - we accept contributions under MIT license.</p>
+
+<p><strong>Thanks to everybody who already contributed with his time either in form of code or even advice :-).</strong></p>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Introducing%20.NET%20C%23%20Inversion%20Of%20Control%20and%20Microsoft%20Unity%20Hands-On%20Lab&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f&amp;title=Introducing%20.NET%20C%23%20Inversion%20Of%20Control%20and%20Microsoft%20Unity%20Hands-On%20Lab" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Introducing%20.NET%20C%23%20Inversion%20Of%20Control%20and%20Microsoft%20Unity%20Hands-On%20Lab&amp;body=Check out this site https%3a%2f%2fvoloda.github.io%2f2015%2f03%2fintroducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/" title="Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="https://voloda.github.io/2015/09/having-fun-with-chef/" title="Having fun with Chef">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/notes/chocolatey/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/09/having-fun-with-chef/">Having fun with Chef</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/">Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
+          </li>
+        
+          <li>
+          <a href="https://voloda.github.io/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+    
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Year</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/year/2017">2017 (4)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (3)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/chocolatey">Chocolatey (1)</a></li><li><a href="/categories/quick-notes">Quick Notes (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/development">development (6)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+    
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+<script src="https://voloda.github.io/js/jquery.min.js"></script>
+<script src="https://voloda.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://voloda.github.io/js/highlight.pack.js"></script>
+<script src="https://voloda.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','UA-8950020-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

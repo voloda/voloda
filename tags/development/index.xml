@@ -6,10 +6,44 @@
     <description>Recent content in Development on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Dec 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://voloda.github.io/tags/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Having fun with Chef</title>
+      <link>https://voloda.github.io/2015/09/having-fun-with-chef/</link>
+      <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/2015/09/having-fun-with-chef/</guid>
+      <description>Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
+There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
+Setup Client side Chef client can run in two modes:
+Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.</description>
+    </item>
+    
+    <item>
+      <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</title>
+      <link>https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
+      <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
+      <description>Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
+As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
+Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.</description>
+    </item>
+    
+    <item>
+      <title>Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</title>
+      <link>https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</link>
+      <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
+      <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
+Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
+ How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
+    </item>
     
     <item>
       <title>Visual Studio 2012 debugger does not break after attaching to C#/.NET process</title>
