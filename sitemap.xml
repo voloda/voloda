@@ -58,6 +58,28 @@
   </url>
   
   <url>
+    <loc>https://voloda.github.io/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</loc>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</loc>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/tags/.net/</loc>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://voloda.github.io/year/2010/</loc>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://voloda.github.io/year/2014/</loc>
     <lastmod>2017-11-16T23:46:04+01:00</lastmod>
     <priority>0</priority>
@@ -147,6 +169,12 @@
   </url>
   
   <url>
+    <loc>https://voloda.github.io/tags/powerbuilder/</loc>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://voloda.github.io/categories/quick-notes/</loc>
     <lastmod>2017-11-16T23:46:04+01:00</lastmod>
     <priority>0</priority>
@@ -160,13 +188,13 @@
   
   <url>
     <loc>https://voloda.github.io/tags/</loc>
-    <lastmod>2017-11-18T07:44:13+01:00</lastmod>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://voloda.github.io/year/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-18T08:18:24+01:00</lastmod>
     <priority>0</priority>
   </url>
   

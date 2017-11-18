@@ -79,5 +79,15 @@ Let&amp;rsquo;s consider following classes:
 public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&amp;rsquo;s setup some test case:</description>
     </item>
     
+    <item>
+      <title>DbKeeperNet - How to seed ASP.NET users and roles</title>
+      <link>https://voloda.github.io/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
+      <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
+      <description>Introduction It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.
+DbKeeperNet is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: MSSQL, SQLite, Firebird, MySQL, Oracle.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -6,10 +6,19 @@
     <description>Recent content in Year on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Dec 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 May 2010 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://voloda.github.io/year/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2010</title>
+      <link>https://voloda.github.io/year/2010/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.github.io/year/2010/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>2014</title>
