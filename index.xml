@@ -6,17 +6,17 @@
     <description>Recent content on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Jenkins Docker Slave Windows Build Agent</title>
-      <link>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</link>
-      <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
+      <link>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</guid>
+      <guid>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
       <description>
 
 &lt;h1 id=&#34;jenkins-docker-slave&#34;&gt;Jenkins docker slave&lt;/h1&gt;

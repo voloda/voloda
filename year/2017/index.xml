@@ -6,10 +6,81 @@
     <description>Recent content in 2017 on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/year/2017/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jenkins Docker Slave Windows Build Agent</title>
+      <link>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
+      <description>
+
+&lt;h1 id=&#34;jenkins-docker-slave&#34;&gt;Jenkins docker slave&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;Yet Another Docker Plugin&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;With this plugin it just works (Docker Plugin doesn&amp;rsquo;t work)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install JAVA into docker image and make it available on PATH&lt;/li&gt;
+&lt;li&gt;In Configuration add &lt;code&gt;Yet Another Docker Plugin&lt;/code&gt; as a &lt;code&gt;Cloud&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Point it to &lt;code&gt;Docker server&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Test that it is available&lt;/li&gt;
+&lt;li&gt;Add the docker image&lt;/li&gt;
+&lt;li&gt;Add label which can be references from builds&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Jenkins now automatically creates a docker container as a build is executed
+
+&lt;ul&gt;
+&lt;li&gt;It does not require any additional changes&lt;/li&gt;
+&lt;li&gt;It properly handles the operating system (Windows)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;For local only images make sure that the &lt;code&gt;Pull&lt;/code&gt; option is set to &lt;code&gt;Never&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;base-dockerfile&#34;&gt;Base Dockerfile&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; creates the base image for Windows build agent&lt;/li&gt;
+&lt;li&gt;The only requirements is that &lt;code&gt;java.exe&lt;/code&gt; must be accessible in path.
+
+&lt;ul&gt;
+&lt;li&gt;It could be perhaps even installed using &lt;code&gt;Chocolatey&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM microsoft/windowsservercore
+
+SHELL [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-ExecutionPolicy&amp;quot;, &amp;quot;Bypass&amp;quot;, &amp;quot;-Command&amp;quot;]
+
+RUN iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))
+RUN choco install -y git --params=&#39;/NoShellIntegration&#39;
+RUN choco install -y nuget.commandline
+
+ENV JAVA_HOME c:\\jre1.8.0_91
+ENV JENKINS_HOME c:\\jenkins
+
+RUN (new-object System.Net.WebClient).Downloadfile(&#39;http://javadl.oracle.com/webapps/download/AutoDL?BundleId=210185&#39;, &#39;C:\jre-8u91-windows-x64.exe&#39;)
+RUN start-process -filepath C:\\jre-8u91-windows-x64.exe -passthru -wait -argumentlist &amp;quot;/s,INSTALLDIR=$env:JAVA_HOME,/L,install64.log&amp;quot;
+RUN del C:\jre-8u91-windows-x64.exe
+
+RUN $env:PATH = $env:JAVA_HOME + &#39;\\bin;&#39; + $env:PATH; \
+    [Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
+
+RUN mkdir $env:JENKINS_HOME
+WORKDIR $JENKINS_HOME
+
+ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Jenkins Server Setup On Windows</title>
