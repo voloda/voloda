@@ -12,162 +12,9 @@
     
     
     <item>
-      <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>
-      <link>http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
-      <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
-      <description>&lt;pre&gt;&lt;code&gt;pipeline {
-  agent none
-
-  environment {
-    RELEASE_NUMBER = &#39;17.1.1&#39;
-    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;17.1.1.${BUILDS_ALL_TIME}&#39;)
-  }
-
-
-  stages {
-    stage(&#39;Checkout from GIT&#39;){
-      agent any
-      steps {
-        script {
-          currentBuild.displayName = &amp;quot;#${VERSION_NUMBER}&amp;quot;
-        }
-        checkout scm
-      }
-    }
-    stage(&#39;NUGET package restore&#39;) {
-      agent { label &#39;nuget&#39; }
-      steps {
-            echo &#39;Restoring nuget packages&#39;
-            bat &#39;&amp;quot;%NUGET_PATH%&amp;quot; restore TestSolution.sln&#39;
-            dir (&#39;.&#39;) {
-              stash &#39;sources&#39;
-            }
-      }
-    }
-    stage(&#39;Build&#39;) {
-      agent { label &#39;dotNET_4.7&#39;}
-      steps {
-        dir (&#39;.&#39;) {
-          unstash &#39;sources&#39;
-        }
-
-        bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; TestSolution.sln /p:Configuration=Release /p:Platform=\&amp;quot;Any CPU\&amp;quot;&amp;quot;
-
-        dir (&#39;TestSolution/bin&#39;) {
-          stash &#39;bins&#39;
-        }
-        withCredentials([usernamePassword(credentialsId: &#39;cdd06d32-f11d-446c-8687-3debc9dba901&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
-          bat &amp;quot;git tag &#39;j-${VERSION_NUMBER}&#39;&amp;quot;
-
-          bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@git.server.net/TestSolution2.git --tags&amp;quot;
-        }
-      }
-    }
-    stage(&#39;Archive&#39;) {
-      agent any
-      steps {
-        dir (&#39;TestSolution/bin&#39;) {
-          unstash &#39;bins&#39;
-        }
-        archive &#39;**/bin/Release/**.dll&#39;
-      }
-    }
-  }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Jenkins Server Setup On Windows</title>
-      <link>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
-      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
-      <description>
-
-&lt;h1 id=&#34;jenkinks-server-setup&#34;&gt;Jenkinks server setup&lt;/h1&gt;
-
-&lt;h2 id=&#34;server-setup&#34;&gt;Server setup&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;See &lt;a href=&#34;http://jenkinks.io/download&#34;&gt;http://jenkinks.io/download&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Open &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;slave-setup&#34;&gt;Slave setup&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Install Chocolatey (see instructions on web)&lt;/li&gt;
-&lt;li&gt;Install Google Chrome
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;choco install -y googlechrome&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Install Java
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;choco install -y javaruntime&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Install git
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;choco install -y git /NoShellIntegration&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;VS2017 build Tools
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;choco install -y visualstudio2017buildtools&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Installing packages after the service start may require service restart&lt;/li&gt;
-&lt;li&gt;Login to master via Chrome&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Configure Global Security&lt;/code&gt; and setup &lt;code&gt;TCP port for JNLP agents&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Add new Node                                                                                                                                     17&lt;/li&gt;
-&lt;li&gt;Download the java file and run it
-
-&lt;ul&gt;
-&lt;li&gt;In menu it allows to Install Windows Service&lt;/li&gt;
-&lt;li&gt;This may need to change the Jenkinks server URL in settings&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Setup labels to distribute load across nodes conditionally&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;tools&#34;&gt;Tools&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Chrome
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&#34;&gt;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Git
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;.NET SDK&lt;/li&gt;
-&lt;li&gt;Nuget&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Projects must have &lt;code&gt;Jenkinsfile&lt;/code&gt; inside
-
-&lt;ul&gt;
-&lt;li&gt;Name can be modified&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Jenkins Docker Slave Windows Build Agent</title>
       <link>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</link>
-      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</guid>
       <description>
@@ -175,29 +22,39 @@
 &lt;h1 id=&#34;jenkins-docker-slave&#34;&gt;Jenkins docker slave&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Use Yet Another Docker Plugin
+&lt;li&gt;Use &lt;code&gt;Yet Another Docker Plugin&lt;/code&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Docker Plugin doesn&amp;rsquo;t work&lt;/li&gt;
+&lt;li&gt;With this plugin it just works (Docker Plugin doesn&amp;rsquo;t work)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Install JAVA into docker image and make it available on PATH&lt;/li&gt;
-&lt;li&gt;In Configuration add Yet Another Docker Plugin as a cloud
+&lt;li&gt;In Configuration add &lt;code&gt;Yet Another Docker Plugin&lt;/code&gt; as a &lt;code&gt;Cloud&lt;/code&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Point it to Docker server&lt;/li&gt;
+&lt;li&gt;Point it to &lt;code&gt;Docker server&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Test that it is available&lt;/li&gt;
 &lt;li&gt;Add the docker image&lt;/li&gt;
 &lt;li&gt;Add label which can be references from builds&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Jenkins now automatically creates a docker container
+&lt;li&gt;Jenkins now automatically creates a docker container as a build is executed
 
 &lt;ul&gt;
 &lt;li&gt;It does not require any additional changes&lt;/li&gt;
+&lt;li&gt;It properly handles the operating system (Windows)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;For local images make sure that the Pull option is set to Never&lt;/li&gt;
+&lt;li&gt;For local only images make sure that the &lt;code&gt;Pull&lt;/code&gt; option is set to &lt;code&gt;Never&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;sample-dockerfile&#34;&gt;Sample Dockerfile&lt;/h1&gt;
+&lt;h1 id=&#34;base-dockerfile&#34;&gt;Base Dockerfile&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; creates the base image for Windows build agent&lt;/li&gt;
+&lt;li&gt;The only requirements is that &lt;code&gt;java.exe&lt;/code&gt; must be accessible in path.
+
+&lt;ul&gt;
+&lt;li&gt;It could be perhaps even installed using &lt;code&gt;Chocolatey&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;FROM microsoft/windowsservercore
 
@@ -222,6 +79,125 @@ WORKDIR $JENKINS_HOME
 
 ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jenkins Server Setup On Windows</title>
+      <link>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
+      <description>
+
+&lt;h1 id=&#34;operating-system-preparation&#34;&gt;Operating system preparation&lt;/h1&gt;
+
+&lt;p&gt;These notes assume since beginning separation of the &lt;strong&gt;Jenkins server&lt;/strong&gt; and
+individual build agents so on the server will not be any build utilities
+except &lt;strong&gt;git&lt;/strong&gt; which is necessary for repository polling.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install &lt;strong&gt;Chocolatey&lt;/strong&gt; (see instructions on web).&lt;/li&gt;
+&lt;li&gt;Install &lt;strong&gt;Google Chrome&lt;/strong&gt; (using Chocolatey is actually much easier than trying
+to download it from web).
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y googlechrome&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;strong&gt;git&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y git /NoShellIntegration&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;jenkins-server-setup&#34;&gt;Jenkins Server Setup&lt;/h1&gt;
+
+&lt;p&gt;This is fairly simple:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;See &lt;a href=&#34;http://jenkinks.io/download&#34;&gt;http://jenkinks.io/download&lt;/a&gt; to get installation package.&lt;/li&gt;
+&lt;li&gt;Open &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt; in Chrome and follow instructions.&lt;/li&gt;
+&lt;li&gt;Setup firewall rules to make the server accessible as needed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;useful-plugins&#34;&gt;Useful plugins&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Yet Another Docker plugins
+
+&lt;ul&gt;
+&lt;li&gt;Automatic spawning of docker build agents based on label&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;NUnit plugin
+
+&lt;ul&gt;
+&lt;li&gt;Parsing of NUnit results&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Blue Ocean plugin
+
+&lt;ul&gt;
+&lt;li&gt;Newer Jenkins UI for build pipelines&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;MSBuild Plugin
+
+&lt;ul&gt;
+&lt;li&gt;Allows to configure MSBuild as a tool and reference it from scripts&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Role-based authorization strategy
+
+&lt;ul&gt;
+&lt;li&gt;Allows role based access Configuration&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;windows-slave-setup&#34;&gt;Windows Slave Setup&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Chocolatey (see instructions on web)&lt;/li&gt;
+&lt;li&gt;Install Google Chrome
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y googlechrome&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install Java
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y javaruntime&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install git
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y git /NoShellIntegration&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;VS2017 build Tools
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y visualstudio2017buildtools&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install Nuget
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y nuget.commandline&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Installing packages after the service start may require service restart&lt;/li&gt;
+&lt;li&gt;Login to &lt;strong&gt;Jenkins master&lt;/strong&gt; via Chrome&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Configure Global Security&lt;/code&gt; and setup &lt;code&gt;TCP port for JNLP agents&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add new Node&lt;/li&gt;
+&lt;li&gt;Download the java file and run it
+
+&lt;ul&gt;
+&lt;li&gt;In menu it allows to &lt;code&gt;Install Windows Service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;This may need to change the Jenkins server URL in settings&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Setup labels to distribute load across nodes conditionally&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://chocolatey.org&#34;&gt;Chocolatey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

@@ -113,7 +113,7 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+  <h2><a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
 </h2>
 
   <div class="margin-10">
@@ -137,14 +137,14 @@
     <p>
   
   
-    pipeline { agent none environment { RELEASE_NUMBER = '17.1.1' VERSION_NUMBER = VersionNumber(versionNumberString: '17.1.1.${BUILDS_ALL_TIME}') } stages { stage('Checkout from GIT'){ agent any steps { script { currentBuild.displayName = &quot;#${VERSION_NUMBER}&quot; } checkout scm } } stage('NUGET package restore') { agent { label 'nuget' } steps { echo 'Restoring nuget packages' bat '&quot;%NUGET_PATH%&quot; restore TestSolution.sln' dir ('.') { stash 'sources' } } } stage('Build') { agent { label 'dotNET_4.7'} steps { dir ('.') { unstash 'sources' } bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.
+    Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just works (Docker Plugin doesn&rsquo;t work)  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a Cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container as a build is executed  It does not require any additional changes It properly handles the operating system (Windows)  For local only images make sure that the Pull option is set to Never  Base Dockerfile  This Dockerfile creates the base image for Windows build agent The only requirements is that java.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -178,7 +178,8 @@
     <p>
   
   
-    Jenkinks server setup Server setup  See http://jenkinks.io/download Open http://localhost:8080/  Slave setup  Install Chocolatey (see instructions on web) Install Google Chrome  choco install -y googlechrome  Install Java  choco install -y javaruntime  Install git  choco install -y git /NoShellIntegration  VS2017 build Tools  choco install -y visualstudio2017buildtools  Installing packages after the service start may require service restart Login to master via Chrome Configure Global Security and setup TCP port for JNLP agents Add new Node 17 Download the java file and run it  In menu it allows to Install Windows Service This may need to change the Jenkinks server URL in settings  Setup labels to distribute load across nodes conditionally  Tools  Chrome  https://dl.
+    Operating system preparation These notes assume since beginning separation of the Jenkins server and individual build agents so on the server will not be any build utilities except git which is necessary for repository polling.
+ Install Chocolatey (see instructions on web). Install Google Chrome (using Chocolatey is actually much easier than trying to download it from web).  choco install -y googlechrome  Install git  choco install -y git /NoShellIntegration   Jenkins Server Setup This is fairly simple:
   
 
 
@@ -186,47 +187,6 @@
 
 
     <p class="lead"><a href="http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2017-10-15">15 Oct, 2017</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Jenkins docker slave  Use Yet Another Docker Plugin  Docker Plugin doesn&rsquo;t work  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container  It does not require any additional changes  For local images make sure that the Pull option is set to Never  Sample Dockerfile FROM microsoft/windowsservercore SHELL [&quot;powershell.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -303,6 +263,50 @@ Device configuration  I was used from Sigma Rox 9.0 that the configuration is do
 </div>
 
         
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/">Having fun with Chef</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2015-09-14">14 Sep, 2015</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/chef" class="label label-primary">chef</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
+There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
+Setup Client side Chef client can run in two modes:
+Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
         
 <nav>
   <ul class="pagination">
@@ -368,15 +372,11 @@ Device configuration  I was used from Sigma Rox 9.0 that the configuration is do
         <ul>
         
           <li>
-          <a href="http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          <a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
           <li>
           <a href="http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
-          </li>
-        
-          <li>
-          <a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
           <li>
@@ -407,6 +407,10 @@ Device configuration  I was used from Sigma Rox 9.0 that the configuration is do
           <a href="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
           </li>
         
+          <li>
+          <a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
+          </li>
+        
         </ul>
       </div>
     </div>
@@ -426,7 +430,7 @@ Device configuration  I was used from Sigma Rox 9.0 that the configuration is do
 
         <div class="content">
           <ul>
-            <li><a href="/year/2017">2017 (4)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2017">2017 (2)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -458,7 +462,7 @@ Device configuration  I was used from Sigma Rox 9.0 that the configuration is do
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (7)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/.net">.NET (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
+            <li><a href="/tags/development">development (7)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/docker">docker (2)</a></li><li><a href="/tags/jenkins">jenkins (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/.net">.NET (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
           </ul>
         </div>
       </div>

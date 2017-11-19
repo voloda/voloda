@@ -3,18 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <loc>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</loc>
+    <lastmod>2017-11-19T13:28:19+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:21:10+01:00</lastmod>
   </url>
   
   <url>
@@ -109,7 +104,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/year/2017/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:21:10+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -156,7 +151,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/docker/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:28:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -168,19 +163,19 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/jenkins/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:28:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://voloda.bazilisek.net/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:28:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://voloda.bazilisek.net/post/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:28:19+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -192,7 +187,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/categories/quick-notes/</loc>
-    <lastmod>2017-11-16T23:46:04+01:00</lastmod>
+    <lastmod>2017-11-19T13:21:10+01:00</lastmod>
     <priority>0</priority>
   </url>
   

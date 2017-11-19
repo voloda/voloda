@@ -60,7 +60,7 @@
     },
     "datePublished": "2017-10-17",
     "description": "",
-    "wordCount": 125
+    "wordCount": 257
   }
 </script>
   
@@ -157,8 +157,8 @@
 
 
   <small>
-  &middot; Read in about 1 min
-  &middot; (125 words)
+  &middot; Read in about 2 min
+  &middot; (257 words)
   &middot; 
 <span class="share-box">Share this on:
     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f10%2fjenkins-server-setup-on-windows%2f" onclick="window.open(this.href, 'mywin',
@@ -201,16 +201,68 @@
       <div class="content">
   
 
-<h1 id="jenkinks-server-setup">Jenkinks server setup</h1>
+<h1 id="operating-system-preparation">Operating system preparation</h1>
 
-<h2 id="server-setup">Server setup</h2>
+<p>These notes assume since beginning separation of the <strong>Jenkins server</strong> and
+individual build agents so on the server will not be any build utilities
+except <strong>git</strong> which is necessary for repository polling.</p>
 
 <ul>
-<li>See <a href="http://jenkinks.io/download">http://jenkinks.io/download</a></li>
-<li>Open <a href="http://localhost:8080/">http://localhost:8080/</a></li>
+<li>Install <strong>Chocolatey</strong> (see instructions on web).</li>
+<li>Install <strong>Google Chrome</strong> (using Chocolatey is actually much easier than trying
+to download it from web).
+
+<ul>
+<li><code>choco install -y googlechrome</code></li>
+</ul></li>
+<li>Install <strong>git</strong>
+
+<ul>
+<li><code>choco install -y git /NoShellIntegration</code></li>
+</ul></li>
 </ul>
 
-<h2 id="slave-setup">Slave setup</h2>
+<h1 id="jenkins-server-setup">Jenkins Server Setup</h1>
+
+<p>This is fairly simple:</p>
+
+<ul>
+<li>See <a href="http://jenkinks.io/download">http://jenkinks.io/download</a> to get installation package.</li>
+<li>Open <a href="http://localhost:8080/">http://localhost:8080/</a> in Chrome and follow instructions.</li>
+<li>Setup firewall rules to make the server accessible as needed.</li>
+</ul>
+
+<h1 id="useful-plugins">Useful plugins</h1>
+
+<ul>
+<li>Yet Another Docker plugins
+
+<ul>
+<li>Automatic spawning of docker build agents based on label</li>
+</ul></li>
+<li>NUnit plugin
+
+<ul>
+<li>Parsing of NUnit results</li>
+</ul></li>
+<li>Blue Ocean plugin
+
+<ul>
+<li>Newer Jenkins UI for build pipelines</li>
+</ul></li>
+<li>MSBuild Plugin
+
+<ul>
+<li>Allows to configure MSBuild as a tool and reference it from scripts</li>
+</ul></li>
+<li>Role-based authorization strategy
+
+<ul>
+<li>Allows role based access Configuration</li>
+</ul></li>
+</ul>
+
+<h1 id="windows-slave-setup">Windows Slave Setup</h1>
 
 <ul>
 <li>Install Chocolatey (see instructions on web)</li>
@@ -234,44 +286,28 @@
 <ul>
 <li><code>choco install -y visualstudio2017buildtools</code></li>
 </ul></li>
+<li>Install Nuget
+
+<ul>
+<li><code>choco install -y nuget.commandline</code></li>
+</ul></li>
 <li>Installing packages after the service start may require service restart</li>
-<li>Login to master via Chrome</li>
+<li>Login to <strong>Jenkins master</strong> via Chrome</li>
 <li><code>Configure Global Security</code> and setup <code>TCP port for JNLP agents</code></li>
-<li>Add new Node                                                                                                                                     17</li>
+<li>Add new Node</li>
 <li>Download the java file and run it
 
 <ul>
-<li>In menu it allows to Install Windows Service</li>
-<li>This may need to change the Jenkinks server URL in settings</li>
+<li>In menu it allows to <code>Install Windows Service</code></li>
+<li>This may need to change the Jenkins server URL in settings</li>
 </ul></li>
 <li>Setup labels to distribute load across nodes conditionally</li>
 </ul>
 
-<h1 id="tools">Tools</h1>
+<h1 id="links">Links</h1>
 
 <ul>
-<li>Chrome
-
-<ul>
-<li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe">https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe</a></li>
-</ul></li>
-<li>Git
-
-<ul>
-<li><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
-</ul></li>
-<li>.NET SDK</li>
-<li>Nuget</li>
-</ul>
-
-<h1 id="projects">Projects</h1>
-
-<ul>
-<li>Projects must have <code>Jenkinsfile</code> inside
-
-<ul>
-<li>Name can be modified</li>
-</ul></li>
+<li><a href="http://chocolatey.org">Chocolatey</a></li>
 </ul>
 
 </div>
@@ -304,7 +340,7 @@
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/" title="Jenkins Docker Slave Windows Build Agent">
+          <a href="http://voloda.bazilisek.net/notes/chocolatey/setup-on-dev-machine-and-useful-packages/" title="Chocolatey setup on DEV machine &#43; useful packages">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
@@ -312,7 +348,7 @@
 
     
       <li class="next">
-        <a href="http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/" title="Jenkinsfile Sample Utilizing Docker Slave Agent">
+        <a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/" title="Jenkins Docker Slave Windows Build Agent">
             Next <span aria-hidden="true">&rarr;</span>
         </a>
       </li>
@@ -357,15 +393,11 @@
         <ul>
         
           <li>
-          <a href="http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          <a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
           <li>
           <a href="http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
-          </li>
-        
-          <li>
-          <a href="http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
           <li>
@@ -396,6 +428,10 @@
           <a href="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
           </li>
         
+          <li>
+          <a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
+          </li>
+        
         </ul>
       </div>
     </div>
@@ -415,7 +451,7 @@
 
         <div class="content">
           <ul>
-            <li><a href="/year/2017">2017 (4)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2017">2017 (2)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -447,7 +483,7 @@
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (7)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/.net">.NET (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
+            <li><a href="/tags/development">development (7)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/docker">docker (2)</a></li><li><a href="/tags/jenkins">jenkins (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/.net">.NET (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
           </ul>
         </div>
       </div>

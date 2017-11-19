@@ -19,16 +19,68 @@
       <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
       <description>
 
-&lt;h1 id=&#34;jenkinks-server-setup&#34;&gt;Jenkinks server setup&lt;/h1&gt;
+&lt;h1 id=&#34;operating-system-preparation&#34;&gt;Operating system preparation&lt;/h1&gt;
 
-&lt;h2 id=&#34;server-setup&#34;&gt;Server setup&lt;/h2&gt;
+&lt;p&gt;These notes assume since beginning separation of the &lt;strong&gt;Jenkins server&lt;/strong&gt; and
+individual build agents so on the server will not be any build utilities
+except &lt;strong&gt;git&lt;/strong&gt; which is necessary for repository polling.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;See &lt;a href=&#34;http://jenkinks.io/download&#34;&gt;http://jenkinks.io/download&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Open &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;strong&gt;Chocolatey&lt;/strong&gt; (see instructions on web).&lt;/li&gt;
+&lt;li&gt;Install &lt;strong&gt;Google Chrome&lt;/strong&gt; (using Chocolatey is actually much easier than trying
+to download it from web).
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y googlechrome&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;strong&gt;git&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y git /NoShellIntegration&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;slave-setup&#34;&gt;Slave setup&lt;/h2&gt;
+&lt;h1 id=&#34;jenkins-server-setup&#34;&gt;Jenkins Server Setup&lt;/h1&gt;
+
+&lt;p&gt;This is fairly simple:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;See &lt;a href=&#34;http://jenkinks.io/download&#34;&gt;http://jenkinks.io/download&lt;/a&gt; to get installation package.&lt;/li&gt;
+&lt;li&gt;Open &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt; in Chrome and follow instructions.&lt;/li&gt;
+&lt;li&gt;Setup firewall rules to make the server accessible as needed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;useful-plugins&#34;&gt;Useful plugins&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Yet Another Docker plugins
+
+&lt;ul&gt;
+&lt;li&gt;Automatic spawning of docker build agents based on label&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;NUnit plugin
+
+&lt;ul&gt;
+&lt;li&gt;Parsing of NUnit results&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Blue Ocean plugin
+
+&lt;ul&gt;
+&lt;li&gt;Newer Jenkins UI for build pipelines&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;MSBuild Plugin
+
+&lt;ul&gt;
+&lt;li&gt;Allows to configure MSBuild as a tool and reference it from scripts&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Role-based authorization strategy
+
+&lt;ul&gt;
+&lt;li&gt;Allows role based access Configuration&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;windows-slave-setup&#34;&gt;Windows Slave Setup&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Install Chocolatey (see instructions on web)&lt;/li&gt;
@@ -52,44 +104,28 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;choco install -y visualstudio2017buildtools&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install Nuget
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y nuget.commandline&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Installing packages after the service start may require service restart&lt;/li&gt;
-&lt;li&gt;Login to master via Chrome&lt;/li&gt;
+&lt;li&gt;Login to &lt;strong&gt;Jenkins master&lt;/strong&gt; via Chrome&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Configure Global Security&lt;/code&gt; and setup &lt;code&gt;TCP port for JNLP agents&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Add new Node                                                                                                                                     17&lt;/li&gt;
+&lt;li&gt;Add new Node&lt;/li&gt;
 &lt;li&gt;Download the java file and run it
 
 &lt;ul&gt;
-&lt;li&gt;In menu it allows to Install Windows Service&lt;/li&gt;
-&lt;li&gt;This may need to change the Jenkinks server URL in settings&lt;/li&gt;
+&lt;li&gt;In menu it allows to &lt;code&gt;Install Windows Service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;This may need to change the Jenkins server URL in settings&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Setup labels to distribute load across nodes conditionally&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;tools&#34;&gt;Tools&lt;/h1&gt;
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Chrome
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&#34;&gt;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Git
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;.NET SDK&lt;/li&gt;
-&lt;li&gt;Nuget&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Projects must have &lt;code&gt;Jenkinsfile&lt;/code&gt; inside
-
-&lt;ul&gt;
-&lt;li&gt;Name can be modified&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://chocolatey.org&#34;&gt;Chocolatey&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
