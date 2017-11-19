@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 16 Oct 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/year/2016/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/year/2016/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,9 +17,62 @@
       <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/</guid>
-      <description>I bought Garmin Edge 520 couple weeks ago. There are quite a few reviews on internet so this is not intended to be a general review.
-This is rather few comments on features I didn&amp;rsquo;t find described elsewhere.
-Device configuration  I was used from Sigma Rox 9.0 that the configuration is done with convenience in a related software.  This served also for the configuration backup.  Unfortunately most of the setup for Garmin Edge 520 needs to be done manually on the device itself.</description>
+      <description>
+
+&lt;p&gt;I bought Garmin Edge 520 couple weeks ago. There are quite a few reviews on internet so this is not intended to be a general review.&lt;/p&gt;
+
+&lt;p&gt;This is rather few comments on features I didn&amp;rsquo;t find described elsewhere.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://voloda.bazilisek.net/img/mix/edge520.jpg&#34; alt=&#34;Garmin Edge 520&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;device-configuration&#34;&gt;Device configuration&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I was used from Sigma Rox 9.0 that the configuration is done with convenience in a related software.
+
+&lt;ul&gt;
+&lt;li&gt;This served also for the configuration backup.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Unfortunately most of the setup for Garmin Edge 520 needs to be done manually on the device itself.&lt;/li&gt;
+&lt;li&gt;For initial setup this is pretty time consuming.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;navigation-features&#34;&gt;Navigation features&lt;/h1&gt;
+
+&lt;p&gt;As written in reviews the device does not have real navigation. Instead you can upload a &lt;code&gt;.gpx&lt;/code&gt; file and device will navigate you on a route.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I used this link to generate Open Street maps for device:
+
+&lt;ul&gt;
+&lt;li&gt;Map generation can be found here: &lt;a href=&#34;http://garmin.openstreetmap.nl/&#34;&gt;http://http://garmin.openstreetmap.nl/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Route from &lt;a href=&#34;http://ridewithgps.com&#34;&gt;Ride With GPS&lt;/a&gt; seems to work great even in Czech Republic.
+
+&lt;ul&gt;
+&lt;li&gt;It takes some time before you get used to how the navigation works.&lt;/li&gt;
+&lt;li&gt;Recently I was able to plan a group ride for 150km in mountains which worked very well.&lt;/li&gt;
+&lt;li&gt;The only downside is that it took more than a minute before the device read the course and started to navigate.&lt;/li&gt;
+&lt;li&gt;We made a small side trip and the device found itself back on the course once we joined the original plan.w&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It is very convenient to watch for example elevation profile during a ride.&lt;/li&gt;
+&lt;li&gt;Overall the navigation is basically a race against a virtual partner.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;strava-segments&#34;&gt;Strava Segments&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I liked &lt;a href=&#34;http://www.strava.com&#34;&gt;Strava&lt;/a&gt; segments.&lt;/li&gt;
+&lt;li&gt;Starred segments appear automatically on the device if you have Strava premium membership.&lt;/li&gt;
+&lt;li&gt;Each segment can be in the device configured against whom you compete.&lt;/li&gt;
+&lt;li&gt;There two related challenges:
+
+&lt;ul&gt;
+&lt;li&gt;When using course navigation or Garmin Connect workouts segments are disabled by default.&lt;/li&gt;
+&lt;li&gt;GPS precision can start/end the segment in a little bit different location than Strava will later evaluate it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

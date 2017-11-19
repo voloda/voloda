@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Mar 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,9 +17,124 @@
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
-      <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
-Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
- How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
+      <description>
+
+&lt;p&gt;Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in &lt;strong&gt;Team City&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the &lt;strong&gt;SQL Server Management Studio&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;How to stub some of the data so the complex parts of queries can be easily verified.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the end I got working debugging with following setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stored procedures written in T-SQL for MSSQL.&lt;/li&gt;
+&lt;li&gt;Each stored procedure is covered by unit tests written in NUnit.
+
+&lt;ul&gt;
+&lt;li&gt;Thanks to tip of my colleague MSSQL guru &lt;em&gt;Lubos&lt;/em&gt; I was able quickly setup SQL Server snapshots to be able revert the database quickly to its initial state.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lubos&lt;/em&gt; also proposed very simple way on how to &lt;strong&gt;stub&lt;/strong&gt; some data in procedures.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;In order to be able quickly check what is going on inside the stored procedure use the Visual Studio 2013 debugger including the ability to step into the stored procedure.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;using-stubs-for-data-used-inside-stored-procedures&#34;&gt;Using stubs for data used inside stored procedures&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Motivation here is that it is not always simple enough or even practical setup all the required data directly in the database.
+
+&lt;ul&gt;
+&lt;li&gt;Downside obviously is that since you are about to alter the stored procedure you have to be very careful.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;My colleague proposed a very simple way for this purpose which seems to work:
+
+&lt;ul&gt;
+&lt;li&gt;Before running tests take a database snapshot so you can easily revert back.&lt;/li&gt;
+&lt;li&gt;Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; [MyInvoices]
+[#Stub1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #MyInvoices
+[#Stub1] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;how-to-enable-t-sql-debugging-in-visual-studio-2013&#34;&gt;How to enable T-SQL debugging in Visual Studio 2013&lt;/h1&gt;
+
+&lt;p&gt;This was the most tricky part of the whole procedure and it may be specific to my setup (MSSQL 2008 R2, VS2013).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As a prerequisite the &lt;em&gt;Application debugging&lt;/em&gt; and &lt;em&gt;SQL/CLR debugging&lt;/em&gt; must be enabled for the SQL Server in the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;There are two ways how to get to &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Directly open &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; via Visual Studio menu &lt;em&gt;VIEW&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png&#34; alt=&#34;Open SQL Server Object Explorer in VS 2013 menu&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Alternatively use &lt;em&gt;Server Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Firstly add a connection to your database&lt;/li&gt;
+&lt;li&gt;Then right click using mouse on registered database and select &lt;em&gt;Browse in SQL Server Object Explorer&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg&#34; alt=&#34;Open SQL Server Object Explorer from Server Explorer in VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Once you get into the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; enable both debugging options as visible on picture below:
+ &lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png&#34; alt=&#34;Enable debugging in SQL Server Object Explorer from VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Running tests just for verification purposes is very simple and basically any NUnit runner can be used.&lt;/li&gt;
+&lt;li&gt;In our case for the standard purpose serves very well Jetbrains Resharper.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;debugging-tests&#34;&gt;Debugging tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unfortunately this didn&amp;rsquo;t work with built-in R# test runner.&lt;/li&gt;
+&lt;li&gt;Instead I use &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; runner (I simply needed to force the process bitness to 32bits but I suppose that &lt;strong&gt;NUnit.exe&lt;/strong&gt; will work as well):
+
+&lt;ul&gt;
+&lt;li&gt;Load test assembly into NUnit runner.&lt;/li&gt;
+&lt;li&gt;Attach Visual Studio 2013 debugger to running process.&lt;/li&gt;
+&lt;li&gt;Important part here is to have enabled both - &lt;strong&gt;Managed code&lt;/strong&gt; and &lt;strong&gt;T-SQL&lt;/strong&gt; code debugging prior to attaching to he &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; process:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg&#34; alt=&#34;Attaching to NUnit with enabled T-SQL debugging&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Now set a .breakpoint in .NET code just around the code which is responsible for invocation of the stored procedure you are interested in, for example &lt;code&gt;SqlDbCommand.Execute()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run unit test from the NUnit runner and have it hit the breakpoint in Visual Studio.&lt;/li&gt;
+&lt;li&gt;Now from the _&lt;strong&gt;SQL Server Object Explorer&lt;/strong&gt; open the body of stored procedure (just double-click on it),&lt;/li&gt;
+&lt;li&gt;Set a breakpoint inside the procedure.&lt;/li&gt;
+&lt;li&gt;And step thru the .NET code which is about to invoke the procedure.&lt;/li&gt;
+&lt;li&gt;If everything works well for you you are now inside the stored procedure and you can debug it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;watching-data-inside-the-stored-procedure&#34;&gt;Watching data inside the stored procedure&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can easily watch content of any variable inside the stored procedure.&lt;/li&gt;
+&lt;li&gt;I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+&lt;ul&gt;
+&lt;li&gt;At the place you would check the content add following statement (obviously adjusted for correct table/variable name):&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;  &lt;span style=&#34;color:#00f&#34;&gt;DECLARE&lt;/span&gt; @v XML = (&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #&lt;span style=&#34;color:#00f&#34;&gt;Parameters&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;FOR&lt;/span&gt; XML AUTO, ROOT(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;MyRoot&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Once you will hit the statement in the debugger you can easily watch the content of &lt;code&gt;@v&lt;/code&gt; and visualize it for example via &lt;em&gt;XML Visualizer&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

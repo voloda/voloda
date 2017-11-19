@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 16 Mar 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,9 +17,82 @@
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
-      <description>Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
-As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
-Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;During past few months we introduced and heavily extended usage of &lt;em&gt;Microsoft Unity IoC container&lt;/em&gt; in our code base as a part of the effort to make the code more loosely coupled.&lt;/p&gt;
+
+&lt;p&gt;As a result of those changes we now even more than before also rely on &lt;em&gt;Inversion Of Control&lt;/em&gt; or more specifically &lt;em&gt;Dependency Injection&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thus both &lt;em&gt;Microsoft Unity&lt;/em&gt; and &lt;em&gt;IoC/DI&lt;/em&gt; are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.&lt;/p&gt;
+
+&lt;p&gt;After brief discussion within the team we agreed that the best way how to handle it would be to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Collect some solid resources describing the IoC/DI.
+
+&lt;ul&gt;
+&lt;li&gt;Martin Fowler is obviously first choice - though differences between IoC and DI are better explained in different resources :-).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Provide hands-on lab project which will cover all the specifics for:
+
+&lt;ul&gt;
+&lt;li&gt;Inversion Of Control/Dependency injection.&lt;/li&gt;
+&lt;li&gt;Microsoft Unity Container.&lt;/li&gt;
+&lt;li&gt;Will serve as a self-training material.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;We will publish it on Github under MIT license.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;target-audience&#34;&gt;Target audience&lt;/h1&gt;
+
+&lt;p&gt;.NET Software developers/engineers and architects who:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Would and are willing to learn about IoC/DI.&lt;/li&gt;
+&lt;li&gt;Are familiar IoC/DI but would learn about Microsoft Unity IoC container.&lt;/li&gt;
+&lt;li&gt;Would learn about possible challenges which usage of the MS Unity can bring.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;training-materials&#34;&gt;Training materials&lt;/h1&gt;
+
+&lt;p&gt;With my colleagues we prepared set of projects which allows everybody to play with all the stuff on reasonably sized projects.&lt;/p&gt;
+
+&lt;p&gt;Brief introduction can be found &lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks/blob/master/README.md&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;github-projects&#34;&gt;Github projects&lt;/h2&gt;
+
+&lt;p&gt;If you are either familiar with Github or if you would use this as an opportunity to learn more about it you can just fork/clone repositories below.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks&#34;&gt;https://github.com/IoCHowTo/IoCTasks&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This repository contains initial Readme.md file with references as well as brief introduction.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasksSolutions&#34;&gt;https://github.com/IoCHowTo/IoCTasksSolutions&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This repository contains individual sample solutions for each project above.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;direct-access&#34;&gt;Direct access&lt;/h2&gt;
+
+&lt;p&gt;In the case that you do not like Git/Github you can use direct links below to get the latest version of training projects as well as sample solutions in form of ZIP packages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks/archive/master.zip&#34;&gt;https://github.com/IoCHowTo/IoCTasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasksSolutions/archive/master.zip&#34;&gt;https://github.com/IoCHowTo/IoCTasksSolutions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;contributions&#34;&gt;Contributions&lt;/h1&gt;
+
+&lt;p&gt;If you will find something which needs to be fixed or if you have some interesting sample task just send it as a Github pull request - we accept contributions under MIT license.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Thanks to everybody who already contributed with his time either in form of code or even advice :-).&lt;/strong&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -28,9 +101,124 @@ Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In ord
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
-      <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
-Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
- How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
+      <description>
+
+&lt;p&gt;Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in &lt;strong&gt;Team City&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the &lt;strong&gt;SQL Server Management Studio&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;How to stub some of the data so the complex parts of queries can be easily verified.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the end I got working debugging with following setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stored procedures written in T-SQL for MSSQL.&lt;/li&gt;
+&lt;li&gt;Each stored procedure is covered by unit tests written in NUnit.
+
+&lt;ul&gt;
+&lt;li&gt;Thanks to tip of my colleague MSSQL guru &lt;em&gt;Lubos&lt;/em&gt; I was able quickly setup SQL Server snapshots to be able revert the database quickly to its initial state.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lubos&lt;/em&gt; also proposed very simple way on how to &lt;strong&gt;stub&lt;/strong&gt; some data in procedures.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;In order to be able quickly check what is going on inside the stored procedure use the Visual Studio 2013 debugger including the ability to step into the stored procedure.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;using-stubs-for-data-used-inside-stored-procedures&#34;&gt;Using stubs for data used inside stored procedures&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Motivation here is that it is not always simple enough or even practical setup all the required data directly in the database.
+
+&lt;ul&gt;
+&lt;li&gt;Downside obviously is that since you are about to alter the stored procedure you have to be very careful.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;My colleague proposed a very simple way for this purpose which seems to work:
+
+&lt;ul&gt;
+&lt;li&gt;Before running tests take a database snapshot so you can easily revert back.&lt;/li&gt;
+&lt;li&gt;Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; [MyInvoices]
+[#Stub1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #MyInvoices
+[#Stub1] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;how-to-enable-t-sql-debugging-in-visual-studio-2013&#34;&gt;How to enable T-SQL debugging in Visual Studio 2013&lt;/h1&gt;
+
+&lt;p&gt;This was the most tricky part of the whole procedure and it may be specific to my setup (MSSQL 2008 R2, VS2013).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As a prerequisite the &lt;em&gt;Application debugging&lt;/em&gt; and &lt;em&gt;SQL/CLR debugging&lt;/em&gt; must be enabled for the SQL Server in the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;There are two ways how to get to &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Directly open &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; via Visual Studio menu &lt;em&gt;VIEW&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png&#34; alt=&#34;Open SQL Server Object Explorer in VS 2013 menu&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Alternatively use &lt;em&gt;Server Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Firstly add a connection to your database&lt;/li&gt;
+&lt;li&gt;Then right click using mouse on registered database and select &lt;em&gt;Browse in SQL Server Object Explorer&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg&#34; alt=&#34;Open SQL Server Object Explorer from Server Explorer in VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Once you get into the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; enable both debugging options as visible on picture below:
+ &lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png&#34; alt=&#34;Enable debugging in SQL Server Object Explorer from VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Running tests just for verification purposes is very simple and basically any NUnit runner can be used.&lt;/li&gt;
+&lt;li&gt;In our case for the standard purpose serves very well Jetbrains Resharper.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;debugging-tests&#34;&gt;Debugging tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unfortunately this didn&amp;rsquo;t work with built-in R# test runner.&lt;/li&gt;
+&lt;li&gt;Instead I use &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; runner (I simply needed to force the process bitness to 32bits but I suppose that &lt;strong&gt;NUnit.exe&lt;/strong&gt; will work as well):
+
+&lt;ul&gt;
+&lt;li&gt;Load test assembly into NUnit runner.&lt;/li&gt;
+&lt;li&gt;Attach Visual Studio 2013 debugger to running process.&lt;/li&gt;
+&lt;li&gt;Important part here is to have enabled both - &lt;strong&gt;Managed code&lt;/strong&gt; and &lt;strong&gt;T-SQL&lt;/strong&gt; code debugging prior to attaching to he &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; process:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg&#34; alt=&#34;Attaching to NUnit with enabled T-SQL debugging&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Now set a .breakpoint in .NET code just around the code which is responsible for invocation of the stored procedure you are interested in, for example &lt;code&gt;SqlDbCommand.Execute()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run unit test from the NUnit runner and have it hit the breakpoint in Visual Studio.&lt;/li&gt;
+&lt;li&gt;Now from the _&lt;strong&gt;SQL Server Object Explorer&lt;/strong&gt; open the body of stored procedure (just double-click on it),&lt;/li&gt;
+&lt;li&gt;Set a breakpoint inside the procedure.&lt;/li&gt;
+&lt;li&gt;And step thru the .NET code which is about to invoke the procedure.&lt;/li&gt;
+&lt;li&gt;If everything works well for you you are now inside the stored procedure and you can debug it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;watching-data-inside-the-stored-procedure&#34;&gt;Watching data inside the stored procedure&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can easily watch content of any variable inside the stored procedure.&lt;/li&gt;
+&lt;li&gt;I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+&lt;ul&gt;
+&lt;li&gt;At the place you would check the content add following statement (obviously adjusted for correct table/variable name):&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;  &lt;span style=&#34;color:#00f&#34;&gt;DECLARE&lt;/span&gt; @v XML = (&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #&lt;span style=&#34;color:#00f&#34;&gt;Parameters&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;FOR&lt;/span&gt; XML AUTO, ROOT(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;MyRoot&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Once you will hit the statement in the debugger you can easily watch the content of &lt;code&gt;@v&lt;/code&gt; and visualize it for example via &lt;em&gt;XML Visualizer&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -39,9 +227,28 @@ Setting up the data and parameters for stored procedure takes some time and ther
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</guid>
-      <description>I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.
-Symptoms were that the debugger attached to the process but neither &amp;lsquo;Break All&amp;rsquo; worked. The same applied for any preset breakpoint.
-For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via Debug.Assert() or Debugger.</description>
+      <description>&lt;p&gt;I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.&lt;/p&gt;
+
+&lt;p&gt;Symptoms were that the debugger attached to the process but neither &amp;lsquo;Break All&amp;rsquo; worked. The same applied for any preset breakpoint.&lt;/p&gt;
+
+&lt;p&gt;For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via &lt;code&gt;Debug.Assert()&lt;/code&gt; or &lt;code&gt;Debugger.Break()&lt;/code&gt; calls put directly into code I had never motivation to really look for a solution nor reinstall the Visual Studio.&lt;/p&gt;
+
+&lt;p&gt;Today I really wanted to attach to a process to see what is going on inside and the issue happened again.&lt;/p&gt;
+
+&lt;p&gt;After a bit of playing I realized that in the case that debugger works after attaching correctly the &amp;lsquo;Attach to Process&amp;rsquo; Visual Studio dialog looks like this (see &amp;lsquo;Attach to&amp;rsquo; field):
+&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For my process it didn&amp;rsquo;t work this time and &amp;lsquo;Attach to Process&amp;rsquo; dialog looked like this (again see &amp;lsquo;Attach to&amp;rsquo; field):
+&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Apparently Visual Studio in some cases does not properly detect the type of the process and does not use correct debugger settings.&lt;/p&gt;
+
+&lt;p&gt;In order to solve my issue I finally found the &amp;lsquo;Select&amp;hellip;&amp;rsquo; button following &amp;lsquo;Attach to&amp;rsquo; field where you can disable automatic detection of the process type and manually select a different one.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_select_code_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_select_code_type.png &#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After selecting &amp;lsquo;Manager (v4.5, 4.0)&amp;rsquo; and attaching debugger to process again everything worked well.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -50,9 +257,151 @@ For some time I thought that Visual Studio installation for somehow corrupted on
       <pubDate>Wed, 03 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</guid>
-      <description>Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
-And what is wrong with it?
-It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!</description>
+      <description>
+
+&lt;h1 id=&#34;motivation&#34;&gt;Motivation&lt;/h1&gt;
+
+&lt;p&gt;I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses &lt;code&gt;LoadLibrary()&lt;/code&gt; and &lt;code&gt;FreeLibrary()&lt;/code&gt; WINAPI calls to achieve this.&lt;/p&gt;
+
+&lt;p&gt;And what is wrong with it?&lt;/p&gt;
+
+&lt;p&gt;It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!&lt;/p&gt;
+
+&lt;p&gt;And that is not all - you cannot use this DLL in same application domain again after unloading.&lt;/p&gt;
+
+&lt;h1 id=&#34;solution&#34;&gt;Solution&lt;/h1&gt;
+
+&lt;p&gt;Solution is pretty simple one, but I have to say that it wasn&amp;rsquo;t very obvious to me at the beginning.
+You can use P-Invoke to import following standard WinAPI functions for dynamical function loading:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LoadLibrary()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FreeLibrary()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GetProcAddress()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will use following wrapping class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;UnsafeMethods&lt;/span&gt;
+{
+    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
+    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr LoadLibrary(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; libraryName);
+    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
+    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; FreeLibrary(IntPtr hModule);
+    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
+    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr GetProcAddress(IntPtr hModule, &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; procName);
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
+&lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we can create implement our class calling external DLL functionality with &lt;code&gt;IDisposable&lt;/code&gt; interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as &lt;code&gt;Multiply()&lt;/code&gt; and &lt;code&gt;Str2Int()&lt;/code&gt;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;ExternalHelpers&lt;/span&gt;: IDisposable
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;#region Private members
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; IntPtr _libraryHandle;
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; MultiplyDelegate _multiply;
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; Str2IntDelegate _str2Int;
+    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#00f&#34;&gt;#region External functions delegates
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
+    &lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);
+    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; ExternalHelpers()
+    {
+        &lt;span style=&#34;color:#008000&#34;&gt;// dynamically load DLL using WinAPI
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _libraryHandle = UnsafeMethods.LoadLibrary(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;testing.dll&amp;#34;&lt;/span&gt;);
+
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle == IntPtr.Zero)
+            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+        &lt;span style=&#34;color:#008000&#34;&gt;// import functions as delegates using GetProcAddress
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _multiply = LoadExternalFunction&amp;lt;MultiplyDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;multiply&amp;#34;&lt;/span&gt;);
+        _str2Int = LoadExternalFunction&amp;lt;Str2IntDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;str2int&amp;#34;&lt;/span&gt;);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Multiply(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2)
+    {
+        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _multiply(value1, value2);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2Int(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source)
+    {
+        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _str2Int(source);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose()
+    {
+        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;true&lt;/span&gt;);
+
+        GC.SuppressFinalize(&lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;);
+    }
+
+    ~ExternalHelpers()
+    {
+        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;#region Private helper methods
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; T LoadExternalFunction&amp;lt;T&amp;gt;(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; functionName)
+        &lt;span style=&#34;color:#00f&#34;&gt;where&lt;/span&gt; T: &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt;
+    {
+        Debug.Assert(!String.IsNullOrEmpty(functionName));
+        &lt;span style=&#34;color:#008000&#34;&gt;// load function pointer
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
+
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (functionPointer == IntPtr.Zero)
+            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+        &lt;span style=&#34;color:#008000&#34;&gt;// Marshal to requested delegate
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; Marshal.GetDelegateForFunctionPointer(functionPointer, &lt;span style=&#34;color:#00f&#34;&gt;typeof&lt;/span&gt;(T)) &lt;span style=&#34;color:#00f&#34;&gt;as&lt;/span&gt; T;
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose(&lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; disposing)
+    {
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (disposing)
+        {
+            _multiply = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
+            _str2Int = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
+        }
+
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle != IntPtr.Zero)
+        {
+            &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (!UnsafeMethods.FreeLibrary(_libraryHandle))
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+
+            _libraryHandle = IntPtr.Zero;
+        }
+    }
+    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And finally - we can use it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;[] args)
+{
+    using(ExternalHelpers e = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ExternalHelpers())
+    {
+        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1 = 2;
+        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2 = 3;
+        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; strValue = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;345&amp;#34;&lt;/span&gt;;
+
+        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} * {1} = {2}&amp;#34;&lt;/span&gt;, value1, value2, e.Multiply(value1, value2));
+        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} =&amp;gt; {1}&amp;#34;&lt;/span&gt;, strValue, e.Str2Int(strValue));
+    }
+
+    Console.ReadKey();
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Looks easy? Yes it is :-)&lt;/p&gt;
+
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://msdn.microsoft.com/&#34;&gt;MSDN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -61,10 +410,134 @@ It forces to unload ALL instances of the DLL library currently loaded within pro
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
-      <description>Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
-Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &amp;lsquo;singletons&amp;rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
-Let&amp;rsquo;s consider following classes:
-public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&amp;rsquo;s setup some test case:</description>
+      <description>
+
+&lt;p&gt;Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you
+accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).&lt;/p&gt;
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;When using Microsoft Unity IoC container you may face some weird issues when dealing with &amp;lsquo;singletons&amp;rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider following classes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IServiceDependency
+{
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IService
+{
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;ServiceDependency&lt;/span&gt; : IServiceDependency
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;readonly&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; _dep1;
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; ServiceDependency(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; dep1)
+    {
+        _dep1 = dep1;
+    }
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;Service&lt;/span&gt; : IService
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;readonly&lt;/span&gt; IServiceDependency _dependency;
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; Service(IServiceDependency dependency)
+    {
+        _dependency = dependency;
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now let&amp;rsquo;s setup some test case:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;[Test]
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; ServiceResolutionViaTwoDifferentChildContainersShouldFail()
+{
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
+
+    rootContainer.RegisterType&amp;lt;IService, Service&amp;gt;(&lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ContainerControlledLifetimeManager());
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer = rootContainer.CreateChildContainer();
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer2 = rootContainer.CreateChildContainer();
+
+    childContainer.RegisterInstance&amp;lt;IServiceDependency&amp;gt;(&lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ServiceDependency(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Dep1&amp;#34;&lt;/span&gt;));
+    childContainer2.RegisterInstance&amp;lt;IServiceDependency&amp;gt;(&lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ServiceDependency(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Dep2&amp;#34;&lt;/span&gt;));
+
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainerResult1 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainerResult2 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer2Result1 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer2Result2 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+
+    Assert.AreEqual(childContainerResult1, childContainerResult2);
+    Assert.AreEqual(childContainer2Result1, childContainer2Result2);
+
+    Assert.AreEqual(childContainer2Result1, childContainerResult1);
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;This actually will pass all the assertions.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;let-s-analyze-it-a-bit&#34;&gt;Let&amp;rsquo;s analyze it a bit:&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Let&amp;rsquo;s step thru the test case in debugger.&lt;/li&gt;
+&lt;li&gt;Setup some watches:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;((ServiceDependency)((Service)childContainerResult1)._dependency)._dep1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;((ServiceDependency)((Service)childContainer2Result1)._dependency)._dep1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;You can see that both of them point to &lt;code&gt;Dep1&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;Is that what you really wanted?&lt;/li&gt;
+&lt;li&gt;Consider the following case:&lt;/li&gt;
+&lt;li&gt;You disposed &lt;code&gt;childContainer&lt;/code&gt; and your &lt;code&gt;ServiceDependency&lt;/code&gt; is disposable registered as &lt;code&gt;ContainerControlledLifetimeManager&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;At this point you have invalid instance of &lt;code&gt;IService&lt;/code&gt;&lt;/strong&gt; (it has injected disposed ServiceDependency).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;This is most likely a side effect of unwanted changes and you want to avoid it&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;And this is exactly what is this extension trying to solve&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;By enabling this extension the build operation will fail&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;how-to-enable-extension&#34;&gt;How to enable extension&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Reference the &lt;code&gt;UnityRegistrationValidator.dll&lt;/code&gt; in your project.&lt;/li&gt;
+&lt;li&gt;Call the registration below.
+
+&lt;ul&gt;
+&lt;li&gt;The extension is available as a &lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;&lt;strong&gt;Nuget package&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
+rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;gt;();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;following-rules-are-enforced-after-registering-extension&#34;&gt;Following rules are enforced after registering extension&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For each registration is tracked depth in containers (starting the container in which resolve starts).&lt;/li&gt;
+&lt;li&gt;If you register an object which
+
+&lt;ul&gt;
+&lt;li&gt;has dependency resolvable only inside the child container&lt;/li&gt;
+&lt;li&gt;and has ContainerControlledLifetimeManager()&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;the resolve will fail.&lt;/li&gt;
+&lt;li&gt;If you do this without the extension the resolve will succeed but the dependencies were most likely resolved in unexpected way (unless you really know what are you doing).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This extension allows you to validate the expected behavior.&lt;/li&gt;
+&lt;li&gt;Since it may have performance impact (it needs to track all the registrations as well as build operations) it may have negative performance impact.&lt;/li&gt;
+&lt;li&gt;This extension is intended to help you ensure expected behavior - but you have to always consider your circumstanes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;You are using this extension on your own risk :-).&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;https://www.nuget.org/packages/UnityRegistrationValidator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/voloda/UnityRegistrationValidator&#34;&gt;https://github.com/voloda/UnityRegistrationValidator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

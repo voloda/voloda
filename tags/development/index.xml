@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/tags/development/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/tags/development/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,10 +17,101 @@
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
-      <description>Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
-There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
-Setup Client side Chef client can run in two modes:
-Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Recently I had chance to evaluate usage of &lt;em&gt;Chef&lt;/em&gt; for deployment of web service on project I am working on.&lt;/p&gt;
+
+&lt;p&gt;There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.&lt;/p&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;h2 id=&#34;client-side&#34;&gt;Client side&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Chef client&lt;/em&gt; can run in two modes:&lt;/p&gt;
+
+&lt;h3 id=&#34;standalone-called-chef-solo&#34;&gt;Standalone called chef solo&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;em&gt;chef-solo&lt;/em&gt; command without attempts to access the server&lt;/li&gt;
+&lt;li&gt;Works greatly for development of &lt;em&gt;cookbooks&lt;/em&gt; or just for simple setup of the environment.&lt;/li&gt;
+&lt;li&gt;Allows to define &lt;em&gt;environment&lt;/em&gt; in &lt;em&gt;JSON&lt;/em&gt; config file.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Node&lt;/em&gt; specific information has to be defined&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;client-server-mode&#34;&gt;Client-server mode&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Requires installed &lt;em&gt;chef server&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Allows to bootstrap newly provisioned machine very easily.&lt;/li&gt;
+&lt;li&gt;Per-node setup can be maintained on the server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;server-side&#34;&gt;Server side&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Chef server&lt;/em&gt; has to be installed on a &lt;em&gt;Linux&lt;/em&gt; machine, there is no installation for &lt;em&gt;Windows&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Setup is pretty straightforward and well documented and I was able to perform it even with my outdated &lt;em&gt;Linux&lt;/em&gt; knowledge.
+
+&lt;ul&gt;
+&lt;li&gt;The WebUI is paid feature but for me as a developer the command line turned out to be much better understandable.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;deployment-artifacts&#34;&gt;Deployment Artifacts&lt;/h3&gt;
+
+&lt;p&gt;Although it allows to save files as a part of cookbook it seems to be pretty bad idea. Better is to have deployment packages available on some artifact server.&lt;/p&gt;
+
+&lt;h1 id=&#34;creating-first-cookbook&#34;&gt;Creating first cookbook&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For development the &lt;em&gt;Chef development kit&lt;/em&gt; can be installed:
+
+&lt;ul&gt;
+&lt;li&gt;For initial playing with &lt;em&gt;cookbook&lt;/em&gt; the client seems to be sufficient but development kit has some advanced features like static analysis, testing support etc. More to come&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;knife&lt;/em&gt; command helps here quite a bit although manual setup is obviously possible.&lt;/li&gt;
+&lt;li&gt;It is best to maintain cookbook repository in &lt;em&gt;GIT&lt;/em&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;For example dependency installation command is integrated with &lt;em&gt;git&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;create-cookbook&#34;&gt;Create cookbook&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In git repository which will contain cookbook run:
+&lt;code&gt;cmd
+knife cookbook create COOKBOOK_NAME
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Review created files to add documentation as needed.&lt;/li&gt;
+&lt;li&gt;To install any dependencies run:
+
+&lt;ul&gt;
+&lt;li&gt;This by default works with &lt;em&gt;master&lt;/em&gt; branch. See other parameters to make it working on current branch.&lt;/li&gt;
+&lt;li&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.
+&lt;code&gt;cmd
+knife cookbook site install COOKBOOK_NAME
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file
+
+&lt;ul&gt;
+&lt;li&gt;Each dependency can contain version information to maintain compatibility.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;quick-links&#34;&gt;Quick links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pluralsight.com/courses/meet-chef&#34;&gt;Pluralsight intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/knife_cookbook.html&#34;&gt;Chef - knife cookbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/knife_cookbook_site.html&#34;&gt;Chef - knife cookbook site&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/chef_solo.html&#34;&gt;Chef solo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -29,9 +120,82 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
-      <description>Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
-As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
-Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;During past few months we introduced and heavily extended usage of &lt;em&gt;Microsoft Unity IoC container&lt;/em&gt; in our code base as a part of the effort to make the code more loosely coupled.&lt;/p&gt;
+
+&lt;p&gt;As a result of those changes we now even more than before also rely on &lt;em&gt;Inversion Of Control&lt;/em&gt; or more specifically &lt;em&gt;Dependency Injection&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thus both &lt;em&gt;Microsoft Unity&lt;/em&gt; and &lt;em&gt;IoC/DI&lt;/em&gt; are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.&lt;/p&gt;
+
+&lt;p&gt;After brief discussion within the team we agreed that the best way how to handle it would be to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Collect some solid resources describing the IoC/DI.
+
+&lt;ul&gt;
+&lt;li&gt;Martin Fowler is obviously first choice - though differences between IoC and DI are better explained in different resources :-).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Provide hands-on lab project which will cover all the specifics for:
+
+&lt;ul&gt;
+&lt;li&gt;Inversion Of Control/Dependency injection.&lt;/li&gt;
+&lt;li&gt;Microsoft Unity Container.&lt;/li&gt;
+&lt;li&gt;Will serve as a self-training material.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;We will publish it on Github under MIT license.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;target-audience&#34;&gt;Target audience&lt;/h1&gt;
+
+&lt;p&gt;.NET Software developers/engineers and architects who:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Would and are willing to learn about IoC/DI.&lt;/li&gt;
+&lt;li&gt;Are familiar IoC/DI but would learn about Microsoft Unity IoC container.&lt;/li&gt;
+&lt;li&gt;Would learn about possible challenges which usage of the MS Unity can bring.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;training-materials&#34;&gt;Training materials&lt;/h1&gt;
+
+&lt;p&gt;With my colleagues we prepared set of projects which allows everybody to play with all the stuff on reasonably sized projects.&lt;/p&gt;
+
+&lt;p&gt;Brief introduction can be found &lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks/blob/master/README.md&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;github-projects&#34;&gt;Github projects&lt;/h2&gt;
+
+&lt;p&gt;If you are either familiar with Github or if you would use this as an opportunity to learn more about it you can just fork/clone repositories below.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks&#34;&gt;https://github.com/IoCHowTo/IoCTasks&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This repository contains initial Readme.md file with references as well as brief introduction.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasksSolutions&#34;&gt;https://github.com/IoCHowTo/IoCTasksSolutions&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This repository contains individual sample solutions for each project above.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;direct-access&#34;&gt;Direct access&lt;/h2&gt;
+
+&lt;p&gt;In the case that you do not like Git/Github you can use direct links below to get the latest version of training projects as well as sample solutions in form of ZIP packages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks/archive/master.zip&#34;&gt;https://github.com/IoCHowTo/IoCTasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasksSolutions/archive/master.zip&#34;&gt;https://github.com/IoCHowTo/IoCTasksSolutions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;contributions&#34;&gt;Contributions&lt;/h1&gt;
+
+&lt;p&gt;If you will find something which needs to be fixed or if you have some interesting sample task just send it as a Github pull request - we accept contributions under MIT license.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Thanks to everybody who already contributed with his time either in form of code or even advice :-).&lt;/strong&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -40,9 +204,124 @@ Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In ord
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
-      <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
-Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
- How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
+      <description>
+
+&lt;p&gt;Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in &lt;strong&gt;Team City&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the &lt;strong&gt;SQL Server Management Studio&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;How to stub some of the data so the complex parts of queries can be easily verified.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the end I got working debugging with following setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stored procedures written in T-SQL for MSSQL.&lt;/li&gt;
+&lt;li&gt;Each stored procedure is covered by unit tests written in NUnit.
+
+&lt;ul&gt;
+&lt;li&gt;Thanks to tip of my colleague MSSQL guru &lt;em&gt;Lubos&lt;/em&gt; I was able quickly setup SQL Server snapshots to be able revert the database quickly to its initial state.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lubos&lt;/em&gt; also proposed very simple way on how to &lt;strong&gt;stub&lt;/strong&gt; some data in procedures.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;In order to be able quickly check what is going on inside the stored procedure use the Visual Studio 2013 debugger including the ability to step into the stored procedure.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;using-stubs-for-data-used-inside-stored-procedures&#34;&gt;Using stubs for data used inside stored procedures&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Motivation here is that it is not always simple enough or even practical setup all the required data directly in the database.
+
+&lt;ul&gt;
+&lt;li&gt;Downside obviously is that since you are about to alter the stored procedure you have to be very careful.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;My colleague proposed a very simple way for this purpose which seems to work:
+
+&lt;ul&gt;
+&lt;li&gt;Before running tests take a database snapshot so you can easily revert back.&lt;/li&gt;
+&lt;li&gt;Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; [MyInvoices]
+[#Stub1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #MyInvoices
+[#Stub1] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;how-to-enable-t-sql-debugging-in-visual-studio-2013&#34;&gt;How to enable T-SQL debugging in Visual Studio 2013&lt;/h1&gt;
+
+&lt;p&gt;This was the most tricky part of the whole procedure and it may be specific to my setup (MSSQL 2008 R2, VS2013).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As a prerequisite the &lt;em&gt;Application debugging&lt;/em&gt; and &lt;em&gt;SQL/CLR debugging&lt;/em&gt; must be enabled for the SQL Server in the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;There are two ways how to get to &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Directly open &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; via Visual Studio menu &lt;em&gt;VIEW&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png&#34; alt=&#34;Open SQL Server Object Explorer in VS 2013 menu&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Alternatively use &lt;em&gt;Server Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Firstly add a connection to your database&lt;/li&gt;
+&lt;li&gt;Then right click using mouse on registered database and select &lt;em&gt;Browse in SQL Server Object Explorer&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg&#34; alt=&#34;Open SQL Server Object Explorer from Server Explorer in VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Once you get into the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; enable both debugging options as visible on picture below:
+ &lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png&#34; alt=&#34;Enable debugging in SQL Server Object Explorer from VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Running tests just for verification purposes is very simple and basically any NUnit runner can be used.&lt;/li&gt;
+&lt;li&gt;In our case for the standard purpose serves very well Jetbrains Resharper.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;debugging-tests&#34;&gt;Debugging tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unfortunately this didn&amp;rsquo;t work with built-in R# test runner.&lt;/li&gt;
+&lt;li&gt;Instead I use &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; runner (I simply needed to force the process bitness to 32bits but I suppose that &lt;strong&gt;NUnit.exe&lt;/strong&gt; will work as well):
+
+&lt;ul&gt;
+&lt;li&gt;Load test assembly into NUnit runner.&lt;/li&gt;
+&lt;li&gt;Attach Visual Studio 2013 debugger to running process.&lt;/li&gt;
+&lt;li&gt;Important part here is to have enabled both - &lt;strong&gt;Managed code&lt;/strong&gt; and &lt;strong&gt;T-SQL&lt;/strong&gt; code debugging prior to attaching to he &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; process:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg&#34; alt=&#34;Attaching to NUnit with enabled T-SQL debugging&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Now set a .breakpoint in .NET code just around the code which is responsible for invocation of the stored procedure you are interested in, for example &lt;code&gt;SqlDbCommand.Execute()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run unit test from the NUnit runner and have it hit the breakpoint in Visual Studio.&lt;/li&gt;
+&lt;li&gt;Now from the _&lt;strong&gt;SQL Server Object Explorer&lt;/strong&gt; open the body of stored procedure (just double-click on it),&lt;/li&gt;
+&lt;li&gt;Set a breakpoint inside the procedure.&lt;/li&gt;
+&lt;li&gt;And step thru the .NET code which is about to invoke the procedure.&lt;/li&gt;
+&lt;li&gt;If everything works well for you you are now inside the stored procedure and you can debug it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;watching-data-inside-the-stored-procedure&#34;&gt;Watching data inside the stored procedure&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can easily watch content of any variable inside the stored procedure.&lt;/li&gt;
+&lt;li&gt;I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+&lt;ul&gt;
+&lt;li&gt;At the place you would check the content add following statement (obviously adjusted for correct table/variable name):&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;  &lt;span style=&#34;color:#00f&#34;&gt;DECLARE&lt;/span&gt; @v XML = (&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #&lt;span style=&#34;color:#00f&#34;&gt;Parameters&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;FOR&lt;/span&gt; XML AUTO, ROOT(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;MyRoot&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Once you will hit the statement in the debugger you can easily watch the content of &lt;code&gt;@v&lt;/code&gt; and visualize it for example via &lt;em&gt;XML Visualizer&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -51,9 +330,28 @@ Setting up the data and parameters for stored procedure takes some time and ther
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</guid>
-      <description>I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.
-Symptoms were that the debugger attached to the process but neither &amp;lsquo;Break All&amp;rsquo; worked. The same applied for any preset breakpoint.
-For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via Debug.Assert() or Debugger.</description>
+      <description>&lt;p&gt;I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.&lt;/p&gt;
+
+&lt;p&gt;Symptoms were that the debugger attached to the process but neither &amp;lsquo;Break All&amp;rsquo; worked. The same applied for any preset breakpoint.&lt;/p&gt;
+
+&lt;p&gt;For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via &lt;code&gt;Debug.Assert()&lt;/code&gt; or &lt;code&gt;Debugger.Break()&lt;/code&gt; calls put directly into code I had never motivation to really look for a solution nor reinstall the Visual Studio.&lt;/p&gt;
+
+&lt;p&gt;Today I really wanted to attach to a process to see what is going on inside and the issue happened again.&lt;/p&gt;
+
+&lt;p&gt;After a bit of playing I realized that in the case that debugger works after attaching correctly the &amp;lsquo;Attach to Process&amp;rsquo; Visual Studio dialog looks like this (see &amp;lsquo;Attach to&amp;rsquo; field):
+&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For my process it didn&amp;rsquo;t work this time and &amp;lsquo;Attach to Process&amp;rsquo; dialog looked like this (again see &amp;lsquo;Attach to&amp;rsquo; field):
+&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Apparently Visual Studio in some cases does not properly detect the type of the process and does not use correct debugger settings.&lt;/p&gt;
+
+&lt;p&gt;In order to solve my issue I finally found the &amp;lsquo;Select&amp;hellip;&amp;rsquo; button following &amp;lsquo;Attach to&amp;rsquo; field where you can disable automatic detection of the process type and manually select a different one.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_select_code_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_select_code_type.png &#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After selecting &amp;lsquo;Manager (v4.5, 4.0)&amp;rsquo; and attaching debugger to process again everything worked well.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -62,9 +360,151 @@ For some time I thought that Visual Studio installation for somehow corrupted on
       <pubDate>Wed, 03 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</guid>
-      <description>Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
-And what is wrong with it?
-It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!</description>
+      <description>
+
+&lt;h1 id=&#34;motivation&#34;&gt;Motivation&lt;/h1&gt;
+
+&lt;p&gt;I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses &lt;code&gt;LoadLibrary()&lt;/code&gt; and &lt;code&gt;FreeLibrary()&lt;/code&gt; WINAPI calls to achieve this.&lt;/p&gt;
+
+&lt;p&gt;And what is wrong with it?&lt;/p&gt;
+
+&lt;p&gt;It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!&lt;/p&gt;
+
+&lt;p&gt;And that is not all - you cannot use this DLL in same application domain again after unloading.&lt;/p&gt;
+
+&lt;h1 id=&#34;solution&#34;&gt;Solution&lt;/h1&gt;
+
+&lt;p&gt;Solution is pretty simple one, but I have to say that it wasn&amp;rsquo;t very obvious to me at the beginning.
+You can use P-Invoke to import following standard WinAPI functions for dynamical function loading:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LoadLibrary()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FreeLibrary()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GetProcAddress()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will use following wrapping class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;UnsafeMethods&lt;/span&gt;
+{
+    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
+    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr LoadLibrary(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; libraryName);
+    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
+    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; FreeLibrary(IntPtr hModule);
+    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
+    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr GetProcAddress(IntPtr hModule, &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; procName);
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
+&lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we can create implement our class calling external DLL functionality with &lt;code&gt;IDisposable&lt;/code&gt; interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as &lt;code&gt;Multiply()&lt;/code&gt; and &lt;code&gt;Str2Int()&lt;/code&gt;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;ExternalHelpers&lt;/span&gt;: IDisposable
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;#region Private members
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; IntPtr _libraryHandle;
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; MultiplyDelegate _multiply;
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; Str2IntDelegate _str2Int;
+    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#00f&#34;&gt;#region External functions delegates
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
+    &lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);
+    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; ExternalHelpers()
+    {
+        &lt;span style=&#34;color:#008000&#34;&gt;// dynamically load DLL using WinAPI
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _libraryHandle = UnsafeMethods.LoadLibrary(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;testing.dll&amp;#34;&lt;/span&gt;);
+
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle == IntPtr.Zero)
+            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+        &lt;span style=&#34;color:#008000&#34;&gt;// import functions as delegates using GetProcAddress
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _multiply = LoadExternalFunction&amp;lt;MultiplyDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;multiply&amp;#34;&lt;/span&gt;);
+        _str2Int = LoadExternalFunction&amp;lt;Str2IntDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;str2int&amp;#34;&lt;/span&gt;);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Multiply(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2)
+    {
+        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _multiply(value1, value2);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2Int(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source)
+    {
+        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _str2Int(source);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose()
+    {
+        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;true&lt;/span&gt;);
+
+        GC.SuppressFinalize(&lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;);
+    }
+
+    ~ExternalHelpers()
+    {
+        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;#region Private helper methods
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; T LoadExternalFunction&amp;lt;T&amp;gt;(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; functionName)
+        &lt;span style=&#34;color:#00f&#34;&gt;where&lt;/span&gt; T: &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt;
+    {
+        Debug.Assert(!String.IsNullOrEmpty(functionName));
+        &lt;span style=&#34;color:#008000&#34;&gt;// load function pointer
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
+
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (functionPointer == IntPtr.Zero)
+            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+        &lt;span style=&#34;color:#008000&#34;&gt;// Marshal to requested delegate
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; Marshal.GetDelegateForFunctionPointer(functionPointer, &lt;span style=&#34;color:#00f&#34;&gt;typeof&lt;/span&gt;(T)) &lt;span style=&#34;color:#00f&#34;&gt;as&lt;/span&gt; T;
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose(&lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; disposing)
+    {
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (disposing)
+        {
+            _multiply = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
+            _str2Int = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
+        }
+
+        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle != IntPtr.Zero)
+        {
+            &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (!UnsafeMethods.FreeLibrary(_libraryHandle))
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+
+            _libraryHandle = IntPtr.Zero;
+        }
+    }
+    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And finally - we can use it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;[] args)
+{
+    using(ExternalHelpers e = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ExternalHelpers())
+    {
+        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1 = 2;
+        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2 = 3;
+        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; strValue = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;345&amp;#34;&lt;/span&gt;;
+
+        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} * {1} = {2}&amp;#34;&lt;/span&gt;, value1, value2, e.Multiply(value1, value2));
+        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} =&amp;gt; {1}&amp;#34;&lt;/span&gt;, strValue, e.Str2Int(strValue));
+    }
+
+    Console.ReadKey();
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Looks easy? Yes it is :-)&lt;/p&gt;
+
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://msdn.microsoft.com/&#34;&gt;MSDN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -73,10 +513,134 @@ It forces to unload ALL instances of the DLL library currently loaded within pro
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
-      <description>Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
-Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &amp;lsquo;singletons&amp;rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
-Let&amp;rsquo;s consider following classes:
-public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&amp;rsquo;s setup some test case:</description>
+      <description>
+
+&lt;p&gt;Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you
+accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).&lt;/p&gt;
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;When using Microsoft Unity IoC container you may face some weird issues when dealing with &amp;lsquo;singletons&amp;rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider following classes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IServiceDependency
+{
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IService
+{
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;ServiceDependency&lt;/span&gt; : IServiceDependency
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;readonly&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; _dep1;
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; ServiceDependency(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; dep1)
+    {
+        _dep1 = dep1;
+    }
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;Service&lt;/span&gt; : IService
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;readonly&lt;/span&gt; IServiceDependency _dependency;
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; Service(IServiceDependency dependency)
+    {
+        _dependency = dependency;
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now let&amp;rsquo;s setup some test case:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;[Test]
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; ServiceResolutionViaTwoDifferentChildContainersShouldFail()
+{
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
+
+    rootContainer.RegisterType&amp;lt;IService, Service&amp;gt;(&lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ContainerControlledLifetimeManager());
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer = rootContainer.CreateChildContainer();
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer2 = rootContainer.CreateChildContainer();
+
+    childContainer.RegisterInstance&amp;lt;IServiceDependency&amp;gt;(&lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ServiceDependency(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Dep1&amp;#34;&lt;/span&gt;));
+    childContainer2.RegisterInstance&amp;lt;IServiceDependency&amp;gt;(&lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ServiceDependency(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Dep2&amp;#34;&lt;/span&gt;));
+
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainerResult1 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainerResult2 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer2Result1 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; childContainer2Result2 = childContainer.Resolve&amp;lt;IService&amp;gt;();
+
+    Assert.AreEqual(childContainerResult1, childContainerResult2);
+    Assert.AreEqual(childContainer2Result1, childContainer2Result2);
+
+    Assert.AreEqual(childContainer2Result1, childContainerResult1);
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;This actually will pass all the assertions.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;let-s-analyze-it-a-bit&#34;&gt;Let&amp;rsquo;s analyze it a bit:&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Let&amp;rsquo;s step thru the test case in debugger.&lt;/li&gt;
+&lt;li&gt;Setup some watches:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;((ServiceDependency)((Service)childContainerResult1)._dependency)._dep1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;((ServiceDependency)((Service)childContainer2Result1)._dependency)._dep1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;You can see that both of them point to &lt;code&gt;Dep1&lt;/code&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;Is that what you really wanted?&lt;/li&gt;
+&lt;li&gt;Consider the following case:&lt;/li&gt;
+&lt;li&gt;You disposed &lt;code&gt;childContainer&lt;/code&gt; and your &lt;code&gt;ServiceDependency&lt;/code&gt; is disposable registered as &lt;code&gt;ContainerControlledLifetimeManager&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;At this point you have invalid instance of &lt;code&gt;IService&lt;/code&gt;&lt;/strong&gt; (it has injected disposed ServiceDependency).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;This is most likely a side effect of unwanted changes and you want to avoid it&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;And this is exactly what is this extension trying to solve&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;By enabling this extension the build operation will fail&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;how-to-enable-extension&#34;&gt;How to enable extension&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Reference the &lt;code&gt;UnityRegistrationValidator.dll&lt;/code&gt; in your project.&lt;/li&gt;
+&lt;li&gt;Call the registration below.
+
+&lt;ul&gt;
+&lt;li&gt;The extension is available as a &lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;&lt;strong&gt;Nuget package&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
+rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;gt;();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;following-rules-are-enforced-after-registering-extension&#34;&gt;Following rules are enforced after registering extension&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For each registration is tracked depth in containers (starting the container in which resolve starts).&lt;/li&gt;
+&lt;li&gt;If you register an object which
+
+&lt;ul&gt;
+&lt;li&gt;has dependency resolvable only inside the child container&lt;/li&gt;
+&lt;li&gt;and has ContainerControlledLifetimeManager()&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;the resolve will fail.&lt;/li&gt;
+&lt;li&gt;If you do this without the extension the resolve will succeed but the dependencies were most likely resolved in unexpected way (unless you really know what are you doing).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This extension allows you to validate the expected behavior.&lt;/li&gt;
+&lt;li&gt;Since it may have performance impact (it needs to track all the registrations as well as build operations) it may have negative performance impact.&lt;/li&gt;
+&lt;li&gt;This extension is intended to help you ensure expected behavior - but you have to always consider your circumstanes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;You are using this extension on your own risk :-).&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;https://www.nuget.org/packages/UnityRegistrationValidator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/voloda/UnityRegistrationValidator&#34;&gt;https://github.com/voloda/UnityRegistrationValidator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -85,8 +649,174 @@ public interface IServiceDependency { } public interface IService { } public cla
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
-      <description>Introduction It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.
-DbKeeperNet is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: MSSQL, SQLite, Firebird, MySQL, Oracle.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/Articles/42091/DBKeeperNet-Keeps-Your-DB-Schema-Up-to-date&#34;&gt;DbKeeperNet&lt;/a&gt; is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: &lt;em&gt;&lt;strong&gt;MSSQL, SQLite, Firebird, MySQL&lt;/strong&gt;&lt;/em&gt;, Oracle. Since the whole framework is extensible adding support of a new database type is just a simple task.&lt;/p&gt;
+
+&lt;p&gt;It is just matter of few minutes to get it set up in your project and have in-place infrastructure which will ensure proper upgrade path for your database schema on all installations for your application.&lt;/p&gt;
+
+&lt;p&gt;In its recent version &lt;a href=&#34;http://www.codeproject.com/Articles/42091/DBKeeperNet-Keeps-Your-DB-Schema-Up-to-date&#34;&gt;DbKeeperNet&lt;/a&gt;&amp;nbsp;also support seeding of the ASP.NET membership and roles. With respect to overall design - this is supported on any database which implemented its membership providers and makes them available to the .NET infrastructure.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Please keep in mind that any seeded account with pre-seeded password should change the seeded password ASAP.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;sample-task&#34;&gt;Sample task&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider the following set of operations you would perform in your database during the time as your application evolves (of course this can be mixed with any other database schema change like adding a table):&lt;/p&gt;
+
+&lt;h2 id=&#34;upgrade-to-version-1-00&#34;&gt;Upgrade to version 1.00&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If running on MSSQL setup the membership schema&lt;/li&gt;
+&lt;li&gt;Create role TestRole1&lt;/li&gt;
+&lt;li&gt;Create role TestRole2&lt;/li&gt;
+&lt;li&gt;Create user TestUser1 assigned to TestRole1 and TestRole2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;upgrade-to-version-1-01&#34;&gt;Upgrade to version 1.01&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create user TestUser2 assigned to TestRole1&lt;/li&gt;
+&lt;li&gt;Delete user TestUser1&lt;/li&gt;
+&lt;li&gt;Delete TestRole2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;upgrade-script&#34;&gt;Upgrade script&lt;/h1&gt;
+
+&lt;p&gt;Part of this article is a console application demo project using the script below and referencing DbKeeperNet as a &lt;a href=&#34;https://www.nuget.org/packages/DbKeeperNet/&#34;&gt;Nuget package&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The demo project is created for the MSSQL but it can be easily adopted for any other database just by changing setup in App.Config
+    *   The MSSQL specific step here is necessary since the DB schema creation script requires to be executed within a separated transaction and each of the steps needs to be commited
+
+&lt;ul&gt;
+&lt;li&gt;For example MySQL providers seed the required schema on its own upon the first usage of membership providers.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It can be easily adopted and used in a web application - you simply have to plan for its initial execution.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/Articles/42091/DBKeeperNet-Keeps-Your-DB-Schema-Up-to-date&#34;&gt;DbKeeperNet&lt;/a&gt; is using an XML validated against the XSD schema to define a database upgrade. Below you can find an example database upgrade script to achieve above steps (this is comming directly from the example):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&amp;lt;upd:Updates xmlns:upd=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://code.google.com/p/dbkeepernet/Updates-1.0.xsd&amp;#34;&lt;/span&gt; xmlns:xsi=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt; AssemblyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;DbKeeperNet.SimpleDemo&amp;#34;&lt;/span&gt; xsi:schemaLocation=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://code.google.com/p/dbkeepernet/Updates-1.0.xsd ../../DbKeeperNet.Engine/Resources/Updates-1.0.xsd&amp;#34;&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Default way how to check whether to execute update step or not --&amp;gt;&lt;/span&gt;
+  &amp;lt;DefaultPreconditions&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- We will use step information saving strategy --&amp;gt;&lt;/span&gt;
+    &amp;lt;Precondition FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Update step executed&amp;#34;&lt;/span&gt; Precondition=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;StepNotExecuted&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/DefaultPreconditions&amp;gt;
+  &amp;lt;Update Version=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;1.00&amp;#34;&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!--
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;    This update step is needed to properly inject MSSQL membership schema into the database.
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;    The challenge here is that the schema setup must be executed in separated transaction.
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;    
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;    For other membership providers this is usually handled automatically upon the first usage
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;    (like for MySql)
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;    --&amp;gt;&lt;/span&gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:CustomUpdateStepType&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt; Type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;DbKeeperNet.Engine.CustomUpdateSteps.MsSqlStepWithoutExplicitTransaction, DbKeeperNet.Engine&amp;#34;&lt;/span&gt;  FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Setting up database schema for membership and roles&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;Preconditions&amp;gt;
+        &amp;lt;Precondition FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Update step executed&amp;#34;&lt;/span&gt; Precondition=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;StepNotExecuted&amp;#34;&lt;/span&gt;/&amp;gt;
+        &amp;lt;Precondition FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Database is MSSQL&amp;#34;&lt;/span&gt; Precondition=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;DbType&amp;#34;&lt;/span&gt;&amp;gt;
+          &amp;lt;Param&amp;gt;MSSQL&amp;lt;/Param&amp;gt;
+        &amp;lt;/Precondition&amp;gt;
+      &amp;lt;/Preconditions&amp;gt;
+      &amp;lt;Param&amp;gt;DbKeeperNet.Extensions.MsSqlMembershipAndRolesSetup&amp;lt;/Param&amp;gt;
+      &amp;lt;Param&amp;gt;DbKeeperNet.Extensions.MsSqlMembershipAndRolesSetup.MsSqlMembershipAndRolesSetup.sql&amp;lt;/Param&amp;gt;
+    &amp;lt;/UpdateStep&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Create some seeded roles --&amp;gt;&lt;/span&gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:AspNetRoleCreateUpdateStepType&amp;#34;&lt;/span&gt; FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Create role TestRole1&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt; RoleName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;TestRole1&amp;#34;&lt;/span&gt;/&amp;gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:AspNetRoleCreateUpdateStepType&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt; RoleName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;TestRole2&amp;#34;&lt;/span&gt;/&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Seed an account and associate it with roles --&amp;gt;&lt;/span&gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:AspNetAccountCreateUpdateStepType&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;4&amp;#34;&lt;/span&gt; UserName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;TestUser1&amp;#34;&lt;/span&gt; Mail=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser1@domain.com&amp;#34;&lt;/span&gt; Password=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;SeededPassword&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;Role&amp;gt;TestRole1&amp;lt;/Role&amp;gt;
+      &amp;lt;Role&amp;gt;TestRole2&amp;lt;/Role&amp;gt;
+    &amp;lt;/UpdateStep&amp;gt;
+  &amp;lt;/Update&amp;gt;
+  &amp;lt;Update Version=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;1.01&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:AspNetAccountCreateUpdateStepType&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt; UserName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;TestUser2&amp;#34;&lt;/span&gt; Mail=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2@domain.com&amp;#34;&lt;/span&gt; Password=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;SeededPassword2&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;Role&amp;gt;TestRole1&amp;lt;/Role&amp;gt;
+    &amp;lt;/UpdateStep&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Delete the seeded role --&amp;gt;&lt;/span&gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:AspNetRoleDeleteUpdateStepType&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt; RoleName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;TestRole2&amp;#34;&lt;/span&gt;/&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Delete one of the seeded accounts --&amp;gt;&lt;/span&gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:AspNetAccountDeleteUpdateStepType&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt; UserName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;TestUser1&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/Update&amp;gt;
+&amp;lt;/upd:Updates&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now let&amp;rsquo;s setup the C# portion which executes the script:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; connString = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;; &lt;span style=&#34;color:#008000&#34;&gt;// MsSql connection   
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;using&lt;/span&gt; (UpdateContext context = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UpdateContext())
+{
+    context.LoadExtensions();
+    context.InitializeDatabaseService(connString);
+
+    Updater updater = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; Updater(context);
+    updater.ExecuteXmlFromConfig();
+}
+Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Can login as TestUser2: &amp;#34;&lt;/span&gt; + Membership.Provider.ValidateUser(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;SeededPassword2&amp;#34;&lt;/span&gt;));
+Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Can login as TestUser2: &amp;#34;&lt;/span&gt; + Membership.Provider.ValidateUser(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;InvalidPassword&amp;#34;&lt;/span&gt;));
+Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole1: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole1&amp;#34;&lt;/span&gt;));
+Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole2: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole2&amp;#34;&lt;/span&gt;));&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And appropriate App.Config portion:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&amp;lt;configuration&amp;gt;
+  &amp;lt;configSections&amp;gt;
+    &amp;lt;section name=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;dbkeeper.net&amp;#34;&lt;/span&gt; type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;DbKeeperNet.Engine.DbKeeperNetConfigurationSection,DbKeeperNet.Engine&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/configSections&amp;gt;
+  &amp;lt;dbkeeper.net loggingService=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;fx&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;updateScripts&amp;gt;
+&lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- This is the location of the DB Upgrade script - we use an embedded resource --&amp;gt;&lt;/span&gt;
+      &amp;lt;add provider=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;asm&amp;#34;&lt;/span&gt; location=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;DbKeeperNet.AspNetMembershipDemo.DatabaseSetup.xml,DbKeeperNet.AspNetMembershipDemo&amp;#34;&lt;/span&gt; /&amp;gt;
+    &amp;lt;/updateScripts&amp;gt;
+    &amp;lt;databaseServiceMappings&amp;gt;
+      &amp;lt;add connectString=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt; databaseService=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;MsSql&amp;#34;&lt;/span&gt; /&amp;gt;
+    &amp;lt;/databaseServiceMappings&amp;gt;
+  &amp;lt;/dbkeeper.net&amp;gt;
+  &amp;lt;connectionStrings&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Change this to correct absolute path for the demo or to an actual database --&amp;gt;&lt;/span&gt;
+    &amp;lt;add name=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt; connectionString=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Data Source=.\SQLEXPRESS;AttachDbFilename=&amp;#39;C:\Users\voloda\MyRoot\Development\GIT\DbKeeperNet\DbKeeperNet\Demos\DbKeeperNet.AspNetMembershipDemo\bin\Debug\DbKeeperNetAspNetMembershipDemo.mdf&amp;#39;;Integrated Security=True;Connect Timeout=30;User Instance=True;Initial catalog=DbKeeperNetAspNetMembershipDemo&amp;#34;&lt;/span&gt; providerName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;System.Data.SqlClient&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/connectionStrings&amp;gt;
+&lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Let&amp;#39;s enable MSSQL membership providers --&amp;gt;&lt;/span&gt;
+  &amp;lt;system.web&amp;gt;
+    &amp;lt;membership defaultProvider=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;AspNetSqlMembershipProvider&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;providers&amp;gt;
+        &amp;lt;clear/&amp;gt;
+        &amp;lt;add name=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;AspNetSqlMembershipProvider&amp;#34;&lt;/span&gt; type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;System.Web.Security.SqlMembershipProvider, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#34;&lt;/span&gt; connectionStringName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt; enablePasswordRetrieval=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;false&amp;#34;&lt;/span&gt; enablePasswordReset=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt; requiresQuestionAndAnswer=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;false&amp;#34;&lt;/span&gt; requiresUniqueEmail=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;false&amp;#34;&lt;/span&gt; passwordFormat=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Hashed&amp;#34;&lt;/span&gt; maxInvalidPasswordAttempts=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;5&amp;#34;&lt;/span&gt; minRequiredPasswordLength=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;6&amp;#34;&lt;/span&gt; minRequiredNonalphanumericCharacters=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt; passwordAttemptWindow=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt; passwordStrengthRegularExpression=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; applicationName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;/&amp;gt;
+      &amp;lt;/providers&amp;gt;
+    &amp;lt;/membership&amp;gt;
+    &amp;lt;roleManager enabled=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt; defaultProvider=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;AspNetSqlRoleProvider&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;providers&amp;gt;
+        &amp;lt;clear/&amp;gt;
+        &amp;lt;add connectionStringName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt; applicationName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt; name=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;AspNetSqlRoleProvider&amp;#34;&lt;/span&gt; type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;System.Web.Security.SqlRoleProvider, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#34;&lt;/span&gt;/&amp;gt;
+      &amp;lt;/providers&amp;gt;
+    &amp;lt;/roleManager&amp;gt;
+    &amp;lt;profile enabled=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;false&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;providers&amp;gt;
+        &amp;lt;clear/&amp;gt;
+      &amp;lt;/providers&amp;gt;
+    &amp;lt;/profile&amp;gt;
+  &amp;lt;/system.web&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://drive.google.com/file/d/0B27zqy23aL3BblVFNGJPdF9XVXM/view?usp=sharing&#34;&gt;Demo project download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/DbKeeperNet/DbKeeperNet&#34;&gt;DbKeeperNet&lt;/a&gt; project (contains also some demo projects)&lt;/li&gt;
+&lt;li&gt;DbKeeperNet &lt;a href=&#34;http://www.codeproject.com/Articles/42091/DBKeeperNet-Keeps-Your-DB-Schema-Up-to-date&#34;&gt;article&lt;/a&gt; on Codeproject&lt;/li&gt;
+&lt;li&gt;Nuget packages
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nuget.org/packages/DbKeeperNet/&#34;&gt;https://www.nuget.org/packages/DbKeeperNet/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nuget.org/packages/DbKeeperNet.Extensions.MsSqlMembershipAndRolesSetup/&#34;&gt;https://www.nuget.org/packages/DbKeeperNet.Extensions.MsSqlMembershipAndRolesSetup/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;history&#34;&gt;History&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Initial version&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

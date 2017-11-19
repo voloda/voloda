@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/year/2015/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/year/2015/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,10 +17,101 @@
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
-      <description>Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
-There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
-Setup Client side Chef client can run in two modes:
-Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Recently I had chance to evaluate usage of &lt;em&gt;Chef&lt;/em&gt; for deployment of web service on project I am working on.&lt;/p&gt;
+
+&lt;p&gt;There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.&lt;/p&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;h2 id=&#34;client-side&#34;&gt;Client side&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Chef client&lt;/em&gt; can run in two modes:&lt;/p&gt;
+
+&lt;h3 id=&#34;standalone-called-chef-solo&#34;&gt;Standalone called chef solo&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;em&gt;chef-solo&lt;/em&gt; command without attempts to access the server&lt;/li&gt;
+&lt;li&gt;Works greatly for development of &lt;em&gt;cookbooks&lt;/em&gt; or just for simple setup of the environment.&lt;/li&gt;
+&lt;li&gt;Allows to define &lt;em&gt;environment&lt;/em&gt; in &lt;em&gt;JSON&lt;/em&gt; config file.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Node&lt;/em&gt; specific information has to be defined&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;client-server-mode&#34;&gt;Client-server mode&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Requires installed &lt;em&gt;chef server&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Allows to bootstrap newly provisioned machine very easily.&lt;/li&gt;
+&lt;li&gt;Per-node setup can be maintained on the server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;server-side&#34;&gt;Server side&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Chef server&lt;/em&gt; has to be installed on a &lt;em&gt;Linux&lt;/em&gt; machine, there is no installation for &lt;em&gt;Windows&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Setup is pretty straightforward and well documented and I was able to perform it even with my outdated &lt;em&gt;Linux&lt;/em&gt; knowledge.
+
+&lt;ul&gt;
+&lt;li&gt;The WebUI is paid feature but for me as a developer the command line turned out to be much better understandable.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;deployment-artifacts&#34;&gt;Deployment Artifacts&lt;/h3&gt;
+
+&lt;p&gt;Although it allows to save files as a part of cookbook it seems to be pretty bad idea. Better is to have deployment packages available on some artifact server.&lt;/p&gt;
+
+&lt;h1 id=&#34;creating-first-cookbook&#34;&gt;Creating first cookbook&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For development the &lt;em&gt;Chef development kit&lt;/em&gt; can be installed:
+
+&lt;ul&gt;
+&lt;li&gt;For initial playing with &lt;em&gt;cookbook&lt;/em&gt; the client seems to be sufficient but development kit has some advanced features like static analysis, testing support etc. More to come&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;knife&lt;/em&gt; command helps here quite a bit although manual setup is obviously possible.&lt;/li&gt;
+&lt;li&gt;It is best to maintain cookbook repository in &lt;em&gt;GIT&lt;/em&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;For example dependency installation command is integrated with &lt;em&gt;git&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;create-cookbook&#34;&gt;Create cookbook&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In git repository which will contain cookbook run:
+&lt;code&gt;cmd
+knife cookbook create COOKBOOK_NAME
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Review created files to add documentation as needed.&lt;/li&gt;
+&lt;li&gt;To install any dependencies run:
+
+&lt;ul&gt;
+&lt;li&gt;This by default works with &lt;em&gt;master&lt;/em&gt; branch. See other parameters to make it working on current branch.&lt;/li&gt;
+&lt;li&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.
+&lt;code&gt;cmd
+knife cookbook site install COOKBOOK_NAME
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file
+
+&lt;ul&gt;
+&lt;li&gt;Each dependency can contain version information to maintain compatibility.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;quick-links&#34;&gt;Quick links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pluralsight.com/courses/meet-chef&#34;&gt;Pluralsight intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/knife_cookbook.html&#34;&gt;Chef - knife cookbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/knife_cookbook_site.html&#34;&gt;Chef - knife cookbook site&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/chef_solo.html&#34;&gt;Chef solo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -29,9 +120,82 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
-      <description>Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
-As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
-Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;During past few months we introduced and heavily extended usage of &lt;em&gt;Microsoft Unity IoC container&lt;/em&gt; in our code base as a part of the effort to make the code more loosely coupled.&lt;/p&gt;
+
+&lt;p&gt;As a result of those changes we now even more than before also rely on &lt;em&gt;Inversion Of Control&lt;/em&gt; or more specifically &lt;em&gt;Dependency Injection&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thus both &lt;em&gt;Microsoft Unity&lt;/em&gt; and &lt;em&gt;IoC/DI&lt;/em&gt; are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.&lt;/p&gt;
+
+&lt;p&gt;After brief discussion within the team we agreed that the best way how to handle it would be to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Collect some solid resources describing the IoC/DI.
+
+&lt;ul&gt;
+&lt;li&gt;Martin Fowler is obviously first choice - though differences between IoC and DI are better explained in different resources :-).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Provide hands-on lab project which will cover all the specifics for:
+
+&lt;ul&gt;
+&lt;li&gt;Inversion Of Control/Dependency injection.&lt;/li&gt;
+&lt;li&gt;Microsoft Unity Container.&lt;/li&gt;
+&lt;li&gt;Will serve as a self-training material.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;We will publish it on Github under MIT license.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;target-audience&#34;&gt;Target audience&lt;/h1&gt;
+
+&lt;p&gt;.NET Software developers/engineers and architects who:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Would and are willing to learn about IoC/DI.&lt;/li&gt;
+&lt;li&gt;Are familiar IoC/DI but would learn about Microsoft Unity IoC container.&lt;/li&gt;
+&lt;li&gt;Would learn about possible challenges which usage of the MS Unity can bring.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;training-materials&#34;&gt;Training materials&lt;/h1&gt;
+
+&lt;p&gt;With my colleagues we prepared set of projects which allows everybody to play with all the stuff on reasonably sized projects.&lt;/p&gt;
+
+&lt;p&gt;Brief introduction can be found &lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks/blob/master/README.md&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;github-projects&#34;&gt;Github projects&lt;/h2&gt;
+
+&lt;p&gt;If you are either familiar with Github or if you would use this as an opportunity to learn more about it you can just fork/clone repositories below.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks&#34;&gt;https://github.com/IoCHowTo/IoCTasks&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This repository contains initial Readme.md file with references as well as brief introduction.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasksSolutions&#34;&gt;https://github.com/IoCHowTo/IoCTasksSolutions&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This repository contains individual sample solutions for each project above.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;direct-access&#34;&gt;Direct access&lt;/h2&gt;
+
+&lt;p&gt;In the case that you do not like Git/Github you can use direct links below to get the latest version of training projects as well as sample solutions in form of ZIP packages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasks/archive/master.zip&#34;&gt;https://github.com/IoCHowTo/IoCTasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/IoCHowTo/IoCTasksSolutions/archive/master.zip&#34;&gt;https://github.com/IoCHowTo/IoCTasksSolutions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;contributions&#34;&gt;Contributions&lt;/h1&gt;
+
+&lt;p&gt;If you will find something which needs to be fixed or if you have some interesting sample task just send it as a Github pull request - we accept contributions under MIT license.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Thanks to everybody who already contributed with his time either in form of code or even advice :-).&lt;/strong&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -40,9 +204,124 @@ Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In ord
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
-      <description>Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
-Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
- How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.</description>
+      <description>
+
+&lt;p&gt;Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in &lt;strong&gt;Team City&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the &lt;strong&gt;SQL Server Management Studio&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;How to stub some of the data so the complex parts of queries can be easily verified.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the end I got working debugging with following setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stored procedures written in T-SQL for MSSQL.&lt;/li&gt;
+&lt;li&gt;Each stored procedure is covered by unit tests written in NUnit.
+
+&lt;ul&gt;
+&lt;li&gt;Thanks to tip of my colleague MSSQL guru &lt;em&gt;Lubos&lt;/em&gt; I was able quickly setup SQL Server snapshots to be able revert the database quickly to its initial state.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lubos&lt;/em&gt; also proposed very simple way on how to &lt;strong&gt;stub&lt;/strong&gt; some data in procedures.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;In order to be able quickly check what is going on inside the stored procedure use the Visual Studio 2013 debugger including the ability to step into the stored procedure.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;using-stubs-for-data-used-inside-stored-procedures&#34;&gt;Using stubs for data used inside stored procedures&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Motivation here is that it is not always simple enough or even practical setup all the required data directly in the database.
+
+&lt;ul&gt;
+&lt;li&gt;Downside obviously is that since you are about to alter the stored procedure you have to be very careful.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;My colleague proposed a very simple way for this purpose which seems to work:
+
+&lt;ul&gt;
+&lt;li&gt;Before running tests take a database snapshot so you can easily revert back.&lt;/li&gt;
+&lt;li&gt;Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; [MyInvoices]
+[#Stub1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
+&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #MyInvoices
+[#Stub1] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;how-to-enable-t-sql-debugging-in-visual-studio-2013&#34;&gt;How to enable T-SQL debugging in Visual Studio 2013&lt;/h1&gt;
+
+&lt;p&gt;This was the most tricky part of the whole procedure and it may be specific to my setup (MSSQL 2008 R2, VS2013).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As a prerequisite the &lt;em&gt;Application debugging&lt;/em&gt; and &lt;em&gt;SQL/CLR debugging&lt;/em&gt; must be enabled for the SQL Server in the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;There are two ways how to get to &lt;em&gt;SQL Server Object Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Directly open &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; via Visual Studio menu &lt;em&gt;VIEW&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png&#34; alt=&#34;Open SQL Server Object Explorer in VS 2013 menu&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Alternatively use &lt;em&gt;Server Explorer&lt;/em&gt;:
+
+&lt;ul&gt;
+&lt;li&gt;Firstly add a connection to your database&lt;/li&gt;
+&lt;li&gt;Then right click using mouse on registered database and select &lt;em&gt;Browse in SQL Server Object Explorer&lt;/em&gt;:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg&#34; alt=&#34;Open SQL Server Object Explorer from Server Explorer in VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Once you get into the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; enable both debugging options as visible on picture below:
+ &lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png&#34; alt=&#34;Enable debugging in SQL Server Object Explorer from VS2013&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Running tests just for verification purposes is very simple and basically any NUnit runner can be used.&lt;/li&gt;
+&lt;li&gt;In our case for the standard purpose serves very well Jetbrains Resharper.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;debugging-tests&#34;&gt;Debugging tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unfortunately this didn&amp;rsquo;t work with built-in R# test runner.&lt;/li&gt;
+&lt;li&gt;Instead I use &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; runner (I simply needed to force the process bitness to 32bits but I suppose that &lt;strong&gt;NUnit.exe&lt;/strong&gt; will work as well):
+
+&lt;ul&gt;
+&lt;li&gt;Load test assembly into NUnit runner.&lt;/li&gt;
+&lt;li&gt;Attach Visual Studio 2013 debugger to running process.&lt;/li&gt;
+&lt;li&gt;Important part here is to have enabled both - &lt;strong&gt;Managed code&lt;/strong&gt; and &lt;strong&gt;T-SQL&lt;/strong&gt; code debugging prior to attaching to he &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; process:
+&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg&#34; alt=&#34;Attaching to NUnit with enabled T-SQL debugging&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Now set a .breakpoint in .NET code just around the code which is responsible for invocation of the stored procedure you are interested in, for example &lt;code&gt;SqlDbCommand.Execute()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run unit test from the NUnit runner and have it hit the breakpoint in Visual Studio.&lt;/li&gt;
+&lt;li&gt;Now from the _&lt;strong&gt;SQL Server Object Explorer&lt;/strong&gt; open the body of stored procedure (just double-click on it),&lt;/li&gt;
+&lt;li&gt;Set a breakpoint inside the procedure.&lt;/li&gt;
+&lt;li&gt;And step thru the .NET code which is about to invoke the procedure.&lt;/li&gt;
+&lt;li&gt;If everything works well for you you are now inside the stored procedure and you can debug it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;watching-data-inside-the-stored-procedure&#34;&gt;Watching data inside the stored procedure&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can easily watch content of any variable inside the stored procedure.&lt;/li&gt;
+&lt;li&gt;I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+&lt;ul&gt;
+&lt;li&gt;At the place you would check the content add following statement (obviously adjusted for correct table/variable name):&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;  &lt;span style=&#34;color:#00f&#34;&gt;DECLARE&lt;/span&gt; @v XML = (&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #&lt;span style=&#34;color:#00f&#34;&gt;Parameters&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;FOR&lt;/span&gt; XML AUTO, ROOT(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;MyRoot&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Once you will hit the statement in the debugger you can easily watch the content of &lt;code&gt;@v&lt;/code&gt; and visualize it for example via &lt;em&gt;XML Visualizer&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

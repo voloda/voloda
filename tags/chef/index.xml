@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/tags/chef/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/tags/chef/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,10 +17,101 @@
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
-      <description>Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
-There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
-Setup Client side Chef client can run in two modes:
-Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.</description>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Recently I had chance to evaluate usage of &lt;em&gt;Chef&lt;/em&gt; for deployment of web service on project I am working on.&lt;/p&gt;
+
+&lt;p&gt;There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.&lt;/p&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;h2 id=&#34;client-side&#34;&gt;Client side&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Chef client&lt;/em&gt; can run in two modes:&lt;/p&gt;
+
+&lt;h3 id=&#34;standalone-called-chef-solo&#34;&gt;Standalone called chef solo&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;em&gt;chef-solo&lt;/em&gt; command without attempts to access the server&lt;/li&gt;
+&lt;li&gt;Works greatly for development of &lt;em&gt;cookbooks&lt;/em&gt; or just for simple setup of the environment.&lt;/li&gt;
+&lt;li&gt;Allows to define &lt;em&gt;environment&lt;/em&gt; in &lt;em&gt;JSON&lt;/em&gt; config file.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Node&lt;/em&gt; specific information has to be defined&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;client-server-mode&#34;&gt;Client-server mode&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Requires installed &lt;em&gt;chef server&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Allows to bootstrap newly provisioned machine very easily.&lt;/li&gt;
+&lt;li&gt;Per-node setup can be maintained on the server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;server-side&#34;&gt;Server side&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Chef server&lt;/em&gt; has to be installed on a &lt;em&gt;Linux&lt;/em&gt; machine, there is no installation for &lt;em&gt;Windows&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Setup is pretty straightforward and well documented and I was able to perform it even with my outdated &lt;em&gt;Linux&lt;/em&gt; knowledge.
+
+&lt;ul&gt;
+&lt;li&gt;The WebUI is paid feature but for me as a developer the command line turned out to be much better understandable.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;deployment-artifacts&#34;&gt;Deployment Artifacts&lt;/h3&gt;
+
+&lt;p&gt;Although it allows to save files as a part of cookbook it seems to be pretty bad idea. Better is to have deployment packages available on some artifact server.&lt;/p&gt;
+
+&lt;h1 id=&#34;creating-first-cookbook&#34;&gt;Creating first cookbook&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For development the &lt;em&gt;Chef development kit&lt;/em&gt; can be installed:
+
+&lt;ul&gt;
+&lt;li&gt;For initial playing with &lt;em&gt;cookbook&lt;/em&gt; the client seems to be sufficient but development kit has some advanced features like static analysis, testing support etc. More to come&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;knife&lt;/em&gt; command helps here quite a bit although manual setup is obviously possible.&lt;/li&gt;
+&lt;li&gt;It is best to maintain cookbook repository in &lt;em&gt;GIT&lt;/em&gt;.
+
+&lt;ul&gt;
+&lt;li&gt;For example dependency installation command is integrated with &lt;em&gt;git&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;create-cookbook&#34;&gt;Create cookbook&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In git repository which will contain cookbook run:
+&lt;code&gt;cmd
+knife cookbook create COOKBOOK_NAME
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Review created files to add documentation as needed.&lt;/li&gt;
+&lt;li&gt;To install any dependencies run:
+
+&lt;ul&gt;
+&lt;li&gt;This by default works with &lt;em&gt;master&lt;/em&gt; branch. See other parameters to make it working on current branch.&lt;/li&gt;
+&lt;li&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.
+&lt;code&gt;cmd
+knife cookbook site install COOKBOOK_NAME
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file
+
+&lt;ul&gt;
+&lt;li&gt;Each dependency can contain version information to maintain compatibility.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;quick-links&#34;&gt;Quick links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pluralsight.com/courses/meet-chef&#34;&gt;Pluralsight intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/knife_cookbook.html&#34;&gt;Chef - knife cookbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/knife_cookbook_site.html&#34;&gt;Chef - knife cookbook site&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.chef.io/chef_solo.html&#34;&gt;Chef solo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

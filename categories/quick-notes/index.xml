@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 17 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/categories/quick-notes/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/categories/quick-notes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,7 +17,81 @@
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
-      <description>Jenkinks server setup Server setup  See http://jenkinks.io/download Open http://localhost:8080/  Slave setup  Install Chocolatey (see instructions on web) Install Google Chrome  choco install -y googlechrome  Install Java  choco install -y javaruntime  Install git  choco install -y git /NoShellIntegration  VS2017 build Tools  choco install -y visualstudio2017buildtools  Installing packages after the service start may require service restart Login to master via Chrome Configure Global Security and setup TCP port for JNLP agents Add new Node 17 Download the java file and run it  In menu it allows to Install Windows Service This may need to change the Jenkinks server URL in settings  Setup labels to distribute load across nodes conditionally  Tools  Chrome  https://dl.</description>
+      <description>
+
+&lt;h1 id=&#34;jenkinks-server-setup&#34;&gt;Jenkinks server setup&lt;/h1&gt;
+
+&lt;h2 id=&#34;server-setup&#34;&gt;Server setup&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;See &lt;a href=&#34;http://jenkinks.io/download&#34;&gt;http://jenkinks.io/download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;slave-setup&#34;&gt;Slave setup&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Chocolatey (see instructions on web)&lt;/li&gt;
+&lt;li&gt;Install Google Chrome
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y googlechrome&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install Java
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y javaruntime&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install git
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y git /NoShellIntegration&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;VS2017 build Tools
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y visualstudio2017buildtools&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Installing packages after the service start may require service restart&lt;/li&gt;
+&lt;li&gt;Login to master via Chrome&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Configure Global Security&lt;/code&gt; and setup &lt;code&gt;TCP port for JNLP agents&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add new Node                                                                                                                                     17&lt;/li&gt;
+&lt;li&gt;Download the java file and run it
+
+&lt;ul&gt;
+&lt;li&gt;In menu it allows to Install Windows Service&lt;/li&gt;
+&lt;li&gt;This may need to change the Jenkinks server URL in settings&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Setup labels to distribute load across nodes conditionally&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;tools&#34;&gt;Tools&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Chrome
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&#34;&gt;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Git
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;.NET SDK&lt;/li&gt;
+&lt;li&gt;Nuget&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Projects must have &lt;code&gt;Jenkinsfile&lt;/code&gt; inside
+
+&lt;ul&gt;
+&lt;li&gt;Name can be modified&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

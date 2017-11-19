@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 25 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://voloda.bazilisek.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://voloda.bazilisek.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,7 +17,68 @@
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2017/10/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
-      <description>pipeline { agent none environment { RELEASE_NUMBER = &#39;17.1.1&#39; VERSION_NUMBER = VersionNumber(versionNumberString: &#39;17.1.1.${BUILDS_ALL_TIME}&#39;) } stages { stage(&#39;Checkout from GIT&#39;){ agent any steps { script { currentBuild.displayName = &amp;quot;#${VERSION_NUMBER}&amp;quot; } checkout scm } } stage(&#39;NUGET package restore&#39;) { agent { label &#39;nuget&#39; } steps { echo &#39;Restoring nuget packages&#39; bat &#39;&amp;quot;%NUGET_PATH%&amp;quot; restore TestSolution.sln&#39; dir (&#39;.&#39;) { stash &#39;sources&#39; } } } stage(&#39;Build&#39;) { agent { label &#39;dotNET_4.7&#39;} steps { dir (&#39;.&#39;) { unstash &#39;sources&#39; } bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.</description>
+      <description>&lt;pre&gt;&lt;code&gt;pipeline {
+  agent none
+
+  environment {
+    RELEASE_NUMBER = &#39;17.1.1&#39;
+    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;17.1.1.${BUILDS_ALL_TIME}&#39;)
+  }
+
+
+  stages {
+    stage(&#39;Checkout from GIT&#39;){
+      agent any
+      steps {
+        script {
+          currentBuild.displayName = &amp;quot;#${VERSION_NUMBER}&amp;quot;
+        }
+        checkout scm
+      }
+    }
+    stage(&#39;NUGET package restore&#39;) {
+      agent { label &#39;nuget&#39; }
+      steps {
+            echo &#39;Restoring nuget packages&#39;
+            bat &#39;&amp;quot;%NUGET_PATH%&amp;quot; restore TestSolution.sln&#39;
+            dir (&#39;.&#39;) {
+              stash &#39;sources&#39;
+            }
+      }
+    }
+    stage(&#39;Build&#39;) {
+      agent { label &#39;dotNET_4.7&#39;}
+      steps {
+        dir (&#39;.&#39;) {
+          unstash &#39;sources&#39;
+        }
+
+        bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; TestSolution.sln /p:Configuration=Release /p:Platform=\&amp;quot;Any CPU\&amp;quot;&amp;quot;
+
+        dir (&#39;TestSolution/bin&#39;) {
+          stash &#39;bins&#39;
+        }
+        withCredentials([usernamePassword(credentialsId: &#39;cdd06d32-f11d-446c-8687-3debc9dba901&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
+          bat &amp;quot;git tag &#39;j-${VERSION_NUMBER}&#39;&amp;quot;
+
+          bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@git.server.net/TestSolution2.git --tags&amp;quot;
+        }
+      }
+    }
+    stage(&#39;Archive&#39;) {
+      agent any
+      steps {
+        dir (&#39;TestSolution/bin&#39;) {
+          unstash &#39;bins&#39;
+        }
+        archive &#39;**/bin/Release/**.dll&#39;
+      }
+    }
+  }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
@@ -26,7 +87,81 @@
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
-      <description>Jenkinks server setup Server setup  See http://jenkinks.io/download Open http://localhost:8080/  Slave setup  Install Chocolatey (see instructions on web) Install Google Chrome  choco install -y googlechrome  Install Java  choco install -y javaruntime  Install git  choco install -y git /NoShellIntegration  VS2017 build Tools  choco install -y visualstudio2017buildtools  Installing packages after the service start may require service restart Login to master via Chrome Configure Global Security and setup TCP port for JNLP agents Add new Node 17 Download the java file and run it  In menu it allows to Install Windows Service This may need to change the Jenkinks server URL in settings  Setup labels to distribute load across nodes conditionally  Tools  Chrome  https://dl.</description>
+      <description>
+
+&lt;h1 id=&#34;jenkinks-server-setup&#34;&gt;Jenkinks server setup&lt;/h1&gt;
+
+&lt;h2 id=&#34;server-setup&#34;&gt;Server setup&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;See &lt;a href=&#34;http://jenkinks.io/download&#34;&gt;http://jenkinks.io/download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;slave-setup&#34;&gt;Slave setup&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Chocolatey (see instructions on web)&lt;/li&gt;
+&lt;li&gt;Install Google Chrome
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y googlechrome&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install Java
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y javaruntime&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install git
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y git /NoShellIntegration&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;VS2017 build Tools
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;choco install -y visualstudio2017buildtools&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Installing packages after the service start may require service restart&lt;/li&gt;
+&lt;li&gt;Login to master via Chrome&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Configure Global Security&lt;/code&gt; and setup &lt;code&gt;TCP port for JNLP agents&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add new Node                                                                                                                                     17&lt;/li&gt;
+&lt;li&gt;Download the java file and run it
+
+&lt;ul&gt;
+&lt;li&gt;In menu it allows to Install Windows Service&lt;/li&gt;
+&lt;li&gt;This may need to change the Jenkinks server URL in settings&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Setup labels to distribute load across nodes conditionally&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;tools&#34;&gt;Tools&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Chrome
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&#34;&gt;https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B0916C5FD-EB60-34E0-3A3F-9569F469B42B%7D%26lang%3Dcs%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26brand%3DCHBD%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Git
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;.NET SDK&lt;/li&gt;
+&lt;li&gt;Nuget&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;projects&#34;&gt;Projects&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Projects must have &lt;code&gt;Jenkinsfile&lt;/code&gt; inside
+
+&lt;ul&gt;
+&lt;li&gt;Name can be modified&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -35,7 +170,59 @@
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/2017/10/jenkins-docker-slave-windows-build-agent/</guid>
-      <description>Jenkins docker slave  Use Yet Another Docker Plugin  Docker Plugin doesn&amp;rsquo;t work  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container  It does not require any additional changes  For local images make sure that the Pull option is set to Never  Sample Dockerfile FROM microsoft/windowsservercore SHELL [&amp;quot;powershell.</description>
+      <description>
+
+&lt;h1 id=&#34;jenkins-docker-slave&#34;&gt;Jenkins docker slave&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use Yet Another Docker Plugin
+
+&lt;ul&gt;
+&lt;li&gt;Docker Plugin doesn&amp;rsquo;t work&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install JAVA into docker image and make it available on PATH&lt;/li&gt;
+&lt;li&gt;In Configuration add Yet Another Docker Plugin as a cloud
+
+&lt;ul&gt;
+&lt;li&gt;Point it to Docker server&lt;/li&gt;
+&lt;li&gt;Test that it is available&lt;/li&gt;
+&lt;li&gt;Add the docker image&lt;/li&gt;
+&lt;li&gt;Add label which can be references from builds&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Jenkins now automatically creates a docker container
+
+&lt;ul&gt;
+&lt;li&gt;It does not require any additional changes&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;For local images make sure that the Pull option is set to Never&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;sample-dockerfile&#34;&gt;Sample Dockerfile&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM microsoft/windowsservercore
+
+SHELL [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-ExecutionPolicy&amp;quot;, &amp;quot;Bypass&amp;quot;, &amp;quot;-Command&amp;quot;]
+
+RUN iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))
+RUN choco install -y git --params=&#39;/NoShellIntegration&#39;
+RUN choco install -y nuget.commandline
+
+ENV JAVA_HOME c:\\jre1.8.0_91
+ENV JENKINS_HOME c:\\jenkins
+
+RUN (new-object System.Net.WebClient).Downloadfile(&#39;http://javadl.oracle.com/webapps/download/AutoDL?BundleId=210185&#39;, &#39;C:\jre-8u91-windows-x64.exe&#39;)
+RUN start-process -filepath C:\\jre-8u91-windows-x64.exe -passthru -wait -argumentlist &amp;quot;/s,INSTALLDIR=$env:JAVA_HOME,/L,install64.log&amp;quot;
+RUN del C:\jre-8u91-windows-x64.exe
+
+RUN $env:PATH = $env:JAVA_HOME + &#39;\\bin;&#39; + $env:PATH; \
+    [Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
+
+RUN mkdir $env:JENKINS_HOME
+WORKDIR $JENKINS_HOME
+
+ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>
