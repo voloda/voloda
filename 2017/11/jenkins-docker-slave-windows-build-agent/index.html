@@ -60,7 +60,7 @@
     },
     "datePublished": "2017-11-19",
     "description": "",
-    "wordCount": 194
+    "wordCount": 502
   }
 </script>
   
@@ -157,8 +157,8 @@
 
 
   <small>
-  &middot; Read in about 1 min
-  &middot; (194 words)
+  &middot; Read in about 3 min
+  &middot; (502 words)
   &middot; 
 <span class="share-box">Share this on:
     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkins-docker-slave-windows-build-agent%2f" onclick="window.open(this.href, 'mywin',
@@ -200,6 +200,12 @@
 
       <div class="content">
   
+
+<p>I spent quite some time on getting this working on Windows with Windows Docker
+slaves.</p>
+
+<p>In the end it turned out to be mostly matter of using correct Jenkins docker
+plugin.</p>
 
 <h1 id="jenkins-docker-slave">Jenkins docker slave</h1>
 
@@ -260,6 +266,67 @@ RUN mkdir $env:JENKINS_HOME
 WORKDIR $JENKINS_HOME
 
 ENTRYPOINT [&quot;cmd.exe&quot;]
+</code></pre>
+
+<h1 id="visual-studio-2017-dockerfile">Visual Studio 2017 Dockerfile</h1>
+
+<ul>
+<li>This <code>Dockerfile</code> uses the above as the base image and installs VS 2017
+
+<ul>
+<li>It add SDK for .NET 4.5.2 and 4.6.1</li>
+</ul></li>
+</ul>
+
+<pre><code>FROM vkloz/winjava
+
+SHELL [&quot;powershell.exe&quot;, &quot;-ExecutionPolicy&quot;, &quot;Bypass&quot;, &quot;-Command&quot;]
+
+ENV TEST_CONTAINER=1 \
+    VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
+    VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
+    VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
+
+# Download log collection utility
+RUN $ErrorActionPreference = 'Stop'; \
+    $ProgressPreference = 'SilentlyContinue'; \
+    $VerbosePreference = 'Continue'; \
+    Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
+
+# Download vs_buildtools.exe
+RUN $ErrorActionPreference = 'Stop'; \
+    $ProgressPreference = 'SilentlyContinue'; \
+    $VerbosePreference = 'Continue'; \
+    Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
+    if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw 'Download hash does not match' }
+
+# https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools
+# Install Visual Studio Build Tools
+RUN $ErrorActionPreference = 'Stop'; \
+    $VerbosePreference = 'Continue'; \
+    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList '--quiet --nocache --wait --installPath C:\BuildTools'; \
+    if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
+
+RUN $ErrorActionPreference = 'Stop'; \
+    $VerbosePreference = 'Continue'; \
+    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList 'modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools'; \
+    if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
+
+RUN $ErrorActionPreference = 'Stop'; \
+    $VerbosePreference = 'Continue'; \
+    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList 'modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools'; \
+    if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
+
+RUN choco install -y netfx-4.5.2-devpack
+RUN choco install -y netfx-4.6.1-devpack
+
+
+# Use shell form to start developer command prompt and any other commands specified
+SHELL [&quot;cmd.exe&quot;, &quot;/s&quot;, &quot;/c&quot;]
+ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &amp;&amp;
+
+# Default to PowerShell console running within developer command prompt environment
+CMD [&quot;powershell.exe&quot;, &quot;-nologo&quot;]
 </code></pre>
 
 </div>

@@ -137,7 +137,9 @@
     <p>
   
   
-    Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just works (Docker Plugin doesn&rsquo;t work)  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a Cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container as a build is executed  It does not require any additional changes It properly handles the operating system (Windows)  For local only images make sure that the Pull option is set to Never  Base Dockerfile  This Dockerfile creates the base image for Windows build agent The only requirements is that java.
+    I spent quite some time on getting this working on Windows with Windows Docker slaves.
+In the end it turned out to be mostly matter of using correct Jenkins docker plugin.
+Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just works (Docker Plugin doesn&rsquo;t work)  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a Cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container as a build is executed  It does not require any additional changes It properly handles the operating system (Windows)  For local only images make sure that the Pull option is set to Never  Base Dockerfile  This Dockerfile creates the base image for Windows build agent The only requirements is that java.
   
 
 
@@ -213,7 +215,7 @@
     <p>
   
   
-     Upgrade all packages  choco outdated  List available upgrades  cup all -y  List local Packages  chocolatey list -localonly  Packages choco install -y git --params='/NoShellIntegration' choco install -y poshgit choco install -y gittfs choco install -y far choco install -y atom choco install -y chefdk choco install -y winmerge  
+     Upgrade all packages  choco outdated  List available upgrades  cup all -y  List local Packages  chocolatey list -localonly  Packages choco install -y git --params='/NoShellIntegration' choco install -y poshgit choco install -y gittfs choco install -y far choco install -y atom choco install -y chefdk choco install -y winmerge choco install -y googlechrome  
   
 
 

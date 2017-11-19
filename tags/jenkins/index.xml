@@ -19,6 +19,12 @@
       <guid>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
       <description>
 
+&lt;p&gt;I spent quite some time on getting this working on Windows with Windows Docker
+slaves.&lt;/p&gt;
+
+&lt;p&gt;In the end it turned out to be mostly matter of using correct Jenkins docker
+plugin.&lt;/p&gt;
+
 &lt;h1 id=&#34;jenkins-docker-slave&#34;&gt;Jenkins docker slave&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -78,6 +84,67 @@ RUN mkdir $env:JENKINS_HOME
 WORKDIR $JENKINS_HOME
 
 ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;visual-studio-2017-dockerfile&#34;&gt;Visual Studio 2017 Dockerfile&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; uses the above as the base image and installs VS 2017
+
+&lt;ul&gt;
+&lt;li&gt;It add SDK for .NET 4.5.2 and 4.6.1&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM vkloz/winjava
+
+SHELL [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-ExecutionPolicy&amp;quot;, &amp;quot;Bypass&amp;quot;, &amp;quot;-Command&amp;quot;]
+
+ENV TEST_CONTAINER=1 \
+    VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
+    VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
+    VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
+
+# Download log collection utility
+RUN $ErrorActionPreference = &#39;Stop&#39;; \
+    $ProgressPreference = &#39;SilentlyContinue&#39;; \
+    $VerbosePreference = &#39;Continue&#39;; \
+    Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
+
+# Download vs_buildtools.exe
+RUN $ErrorActionPreference = &#39;Stop&#39;; \
+    $ProgressPreference = &#39;SilentlyContinue&#39;; \
+    $VerbosePreference = &#39;Continue&#39;; \
+    Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
+    if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw &#39;Download hash does not match&#39; }
+
+# https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools
+# Install Visual Studio Build Tools
+RUN $ErrorActionPreference = &#39;Stop&#39;; \
+    $VerbosePreference = &#39;Continue&#39;; \
+    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;--quiet --nocache --wait --installPath C:\BuildTools&#39;; \
+    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+
+RUN $ErrorActionPreference = &#39;Stop&#39;; \
+    $VerbosePreference = &#39;Continue&#39;; \
+    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools&#39;; \
+    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+
+RUN $ErrorActionPreference = &#39;Stop&#39;; \
+    $VerbosePreference = &#39;Continue&#39;; \
+    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools&#39;; \
+    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+
+RUN choco install -y netfx-4.5.2-devpack
+RUN choco install -y netfx-4.6.1-devpack
+
+
+# Use shell form to start developer command prompt and any other commands specified
+SHELL [&amp;quot;cmd.exe&amp;quot;, &amp;quot;/s&amp;quot;, &amp;quot;/c&amp;quot;]
+ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &amp;amp;&amp;amp;
+
+# Default to PowerShell console running within developer command prompt environment
+CMD [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-nologo&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
