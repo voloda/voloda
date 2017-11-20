@@ -6,19 +6,10 @@
     <description>Recent content in Tags on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>.NET</title>
-      <link>http://voloda.bazilisek.net/tags/.net/</link>
-      <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/.net/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Chef</title>
