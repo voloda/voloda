@@ -113,6 +113,48 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-11-20">20 Nov, 2017</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/git" class="label label-primary">git</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    In this post are my notes on how to get working git commands from Jenkinsfile running on Windows build agents.
+Password authentication Setting up username and password in Jenkins server  First in Jenkins server add a new Credentials entry of type Username with password: . Set ID to repo_auth  This is later referenced in Jenkinsfile step withCredentials  Set Username Set Password  Sample Jenkinsfile  Now the system is ready to use above information from Jenkinsfile Build script then does following:  Fetches username and password into environment variables Invokes any git command which requires authentication   pipeline { agent { label 'vs2017' } environment { RELEASE_NUMBER = '1.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
 </h2>
 
@@ -265,50 +307,6 @@ Device configuration  I was used from Sigma Rox 9.0 that the configuration is do
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/">Having fun with Chef</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2015-09-14">14 Sep, 2015</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/chef" class="label label-primary">chef</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
-There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
-Setup Client side Chef client can run in two modes:
-Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -374,6 +372,10 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
@@ -409,10 +411,6 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
           <a href="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
           </li>
         
-          <li>
-          <a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -432,7 +430,7 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
 
         <div class="content">
           <ul>
-            <li><a href="/year/2017">2017 (3)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2017">2017 (4)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -464,7 +462,7 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (7)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/docker">docker (2)</a></li><li><a href="/tags/jenkins">jenkins (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/.net">.NET (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
+            <li><a href="/tags/development">development (7)</a></li><li><a href="/tags/dotnet">dotNET (5)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/docker">docker (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/.net">.NET (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/codeproject">codeproject (1)</a></li>
           </ul>
         </div>
       </div>
