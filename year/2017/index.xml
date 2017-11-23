@@ -6,10 +6,54 @@
     <description>Recent content in 2017 on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/year/2017/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Handling detailed code reviews in GIT</title>
+      <link>http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;Pull Requests are sometimes not sufficient - they allow to see changes,
+perhaps you can even see that a test build passed but these do not allow
+for actual functional testing or even navigating thru the code.&lt;/li&gt;
+&lt;li&gt;Some times it is convenient to see all the changes in staging area
+(similar to TFS unshelve functionality) so functional test can be done
+and code can be reviewed more deeply.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Below steps allow to achieve the same state as for TFS unshelve - you end-up
+with code checked out and staged in GIT:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Fetch remote changes
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git fetch origin&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Checkout target branch
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git checkout TargetBranchName&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Do dry merge (without commit)
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git merge --no-commit --no-ff origin/ReviewedBranchName&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now you can do the detailed code review, put comments into PR, do testing,
+navigate thru references usign Resharper in Visual Studio etc.&lt;/p&gt;
+
+&lt;p&gt;Once done just abort the merge:
+  * &lt;code&gt;git merge --abort&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Jenkinsfile and git authentication on Windows</title>

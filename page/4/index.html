@@ -113,183 +113,7 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2014-12-18">18 Dec, 2014</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.
-Symptoms were that the debugger attached to the process but neither &lsquo;Break All&rsquo; worked. The same applied for any preset breakpoint.
-For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via Debug.Assert() or Debugger.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2014-12-03">3 Dec, 2014</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
-And what is wrong with it?
-It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/">Unity Registration Validator</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2014-11-25">25 Nov, 2014</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/codeproject" class="label label-primary">CodeProject</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
-Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
-Let&rsquo;s consider following classes:
-public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&rsquo;s setup some test case:
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/">DbKeeperNet - How to seed ASP.NET users and roles</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2014-11-24">24 Nov, 2014</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/codeproject" class="label label-primary">CodeProject</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Introduction It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.
-DbKeeperNet is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: MSSQL, SQLite, Firebird, MySQL, Oracle.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/">Using CVS as source control for Sybase PowerBuilder</a>
+  <h2><a href="http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/">Using SVN as source control for Sybase PowerBuilder</a>
 </h2>
 
   <div class="margin-10">
@@ -303,7 +127,7 @@ DbKeeperNet is an opensource .NET/C# framework which helps you manage database s
   
   <a href="http://voloda.bazilisek.net/tags/powerbuilder" class="label label-primary">powerbuilder</a>
   
-  <a href="http://voloda.bazilisek.net/tags/cvs" class="label label-primary">cvs</a>
+  <a href="http://voloda.bazilisek.net/tags/svn" class="label label-primary">svn</a>
   
 
 
@@ -313,16 +137,16 @@ DbKeeperNet is an opensource .NET/C# framework which helps you manage database s
     <p>
   
   
-    This article in short describes, how to use CVS for Powerbuilder. This solution we are using for about 6 years and it works very good.
-PBL problems The main difficulty of the Sybase Power Builder is in PBL libraries. PBL libraries are binary libraries containing both - sources and precompiled sources. This solution causes many problems:
- PBLs are also very inclinable to faults (in Power Builder 7 it was not very surprissing that after fullrebuild failure were PBLs completely broken).
+    This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another article).
+CVS we were are using for about 6 years and it was working perfectly.
+But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -342,7 +166,7 @@ PBL problems The main difficulty of the Sybase Power Builder is in PBL libraries
 </li>
 
 <li >
-  <a aria-label="Previous" href="http://voloda.bazilisek.net//page/2/">
+  <a aria-label="Previous" href="http://voloda.bazilisek.net//page/3/">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
@@ -359,25 +183,25 @@ PBL problems The main difficulty of the Sybase Power Builder is in PBL libraries
     </a>
 </li>
 
-<li  class="active" >
+<li >
   <a href="http://voloda.bazilisek.net//page/3/">
     3
     </a>
 </li>
 
-<li >
+<li  class="active" >
   <a href="http://voloda.bazilisek.net//page/4/">
     4
     </a>
 </li>
 
 
-<li >
-  <a aria-label="Next" href="http://voloda.bazilisek.net//page/4/">
+<li  class="disabled" >
+  <a aria-label="Next" href="#">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>
-<li >
+<li  class="disabled" >
   <a aria-label="Last" href="http://voloda.bazilisek.net//page/4/">
     <span aria-hidden="true">&raquo;&raquo;</span>
   </a>
