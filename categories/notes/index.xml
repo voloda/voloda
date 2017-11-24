@@ -347,6 +347,7 @@ choco install -y atom
 choco install -y chefdk
 choco install -y winmerge
 choco install -y googlechrome
+choco install -y postman
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
