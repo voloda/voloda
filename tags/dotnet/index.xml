@@ -6,10 +6,298 @@
     <description>Recent content in DotNET on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Is it good idea to throw an exception in .NET C# constructor?</title>
+      <link>http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</guid>
+      <description>
+
+&lt;p&gt;I got reminded recently about two cases why it may be actually a bad idea to
+do a complex initialization in a class constructor in C#.&lt;/p&gt;
+
+&lt;p&gt;All the code samples below are written just for the purpose of this post but
+are based on real code I either written or came across at some point.&lt;/p&gt;
+
+&lt;h1 id=&#34;case-1-instance-resolved-via-an-ioc-container&#34;&gt;Case 1 - instance resolved via an IoC container&lt;/h1&gt;
+
+&lt;p&gt;Recently I was facing an issue that application started but remained non-functional.&lt;/p&gt;
+
+&lt;p&gt;I quickly found following stack trace in the log file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Unity.Exceptions.ResolutionFailedException: Resolution of the dependency failed, type = &#39;IMyDataReader&#39;, name = &#39;(none)&#39;.
+Exception occurred while: Calling constructor MyDataReader().
+Exception is: AggregateException - One or more errors occurred.
+-----------------------------------------------
+At the time of the exception, the container was:
+  Resolving MyDataReader,(none) (mapped from IMyDataReader, (none))
+  Calling constructor MyDataReader()
+ ---&amp;gt; System.AggregateException: One or more errors occurred. ---&amp;gt; System.Net.Http.HttpRequestException: An error occurred while sending the request. ---&amp;gt; System.Net.WebException: Unable to connect to the remote server ---&amp;gt; System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:1234
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket&amp;amp; socket, IPAddress&amp;amp; address, ConnectSocketState state, IAsyncResult asyncResult, Exception&amp;amp; exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.Http.HttpClientHandler.GetResponseCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MyDataReader..ctor() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 117
+   at lambda_method(Closure , IBuilderContext )
+   at Unity.ObjectBuilder.BuildPlan.DynamicMethod.DynamicBuildPlanGenerationContext.&amp;lt;&amp;gt;c__DisplayClass16_0.&amp;lt;GetBuildMethod&amp;gt;b__0(IBuilderContext context) in C:\projects\unity\Container\src\ObjectBuilder\BuildPlan\DynamicMethod\DynamicBuildPlanGenerationContext.cs:line 134
+   at Unity.ObjectBuilder.Strategies.BuildPlanStrategy.PreBuildUp(IBuilderContext context) in C:\projects\unity\Container\src\ObjectBuilder\Strategies\BuildPlanStrategy.cs:line 36
+   at Unity.Container.StrategyChain.BuildUp(IBuilderContext builderContext) in C:\projects\unity\Container\src\Container\StrategyChain.cs:line 54
+   at Unity.Policy.BuildPlanPolicyExtensions.ExecuteBuildUp(IBuildPlanPolicy policy, IBuilderContext context) in C:\projects\unity\Abstractions\src\Policy\IBuildPlanPolicy.cs:line 36
+   at Unity.UnityContainer.BuildUp(Type typeToBuild, Object existing, String name, ResolverOverride[] resolverOverrides) in C:\projects\unity\Container\src\UnityContainer.cs:line 203
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.BuildUp(Type typeToBuild, Object existing, String name, ResolverOverride[] resolverOverrides) in C:\projects\unity\Container\src\UnityContainer.cs:line 215
+   at Unity.UnityContainer.Resolve(Type type, String name, ResolverOverride[] resolverOverrides) in C:\projects\unity\Container\src\UnityContainer.cs:line 163
+   at Unity.UnityContainerExtensions.Resolve[T](IUnityContainer container, ResolverOverride[] overrides) in C:\projects\unity\Abstractions\src\Utility\UnityContainerExtensions.cs:line 469
+   at T.TT() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 97
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see - the log is pretty cryptic. The source in the end led to
+following piece of code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;MyDataReader&lt;/span&gt; : IMyDataReader
+{
+    &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; _name;
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; MyDataReader()
+    {
+        &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; http = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; HttpClient();
+        _name = http.GetStringAsync(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://localhost:1234&amp;#34;&lt;/span&gt;).Result;
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; Name { &lt;span style=&#34;color:#00f&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _name; } }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The above idea is pretty clear - load the data from local data service and since
+those cannot change just cache them.&lt;/p&gt;
+
+&lt;p&gt;The assumption was that the service is always running (this was, due to the
+design, actually a good one - my system just didn&amp;rsquo;t have expected setup yet).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So what is wrong here?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Well - in this particular case the bad part actually was that the class was registered
+in Microsoft Unity IoC container.&lt;/p&gt;
+
+&lt;p&gt;As result upon an instance resolution which is the action running the constructor,
+the actual place which throws the exception gets quite hidden and non-obvious
+since container doesn&amp;rsquo;t know why the class couldn&amp;rsquo;t be constructed.&lt;/p&gt;
+
+&lt;p&gt;Ultimately the support doesn&amp;rsquo;t have basically any chances to find out the issue
+and fix it (which may be just starting the missing service).&lt;/p&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;In this particular case pretty simple - leave the class initialize and lazy
+load the actual data later like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;MyDataReader&lt;/span&gt; : IMyDataReader
+{
+    Lazy&amp;lt;&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;&amp;gt; _name;
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; MyDataReader()
+    {
+        _name = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; Lazy&amp;lt;&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;&amp;gt;(() =&amp;gt;
+        {
+            &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; http = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; HttpClient();
+            &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; http.GetStringAsync(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://localhost:1234&amp;#34;&lt;/span&gt;).Result;
+        });
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; Name { &lt;span style=&#34;color:#00f&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _name.Value; } }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Which leads to much more readable log - and more importantly - &lt;strong&gt;the beginning
+of the message points quickly to actual issue&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;System.AggregateException: One or more errors occurred. ---&amp;gt; System.Net.Http.HttpRequestException: An error occurred while sending the request. ---&amp;gt; System.Net.WebException: Unable to connect to the remote server ---&amp;gt; System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:1234
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket&amp;amp; socket, IPAddress&amp;amp; address, ConnectSocketState state, IAsyncResult asyncResult, Exception&amp;amp; exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.Http.HttpClientHandler.GetResponseCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MyDataReader.&amp;lt;&amp;gt;c.&amp;lt;.ctor&amp;gt;b__1_0() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 119
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at MyDataReader.get_Name() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 123
+   at T.TT() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 97
+---&amp;gt; (Inner Exception #0) System.Net.Http.HttpRequestException: An error occurred while sending the request. ---&amp;gt; System.Net.WebException: Unable to connect to the remote server ---&amp;gt; System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:1234
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket&amp;amp; socket, IPAddress&amp;amp; address, ConnectSocketState state, IAsyncResult asyncResult, Exception&amp;amp; exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.Http.HttpClientHandler.GetResponseCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---&amp;lt;---/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;case-2-working-with-unmanaged-resources&#34;&gt;Case 2 - working with unmanaged resources&lt;/h1&gt;
+
+&lt;p&gt;There is one more interesting scenario to be considered - initializing
+unmanaged/disposable resources within the class constructor.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Main()
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;try&lt;/span&gt;
+    {
+        &lt;span style=&#34;color:#00f&#34;&gt;using&lt;/span&gt; (&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; r = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; FReader())
+        {
+
+        }
+    }
+    &lt;span style=&#34;color:#00f&#34;&gt;catch&lt;/span&gt; (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;try&lt;/span&gt;
+    {
+        &lt;span style=&#34;color:#00f&#34;&gt;using&lt;/span&gt; (&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; r = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; FReader())
+        {
+
+        }
+    }
+    &lt;span style=&#34;color:#00f&#34;&gt;catch&lt;/span&gt; (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;FReader&lt;/span&gt; : IDisposable
+{
+    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; Stream _input;
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; FReader()
+    {
+        _input = File.Open(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;C:\windows-version.txt&amp;#34;&lt;/span&gt;, FileMode.Open, FileAccess.Read, FileShare.None);
+
+        &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; content = _input.ReadByte();
+
+        &lt;span style=&#34;color:#00f&#34;&gt;switch&lt;/span&gt; (content)
+        {
+            &lt;span style=&#34;color:#00f&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;:
+            &lt;span style=&#34;color:#00f&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;:
+                &lt;span style=&#34;color:#00f&#34;&gt;break&lt;/span&gt;;
+            &lt;span style=&#34;color:#00f&#34;&gt;default&lt;/span&gt;:
+                &lt;span style=&#34;color:#00f&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; InvalidOperationException(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Unexpected input&amp;#34;&lt;/span&gt;);
+        }
+    }
+
+    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose()
+    {
+        _input.Dispose();
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The class seems to be pretty robust, right? It disposes the file properly so
+behaves nicely.&lt;/p&gt;
+
+&lt;p&gt;Nothing wrong, at least for the first look.&lt;/p&gt;
+
+&lt;p&gt;But let&amp;rsquo;s look into exceptions being thrown.&lt;/p&gt;
+
+&lt;h2 id=&#34;first-instantiation&#34;&gt;First instantiation&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;System.InvalidOperationException: Unexpected input
+   at X.FReader..ctor() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 176
+   at X.Main() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 135
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;second-instantiation&#34;&gt;Second instantiation&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;System.IO.IOException: The process cannot access the file &#39;C:\windows-version.txt&#39; because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access, FileShare share)
+   at X.FReader..ctor() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 164
+   at X.Main() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 147
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see for the second case - the file is still locked! So it didn&amp;rsquo;t dispose.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So what is wrong here?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In the constructor there is an assumption that the file must have a certain structure.&lt;/p&gt;
+
+&lt;p&gt;But what if the file is invalid?&lt;/p&gt;
+
+&lt;p&gt;It will throw an exception in constructor. Hmm - still good?&lt;/p&gt;
+
+&lt;p&gt;It depends!&lt;/p&gt;
+
+&lt;p&gt;As the exception is thrown - the above level assignment within the &lt;code&gt;using&lt;/code&gt;
+statement will never happen here.&lt;/p&gt;
+
+&lt;p&gt;As result - the &lt;code&gt;Dispose()&lt;/code&gt; method will never be called.&lt;/p&gt;
+
+&lt;p&gt;Which means that the resource (in our case file) remains active. The above is
+not actually 100% correct all the time.&lt;/p&gt;
+
+&lt;p&gt;Depending on the resource type (for example some unmanaged resource with
+finalizer) - you may observe that the resource got at some point cleaned up
+during garbage collection.&lt;/p&gt;
+
+&lt;h2 id=&#34;solution-1&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You may consider something like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;FReader&lt;/span&gt; : IDisposable
+{
+   &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; Stream _input;
+
+   &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; FReader()
+   {
+       _input = File.Open(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;C:\windows-version.txt&amp;#34;&lt;/span&gt;, FileMode.Open, FileAccess.Read, FileShare.None);
+
+       &lt;span style=&#34;color:#00f&#34;&gt;try&lt;/span&gt;
+       {
+           &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; content = _input.ReadByte();
+
+           &lt;span style=&#34;color:#00f&#34;&gt;switch&lt;/span&gt; (content)
+           {
+               &lt;span style=&#34;color:#00f&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;:
+               &lt;span style=&#34;color:#00f&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;:
+                   &lt;span style=&#34;color:#00f&#34;&gt;break&lt;/span&gt;;
+               &lt;span style=&#34;color:#00f&#34;&gt;default&lt;/span&gt;:
+                   &lt;span style=&#34;color:#00f&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; InvalidOperationException(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Unexpected input&amp;#34;&lt;/span&gt;);
+           }
+       }
+       &lt;span style=&#34;color:#00f&#34;&gt;catch&lt;/span&gt; (Exception ex)
+       {
+           _input.Dispose();
+           _input = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
+       }
+   }
+
+   &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose()
+   {
+       _input.Dispose();
+   }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But you will probably very quickly realize that with slightly more complex
+initialization this will become nightmare.
+Also - the object will not be actually properly constructed.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Much easier will actually be avoiding such stuff in constructor and leave
+it for later - similar to the first case.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Always keep in mind what the impact of complex logic within constructor might
+be.&lt;/p&gt;
+
+&lt;p&gt;You may shoot yourself and observe really weird non-deterministic issues or
+repeating support cases because of unreadable log files.&lt;/p&gt;
+
+&lt;p&gt;For me personally - avoiding the complex logic during the object construction is the
+preferred way of coding.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</title>

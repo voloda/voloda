@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Is it good idea to throw an exception in .NET C# constructor?  &middot; My personal notes on various topics</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="development, dotNET, Microsoft Unity, ">
+
+<link rel="author" href="http://plus.google.com/+VladimirKloz">
+
+
+<meta property="og:title" content="Is it good idea to throw an exception in .NET C# constructor?  &middot; My personal notes on various topics ">
+<meta property="og:site_name" content="My personal notes on various topics"/>
+<meta property="og:url" content="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-12-11T00:00:00Z" />
+<meta property="og:article:modified_time" content="2017-12-11T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="development">
+    
+<meta property="og:article:tag" content="dotNET">
+    
+<meta property="og:article:tag" content="Microsoft Unity">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Is it good idea to throw an exception in .NET C# constructor?" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" />
+<meta name="twitter:domain" content="http://voloda.bazilisek.net/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Is it good idea to throw an exception in .NET C# constructor?",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+VladimirKloz?rel=author"
+    },
+    "datePublished": "2017-12-11",
+    "description": "",
+    "wordCount": 1301
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="http://voloda.bazilisek.net/css/bootswatch/simplex/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="http://voloda.bazilisek.net/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="http://voloda.bazilisek.net/" >
+                
+                Home
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="http://voloda.bazilisek.net/post/" >
+                
+                Posts
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Is it good idea to throw an exception in .NET C# constructor?
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-12-11">11 Dec, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 7 min
+  &middot; (1301 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Is%20it%20good%20idea%20to%20throw%20an%20exception%20in%20.NET%20C%23%20constructor%3f&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f&amp;title=Is%20it%20good%20idea%20to%20throw%20an%20exception%20in%20.NET%20C%23%20constructor%3f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Is%20it%20good%20idea%20to%20throw%20an%20exception%20in%20.NET%20C%23%20constructor%3f&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/microsoft-unity" class="label label-primary">Microsoft Unity</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  
+
+<p>I got reminded recently about two cases why it may be actually a bad idea to
+do a complex initialization in a class constructor in C#.</p>
+
+<p>All the code samples below are written just for the purpose of this post but
+are based on real code I either written or came across at some point.</p>
+
+<h1 id="case-1-instance-resolved-via-an-ioc-container">Case 1 - instance resolved via an IoC container</h1>
+
+<p>Recently I was facing an issue that application started but remained non-functional.</p>
+
+<p>I quickly found following stack trace in the log file.</p>
+
+<pre><code>Unity.Exceptions.ResolutionFailedException: Resolution of the dependency failed, type = 'IMyDataReader', name = '(none)'.
+Exception occurred while: Calling constructor MyDataReader().
+Exception is: AggregateException - One or more errors occurred.
+-----------------------------------------------
+At the time of the exception, the container was:
+  Resolving MyDataReader,(none) (mapped from IMyDataReader, (none))
+  Calling constructor MyDataReader()
+ ---&gt; System.AggregateException: One or more errors occurred. ---&gt; System.Net.Http.HttpRequestException: An error occurred while sending the request. ---&gt; System.Net.WebException: Unable to connect to the remote server ---&gt; System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:1234
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket&amp; socket, IPAddress&amp; address, ConnectSocketState state, IAsyncResult asyncResult, Exception&amp; exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.Http.HttpClientHandler.GetResponseCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MyDataReader..ctor() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 117
+   at lambda_method(Closure , IBuilderContext )
+   at Unity.ObjectBuilder.BuildPlan.DynamicMethod.DynamicBuildPlanGenerationContext.&lt;&gt;c__DisplayClass16_0.&lt;GetBuildMethod&gt;b__0(IBuilderContext context) in C:\projects\unity\Container\src\ObjectBuilder\BuildPlan\DynamicMethod\DynamicBuildPlanGenerationContext.cs:line 134
+   at Unity.ObjectBuilder.Strategies.BuildPlanStrategy.PreBuildUp(IBuilderContext context) in C:\projects\unity\Container\src\ObjectBuilder\Strategies\BuildPlanStrategy.cs:line 36
+   at Unity.Container.StrategyChain.BuildUp(IBuilderContext builderContext) in C:\projects\unity\Container\src\Container\StrategyChain.cs:line 54
+   at Unity.Policy.BuildPlanPolicyExtensions.ExecuteBuildUp(IBuildPlanPolicy policy, IBuilderContext context) in C:\projects\unity\Abstractions\src\Policy\IBuildPlanPolicy.cs:line 36
+   at Unity.UnityContainer.BuildUp(Type typeToBuild, Object existing, String name, ResolverOverride[] resolverOverrides) in C:\projects\unity\Container\src\UnityContainer.cs:line 203
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.BuildUp(Type typeToBuild, Object existing, String name, ResolverOverride[] resolverOverrides) in C:\projects\unity\Container\src\UnityContainer.cs:line 215
+   at Unity.UnityContainer.Resolve(Type type, String name, ResolverOverride[] resolverOverrides) in C:\projects\unity\Container\src\UnityContainer.cs:line 163
+   at Unity.UnityContainerExtensions.Resolve[T](IUnityContainer container, ResolverOverride[] overrides) in C:\projects\unity\Abstractions\src\Utility\UnityContainerExtensions.cs:line 469
+   at T.TT() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 97
+</code></pre>
+
+<p>As you can see - the log is pretty cryptic. The source in the end led to
+following piece of code:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">MyDataReader</span> : IMyDataReader
+{
+    <span style="color:#2b91af">string</span> _name;
+    <span style="color:#00f">public</span> MyDataReader()
+    {
+        <span style="color:#2b91af">var</span> http = <span style="color:#00f">new</span> HttpClient();
+        _name = http.GetStringAsync(<span style="color:#a31515">&#34;http://localhost:1234&#34;</span>).Result;
+    }
+
+    <span style="color:#00f">public</span> <span style="color:#2b91af">string</span> Name { <span style="color:#00f">get</span> { <span style="color:#00f">return</span> _name; } }
+}</code></pre></div>
+<p>The above idea is pretty clear - load the data from local data service and since
+those cannot change just cache them.</p>
+
+<p>The assumption was that the service is always running (this was, due to the
+design, actually a good one - my system just didn&rsquo;t have expected setup yet).</p>
+
+<p><strong>So what is wrong here?</strong></p>
+
+<p>Well - in this particular case the bad part actually was that the class was registered
+in Microsoft Unity IoC container.</p>
+
+<p>As result upon an instance resolution which is the action running the constructor,
+the actual place which throws the exception gets quite hidden and non-obvious
+since container doesn&rsquo;t know why the class couldn&rsquo;t be constructed.</p>
+
+<p>Ultimately the support doesn&rsquo;t have basically any chances to find out the issue
+and fix it (which may be just starting the missing service).</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>In this particular case pretty simple - leave the class initialize and lazy
+load the actual data later like this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">MyDataReader</span> : IMyDataReader
+{
+    Lazy&lt;<span style="color:#2b91af">string</span>&gt; _name;
+    <span style="color:#00f">public</span> MyDataReader()
+    {
+        _name = <span style="color:#00f">new</span> Lazy&lt;<span style="color:#2b91af">string</span>&gt;(() =&gt;
+        {
+            <span style="color:#2b91af">var</span> http = <span style="color:#00f">new</span> HttpClient();
+            <span style="color:#00f">return</span> http.GetStringAsync(<span style="color:#a31515">&#34;http://localhost:1234&#34;</span>).Result;
+        });
+    }
+
+    <span style="color:#00f">public</span> <span style="color:#2b91af">string</span> Name { <span style="color:#00f">get</span> { <span style="color:#00f">return</span> _name.Value; } }
+}</code></pre></div>
+<p>Which leads to much more readable log - and more importantly - <strong>the beginning
+of the message points quickly to actual issue</strong>:</p>
+
+<pre><code>System.AggregateException: One or more errors occurred. ---&gt; System.Net.Http.HttpRequestException: An error occurred while sending the request. ---&gt; System.Net.WebException: Unable to connect to the remote server ---&gt; System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:1234
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket&amp; socket, IPAddress&amp; address, ConnectSocketState state, IAsyncResult asyncResult, Exception&amp; exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.Http.HttpClientHandler.GetResponseCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MyDataReader.&lt;&gt;c.&lt;.ctor&gt;b__1_0() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 119
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at MyDataReader.get_Name() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 123
+   at T.TT() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 97
+---&gt; (Inner Exception #0) System.Net.Http.HttpRequestException: An error occurred while sending the request. ---&gt; System.Net.WebException: Unable to connect to the remote server ---&gt; System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:1234
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket&amp; socket, IPAddress&amp; address, ConnectSocketState state, IAsyncResult asyncResult, Exception&amp; exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.Http.HttpClientHandler.GetResponseCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---&lt;---/
+</code></pre>
+
+<h1 id="case-2-working-with-unmanaged-resources">Case 2 - working with unmanaged resources</h1>
+
+<p>There is one more interesting scenario to be considered - initializing
+unmanaged/disposable resources within the class constructor.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">void</span> Main()
+{
+    <span style="color:#00f">try</span>
+    {
+        <span style="color:#00f">using</span> (<span style="color:#2b91af">var</span> r = <span style="color:#00f">new</span> FReader())
+        {
+
+        }
+    }
+    <span style="color:#00f">catch</span> (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+
+    <span style="color:#00f">try</span>
+    {
+        <span style="color:#00f">using</span> (<span style="color:#2b91af">var</span> r = <span style="color:#00f">new</span> FReader())
+        {
+
+        }
+    }
+    <span style="color:#00f">catch</span> (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+}
+
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FReader</span> : IDisposable
+{
+    <span style="color:#00f">private</span> Stream _input;
+
+    <span style="color:#00f">public</span> FReader()
+    {
+        _input = File.Open(<span style="color:#a31515">@&#34;C:\windows-version.txt&#34;</span>, FileMode.Open, FileAccess.Read, FileShare.None);
+
+        <span style="color:#2b91af">var</span> content = _input.ReadByte();
+
+        <span style="color:#00f">switch</span> (content)
+        {
+            <span style="color:#00f">case</span> <span style="color:#a31515">&#39;a&#39;</span>:
+            <span style="color:#00f">case</span> <span style="color:#a31515">&#39;b&#39;</span>:
+                <span style="color:#00f">break</span>;
+            <span style="color:#00f">default</span>:
+                <span style="color:#00f">throw</span> <span style="color:#00f">new</span> InvalidOperationException(<span style="color:#a31515">&#34;Unexpected input&#34;</span>);
+        }
+    }
+
+    <span style="color:#00f">public</span> <span style="color:#00f">void</span> Dispose()
+    {
+        _input.Dispose();
+    }
+}</code></pre></div>
+<p>The class seems to be pretty robust, right? It disposes the file properly so
+behaves nicely.</p>
+
+<p>Nothing wrong, at least for the first look.</p>
+
+<p>But let&rsquo;s look into exceptions being thrown.</p>
+
+<h2 id="first-instantiation">First instantiation</h2>
+
+<pre><code>System.InvalidOperationException: Unexpected input
+   at X.FReader..ctor() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 176
+   at X.Main() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 135
+</code></pre>
+
+<h2 id="second-instantiation">Second instantiation</h2>
+
+<pre><code>System.IO.IOException: The process cannot access the file 'C:\windows-version.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access, FileShare share)
+   at X.FReader..ctor() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 164
+   at X.Main() in C:\Users\vladi\Documents\code\UnityInitializer\UnityInitializer.Tests\RootContainerSetupTest.cs:line 147
+</code></pre>
+
+<p>As you can see for the second case - the file is still locked! So it didn&rsquo;t dispose.</p>
+
+<p><strong>So what is wrong here?</strong></p>
+
+<p>In the constructor there is an assumption that the file must have a certain structure.</p>
+
+<p>But what if the file is invalid?</p>
+
+<p>It will throw an exception in constructor. Hmm - still good?</p>
+
+<p>It depends!</p>
+
+<p>As the exception is thrown - the above level assignment within the <code>using</code>
+statement will never happen here.</p>
+
+<p>As result - the <code>Dispose()</code> method will never be called.</p>
+
+<p>Which means that the resource (in our case file) remains active. The above is
+not actually 100% correct all the time.</p>
+
+<p>Depending on the resource type (for example some unmanaged resource with
+finalizer) - you may observe that the resource got at some point cleaned up
+during garbage collection.</p>
+
+<h2 id="solution-1">Solution</h2>
+
+<ul>
+<li><p>You may consider something like this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FReader</span> : IDisposable
+{
+   <span style="color:#00f">private</span> Stream _input;
+
+   <span style="color:#00f">public</span> FReader()
+   {
+       _input = File.Open(<span style="color:#a31515">@&#34;C:\windows-version.txt&#34;</span>, FileMode.Open, FileAccess.Read, FileShare.None);
+
+       <span style="color:#00f">try</span>
+       {
+           <span style="color:#2b91af">var</span> content = _input.ReadByte();
+
+           <span style="color:#00f">switch</span> (content)
+           {
+               <span style="color:#00f">case</span> <span style="color:#a31515">&#39;a&#39;</span>:
+               <span style="color:#00f">case</span> <span style="color:#a31515">&#39;b&#39;</span>:
+                   <span style="color:#00f">break</span>;
+               <span style="color:#00f">default</span>:
+                   <span style="color:#00f">throw</span> <span style="color:#00f">new</span> InvalidOperationException(<span style="color:#a31515">&#34;Unexpected input&#34;</span>);
+           }
+       }
+       <span style="color:#00f">catch</span> (Exception ex)
+       {
+           _input.Dispose();
+           _input = <span style="color:#00f">null</span>;
+       }
+   }
+
+   <span style="color:#00f">public</span> <span style="color:#00f">void</span> Dispose()
+   {
+       _input.Dispose();
+   }
+}</code></pre></div>
+<p>But you will probably very quickly realize that with slightly more complex
+initialization this will become nightmare.
+Also - the object will not be actually properly constructed.</p></li>
+
+<li><p>Much easier will actually be avoiding such stuff in constructor and leave
+it for later - similar to the first case.</p></li>
+</ul>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Always keep in mind what the impact of complex logic within constructor might
+be.</p>
+
+<p>You may shoot yourself and observe really weird non-deterministic issues or
+repeating support cases because of unreadable log files.</p>
+
+<p>For me personally - avoiding the complex logic during the object construction is the
+preferred way of coding.</p>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Is%20it%20good%20idea%20to%20throw%20an%20exception%20in%20.NET%20C%23%20constructor%3f&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f&amp;title=Is%20it%20good%20idea%20to%20throw%20an%20exception%20in%20.NET%20C%23%20constructor%3f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Is%20it%20good%20idea%20to%20throw%20an%20exception%20in%20.NET%20C%23%20constructor%3f&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fis-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" title="Handling detailed code reviews in GIT">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/">Is it good idea to throw an exception in .NET C# constructor?</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/">Handling detailed code reviews in GIT</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/notes/chocolatey/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/">Having fun with Chef</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/">Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+    
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Year</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/year/2017">2017 (6)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/notes">Notes (4)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/docker">docker (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+    
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+<script src="http://voloda.bazilisek.net/js/jquery.min.js"></script>
+<script src="http://voloda.bazilisek.net/js/bootstrap.min.js"></script>
+
+
+<script src="http://voloda.bazilisek.net/js/highlight.pack.js"></script>
+<script src="http://voloda.bazilisek.net/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','UA-8950020-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

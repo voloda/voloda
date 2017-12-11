@@ -50,7 +50,7 @@
     <item>
       <title>Development</title>
       <link>http://voloda.bazilisek.net/tags/development/</link>
-      <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/tags/development/</guid>
       <description></description>
@@ -68,7 +68,7 @@
     <item>
       <title>DotNET</title>
       <link>http://voloda.bazilisek.net/tags/dotnet/</link>
-      <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/tags/dotnet/</guid>
       <description></description>
@@ -89,6 +89,15 @@
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microsoft Unity</title>
+      <link>http://voloda.bazilisek.net/tags/microsoft-unity/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/microsoft-unity/</guid>
       <description></description>
     </item>
     
