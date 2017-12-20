@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Visual Studio 2012 debugger does not break after attaching to C#/.NET process  &middot; My personal notes on various topics</title>
+  <title>How to create Docker build agent image with SDK installed from MSI  &middot; My personal notes on various topics</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,7 +14,7 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="development, dotNET, ">
+<meta name="keywords" content="docker, jenkins, ">
 
 <link rel="author" href="http://plus.google.com/+VladimirKloz">
 
@@ -22,22 +22,22 @@
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="Visual Studio 2012 debugger does not break after attaching to C#/.NET process  &middot; My personal notes on various topics ">
+<meta property="og:title" content="How to create Docker build agent image with SDK installed from MSI  &middot; My personal notes on various topics ">
 <meta property="og:site_name" content="My personal notes on various topics"/>
-<meta property="og:url" content="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" />
+<meta property="og:url" content="http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2014-12-18T00:00:00Z" />
-<meta property="og:article:modified_time" content="2014-12-18T00:00:00Z" />
+<meta property="og:article:published_time" content="2017-12-20T00:00:00Z" />
+<meta property="og:article:modified_time" content="2017-12-20T00:00:00Z" />
 
   
     
-<meta property="og:article:tag" content="development">
+<meta property="og:article:tag" content="docker">
     
-<meta property="og:article:tag" content="dotNET">
+<meta property="og:article:tag" content="jenkins">
     
   
 
@@ -45,9 +45,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Visual Studio 2012 debugger does not break after attaching to C#/.NET process" />
+<meta name="twitter:title" content="How to create Docker build agent image with SDK installed from MSI" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" />
+<meta name="twitter:url" content="http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" />
 <meta name="twitter:domain" content="http://voloda.bazilisek.net/">
   
 
@@ -56,21 +56,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Visual Studio 2012 debugger does not break after attaching to C#/.NET process",
+    "headline": "How to create Docker build agent image with SDK installed from MSI",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+VladimirKloz?rel=author"
     },
-    "datePublished": "2014-12-18",
+    "datePublished": "2017-12-20",
     "description": "",
-    "wordCount": 233
+    "wordCount": 470
   }
 </script>
   
 
 
 
-<link rel="canonical" href="http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" />
+<link rel="canonical" href="http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.30.2" />
@@ -149,37 +149,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1>Visual Studio 2012 debugger does not break after attaching to C#/.NET process
+    <h1>How to create Docker build agent image with SDK installed from MSI
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2014-12-18">18 Dec, 2014</time>
+  <time datetime="2017-12-20">20 Dec, 2017</time>
 </small>
 
 
   <small>
-  &middot; Read in about 2 min
-  &middot; (233 words)
+  &middot; Read in about 3 min
+  &middot; (470 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f&amp;title=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f&amp;title=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -187,9 +187,9 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
   
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
   
 
 
@@ -202,50 +202,121 @@
 </div>
 
       <div class="content">
-  <p>I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.</p>
+  
 
-<p>Symptoms were that the debugger attached to the process but neither &lsquo;Break All&rsquo; worked. The same applied for any preset breakpoint.</p>
+<p>When creating build agent docker image usually you need to install SDKs
+from MSI (like Infragistic, DevExpress, Active Reports etc.).</p>
 
-<p>For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via <code>Debug.Assert()</code> or <code>Debugger.Break()</code> calls put directly into code I had never motivation to really look for a solution nor reinstall the Visual Studio.</p>
+<p>There are couple of challenges here:</p>
 
-<p>Today I really wanted to attach to a process to see what is going on inside and the issue happened again.</p>
+<ul>
+<li>Windows Docker doesn&rsquo;t support UI.</li>
+<li>Also very often you have to populate UI with values.</li>
+</ul>
 
-<p>After a bit of playing I realized that in the case that debugger works after attaching correctly the &lsquo;Attach to Process&rsquo; Visual Studio dialog looks like this (see &lsquo;Attach to&rsquo; field):
-<img src="/img/visual-studio/visual_studio_debugger_does_recognize_process_type.png" alt="visual_studio_debugger_does_recognize_process_type.png" /></p>
+<p>For this purpose MSI supports so called unattended installs.</p>
 
-<p>For my process it didn&rsquo;t work this time and &lsquo;Attach to Process&rsquo; dialog looked like this (again see &lsquo;Attach to&rsquo; field):
-<img src="/img/visual-studio/visual_studio_debugger_does_not_recognize_process_type.png" alt="visual_studio_debugger_does_not_recognize_process_type.png" /></p>
+<p>For input values you can pass those as parameters to MSI on command line.</p>
 
-<p>Apparently Visual Studio in some cases does not properly detect the type of the process and does not use correct debugger settings.</p>
+<p>Let&rsquo;s assume that we want to install SDK like Infragistic.</p>
 
-<p>In order to solve my issue I finally found the &lsquo;Select&hellip;&rsquo; button following &lsquo;Attach to&rsquo; field where you can disable automatic detection of the process type and manually select a different one.</p>
+<h1 id="how-to-find-out-msi-command-line">How to find out MSI command line</h1>
 
-<p><img src="/img/visual-studio/visual_studio_debugger_does_not_recognize_process_select_code_type.png" alt="visual_studio_debugger_does_not_recognize_process_select_code_type.png " /></p>
+<h2 id="use-msi-logging">Use MSI logging</h2>
 
-<p>After selecting &lsquo;Manager (v4.5, 4.0)&rsquo; and attaching debugger to process again everything worked well.</p>
+<p>First run the SDK MSI from command line on a sandbox PC so it produced
+installation log:</p>
 
+<pre><code>msiexec /i NetAdvantage_WinForms_20112.msi /L*V infragistic.log
+</code></pre>
+
+<p>Now follow the installation</p>
+
+<p>Now looks into generated <code>infragistic.log</code> file and look for values you entered.</p>
+
+<p>Piece of log file:</p>
+
+<pre><code>...
+Action 20:16:29: ExecuteAction.
+Action start 20:16:29: ExecuteAction.
+MSI (c) (A4:F0) [20:16:29:526]: PROPERTY CHANGE: Adding SECONDSEQUENCE property. Its value is '1'.
+MSI (c) (A4:F0) [20:16:29:535]: Grabbed execution mutex.
+MSI (c) (A4:F0) [20:16:29:535]: Incrementing counter to disable shutdown. Counter after increment: 0
+MSI (c) (A4:F0) [20:16:29:535]: Switching to server: COMMON_DOCUMENTS_LOC=&quot;C:\Users\Public\Documents&quot; USER_DOCUMENTS_LOC=&quot;C:\Users\voloda\Documents&quot; INSTALLDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; AGREE_AND_INSTALL_OFFICE_2007_UI=&quot;No&quot; INSTALL_SERIALNUM=&quot;1234&quot; COMMONDOCUMENTS=&quot;C:\CommonDocuments\&quot; TARGETDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; ALLUSERS=&quot;1&quot; DOTNETV4=&quot;1&quot; IGSHORTCUTDIR=&quot;C:\Users\voloda\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Infragistics\&quot; INSTALLDIR.B2768727_084D_4283_A045_7A86BAF639DC=&quot;C:\Windows\SysWOW64\GAC\&quot; INSTALLDIR.4ED14E0A_AECA_4FCD_BEF6_35F299C4270E=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; _INSTALL_PROD_CODE=&quot;48&quot; INSTALLDIR.D348289C_580E_44C6_A617_A90FC315DB7D=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; INSTALLDIR.52DB8F59_5C03_491A_99D2_1A0565A67FD2=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; INSTALLDIR.96F9412E_4A28_4BF2_B6B7_66F921C4BE3C=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; INSTALLDIR.7295D7F7_BBA6_41D4_8E45_780AD1F07B46=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; CURRENTDIRECTORY=&quot;C:\Users\voloda\docker-tests\windows-nbo&quot; CLIENTUILEVEL=&quot;0&quot; CLIENTPROCESS
+MSI (s) (F0:94) [20:16:29:547]: Running installation inside multi-package transaction C:\Users\voloda\docker-tests\windows-nbo\NetAdvantage_WinForms_20112.msi
+MSI (s) (F0:94) [20:16:29:547]: Grabbed execution mutex.
+MSI (s) (F0:C8) [20:16:29:579]: Resetting cached policy values
+MSI (s) (F0:C8) [20:16:29:579]: Machine policy value 'Debug' is 0
+MSI (s) (F0:C8) [20:16:29:579]: ******* RunEngine:
+           ******* Product: C:\Users\voloda\docker-tests\windows-nbo\NetAdvantage_WinForms_20112.msi
+...
+</code></pre>
+
+<p>Keep in mind that for example passwords, serial numbers etc. might be in the log
+masked so you need to be a bit inventive to find all important values.</p>
+
+<p>General suggestion for MSI is that any properties which have upper-case names
+should be available on command line.</p>
+
+<p>MSI properties seems to be specified here:</p>
+
+<pre><code>MSI (c) (A4:F0) [20:16:29:535]: Switching to server: COMMON_DOCUMENTS_LOC=&quot;C:\Users\Public\Documents&quot; USER_DOCUMENTS_LOC=&quot;C:\Users\voloda\Documents&quot; INSTALLDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; AGREE_AND_INSTALL_OFFICE_2007_UI=&quot;No&quot; INSTALL_SERIALNUM=&quot;1234&quot; COMMONDOCUMENTS=&quot;C:\CommonDocuments\&quot; TARGETDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; ALLUSERS=&quot;1&quot; DOTNETV4=&quot;1&quot; IGSHORTCUTDIR=&quot;C:\Users\voloda\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Infragistics\&quot;
+</code></pre>
+
+<p>For Infragistic and my build agent I am interested in following entries:</p>
+
+<ul>
+<li><code>INSTALL_SERIALNUM</code></li>
+<li><code>AGREE_AND_INSTALL_OFFICE_2007_UI</code></li>
+</ul>
+
+<h2 id="use-orca-editor">Use Orca editor</h2>
+
+<p>Microsoft provides as a part of MSI SDK <code>Orca.exe</code> which allows to edit MSI database.</p>
+
+<p>Following the above rule about upper-case names you can find properties which
+can be specified on command line.</p>
+
+<p>This can be actually easier but requires MSI SDK with <code>Orca.exe</code> installed.</p>
+
+<h1 id="dockerfile">Dockerfile</h1>
+
+<p>Once we know parameters we can just update the <code>Dockerfile</code> so it copies SDK
+to the image and then executes unattended installation the SDK including the
+license (or whatever details you need).</p>
+
+<p>In this case we specify the license number (<code>INSTALL_SERIALNUM=1234</code>) and
+bunch of other properties.</p>
+
+<p>The example below ensures that during building the image we wait until the
+installation process finishes.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile">COPY NetAdvantage_WinForms_20112.msi <span style="color:#a31515">&#34;C:\\&#34;</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> $ErrorActionPreference = <span style="color:#a31515">&#39;Stop&#39;</span>; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    $VerbosePreference = <span style="color:#a31515">&#39;Continue&#39;</span>; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    Start-Process -Wait -PassThru -FilePath c:<span style="color:#a31515">\w</span>indows<span style="color:#a31515">\s</span>ystem32<span style="color:#a31515">\m</span>siexec.exe -ArgumentList <span style="color:#a31515">&#39;/i c:\\NetAdvantage_WinForms_20112.msi  /q /l* c:\\infragistic.log INSTALL_SERIALNUM=1234 ALLUSERS=1 AGREE_AND_INSTALL_OFFICE_2007_UI=No&#39;</span></code></pre></div>
 </div>
 
 
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f&amp;title=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f&amp;title=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Visual%20Studio%202012%20debugger%20does%20not%20break%20after%20attaching%20to%20C%23%2f.NET%20process&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fvisual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -254,18 +325,12 @@
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" title="How to release unmanaged library loaded into managed .NET code">
+          <a href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" title="Is it good idea to throw an exception in .NET C# constructor?">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="http://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/" title="How to post markdown article on blogspot/blogger with enabled code syntax highlighting">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   

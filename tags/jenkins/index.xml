@@ -6,10 +6,111 @@
     <description>Recent content in Jenkins on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Dec 2017 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to create Docker build agent image with SDK installed from MSI</title>
+      <link>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
+      <description>
+
+&lt;p&gt;When creating build agent docker image usually you need to install SDKs
+from MSI (like Infragistic, DevExpress, Active Reports etc.).&lt;/p&gt;
+
+&lt;p&gt;There are couple of challenges here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Windows Docker doesn&amp;rsquo;t support UI.&lt;/li&gt;
+&lt;li&gt;Also very often you have to populate UI with values.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For this purpose MSI supports so called unattended installs.&lt;/p&gt;
+
+&lt;p&gt;For input values you can pass those as parameters to MSI on command line.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s assume that we want to install SDK like Infragistic.&lt;/p&gt;
+
+&lt;h1 id=&#34;how-to-find-out-msi-command-line&#34;&gt;How to find out MSI command line&lt;/h1&gt;
+
+&lt;h2 id=&#34;use-msi-logging&#34;&gt;Use MSI logging&lt;/h2&gt;
+
+&lt;p&gt;First run the SDK MSI from command line on a sandbox PC so it produced
+installation log:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;msiexec /i NetAdvantage_WinForms_20112.msi /L*V infragistic.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now follow the installation&lt;/p&gt;
+
+&lt;p&gt;Now looks into generated &lt;code&gt;infragistic.log&lt;/code&gt; file and look for values you entered.&lt;/p&gt;
+
+&lt;p&gt;Piece of log file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+Action 20:16:29: ExecuteAction.
+Action start 20:16:29: ExecuteAction.
+MSI (c) (A4:F0) [20:16:29:526]: PROPERTY CHANGE: Adding SECONDSEQUENCE property. Its value is &#39;1&#39;.
+MSI (c) (A4:F0) [20:16:29:535]: Grabbed execution mutex.
+MSI (c) (A4:F0) [20:16:29:535]: Incrementing counter to disable shutdown. Counter after increment: 0
+MSI (c) (A4:F0) [20:16:29:535]: Switching to server: COMMON_DOCUMENTS_LOC=&amp;quot;C:\Users\Public\Documents&amp;quot; USER_DOCUMENTS_LOC=&amp;quot;C:\Users\voloda\Documents&amp;quot; INSTALLDIR=&amp;quot;C:\Program Files (x86)\Infragistics\&amp;quot; AGREE_AND_INSTALL_OFFICE_2007_UI=&amp;quot;No&amp;quot; INSTALL_SERIALNUM=&amp;quot;1234&amp;quot; COMMONDOCUMENTS=&amp;quot;C:\CommonDocuments\&amp;quot; TARGETDIR=&amp;quot;C:\Program Files (x86)\Infragistics\&amp;quot; ALLUSERS=&amp;quot;1&amp;quot; DOTNETV4=&amp;quot;1&amp;quot; IGSHORTCUTDIR=&amp;quot;C:\Users\voloda\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Infragistics\&amp;quot; INSTALLDIR.B2768727_084D_4283_A045_7A86BAF639DC=&amp;quot;C:\Windows\SysWOW64\GAC\&amp;quot; INSTALLDIR.4ED14E0A_AECA_4FCD_BEF6_35F299C4270E=&amp;quot;C:\Windows\SysWOW64\UltimateKeys\&amp;quot; _INSTALL_PROD_CODE=&amp;quot;48&amp;quot; INSTALLDIR.D348289C_580E_44C6_A617_A90FC315DB7D=&amp;quot;C:\Windows\SysWOW64\UltimateKeys\&amp;quot; INSTALLDIR.52DB8F59_5C03_491A_99D2_1A0565A67FD2=&amp;quot;C:\Windows\SysWOW64\UltimateKeys\&amp;quot; INSTALLDIR.96F9412E_4A28_4BF2_B6B7_66F921C4BE3C=&amp;quot;C:\Windows\SysWOW64\UltimateKeys\&amp;quot; INSTALLDIR.7295D7F7_BBA6_41D4_8E45_780AD1F07B46=&amp;quot;C:\Windows\SysWOW64\UltimateKeys\&amp;quot; CURRENTDIRECTORY=&amp;quot;C:\Users\voloda\docker-tests\windows-nbo&amp;quot; CLIENTUILEVEL=&amp;quot;0&amp;quot; CLIENTPROCESS
+MSI (s) (F0:94) [20:16:29:547]: Running installation inside multi-package transaction C:\Users\voloda\docker-tests\windows-nbo\NetAdvantage_WinForms_20112.msi
+MSI (s) (F0:94) [20:16:29:547]: Grabbed execution mutex.
+MSI (s) (F0:C8) [20:16:29:579]: Resetting cached policy values
+MSI (s) (F0:C8) [20:16:29:579]: Machine policy value &#39;Debug&#39; is 0
+MSI (s) (F0:C8) [20:16:29:579]: ******* RunEngine:
+           ******* Product: C:\Users\voloda\docker-tests\windows-nbo\NetAdvantage_WinForms_20112.msi
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Keep in mind that for example passwords, serial numbers etc. might be in the log
+masked so you need to be a bit inventive to find all important values.&lt;/p&gt;
+
+&lt;p&gt;General suggestion for MSI is that any properties which have upper-case names
+should be available on command line.&lt;/p&gt;
+
+&lt;p&gt;MSI properties seems to be specified here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MSI (c) (A4:F0) [20:16:29:535]: Switching to server: COMMON_DOCUMENTS_LOC=&amp;quot;C:\Users\Public\Documents&amp;quot; USER_DOCUMENTS_LOC=&amp;quot;C:\Users\voloda\Documents&amp;quot; INSTALLDIR=&amp;quot;C:\Program Files (x86)\Infragistics\&amp;quot; AGREE_AND_INSTALL_OFFICE_2007_UI=&amp;quot;No&amp;quot; INSTALL_SERIALNUM=&amp;quot;1234&amp;quot; COMMONDOCUMENTS=&amp;quot;C:\CommonDocuments\&amp;quot; TARGETDIR=&amp;quot;C:\Program Files (x86)\Infragistics\&amp;quot; ALLUSERS=&amp;quot;1&amp;quot; DOTNETV4=&amp;quot;1&amp;quot; IGSHORTCUTDIR=&amp;quot;C:\Users\voloda\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Infragistics\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Infragistic and my build agent I am interested in following entries:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;INSTALL_SERIALNUM&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AGREE_AND_INSTALL_OFFICE_2007_UI&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;use-orca-editor&#34;&gt;Use Orca editor&lt;/h2&gt;
+
+&lt;p&gt;Microsoft provides as a part of MSI SDK &lt;code&gt;Orca.exe&lt;/code&gt; which allows to edit MSI database.&lt;/p&gt;
+
+&lt;p&gt;Following the above rule about upper-case names you can find properties which
+can be specified on command line.&lt;/p&gt;
+
+&lt;p&gt;This can be actually easier but requires MSI SDK with &lt;code&gt;Orca.exe&lt;/code&gt; installed.&lt;/p&gt;
+
+&lt;h1 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h1&gt;
+
+&lt;p&gt;Once we know parameters we can just update the &lt;code&gt;Dockerfile&lt;/code&gt; so it copies SDK
+to the image and then executes unattended installation the SDK including the
+license (or whatever details you need).&lt;/p&gt;
+
+&lt;p&gt;In this case we specify the license number (&lt;code&gt;INSTALL_SERIALNUM=1234&lt;/code&gt;) and
+bunch of other properties.&lt;/p&gt;
+
+&lt;p&gt;The example below ensures that during building the image we wait until the
+installation process finishes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;COPY NetAdvantage_WinForms_20112.msi &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;C:\\&amp;#34;&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; $ErrorActionPreference = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Stop&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#a31515&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt;&lt;/span&gt;    $VerbosePreference = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Continue&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#a31515&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt;&lt;/span&gt;    Start-Process -Wait -PassThru -FilePath c:&lt;span style=&#34;color:#a31515&#34;&gt;\w&lt;/span&gt;indows&lt;span style=&#34;color:#a31515&#34;&gt;\s&lt;/span&gt;ystem32&lt;span style=&#34;color:#a31515&#34;&gt;\m&lt;/span&gt;siexec.exe -ArgumentList &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;/i c:\\NetAdvantage_WinForms_20112.msi  /q /l* c:\\infragistic.log INSTALL_SERIALNUM=1234 ALLUSERS=1 AGREE_AND_INSTALL_OFFICE_2007_UI=No&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>Jenkinsfile and git authentication on Windows</title>
