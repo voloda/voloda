@@ -46,7 +46,7 @@
 
 
 
-    <link rel="stylesheet" href="http://voloda.bazilisek.net/css/bootswatch/simplex/bootstrap.min.css">
+    <link rel="stylesheet" href="http://voloda.bazilisek.net/css/bootswatch/default/bootstrap.min.css">
 
 
 <link rel="stylesheet" href="http://voloda.bazilisek.net/css/font-awesome.min.css">
@@ -82,19 +82,21 @@
             
             
             <li class="active">
-
-              <a href="http://voloda.bazilisek.net/" >
-                
-                Home
-              </a>
+              
+                <a href="http://voloda.bazilisek.net/" >
+                  
+                  Home
+                </a>
+              
             </li>
             
             <li class="">
-
-              <a href="http://voloda.bazilisek.net/post/" >
-                
-                Posts
-              </a>
+              
+                <a href="http://voloda.bazilisek.net/post/" >
+                  
+                  Posts
+                </a>
+              
             </li>
             
             
@@ -112,6 +114,48 @@
     <div class="row">
       <div class="col-sm-9">
         
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/">Angular5 and ASP.NET Core 2.0 cheat sheet</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-03-26">26 Mar, 2018</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0 WebAPI.
+Code organization ProjectRootFolder | +.git | +-AngularProjectFolder | +-dotNetCoreProjectFolder | +-wwwroot  Project setup  Create project root folder with git repository:  mkdir ProjectRootFolder cd ProjectRootFolder git init  Create dotNet Core API application  dotnet new webapi -n ProjectWebApi  Create Angular 5 application  Assumes Angular5 CLI is available already (see https://angular.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
         
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -284,49 +328,6 @@ Password authentication Setting up username and password in Jenkins server  Firs
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2017-11-19">19 Nov, 2017</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    I spent quite some time on getting this working on Windows with Windows Docker slaves.
-In the end it turned out to be mostly matter of using correct Jenkins docker plugin.
-Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just works (Docker Plugin doesn&rsquo;t work)  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a Cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container as a build is executed  It does not require any additional changes It properly handles the operating system (Windows)  For local only images make sure that the Pull option is set to Never  Base Dockerfile  This Dockerfile creates the base image for Windows build agent The only requirements is that java.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -398,6 +399,10 @@ Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just wo
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/">Angular5 and ASP.NET Core 2.0 cheat sheet</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/">How to create Docker build agent image with SDK installed from MSI</a>
           </li>
         
@@ -433,10 +438,6 @@ Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just wo
           <a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/">Having fun with Chef</a>
           </li>
         
-          <li>
-          <a href="http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -456,7 +457,7 @@ Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just wo
 
         <div class="content">
           <ul>
-            <li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2018">2018 (1)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -473,7 +474,7 @@ Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just wo
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (5)</a></li>
+            <li><a href="/categories/notes">Notes (6)</a></li>
           </ul>
         </div>
       </div>
@@ -488,7 +489,7 @@ Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just wo
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (4)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li>
+            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (4)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/angular">angular (1)</a></li>
           </ul>
         </div>
       </div>

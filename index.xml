@@ -6,10 +6,113 @@
     <description>Recent content on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Mar 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular5 and ASP.NET Core 2.0 cheat sheet</title>
+      <link>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
+      <description>
+
+&lt;p&gt;Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0
+WebAPI.&lt;/p&gt;
+
+&lt;h1 id=&#34;code-organization&#34;&gt;Code organization&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;ProjectRootFolder
+|
++.git
+|
++-AngularProjectFolder
+|
++-dotNetCoreProjectFolder
+  |
+  +-wwwroot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;project-setup&#34;&gt;Project setup&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create project root folder with git repository:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mkdir ProjectRootFolder&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd ProjectRootFolder&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Create dotNet Core API application
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dotnet new webapi -n ProjectWebApi&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Create Angular 5 application
+
+&lt;ul&gt;
+&lt;li&gt;Assumes Angular5 CLI is available already (see &lt;a href=&#34;https://angular.io/guide/quickstart&#34;&gt;https://angular.io/guide/quickstart&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ng new project-web-ui&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Customize build output path in &lt;code&gt;.angular-cli.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;outDir&lt;/code&gt; to &lt;code&gt;../ProjectWebApi/WWWRoot/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;angular-5-cli-commands&#34;&gt;Angular 5 CLI commands&lt;/h1&gt;
+
+&lt;h2 id=&#34;running-angular5-and-net-core-2-0-backend-service-localy-during-development&#34;&gt;Running Angular5 and .NET Core 2.0 backend service localy during development&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;First create &lt;code&gt;proxy.config.json&lt;/code&gt; file in the root of web site source code.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;{
+  &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;/api&amp;#34;&lt;/span&gt;: {
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;target&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://localhost:56785&amp;#34;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;secure&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update &lt;code&gt;/api&lt;/code&gt; to a virtual folder which should be proxified&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;target&lt;/code&gt; to point to API&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Run &lt;code&gt;ng serve --proxy-config proxy.config.json&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;running-karma-tests&#34;&gt;Running KARMA tests&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ng test&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;building-angular5-website-which-will-be-deployed-to-a-virtual-folder&#34;&gt;Building Angular5 website which will be deployed to a virtual folder&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ng build --base-href &amp;quot;/alx/&amp;quot;&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;alx&lt;/code&gt; is the virtual folder on the server (updates &lt;code&gt;&amp;lt;base href/&amp;gt;&lt;/code&gt; tag
+inside the &lt;code&gt;index.html&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;deployment&#34;&gt;Deployment&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IIS requires dotNet core support installed
+
+&lt;ul&gt;
+&lt;li&gt;See &lt;a href=&#34;https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?tabs=aspnetcore2x&#34;&gt;https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?tabs=aspnetcore2x&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pay special attention to &lt;strong&gt;.NET Core Windows Server Hosting bundle&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Other than that create appropriate Application Pool as described and deploy
+the application.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Biggest challenge so far is that the WebAPI process is running all the time
+and cannot be easily upgraded.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>How to create Docker build agent image with SDK installed from MSI</title>
@@ -879,6 +982,7 @@ choco install -y chefdk
 choco install -y winmerge
 choco install -y googlechrome
 choco install -y postman
+choco install -y 7zip
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

@@ -879,6 +879,7 @@ choco install -y chefdk
 choco install -y winmerge
 choco install -y googlechrome
 choco install -y postman
+choco install -y 7zip
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
