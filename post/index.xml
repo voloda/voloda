@@ -546,8 +546,11 @@ with code checked out and staged in GIT:&lt;/p&gt;
 &lt;p&gt;Now you can do the detailed code review, put comments into PR, do testing,
 navigate thru references usign Resharper in Visual Studio etc.&lt;/p&gt;
 
-&lt;p&gt;Once done just abort the merge:
-  * &lt;code&gt;git merge --abort&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Once done just abort the merge:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git merge --abort&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
