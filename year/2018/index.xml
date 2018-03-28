@@ -83,7 +83,11 @@ WebAPI.&lt;/p&gt;
 &lt;h2 id=&#34;running-karma-tests&#34;&gt;Running KARMA tests&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ng test&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ng test&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When testing components it may require &lt;code&gt;ng test --sourcemaps=false&lt;/code&gt; to avoid issues&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;building-angular5-website-which-will-be-deployed-to-a-virtual-folder&#34;&gt;Building Angular5 website which will be deployed to a virtual folder&lt;/h2&gt;
