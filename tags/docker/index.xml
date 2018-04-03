@@ -6,10 +6,80 @@
     <description>Recent content in Docker on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Apr 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>
+      <link>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
+      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;pipeline {
+  agent none
+
+  environment {
+    RELEASE_NUMBER = &#39;17.1.1&#39;
+    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;17.1.1.${BUILDS_ALL_TIME}&#39;)
+  }
+
+
+  stages {
+    stage(&#39;Checkout from GIT&#39;){
+      agent any
+      steps {
+        script {
+          currentBuild.displayName = &amp;quot;#${VERSION_NUMBER}&amp;quot;
+        }
+        checkout scm
+      }
+    }
+    stage(&#39;NUGET package restore&#39;) {
+      agent { label &#39;nuget&#39; }
+      steps {
+            echo &#39;Restoring nuget packages&#39;
+            bat &#39;&amp;quot;%NUGET_PATH%&amp;quot; restore TestSolution.sln&#39;
+            dir (&#39;.&#39;) {
+              stash &#39;sources&#39;
+            }
+      }
+    }
+    stage(&#39;Build&#39;) {
+      agent { label &#39;dotNET_4.7&#39;}
+      steps {
+        dir (&#39;.&#39;) {
+          unstash &#39;sources&#39;
+        }
+
+        bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; TestSolution.sln /p:Configuration=Release /p:Platform=\&amp;quot;Any CPU\&amp;quot;&amp;quot;
+
+        dir (&#39;TestSolution/bin&#39;) {
+          stash &#39;bins&#39;
+        }
+        withCredentials([usernamePassword(credentialsId: &#39;cdd06d32-f11d-446c-8687-3debc9dba901&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
+          bat &amp;quot;git tag &#39;j-${VERSION_NUMBER}&#39;&amp;quot;
+
+          bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@git.server.net/TestSolution2.git --tags&amp;quot;
+        }
+      }
+    }
+    stage(&#39;Archive&#39;) {
+      agent any
+      steps {
+        dir (&#39;TestSolution/bin&#39;) {
+          unstash &#39;bins&#39;
+        }
+        archive &#39;**/bin/Release/**.dll&#39;
+      }
+    }
+  }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>How to create Docker build agent image with SDK installed from MSI</title>

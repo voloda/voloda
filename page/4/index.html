@@ -118,6 +118,49 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2014-12-03">3 Dec, 2014</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
+And what is wrong with it?
+It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/">Unity Registration Validator</a>
 </h2>
 
@@ -362,6 +405,10 @@ But currently we have to change hardware and operating system it was running on,
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/">Angular5 and ASP.NET Core 2.0 cheat sheet</a>
           </li>
         
@@ -397,10 +444,6 @@ But currently we have to change hardware and operating system it was running on,
           <a href="http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
           </li>
         
-          <li>
-          <a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/">Having fun with Chef</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -420,7 +463,7 @@ But currently we have to change hardware and operating system it was running on,
 
         <div class="content">
           <ul>
-            <li><a href="/year/2018">2018 (1)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2018">2018 (2)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -452,7 +495,7 @@ But currently we have to change hardware and operating system it was running on,
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (4)</a></li><li><a href="/tags/docker">docker (3)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/angular">angular (1)</a></li>
+            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/docker">docker (4)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/angular">angular (1)</a></li>
           </ul>
         </div>
       </div>

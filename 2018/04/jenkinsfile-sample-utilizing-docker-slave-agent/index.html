@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Using SVN as source control for Sybase PowerBuilder  &middot; My personal notes on various topics</title>
+  <title>Jenkinsfile Sample Utilizing Docker Slave Agent  &middot; My personal notes on various topics</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,7 +14,7 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="powerbuilder, svn, ">
+<meta name="keywords" content="docker, jenkins, ">
 
 <link rel="author" href="http://plus.google.com/+VladimirKloz">
 
@@ -22,22 +22,22 @@
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="Using SVN as source control for Sybase PowerBuilder  &middot; My personal notes on various topics ">
+<meta property="og:title" content="Jenkinsfile Sample Utilizing Docker Slave Agent  &middot; My personal notes on various topics ">
 <meta property="og:site_name" content="My personal notes on various topics"/>
-<meta property="og:url" content="http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" />
+<meta property="og:url" content="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2010-05-15T00:00:00Z" />
-<meta property="og:article:modified_time" content="2010-05-15T00:00:00Z" />
+<meta property="og:article:published_time" content="2018-04-03T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-04-03T00:00:00Z" />
 
   
     
-<meta property="og:article:tag" content="powerbuilder">
+<meta property="og:article:tag" content="docker">
     
-<meta property="og:article:tag" content="svn">
+<meta property="og:article:tag" content="jenkins">
     
   
 
@@ -45,9 +45,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Using SVN as source control for Sybase PowerBuilder" />
+<meta name="twitter:title" content="Jenkinsfile Sample Utilizing Docker Slave Agent" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" />
+<meta name="twitter:url" content="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/" />
 <meta name="twitter:domain" content="http://voloda.bazilisek.net/">
   
 
@@ -56,21 +56,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Using SVN as source control for Sybase PowerBuilder",
+    "headline": "Jenkinsfile Sample Utilizing Docker Slave Agent",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+VladimirKloz?rel=author"
     },
-    "datePublished": "2010-05-15",
+    "datePublished": "2018-04-03",
     "description": "",
-    "wordCount": 912
+    "wordCount": 127
   }
 </script>
   
 
 
 
-<link rel="canonical" href="http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" />
+<link rel="canonical" href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.30.2" />
@@ -151,37 +151,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1>Using SVN as source control for Sybase PowerBuilder
+    <h1>Jenkinsfile Sample Utilizing Docker Slave Agent
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2010-05-15">15 May, 2010</time>
+  <time datetime="2018-04-03">3 Apr, 2018</time>
 </small>
 
 
   <small>
-  &middot; Read in about 5 min
-  &middot; (912 words)
+  &middot; Read in about 1 min
+  &middot; (127 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Using%20SVN%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f&amp;title=Using%20SVN%20as%20source%20control%20for%20Sybase%20PowerBuilder" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f&amp;title=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Using%20SVN%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -189,9 +189,9 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="http://voloda.bazilisek.net/tags/powerbuilder" class="label label-primary">powerbuilder</a>
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
   
-  <a href="http://voloda.bazilisek.net/tags/svn" class="label label-primary">svn</a>
+  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
   
 
 
@@ -204,147 +204,67 @@
 </div>
 
       <div class="content">
-  
+  <pre><code>pipeline {
+  agent none
 
-<p>This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another <a href="/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/">article</a>).<br />
-CVS we were are using for about 6 years and it was working perfectly.<br />
-But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.</p>
+  environment {
+    RELEASE_NUMBER = '17.1.1'
+    VERSION_NUMBER = VersionNumber(versionNumberString: '17.1.1.${BUILDS_ALL_TIME}')
+  }
 
-<h1 id="pbl-problems">PBL problems</h1>
 
-<p>The main difficulty of the Sybase Power Builder is in PBL libraries. PBL libraries are binary libraries containing both - sources and precompiled sources.<br />
-This solution causes many problems:</p>
+  stages {
+    stage('Checkout from GIT'){
+      agent any
+      steps {
+        script {
+          currentBuild.displayName = &quot;#${VERSION_NUMBER}&quot;
+        }
+        checkout scm
+      }
+    }
+    stage('NUGET package restore') {
+      agent { label 'nuget' }
+      steps {
+            echo 'Restoring nuget packages'
+            bat '&quot;%NUGET_PATH%&quot; restore TestSolution.sln'
+            dir ('.') {
+              stash 'sources'
+            }
+      }
+    }
+    stage('Build') {
+      agent { label 'dotNET_4.7'}
+      steps {
+        dir ('.') {
+          unstash 'sources'
+        }
 
-<ul>
-<li>PBLs are also very inclinable to faults (in Power Builder 7 it was not very surprising that after fullrebuild failure were PBLs completely broken).</li>
-<li>Object sources saved in PBLs are not easily comparable.</li>
-<li>Also built-in support for inefficiency (sources are checked-out to temporary PBL library, offline access is not very comfortable etc.).</li>
-<li>In the case of multiple developers working on the same project this causes many problems with sources synchronization (you can use many utilities, but it was always hell after one week track all changes and put them together - it took for about half a day per week and it was quiet often, that some changes were lost).<br /></li>
-</ul>
+        bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.exe\&quot; TestSolution.sln /p:Configuration=Release /p:Platform=\&quot;Any CPU\&quot;&quot;
 
-<h1 id="solution">Solution</h1>
+        dir ('TestSolution/bin') {
+          stash 'bins'
+        }
+        withCredentials([usernamePassword(credentialsId: 'cdd06d32-f11d-446c-8687-3debc9dba901', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+          bat &quot;git tag 'j-${VERSION_NUMBER}'&quot;
 
-<ul>
-<li>Use SVN as source control (you can use both *nix or Windows platform).</li>
-<li>Use TortoiseSVN (or any other free SVN GUI clients) for access to sources.</li>
-<li>Use Winmerge or any other free utility for sources differencies comparison.<br /></li>
-<li>Export all sources into SVN project source tree (the best way is to export every PBL library into the separate directory in the SVN source tree).</li>
-<li>On building machine use PowerGen for project compilation and PBLs restore. In each build you can take your PBLs from the scratch (PowerGen can resolve all dependecies between objects and import them back into PBLs in the correct order).<br /></li>
-<li>Every developer takes fresh PBLs after every build.</li>
-<li>Use existing Windows Domain authentication for access to SVN server.</li>
-<li>Integrate with current project management system.</li>
-</ul>
+          bat &quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@git.server.net/TestSolution2.git --tags&quot;
+        }
+      }
+    }
+    stage('Archive') {
+      agent any
+      steps {
+        dir ('TestSolution/bin') {
+          unstash 'bins'
+        }
+        archive '**/bin/Release/**.dll'
+      }
+    }
+  }
 
-<h1 id="svn-server-setup-on-windows">SVN server setup on Windows</h1>
-
-<ul>
-<li>Download <a href="http://www.apache.org/">Apache 2.2</a> installation MSI and install it (any examples will reffer to the default location)</li>
-<li>Install module <a href="http://sourceforge.net/projects/mod-auth-sspi">mod_auth_sspi</a></li>
-<li>Download and install <a href="http://www.blogger.com/post-edit.g?blogID=2152854310850949660&amp;postID=7977943162963394741">SVN</a>. You have to choose correct version for Apache 2.2. I suggest to use MSI installation package, because it will setup all required paths etc.</li>
-<li>Setup new SVN repository (<code>svnadmin create c:/svnroot</code>)</li>
-<li>Restart computer, if necessary.</li>
-</ul>
-
-<h2 id="apache-2-2-example-configuration">Apache 2.2 example configuration</h2>
-
-<pre><code>LoadModule dav_svn_module modules/mod_dav_svn.so
-LoadModule authz_svn_module modules/mod_authz_svn.so
-LoadModule sspi_auth_module modules/mod_auth_sspi.so
-
-&lt;location svn=&quot;&quot;&gt;
-   DAV svn
-   SVNPath c:/svnroot
-
-   AuthName &quot;SVN Access&quot;
-   AuthType SSPI
-   SSPIAuth on
-   SSPIAuthoritative on
-   SSPIOfferBasic on
-   SSPIDomain ourdom.ourcompany
-   require group &quot;ourdom\development&quot;
-&lt;/location&gt;
+}
 </code></pre>
-
-<h1 id="svn-repository-organization">SVN repository organization</h1>
-
-<p>The SVN repository is organized a bit differently than in CVS. You can definitely find more details on Google. Below are only some details.</p>
-
-<ul>
-<li>Each project consist of three subfolders, no sources should be commited directly under project name folder.</li>
-<li>branching code means that you made a repository copy to a branch folder.</li>
-<li><strong>trunk</strong> folder - contains sources of the main branch.</li>
-<li><strong>branches</strong> folder - contains branch folders for branch copies.</li>
-<li><strong>tags</strong> folder - contains branch folders for tag copies.</li>
-</ul>
-
-<h2 id="sample-svn-repository-structure">Sample SVN repository structure&gt;</h2>
-
-<pre><code>MyProject
-  +-- trunk
-  +-- branches
-     +-- fixes-1.3
-     +-- fixes-1.5
-  +-- tags
-     +-- build-1.3.1
-     +-- build-1.3.2
-     +-- build-1.5.1
-     +-- build-1.6.1
-</code></pre>
-
-<h1 id="editing-sources">Editing sources</h1>
-
-<ul>
-<li>Every developer can take fresh PBLs generated by PowerGen after build.</li>
-<li>Before change perform Update command on existing object.</li>
-<li>Import this object from SVN sandbox into your work PBL (replacing existing one).<br /></li>
-<li>Perform any required changes.</li>
-<li>Export modified object from working PBL to the SVN sandbox.</li>
-<li>Execute Commit command on the exported object in SVN sandbox, provide proper comment and send it to the SVN source control.</li>
-<li>You can also (and I strongly suggest this) perform commit on the entire SVN sandbox - this will send all modified files at once as single transaction. In history you can later see all files checked in as single commit.</li>
-</ul>
-
-<h1 id="benefits">Benefits</h1>
-
-<ul>
-<li>All sources are stored in plain text (including datawindows).</li>
-<li>All changes are simply trackable (from Power Builder 9 (?8?) this works much better, because in previous versions Power Builder changes order of methods on every save) - at least you know who and why made the change.<br /></li>
-<li>You can simply resolve any conflicts (no more hell with sharing and synchronizing PBLs between developers).<br /></li>
-<li>PBLs can&rsquo;t contain any old errors from rebuilding etc.</li>
-<li>You can also connect additional actions to every souce file commit/checkout/tag and automatically connect those into other company systems.<br /></li>
-<li>You can also use tags and branches for tracking your builds.</li>
-<li>SVN checkins are tracked as transactions, in history you can directly see all files related to the commit.</li>
-</ul>
-
-<h1 id="project-management-system-integration">Project Management System Integration</h1>
-
-<p>I found project CaptainHook on SourceForge which allows exactly what I wanted - creation of SVN server hooks using .NET code. So I made two simple plugins to it:</p>
-
-<ul>
-<li>One which disallows commiting changes to the tag folder.</li>
-<li>Second which tooks commit messages formatted same way as in CVS which exports information to the proprietaty project management system.</li>
-</ul>
-
-<h1 id="cvs-to-svn-migration">CVS to SVN migration</h1>
-
-<p>There are plenty of tools available for the repository migration from CVS to SVN. We have migrated a repository which had almost 1GB in CVS without any problems to our new SVN source control including tags and branches including the whole history of changes. Migration was running for about 12 hours.</p>
-
-<h1 id="links">Links</h1>
-
-<ul>
-<li><a href="http://www.tortoisesvn.org/">TortoiseSVN</a></li>
-<li><a href="http://winmerge.org/">WinMerge</a><br /></li>
-<li><a href="http://en.wikipedia.org/wiki/PowerBuilder">Sybase Power Builder on Wiki</a></li>
-
-<li><p><a href="http://www.ecrane.com/">PowerGen</a></p></li>
-
-<li><p><a href="http://voloda.bazilisek.net/2010/06/using-cvs-as-source-control-with-sybase.html">CVS and PowerBuilder</a></p></li>
-
-<li><p><a href="http://sourceforge.net/projects/captainhook/">CaptainHook</a></p></li>
-
-<li><p><a href="http://www.apache.org/">Apache</a></p></li>
-
-<li><p><a href="http://sourceforge.net/projects/mod-auth-sspi">mod_auth_sspi</a></p></li>
-</ul>
 
 </div>
 
@@ -352,22 +272,22 @@ LoadModule sspi_auth_module modules/mod_auth_sspi.so
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Using%20SVN%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f&amp;title=Using%20SVN%20as%20source%20control%20for%20Sybase%20PowerBuilder" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f&amp;title=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Using%20SVN%20as%20source%20control%20for%20Sybase%20PowerBuilder&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2010%2f05%2fusing-svn-as-source-control-for-sybase-powerbuilder%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Jenkinsfile%20Sample%20Utilizing%20Docker%20Slave%20Agent&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f04%2fjenkinsfile-sample-utilizing-docker-slave-agent%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -375,13 +295,13 @@ LoadModule sspi_auth_module modules/mod_auth_sspi.so
   
     <nav><ul class="pager">
     
-
+        <li class="previous">
+          <a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/" title="Angular5 and ASP.NET Core 2.0 cheat sheet">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
     
-      <li class="next">
-        <a href="http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/" title="Using CVS as source control for Sybase PowerBuilder">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
+
     
     </ul> </nav>
   
