@@ -6,10 +6,127 @@
     <description>Recent content in 2018 on My personal notes on various topics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Apr 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/year/2018/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</title>
+      <link>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
+      <description>
+
+&lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run command from Angular5 project folder: &lt;code&gt;ng test&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;create-an-injectable-service-with-an-interface&#34;&gt;Create an injectable service with an interface&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This allows to define a typescript interface implemented by a class&lt;/li&gt;
+&lt;li&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Injectable, InjectionToken } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/core&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { HttpClient, HttpHeaders } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/common/http&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Observable } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/Observable&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/add/operator/map&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IAuthenticationService {
+    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
+    extendToken(): Observable&amp;lt;any&amp;gt;;
+    logout();
+    isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+    hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; AUTHENTICATION_SERVICE = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; InjectionToken&amp;lt;IAuthenticationService&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AUTHENTICATION_SERVICE&amp;#39;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#00f&#34;&gt;@Injectable&lt;/span&gt;()
+&lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; AuthenticationService &lt;span style=&#34;color:#00f&#34;&gt;implements&lt;/span&gt; IAuthenticationService {
+    &lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
+
+    &lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
+        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
+            .map(token =&amp;gt; {
+                &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
+                &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
+            });
+    }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(
+    &lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;creating-a-spy-object-mock&#34;&gt;Creating a spy object/mock&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;...
+
+describe(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AppComponent&amp;#39;&lt;/span&gt;, () =&amp;gt; {
+  &lt;span style=&#34;color:#00f&#34;&gt;let&lt;/span&gt; serviceSpy: &lt;span style=&#34;color:#2b91af&#34;&gt;jasmine.SpyObj&lt;/span&gt;&amp;lt;IMyService&amp;gt;;
+
+  beforeEach(async(() =&amp;gt; {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+      providers: [
+        {
+          provide: &lt;span style=&#34;color:#2b91af&#34;&gt;MY_SERVICE&lt;/span&gt;,
+          useValue: &lt;span style=&#34;color:#2b91af&#34;&gt;jasmine.createSpyObj&lt;/span&gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;IMyService&amp;#39;&lt;/span&gt;, [&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;isLoggedIn&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;hasRole&amp;#39;&lt;/span&gt;])
+        }
+      ],
+      imports: [HttpClientTestingModule]
+    }).compileComponents();
+  }));
+
+  beforeEach(() =&amp;gt; {
+    serviceSpy = TestBed.get(MY_SERVICE);
+    &lt;span style=&#34;color:#008000&#34;&gt;// preconfigure expected return value
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    serviceSpy.hasRole = jasmine.createSpy().and.returnValue(&lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;);
+  });
+
+...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;validating-passed-parameters-on-spy-mock&#34;&gt;Validating passed parameters on spy/mock&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;expect(serviceSpy.hasRole).toHaveBeenCalledWith(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;admin&amp;#39;&lt;/span&gt;);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;setting-returned-value-from-a-spy-mock-method&#34;&gt;Setting returned value from a spy/mock method&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;serviceSpy.hasRole = jasmine.createSpy().and.returnValue(&lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;mocking-router-related-stuff&#34;&gt;Mocking router related stuff&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Needs to include module &lt;code&gt;RouterTestingModule&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;mocking-activatedroute-and-router&#34;&gt;Mocking ActivatedRoute and Router&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { ActivatedRoute, Router, convertToParamMap } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/router&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { RouterTestingModule } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/router/testing&amp;#39;&lt;/span&gt;;
+
+...
+
+  beforeEach(async(() =&amp;gt; {
+    TestBed.configureTestingModule({
+      declarations: [ LicenseEventLogComponent ],
+      providers: [
+        {
+          provide: &lt;span style=&#34;color:#2b91af&#34;&gt;ActivatedRoute&lt;/span&gt;,
+          useValue: {
+            snapshot: {
+              paramMap: &lt;span style=&#34;color:#2b91af&#34;&gt;convertToParamMap&lt;/span&gt;({ id: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;123&amp;#39;&lt;/span&gt; })
+            }
+          }
+        },
+        {
+          provide: &lt;span style=&#34;color:#2b91af&#34;&gt;Router&lt;/span&gt;,
+          useValue: &lt;span style=&#34;color:#2b91af&#34;&gt;jasmine.createSpyObj&lt;/span&gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Router&amp;#39;&lt;/span&gt;, [&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;navigate&amp;#39;&lt;/span&gt;])
+        },
+
+...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>

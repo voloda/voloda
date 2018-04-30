@@ -118,6 +118,45 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-04-30">30 Apr, 2018</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Running tests  Run command from Angular5 project folder: ng test  Create an injectable service with an interface  This allows to define a typescript interface implemented by a class For injection is actually used the AUTHENTICATION_SERVICE token  import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { HttpClient, HttpHeaders } from &#39;@angular/common/http&#39;; import { Observable } from &#39;rxjs/Observable&#39;; import &#39;rxjs/add/operator/map&#39;; export interface IAuthenticationService { login(username: string, password: string): Observable&lt;any&gt;; extendToken(): Observable&lt;any&gt;; logout(); isLoggedIn(): boolean; hasRole(role: string): boolean; } export const AUTHENTICATION_SERVICE = new InjectionToken&lt;IAuthenticationService&gt;(&#39;AUTHENTICATION_SERVICE&#39;); @Injectable() export class AuthenticationService implements IAuthenticationService { constructor(private http: HttpClient) { } // returns actually the token  login(username: string, password: string): Observable&lt;any&gt; { return this.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
 </h2>
 
@@ -288,45 +327,6 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/">Handling detailed code reviews in GIT</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2017-11-23">23 Nov, 2017</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/git" class="label label-primary">git</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Pull Requests are sometimes not sufficient - they allow to see changes, perhaps you can even see that a test build passed but these do not allow for actual functional testing or even navigating thru the code. Some times it is convenient to see all the changes in staging area (similar to TFS unshelve functionality) so functional test can be done and code can be reviewed more deeply.  Below steps allow to achieve the same state as for TFS unshelve - you end-up with code checked out and staged in GIT:
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -369,6 +369,12 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
     </a>
 </li>
 
+<li >
+  <a href="http://voloda.bazilisek.net//page/5/">
+    5
+    </a>
+</li>
+
 
 <li >
   <a aria-label="Next" href="http://voloda.bazilisek.net//page/2/">
@@ -376,7 +382,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
     </a>
 </li>
 <li >
-  <a aria-label="Last" href="http://voloda.bazilisek.net//page/4/">
+  <a aria-label="Last" href="http://voloda.bazilisek.net//page/5/">
     <span aria-hidden="true">&raquo;&raquo;</span>
   </a>
 </li>
@@ -396,6 +402,10 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
       <header><div class="title"><b>Latest Posts</b></div></header>
       <div class="content">
         <ul>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+          </li>
         
           <li>
           <a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
@@ -433,10 +443,6 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
           <a href="http://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
           </li>
         
-          <li>
-          <a href="http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -456,7 +462,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 
         <div class="content">
           <ul>
-            <li><a href="/year/2018">2018 (2)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2018">2018 (3)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -473,7 +479,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (6)</a></li>
+            <li><a href="/categories/notes">Notes (7)</a></li>
           </ul>
         </div>
       </div>
@@ -488,7 +494,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/docker">docker (4)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/angular">angular (1)</a></li>
+            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/docker">docker (4)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/angular">angular (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
           </ul>
         </div>
       </div>
