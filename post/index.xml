@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on My personal notes on various topics</title>
+    <title>Posts on My personal notes</title>
     <link>http://voloda.bazilisek.net/post/</link>
-    <description>Recent content in Posts on My personal notes on various topics</description>
+    <description>Recent content in Posts on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Apr 2018 00:00:00 +0000</lastBuildDate>
@@ -258,7 +258,8 @@ WebAPI.&lt;/p&gt;
       &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;target&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://localhost:56785&amp;#34;&lt;/span&gt;,
       &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;secure&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Update &lt;code&gt;/api&lt;/code&gt; to a virtual folder which should be proxified&lt;/li&gt;
 &lt;li&gt;Update &lt;code&gt;target&lt;/code&gt; to point to API&lt;/li&gt;
