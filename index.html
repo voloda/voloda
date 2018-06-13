@@ -109,6 +109,48 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-06-13">13 Jun, 2018</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but I found it pretty easily that the missing dependency on the image is Microsoft Visual C++ 2015 Redistributable Update 3.
+Below is Dockerfile I used to build the image.
+Into the same directory put download 8.0.11 Mysql server version https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip named as mysql.zip.
+Please note that the image below is created with root user without a password specified
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
 </h2>
 
@@ -273,51 +315,6 @@ Let&rsquo;s assume that we want to install SDK like Infragistic.
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/">Is it good idea to throw an exception in .NET C# constructor?</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2017-12-11">11 Dec, 2017</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/microsoft-unity" class="label label-primary">Microsoft Unity</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    I got reminded recently about two cases why it may be actually a bad idea to do a complex initialization in a class constructor in C#.
-All the code samples below are written just for the purpose of this post but are based on real code I either written or came across at some point.
-Case 1 - instance resolved via an IoC container Recently I was facing an issue that application started but remained non-functional.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -395,6 +392,10 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
           </li>
         
@@ -430,10 +431,6 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
           <a href="http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
           </li>
         
-          <li>
-          <a href="http://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -453,7 +450,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 
         <div class="content">
           <ul>
-            <li><a href="/year/2018">2018 (3)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2018">2018 (4)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -470,7 +467,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (7)</a></li>
+            <li><a href="/categories/notes">Notes (8)</a></li>
           </ul>
         </div>
       </div>
@@ -485,7 +482,7 @@ Case 1 - instance resolved via an IoC container Recently I was facing an issue t
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/docker">docker (4)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/angular">angular (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+            <li><a href="/tags/development">development (8)</a></li><li><a href="/tags/dotnet">dotNET (7)</a></li><li><a href="/tags/docker">docker (5)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/codeproject">CodeProject (2)</a></li><li><a href="/tags/angular">angular (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
           </ul>
         </div>
       </div>

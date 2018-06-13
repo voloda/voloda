@@ -6,10 +6,50 @@
     <description>Recent content in Posts on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jun 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</title>
+      <link>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
+      <description>&lt;p&gt;I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&amp;rsquo;t work out of the box but
+I found it pretty easily that the missing dependency on the image is &lt;code&gt;Microsoft Visual C++ 2015 Redistributable Update 3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Below is &lt;code&gt;Dockerfile&lt;/code&gt; I used to build the image.&lt;/p&gt;
+
+&lt;p&gt;Into the same directory put download 8.0.11 Mysql server version &lt;a href=&#34;https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip&#34;&gt;https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip&lt;/a&gt; named as &lt;code&gt;mysql.zip&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Please note that the image below is created with &lt;code&gt;root&lt;/code&gt; user without a password specified&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM microsoft/windowsservercore
+
+SHELL [&amp;quot;powershell&amp;quot;, &amp;quot;-Command&amp;quot;, &amp;quot;$ErrorActionPreference = &#39;Stop&#39;; $ProgressPreference = &#39;SilentlyContinue&#39;;&amp;quot;]
+
+COPY mysql.zip c:\\mysql.zip
+
+RUN Expand-Archive c:/mysql.zip -DestinationPath C:/ ; \
+    Remove-Item c:/mysql.zip
+
+RUN $env:PATH = &#39;C:\\mysql-8.0.11-winx64\\bin\\;&#39; + $env:PATH; \
+    [Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
+
+RUN Invoke-WebRequest &#39;https://download.microsoft.com/download/6/D/F/6DF3FF94-F7F9-4F0B-838C-A328D1A7D0EE/vc_redist.x64.exe&#39; -OutFile vcredist_x64.exe ; \
+    Start-Process vcredist_x64.exe -ArgumentList &#39;/install&#39;, &#39;/passive&#39;, &#39;/norestart&#39; -NoNewWindow -Wait ; \
+    Remove-Item vcredist_x64.exe
+
+RUN C:\\mysql-8.0.11-winx64\\bin\\mysqld --initialize-insecure
+RUN C:\\mysql-8.0.11-winx64\\bin\\mysqld --install
+
+
+ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</title>

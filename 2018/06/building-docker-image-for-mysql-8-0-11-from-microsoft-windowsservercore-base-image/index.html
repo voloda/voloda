@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Cyclocomputer Garmin Edge 520 - experience  &middot; My personal notes</title>
+  <title>Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image  &middot; My personal notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,7 +14,7 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="">
+<meta name="keywords" content="docker, ">
 
 <link rel="author" href="http://plus.google.com/+VladimirKloz">
 
@@ -22,26 +22,30 @@
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="Cyclocomputer Garmin Edge 520 - experience  &middot; My personal notes ">
+<meta property="og:title" content="Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image  &middot; My personal notes ">
 <meta property="og:site_name" content="My personal notes"/>
-<meta property="og:url" content="http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/" />
+<meta property="og:url" content="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2016-10-16T00:00:00Z" />
-<meta property="og:article:modified_time" content="2016-10-16T00:00:00Z" />
+<meta property="og:article:published_time" content="2018-06-13T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-06-13T00:00:00Z" />
 
+  
+    
+<meta property="og:article:tag" content="docker">
+    
   
 
   
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Cyclocomputer Garmin Edge 520 - experience" />
+<meta name="twitter:title" content="Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/" />
+<meta name="twitter:url" content="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" />
 <meta name="twitter:domain" content="http://voloda.bazilisek.net/">
   
 
@@ -50,21 +54,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Cyclocomputer Garmin Edge 520 - experience",
+    "headline": "Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+VladimirKloz?rel=author"
     },
-    "datePublished": "2016-10-16",
+    "datePublished": "2018-06-13",
     "description": "",
-    "wordCount": 312
+    "wordCount": 140
   }
 </script>
   
 
 
 
-<link rel="canonical" href="http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/" />
+<link rel="canonical" href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.40.3" />
@@ -141,42 +145,47 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="title-metas text-center">
 
-    <h1>Cyclocomputer Garmin Edge 520 - experience
+    <h1>Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2016-10-16">16 Oct, 2016</time>
+  <time datetime="2018-06-13">13 Jun, 2018</time>
 </small>
 
 
   <small>
-  &middot; Read in about 2 min
-  &middot; (312 words)
+  &middot; Read in about 1 min
+  &middot; (140 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Cyclocomputer%20Garmin%20Edge%20520%20-%20experience&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Building%20Docker%20Image%20For%20MySql%208.0.11%20From%20Microsoft%2fWindowsservercore%20Base%20Image&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f&amp;title=Cyclocomputer%20Garmin%20Edge%20520%20-%20experience" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f&amp;title=Building%20Docker%20Image%20For%20MySql%208.0.11%20From%20Microsoft%2fWindowsservercore%20Base%20Image" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Cyclocomputer%20Garmin%20Edge%20520%20-%20experience&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Building%20Docker%20Image%20For%20MySql%208.0.11%20From%20Microsoft%2fWindowsservercore%20Base%20Image&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
 
 <div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+
 
 </div>
 
@@ -188,61 +197,37 @@
 
 
       <div class="content">
-  
+  <p>I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but
+I found it pretty easily that the missing dependency on the image is <code>Microsoft Visual C++ 2015 Redistributable Update 3</code>.</p>
 
-<p>I bought Garmin Edge 520 couple weeks ago. There are quite a few reviews on internet so this is not intended to be a general review.</p>
+<p>Below is <code>Dockerfile</code> I used to build the image.</p>
 
-<p>This is rather few comments on features I didn&rsquo;t find described elsewhere.</p>
+<p>Into the same directory put download 8.0.11 Mysql server version <a href="https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip">https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip</a> named as <code>mysql.zip</code>.</p>
 
-<p><img src="/img/mix/edge520.jpg" alt="Garmin Edge 520" /></p>
+<p><strong>Please note that the image below is created with <code>root</code> user without a password specified</strong></p>
 
-<h1 id="device-configuration">Device configuration</h1>
+<pre><code>FROM microsoft/windowsservercore
 
-<ul>
-<li>I was used from Sigma Rox 9.0 that the configuration is done with convenience in a related software.
+SHELL [&quot;powershell&quot;, &quot;-Command&quot;, &quot;$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';&quot;]
 
-<ul>
-<li>This served also for the configuration backup.</li>
-</ul></li>
-<li>Unfortunately most of the setup for Garmin Edge 520 needs to be done manually on the device itself.</li>
-<li>For initial setup this is pretty time consuming.</li>
-</ul>
+COPY mysql.zip c:\\mysql.zip
 
-<h1 id="navigation-features">Navigation features</h1>
+RUN Expand-Archive c:/mysql.zip -DestinationPath C:/ ; \
+    Remove-Item c:/mysql.zip
 
-<p>As written in reviews the device does not have real navigation. Instead you can upload a <code>.gpx</code> file and device will navigate you on a route.</p>
+RUN $env:PATH = 'C:\\mysql-8.0.11-winx64\\bin\\;' + $env:PATH; \
+    [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine);
 
-<ul>
-<li>I used this link to generate Open Street maps for device:
+RUN Invoke-WebRequest 'https://download.microsoft.com/download/6/D/F/6DF3FF94-F7F9-4F0B-838C-A328D1A7D0EE/vc_redist.x64.exe' -OutFile vcredist_x64.exe ; \
+    Start-Process vcredist_x64.exe -ArgumentList '/install', '/passive', '/norestart' -NoNewWindow -Wait ; \
+    Remove-Item vcredist_x64.exe
 
-<ul>
-<li>Map generation can be found here: <a href="http://garmin.openstreetmap.nl/">http://http://garmin.openstreetmap.nl/</a></li>
-</ul></li>
-<li>Route from <a href="http://ridewithgps.com">Ride With GPS</a> seems to work great even in Czech Republic.
+RUN C:\\mysql-8.0.11-winx64\\bin\\mysqld --initialize-insecure
+RUN C:\\mysql-8.0.11-winx64\\bin\\mysqld --install
 
-<ul>
-<li>It takes some time before you get used to how the navigation works.</li>
-<li>Recently I was able to plan a group ride for 150km in mountains which worked very well.</li>
-<li>The only downside is that it took more than a minute before the device read the course and started to navigate.</li>
-<li>We made a small side trip and the device found itself back on the course once we joined the original plan.w</li>
-</ul></li>
-<li>It is very convenient to watch for example elevation profile during a ride.</li>
-<li>Overall the navigation is basically a race against a virtual partner.</li>
-</ul>
 
-<h1 id="strava-segments">Strava Segments</h1>
-
-<ul>
-<li>I liked <a href="http://www.strava.com">Strava</a> segments.</li>
-<li>Starred segments appear automatically on the device if you have Strava premium membership.</li>
-<li>Each segment can be in the device configured against whom you compete.</li>
-<li>There two related challenges:
-
-<ul>
-<li>When using course navigation or Garmin Connect workouts segments are disabled by default.</li>
-<li>GPS precision can start/end the segment in a little bit different location than Strava will later evaluate it.</li>
-</ul></li>
-</ul>
+ENTRYPOINT [&quot;cmd.exe&quot;]
+</code></pre>
 
 </div>
 
@@ -250,22 +235,22 @@
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Cyclocomputer%20Garmin%20Edge%20520%20-%20experience&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Building%20Docker%20Image%20For%20MySql%208.0.11%20From%20Microsoft%2fWindowsservercore%20Base%20Image&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f&amp;title=Cyclocomputer%20Garmin%20Edge%20520%20-%20experience" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f&amp;title=Building%20Docker%20Image%20For%20MySql%208.0.11%20From%20Microsoft%2fWindowsservercore%20Base%20Image" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Cyclocomputer%20Garmin%20Edge%20520%20-%20experience&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2016%2f10%2fcyclocomputer-garmin-edge-520-experience%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Building%20Docker%20Image%20For%20MySql%208.0.11%20From%20Microsoft%2fWindowsservercore%20Base%20Image&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f06%2fbuilding-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -274,18 +259,12 @@
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="http://voloda.bazilisek.net/2015/09/having-fun-with-chef/" title="Having fun with Chef">
+          <a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/" title="Angular5 Materialized Design And Karma Unit Tests Cheat Sheet">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="http://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/" title="Chocolatey setup on DEV machine &#43; useful packages">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   
