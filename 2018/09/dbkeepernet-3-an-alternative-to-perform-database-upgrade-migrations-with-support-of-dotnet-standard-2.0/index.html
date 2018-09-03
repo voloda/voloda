@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0  &middot; My personal notes</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="dotNET, development, CodeProject, ">
+
+<link rel="author" href="http://plus.google.com/+VladimirKloz">
+
+
+<meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
+
+
+<meta property="og:title" content="DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0  &middot; My personal notes ">
+<meta property="og:site_name" content="My personal notes"/>
+<meta property="og:url" content="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-09-03T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-09-03T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="dotNET">
+    
+<meta property="og:article:tag" content="development">
+    
+<meta property="og:article:tag" content="CodeProject">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" />
+<meta name="twitter:domain" content="http://voloda.bazilisek.net/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+VladimirKloz?rel=author"
+    },
+    "datePublished": "2018-09-03",
+    "description": "",
+    "wordCount": 1056
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.47.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" integrity="sha512-Dapq1NXpkFToVpKObPZoH8hcx2m6YQ7AXQ1A25gT7H3TTuQQDp56DPEzmfy/anEleu3KSbrZuLLa8ArOfUr0pQ==">
+
+</head>
+<body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+              
+                <a href="http://voloda.bazilisek.net/" >
+                  
+                  Home
+                </a>
+              
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="title-metas text-center">
+
+    <h1>DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-09-03">3 Sep, 2018</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 5 min
+  &middot; (1056 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=DbKeeperNet%203%20-%20an%20alternative%20to%20perform%20database%20upgrade%20%28migrations%29%20with%20support%20of%20.NET%20Standard%202.0&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f&amp;title=DbKeeperNet%203%20-%20an%20alternative%20to%20perform%20database%20upgrade%20%28migrations%29%20with%20support%20of%20.NET%20Standard%202.0" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=DbKeeperNet%203%20-%20an%20alternative%20to%20perform%20database%20upgrade%20%28migrations%29%20with%20support%20of%20.NET%20Standard%202.0&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/codeproject" class="label label-primary">CodeProject</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+
+      <div class="content">
+  
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Each project using database access solves how to distribute database schema and how to keep it up-to-date after upgrades. I was solving this problem multiple times, so I decided to write a common, easy to use, and freely available library. The result of this is the <strong>DbKeeperNet</strong> library which is pure ADO.NET framework (no dependency on Entity Framework).</p>
+
+<p>This article will briefly show how to use <strong>DbKeeperNet</strong> library to fulfill this task. The library is designed as extensible and with planned support to any database engine.</p>
+
+<p>It is basically a simple alternative to Entity Framework database migrations for projects which do not use EF.</p>
+
+<h1 id="supported-features">Supported Features</h1>
+
+<ul>
+<li>.NET Standard 2.0
+
+<ul>
+<li>Supports .NET Core 2.0+</li>
+<li>Supports .NET Framework 4.6.1+</li>
+</ul></li>
+<li>Very simple usage.</li>
+<li>Database commands are kept in a simple, structured XML file.</li>
+<li>Each upgrade step is executed in a separate transaction (if supported by the database service). In the case of failure, all further steps are prohibited.</li>
+<li>Rich set of built-in preconditions used for evaluation whether update should or shouldn&rsquo;t be executed.</li>
+<li>Support for unlimited and customizable list of database engines.</li>
+<li>In single update, a script may be an alternative to SQL commands, for all database engine types if needed.</li>
+<li>Support for custom preconditions.</li>
+<li>Support for custom in-code upgrade steps (allows complex data transformations to be done in code instead of SQL).</li>
+<li>DbKeeperNet provides deep logging of what is currently happening. Diagnostic output may be redirected through the standard .NET <code>System.Diagnostics.Trace</code> class or the <code>System.Diagnostics.TraceSource</code> class, or to a custom plug-in, allowing integration to an already existing application diagnostics framework.</li>
+<li>XML update script structure is strictly defined by the XSD schema which can be used in any XML editor with auto-completion (intellisense).</li>
+<li>Support for MySQL Connect .NET.</li>
+<li>Support for PostrgreSQL.</li>
+<li>Support for SQLite.</li>
+<li>Support for Microsoft SQL server.</li>
+<li>Support for Firebird.</li>
+</ul>
+
+<h1 id="background">Background</h1>
+
+<p>There are two basic principles on how to get your application&rsquo;s database schema up-to-date:</p>
+
+<ul>
+<li>Before each change, check directly in the database whether a change was already made or not (such as ask the database whether a table already exists or not).</li>
+<li>Have a kind of database schema versioning table and record the current schema version.</li>
+</ul>
+
+<p>DbKeeperNet supports both these principles; however, I suggest to use the second one.</p>
+
+<p>DbKeeperNet&rsquo;s design for this second principle is in a unique identifier for each update step. The database service implementation simply keeps track of these already executed steps (concrete implementation is strongly dependent on the used database service). This allows you to very simply search the database and check which steps were already executed.</p>
+
+<h1 id="using-dbkeepernet">Using DbKeeperNet</h1>
+
+<p>The code snippets below are taken from the <em>CoreConsoleApp</em> project which is part of the source control. If you want to directly execute
+the demo project it should work against the SQLite database.</p>
+
+<p>For other database types you need to adjust connection string and setup appropriate database engine using the correct extension reference:</p>
+
+<ul>
+<li><code>DbKeeperNet.Extensions.Mysql</code>  and its <code>UseMysql()</code></li>
+<li><code>DbKeeperNet.Extensions.Firebird</code>  and its <code>UseFirebird()</code></li>
+<li><code>DbKeeperNet.Extensions.Pgsql</code>  and its <code>UsePgsql()</code></li>
+<li><code>DbKeeperNet.Extensions.SQLite</code>  and its <code>UseSQLite()</code></li>
+<li><code>DbKeeperNet.Extensions.SqlServer</code>  and its <code>UseSqlServer()</code></li>
+</ul>
+
+<p>For more complex scenarios, you can check the <em>ComplexDemo</em> project (there is an example of a custom step implementation, split XML scripts, etc.).</p>
+
+<p>My favorite way to implement an upgrade script is by using an XML file stored as an embedded resource in an assembly. So, let&rsquo;s prepare a simple upgrade script with an alternative statement for two different database engines (you can find it in the <em>CoreConsoleApp</em> demo project as the file <em>DatabaseUpgrade.xml</em>
+which contains also alternative database statements):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#00f">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34; ?&gt;</span>
+&lt;upd:Updates xmlns:upd=<span style="color:#a31515">&#34;http://code.google.com/p/dbkeepernet/Updates-1.0.xsd&#34;</span>
+                    xmlns:xsi=<span style="color:#a31515">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+             xsi:schemaLocation=
+        <span style="color:#a31515">&#34;http://code.google.com/p/dbkeepernet/Updates-1.0.xsd Updates-1.0.xsd&#34;</span>
+                AssemblyName=<span style="color:#a31515">&#34;DbKeeperNet.SimpleDemo&#34;</span>&gt;
+  <span style="color:#008000">&lt;!-- Default way how to check whether to execute update step or not --&gt;</span>
+  &lt;DefaultPreconditions&gt;
+    <span style="color:#008000">&lt;!-- We will use step information saving strategy --&gt;</span>
+    &lt;Precondition FriendlyName=<span style="color:#a31515">&#34;Update step executed&#34;</span> 
+                Precondition=<span style="color:#a31515">&#34;StepNotExecuted&#34;</span>/&gt;
+  &lt;/DefaultPreconditions&gt;
+  
+  &lt;Update Version=<span style="color:#a31515">&#34;1.00&#34;</span>&gt;
+    &lt;UpdateStep xsi:type=<span style="color:#a31515">&#34;upd:UpdateDbStepType&#34;</span> 
+    FriendlyName=<span style="color:#a31515">&#34;Create table DbKeeperNet_SimpleDemo&#34;</span> Id=<span style="color:#a31515">&#34;1&#34;</span>&gt;
+      <span style="color:#008000">&lt;!-- DbType attribute may be omitted - it will result in default value all
+</span><span style="color:#008000">           which means all database types --&gt;</span>
+      &lt;AlternativeStatement DbType=<span style="color:#a31515">&#34;MsSql&#34;</span>&gt;
+        <span style="color:#00f">&lt;![CDATA[
+</span><span style="color:#00f">          CREATE TABLE DbKeeperNet_SimpleDemo
+</span><span style="color:#00f">          (
+</span><span style="color:#00f">          id int identity(1, 1) not null,
+</span><span style="color:#00f">          name nvarchar(32),
+</span><span style="color:#00f">          constraint PK_DbKeeperNet_SimpleDemo primary key clustered (id)
+</span><span style="color:#00f">          )
+</span><span style="color:#00f">        ]]&gt;</span>
+      &lt;/AlternativeStatement&gt;
+    &lt;/UpdateStep&gt;
+    &lt;UpdateStep xsi:type=<span style="color:#a31515">&#34;upd:UpdateDbStepType&#34;</span> 
+    FriendlyName=<span style="color:#a31515">&#34;Fill table DbKeeperNet_SimpleDemo&#34;</span> Id=<span style="color:#a31515">&#34;2&#34;</span>&gt;
+      &lt;AlternativeStatement DbType=<span style="color:#a31515">&#34;MsSql&#34;</span>&gt;
+        <span style="color:#00f">&lt;![CDATA[
+</span><span style="color:#00f">          insert into DbKeeperNet_SimpleDemo(name) values(&#39;First value&#39;);
+</span><span style="color:#00f">          insert into DbKeeperNet_SimpleDemo(name) values(&#39;Second value&#39;);
+</span><span style="color:#00f">        ]]&gt;</span>
+      &lt;/AlternativeStatement&gt;
+    &lt;/UpdateStep&gt;
+  &lt;/Update&gt;
+&lt;/upd:Updates&gt;</code></pre></div>
+<p>Now, we will implement the necessary steps for the code execution:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#008000">// Perform all configured database updates
+</span><span style="color:#008000"></span><span style="color:#00f">const</span> <span style="color:#2b91af">string</span> connectionString = <span style="color:#a31515">&#34;Data Source=fullframeworkdemo.db3&#34;</span>;
+
+<span style="color:#2b91af">var</span> serviceCollection = <span style="color:#00f">new</span> ServiceCollection();
+serviceCollection.AddDbKeeperNet(c =&gt;
+{
+    c
+    .UseSQLite(connectionString)
+    .AddEmbeddedResourceScript(<span style="color:#a31515">&#34;FullFrameworkConsoleApp.DatabaseUpgrade.xml,FullFrameworkConsoleApp&#34;</span>);
+});
+serviceCollection.AddLogging(c =&gt; { c.AddConsole(); });
+
+<span style="color:#2b91af">var</span> serviceProvider = serviceCollection.BuildServiceProvider(<span style="color:#00f">true</span>);
+
+<span style="color:#00f">using</span> (<span style="color:#2b91af">var</span> scope = serviceProvider.CreateScope())
+{
+    <span style="color:#2b91af">var</span> upgrader = scope.ServiceProvider.GetService&lt;IDatabaseUpdater&gt;();
+    upgrader.ExecuteUpgrade();
+}
+
+<span style="color:#008000">// the above line is last required line for installation
+</span><span style="color:#008000">// And now just print all inserted rows on console
+</span><span style="color:#008000">// (just for demonstration purpose)
+</span><span style="color:#008000"></span><span style="color:#00f">using</span> (<span style="color:#2b91af">var</span> c = <span style="color:#00f">new</span> SqliteConnection(connectionString))
+{
+    c.Open();
+
+    DbCommand cmd = c.CreateCommand();
+    cmd.CommandText = <span style="color:#a31515">&#34;select * from DbKeeperNet_SimpleDemo&#34;</span>;
+    DbDataReader reader = cmd.ExecuteReader();
+    <span style="color:#00f">while</span> (reader.Read())
+        Console.WriteLine(<span style="color:#a31515">&#34;{0}: {1}&#34;</span>, reader[0], reader[1]);
+}</code></pre></div>
+<p>And that is all - all database changes are executed automatically, only in the case that they were not already executed.</p>
+
+<h1 id="changes-from-previous-releases">Changes from previous releases</h1>
+
+<p>The XML is backward compatible so you just need to update the way how the database upgrade is invoked. This will give you flexibility of new versions
+of the .NET framework including .NET Core 2.1.</p>
+
+<h1 id="demo-projects">Demo projects</h1>
+
+<ul>
+<li><a href="https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/ASPNETCore">ASP.NET Core demo</a></li>
+<li><a href="https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/ASPNet">ASP.NET MVC demo</a></li>
+<li><a href="https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/CoreConsoleApp">.NET Core Console Application demo</a></li>
+<li><a href="https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/FullFrameworkConsoleApp">.NET Framework 4.6.1 demo</a></li>
+</ul>
+
+<h1 id="writing-database-update-scripts">Writing Database Update Scripts</h1>
+
+<ul>
+<li>All scripts are executed in the same order as they were registered</li>
+<li>The <code>Assembly</code> attribute of the <code>Updates</code> element is in fact a namespace in which each <code>Version</code> and <code>Step</code> must be unique. If you would logically divide a single script into multiple files, you can use the same value in all the scripts.</li>
+<li>The <code>Version</code> attribute of the <code>Update</code> element is intended to be used as a marker of database schema version. I suggest using a unique value for each distributed build changing the database schema (this value can be the same as the assembly version).</li>
+<li>The <code>Step</code> attribute of the <code>UpdateStep</code> element should be unique inside each update version.</li>
+<li>Never change the <code>AssemblyName</code>, <code>Version</code>, and <code>Step</code> steps after you deploy the application, unless you are absolutely sure what you are doing.&nbsp;</li>
+</ul>
+
+<h1 id="project-references">Project references</h1>
+
+<ul>
+<li><a href="http://github.com/DbKeeperNet/DbKeeperNet">http://github.com/DbKeeperNet/DbKeeperNet</a>.</li>
+<li><a href="https://gitter.im/dbkeepernet/Lobby"><img src="https://badges.gitter.im/gitterHQ/gitter.png" alt="Gitter char" /></a></li>
+</ul>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>This article shows only the basics from a set of supported functions. More information and examples of upgrade scripts can be find in the DbKeeperNet source files or in the unit tests.</p>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=DbKeeperNet%203%20-%20an%20alternative%20to%20perform%20database%20upgrade%20%28migrations%29%20with%20support%20of%20.NET%20Standard%202.0&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f&amp;title=DbKeeperNet%203%20-%20an%20alternative%20to%20perform%20database%20upgrade%20%28migrations%29%20with%20support%20of%20.NET%20Standard%202.0" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=DbKeeperNet%203%20-%20an%20alternative%20to%20perform%20database%20upgrade%20%28migrations%29%20with%20support%20of%20.NET%20Standard%202.0&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2018%2f09%2fdbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" title="Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/">Angular5 and ASP.NET Core 2.0 cheat sheet</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/">How to create Docker build agent image with SDK installed from MSI</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/">Is it good idea to throw an exception in .NET C# constructor?</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/">Handling detailed code reviews in GIT</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+    
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Year</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/year/2018">2018 (5)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/notes">Notes (8)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (5)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/codeproject">CodeProject (3)</a></li><li><a href="/tags/angular">angular (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+    
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var _gaq=[['_setAccount','UA-8950020-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+
+
+<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" integrity="sha512-oHYb&#43;FmO3aK7LA40ijFgxBjyvDCQj0B0DufzDau97tJ9gu5Y4WQAut0a6EznvnzhBwLJviFqvl3hy0l96ZXoUA=="></script>
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+  </body>
+</html>
+

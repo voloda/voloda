@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</loc>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</loc>
     <lastmod>2018-06-12T21:25:20+02:00</lastmod>
   </url>
@@ -144,7 +149,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/year/2018/</loc>
-    <lastmod>2018-06-12T21:25:20+02:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -167,13 +172,13 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/codeproject/</loc>
-    <lastmod>2017-11-18T07:52:08+01:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/codeproject/</loc>
-    <lastmod>2017-11-18T07:52:08+01:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -185,7 +190,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/development/</loc>
-    <lastmod>2017-12-11T08:39:54+01:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -197,7 +202,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/dotnet/</loc>
-    <lastmod>2017-12-11T08:39:54+01:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,7 +232,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/</loc>
-    <lastmod>2018-06-12T21:25:20+02:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -239,7 +244,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/post/</loc>
-    <lastmod>2018-06-12T21:25:20+02:00</lastmod>
+    <lastmod>2018-09-02T21:51:21+02:00</lastmod>
     <priority>0</priority>
   </url>
   
