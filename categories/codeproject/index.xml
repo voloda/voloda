@@ -6,10 +6,197 @@
     <description>Recent content in CodeProject on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Sep 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/categories/codeproject/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</title>
+      <link>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Each project using database access solves how to distribute database schema and how to keep it up-to-date after upgrades. I was solving this problem multiple times, so I decided to write a common, easy to use, and freely available library. The result of this is the &lt;strong&gt;DbKeeperNet&lt;/strong&gt; library which is pure ADO.NET framework (no dependency on Entity Framework).&lt;/p&gt;
+
+&lt;p&gt;This article will briefly show how to use &lt;strong&gt;DbKeeperNet&lt;/strong&gt; library to fulfill this task. The library is designed as extensible and with planned support to any database engine.&lt;/p&gt;
+
+&lt;p&gt;It is basically a simple alternative to Entity Framework database migrations for projects which do not use EF.&lt;/p&gt;
+
+&lt;h1 id=&#34;supported-features&#34;&gt;Supported Features&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.NET Standard 2.0
+
+&lt;ul&gt;
+&lt;li&gt;Supports .NET Core 2.0+&lt;/li&gt;
+&lt;li&gt;Supports .NET Framework 4.6.1+&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Very simple usage.&lt;/li&gt;
+&lt;li&gt;Database commands are kept in a simple, structured XML file.&lt;/li&gt;
+&lt;li&gt;Each upgrade step is executed in a separate transaction (if supported by the database service). In the case of failure, all further steps are prohibited.&lt;/li&gt;
+&lt;li&gt;Rich set of built-in preconditions used for evaluation whether update should or shouldn&amp;rsquo;t be executed.&lt;/li&gt;
+&lt;li&gt;Support for unlimited and customizable list of database engines.&lt;/li&gt;
+&lt;li&gt;In single update, a script may be an alternative to SQL commands, for all database engine types if needed.&lt;/li&gt;
+&lt;li&gt;Support for custom preconditions.&lt;/li&gt;
+&lt;li&gt;Support for custom in-code upgrade steps (allows complex data transformations to be done in code instead of SQL).&lt;/li&gt;
+&lt;li&gt;DbKeeperNet provides deep logging of what is currently happening. Diagnostic output may be redirected through the standard .NET &lt;code&gt;System.Diagnostics.Trace&lt;/code&gt; class or the &lt;code&gt;System.Diagnostics.TraceSource&lt;/code&gt; class, or to a custom plug-in, allowing integration to an already existing application diagnostics framework.&lt;/li&gt;
+&lt;li&gt;XML update script structure is strictly defined by the XSD schema which can be used in any XML editor with auto-completion (intellisense).&lt;/li&gt;
+&lt;li&gt;Support for MySQL Connect .NET.&lt;/li&gt;
+&lt;li&gt;Support for PostrgreSQL.&lt;/li&gt;
+&lt;li&gt;Support for SQLite.&lt;/li&gt;
+&lt;li&gt;Support for Microsoft SQL server.&lt;/li&gt;
+&lt;li&gt;Support for Firebird.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;background&#34;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;There are two basic principles on how to get your application&amp;rsquo;s database schema up-to-date:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Before each change, check directly in the database whether a change was already made or not (such as ask the database whether a table already exists or not).&lt;/li&gt;
+&lt;li&gt;Have a kind of database schema versioning table and record the current schema version.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;DbKeeperNet supports both these principles; however, I suggest to use the second one.&lt;/p&gt;
+
+&lt;p&gt;DbKeeperNet&amp;rsquo;s design for this second principle is in a unique identifier for each update step. The database service implementation simply keeps track of these already executed steps (concrete implementation is strongly dependent on the used database service). This allows you to very simply search the database and check which steps were already executed.&lt;/p&gt;
+
+&lt;h1 id=&#34;using-dbkeepernet&#34;&gt;Using DbKeeperNet&lt;/h1&gt;
+
+&lt;p&gt;The code snippets below are taken from the &lt;em&gt;CoreConsoleApp&lt;/em&gt; project which is part of the source control. If you want to directly execute
+the demo project it should work against the SQLite database.&lt;/p&gt;
+
+&lt;p&gt;For other database types you need to adjust connection string and setup appropriate database engine using the correct extension reference:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DbKeeperNet.Extensions.Mysql&lt;/code&gt;  and its &lt;code&gt;UseMysql()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DbKeeperNet.Extensions.Firebird&lt;/code&gt;  and its &lt;code&gt;UseFirebird()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DbKeeperNet.Extensions.Pgsql&lt;/code&gt;  and its &lt;code&gt;UsePgsql()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DbKeeperNet.Extensions.SQLite&lt;/code&gt;  and its &lt;code&gt;UseSQLite()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DbKeeperNet.Extensions.SqlServer&lt;/code&gt;  and its &lt;code&gt;UseSqlServer()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more complex scenarios, you can check the &lt;em&gt;ComplexDemo&lt;/em&gt; project (there is an example of a custom step implementation, split XML scripts, etc.).&lt;/p&gt;
+
+&lt;p&gt;My favorite way to implement an upgrade script is by using an XML file stored as an embedded resource in an assembly. So, let&amp;rsquo;s prepare a simple upgrade script with an alternative statement for two different database engines (you can find it in the &lt;em&gt;CoreConsoleApp&lt;/em&gt; demo project as the file &lt;em&gt;DatabaseUpgrade.xml&lt;/em&gt;
+which contains also alternative database statements):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34; ?&amp;gt;&lt;/span&gt;
+&amp;lt;upd:Updates xmlns:upd=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://code.google.com/p/dbkeepernet/Updates-1.0.xsd&amp;#34;&lt;/span&gt;
+                    xmlns:xsi=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt;
+             xsi:schemaLocation=
+        &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;http://code.google.com/p/dbkeepernet/Updates-1.0.xsd Updates-1.0.xsd&amp;#34;&lt;/span&gt;
+                AssemblyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;DbKeeperNet.SimpleDemo&amp;#34;&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- Default way how to check whether to execute update step or not --&amp;gt;&lt;/span&gt;
+  &amp;lt;DefaultPreconditions&amp;gt;
+    &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- We will use step information saving strategy --&amp;gt;&lt;/span&gt;
+    &amp;lt;Precondition FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Update step executed&amp;#34;&lt;/span&gt; 
+                Precondition=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;StepNotExecuted&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/DefaultPreconditions&amp;gt;
+  
+  &amp;lt;Update Version=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;1.00&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:UpdateDbStepType&amp;#34;&lt;/span&gt; 
+    FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Create table DbKeeperNet_SimpleDemo&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&amp;gt;
+      &lt;span style=&#34;color:#008000&#34;&gt;&amp;lt;!-- DbType attribute may be omitted - it will result in default value all
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;           which means all database types --&amp;gt;&lt;/span&gt;
+      &amp;lt;AlternativeStatement DbType=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;MsSql&amp;#34;&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;![CDATA[
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          CREATE TABLE DbKeeperNet_SimpleDemo
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          (
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          id int identity(1, 1) not null,
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          name nvarchar(32),
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          constraint PK_DbKeeperNet_SimpleDemo primary key clustered (id)
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          )
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;        ]]&amp;gt;&lt;/span&gt;
+      &amp;lt;/AlternativeStatement&amp;gt;
+    &amp;lt;/UpdateStep&amp;gt;
+    &amp;lt;UpdateStep xsi:type=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;upd:UpdateDbStepType&amp;#34;&lt;/span&gt; 
+    FriendlyName=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Fill table DbKeeperNet_SimpleDemo&amp;#34;&lt;/span&gt; Id=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;AlternativeStatement DbType=&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;MsSql&amp;#34;&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;![CDATA[
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          insert into DbKeeperNet_SimpleDemo(name) values(&amp;#39;First value&amp;#39;);
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;          insert into DbKeeperNet_SimpleDemo(name) values(&amp;#39;Second value&amp;#39;);
+&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;        ]]&amp;gt;&lt;/span&gt;
+      &amp;lt;/AlternativeStatement&amp;gt;
+    &amp;lt;/UpdateStep&amp;gt;
+  &amp;lt;/Update&amp;gt;
+&amp;lt;/upd:Updates&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, we will implement the necessary steps for the code execution:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#008000&#34;&gt;// Perform all configured database updates
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; connectionString = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Data Source=fullframeworkdemo.db3&amp;#34;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; serviceCollection = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ServiceCollection();
+serviceCollection.AddDbKeeperNet(c =&amp;gt;
+{
+    c
+    .UseSQLite(connectionString)
+    .AddEmbeddedResourceScript(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;FullFrameworkConsoleApp.DatabaseUpgrade.xml,FullFrameworkConsoleApp&amp;#34;&lt;/span&gt;);
+});
+serviceCollection.AddLogging(c =&amp;gt; { c.AddConsole(); });
+
+&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; serviceProvider = serviceCollection.BuildServiceProvider(&lt;span style=&#34;color:#00f&#34;&gt;true&lt;/span&gt;);
+
+&lt;span style=&#34;color:#00f&#34;&gt;using&lt;/span&gt; (&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; scope = serviceProvider.CreateScope())
+{
+    &lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; upgrader = scope.ServiceProvider.GetService&amp;lt;IDatabaseUpdater&amp;gt;();
+    upgrader.ExecuteUpgrade();
+}
+
+&lt;span style=&#34;color:#008000&#34;&gt;// the above line is last required line for installation
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;// And now just print all inserted rows on console
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;// (just for demonstration purpose)
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;using&lt;/span&gt; (&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; c = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; SqliteConnection(connectionString))
+{
+    c.Open();
+
+    DbCommand cmd = c.CreateCommand();
+    cmd.CommandText = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;select * from DbKeeperNet_SimpleDemo&amp;#34;&lt;/span&gt;;
+    DbDataReader reader = cmd.ExecuteReader();
+    &lt;span style=&#34;color:#00f&#34;&gt;while&lt;/span&gt; (reader.Read())
+        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0}: {1}&amp;#34;&lt;/span&gt;, reader[0], reader[1]);
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And that is all - all database changes are executed automatically, only in the case that they were not already executed.&lt;/p&gt;
+
+&lt;h1 id=&#34;changes-from-previous-releases&#34;&gt;Changes from previous releases&lt;/h1&gt;
+
+&lt;p&gt;The XML is backward compatible so you just need to update the way how the database upgrade is invoked. This will give you flexibility of new versions
+of the .NET framework including .NET Core 2.1.&lt;/p&gt;
+
+&lt;h1 id=&#34;demo-projects&#34;&gt;Demo projects&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/ASPNETCore&#34;&gt;ASP.NET Core demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/ASPNet&#34;&gt;ASP.NET MVC demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/CoreConsoleApp&#34;&gt;.NET Core Console Application demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/DbKeeperNet/DbKeeperNet/tree/master/demos/FullFrameworkConsoleApp&#34;&gt;.NET Framework 4.6.1 demo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;writing-database-update-scripts&#34;&gt;Writing Database Update Scripts&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All scripts are executed in the same order as they were registered&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Assembly&lt;/code&gt; attribute of the &lt;code&gt;Updates&lt;/code&gt; element is in fact a namespace in which each &lt;code&gt;Version&lt;/code&gt; and &lt;code&gt;Step&lt;/code&gt; must be unique. If you would logically divide a single script into multiple files, you can use the same value in all the scripts.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Version&lt;/code&gt; attribute of the &lt;code&gt;Update&lt;/code&gt; element is intended to be used as a marker of database schema version. I suggest using a unique value for each distributed build changing the database schema (this value can be the same as the assembly version).&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Step&lt;/code&gt; attribute of the &lt;code&gt;UpdateStep&lt;/code&gt; element should be unique inside each update version.&lt;/li&gt;
+&lt;li&gt;Never change the &lt;code&gt;AssemblyName&lt;/code&gt;, &lt;code&gt;Version&lt;/code&gt;, and &lt;code&gt;Step&lt;/code&gt; steps after you deploy the application, unless you are absolutely sure what you are doing.&amp;nbsp;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;project-references&#34;&gt;Project references&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/DbKeeperNet/DbKeeperNet&#34;&gt;http://github.com/DbKeeperNet/DbKeeperNet&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitter.im/dbkeepernet/Lobby&#34;&gt;&lt;img src=&#34;https://badges.gitter.im/gitterHQ/gitter.png&#34; alt=&#34;Gitter char&#34; /&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;This article shows only the basics from a set of supported functions. More information and examples of upgrade scripts can be find in the DbKeeperNet source files or in the unit tests.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</title>
