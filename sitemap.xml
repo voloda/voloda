@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</loc>
+    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</loc>
     <lastmod>2018-09-06T15:32:45+02:00</lastmod>
   </url>
@@ -149,7 +154,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/year/2018/</loc>
-    <lastmod>2018-09-06T15:32:45+02:00</lastmod>
+    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -220,13 +225,8 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/kolo/</loc>
-    <lastmod>2018-10-20T16:35:44+02:00</lastmod>
+    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://voloda.bazilisek.net/1/01/kolo-2018-zhodnoceni-sezony/</loc>
-    <lastmod>2018-10-20T16:35:44+02:00</lastmod>
   </url>
   
   <url>
@@ -237,7 +237,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/</loc>
-    <lastmod>2018-09-06T15:32:45+02:00</lastmod>
+    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -249,7 +249,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/post/</loc>
-    <lastmod>2018-09-06T15:32:45+02:00</lastmod>
+    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -279,7 +279,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/wattmetr/</loc>
-    <lastmod>2018-10-20T16:35:44+02:00</lastmod>
+    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
     <priority>0</priority>
   </url>
   

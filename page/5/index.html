@@ -112,6 +112,50 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/">Unity Registration Validator</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2014-11-25">25 Nov, 2014</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
+Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
+Let&rsquo;s consider following classes:
+public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&rsquo;s setup some test case:
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/">DbKeeperNet - How to seed ASP.NET users and roles</a>
 </h2>
 
@@ -237,49 +281,6 @@ But currently we have to change hardware and operating system it was running on,
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/1/01/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="0001-01-01">1 Jan, 0001</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/kolo" class="label label-primary">kolo</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/wattmetr" class="label label-primary">wattmetr</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&hellip;
-Jídlo a pití Co nefungovalo Sladké Jakékoliv větší množství cukru mě vždycky poslalo do kolen cca na hodinu možná déle (Seč na jaře, sám kolem Sázavy, Jeseníky s Pavlem). Sladké je v pohodě, ale je potřeba to občas proložit něčím normálním - bageta, chleba s sebou apod.
-Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká čisté vody.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/1/01/kolo-2018-zhodnoceni-sezony/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -357,6 +358,10 @@ Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
           </li>
         
@@ -390,10 +395,6 @@ Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká
         
           <li>
           <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
-          </li>
-        
-          <li>
-          <a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
         </ul>

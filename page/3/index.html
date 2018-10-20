@@ -112,6 +112,49 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-11-19">19 Nov, 2017</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    I spent quite some time on getting this working on Windows with Windows Docker slaves.
+In the end it turned out to be mostly matter of using correct Jenkins docker plugin.
+Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just works (Docker Plugin doesn&rsquo;t work)  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a Cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container as a build is executed  It does not require any additional changes It properly handles the operating system (Windows)  For local only images make sure that the Pull option is set to Never  Base Dockerfile  This Dockerfile creates the base image for Windows build agent The only requirements is that java.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
 </h2>
 
@@ -265,49 +308,6 @@ Standalone called chef solo  Uses chef-solo command without attempts to access t
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2015-03-16">16 Mar, 2015</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
-As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
-Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -385,6 +385,10 @@ Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In ord
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
           </li>
         
@@ -418,10 +422,6 @@ Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In ord
         
           <li>
           <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
-          </li>
-        
-          <li>
-          <a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
         </ul>

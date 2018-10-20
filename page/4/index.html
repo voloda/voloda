@@ -112,6 +112,49 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2015-03-16">16 Mar, 2015</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
+As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
+Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/">Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</a>
 </h2>
 
@@ -274,50 +317,6 @@ It forces to unload ALL instances of the DLL library currently loaded within pro
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/">Unity Registration Validator</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2014-11-25">25 Nov, 2014</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
-Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
-Let&rsquo;s consider following classes:
-public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } } Now let&rsquo;s setup some test case:
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -395,6 +394,10 @@ public interface IServiceDependency { } public interface IService { } public cla
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
           </li>
         
@@ -428,10 +431,6 @@ public interface IServiceDependency { } public interface IService { } public cla
         
           <li>
           <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
-          </li>
-        
-          <li>
-          <a href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
           </li>
         
         </ul>
