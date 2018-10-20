@@ -219,6 +219,17 @@
   </url>
   
   <url>
+    <loc>http://voloda.bazilisek.net/tags/kolo/</loc>
+    <lastmod>2018-10-20T16:35:44+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://voloda.bazilisek.net/1/01/kolo-2018-zhodnoceni-sezony/</loc>
+    <lastmod>2018-10-20T16:35:44+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://voloda.bazilisek.net/tags/microsoft-unity/</loc>
     <lastmod>2017-12-11T08:39:54+01:00</lastmod>
     <priority>0</priority>
@@ -263,6 +274,12 @@
   <url>
     <loc>http://voloda.bazilisek.net/tags/</loc>
     <lastmod>2018-04-20T13:18:02+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://voloda.bazilisek.net/tags/wattmetr/</loc>
+    <lastmod>2018-10-20T16:35:44+02:00</lastmod>
     <priority>0</priority>
   </url>
   
