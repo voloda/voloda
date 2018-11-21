@@ -6,100 +6,10 @@
     <description>Recent content in Tags on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://voloda.bazilisek.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Angular</title>
-      <link>http://voloda.bazilisek.net/tags/angular/</link>
-      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/angular/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Chef</title>
-      <link>http://voloda.bazilisek.net/tags/chef/</link>
-      <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/chef/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cvs</title>
-      <link>http://voloda.bazilisek.net/tags/cvs/</link>
-      <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/cvs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Development</title>
-      <link>http://voloda.bazilisek.net/tags/development/</link>
-      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>http://voloda.bazilisek.net/tags/docker/</link>
-      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DotNET</title>
-      <link>http://voloda.bazilisek.net/tags/dotnet/</link>
-      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/dotnet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dotnetcore</title>
-      <link>http://voloda.bazilisek.net/tags/dotnetcore/</link>
-      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/dotnetcore/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>http://voloda.bazilisek.net/tags/git/</link>
-      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Jenkins</title>
-      <link>http://voloda.bazilisek.net/tags/jenkins/</link>
-      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/jenkins/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kolo</title>
-      <link>http://voloda.bazilisek.net/tags/kolo/</link>
-      <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/kolo/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Microsoft Unity</title>
@@ -107,15 +17,6 @@
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>http://voloda.bazilisek.net/tags/microsoft-unity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Powerbuilder</title>
-      <link>http://voloda.bazilisek.net/tags/powerbuilder/</link>
-      <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
-      
-      <guid>http://voloda.bazilisek.net/tags/powerbuilder/</guid>
       <description></description>
     </item>
     
@@ -129,7 +30,106 @@
     </item>
     
     <item>
-      <title>Svn</title>
+      <title>angular</title>
+      <link>http://voloda.bazilisek.net/tags/angular/</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/angular/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chef</title>
+      <link>http://voloda.bazilisek.net/tags/chef/</link>
+      <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/chef/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cvs</title>
+      <link>http://voloda.bazilisek.net/tags/cvs/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/cvs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>development</title>
+      <link>http://voloda.bazilisek.net/tags/development/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>http://voloda.bazilisek.net/tags/docker/</link>
+      <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotNET</title>
+      <link>http://voloda.bazilisek.net/tags/dotnet/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/dotnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotnetcore</title>
+      <link>http://voloda.bazilisek.net/tags/dotnetcore/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/dotnetcore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>http://voloda.bazilisek.net/tags/git/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jenkins</title>
+      <link>http://voloda.bazilisek.net/tags/jenkins/</link>
+      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kolo</title>
+      <link>http://voloda.bazilisek.net/tags/kolo/</link>
+      <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/kolo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>powerbuilder</title>
+      <link>http://voloda.bazilisek.net/tags/powerbuilder/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/tags/powerbuilder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>svn</title>
       <link>http://voloda.bazilisek.net/tags/svn/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
@@ -138,7 +138,7 @@
     </item>
     
     <item>
-      <title>Wattmetr</title>
+      <title>wattmetr</title>
       <link>http://voloda.bazilisek.net/tags/wattmetr/</link>
       <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
       
