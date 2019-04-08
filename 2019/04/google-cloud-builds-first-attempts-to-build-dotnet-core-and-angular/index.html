@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular  &middot; My personal notes</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="angular, dotnetcore, gcp, cloudbuilds, docker, ">
+
+<link rel="author" href="http://plus.google.com/+VladimirKloz">
+
+
+<meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
+
+
+<meta property="og:title" content="Google Cloud Builds - First Attempts To Build .NET Core and Angular  &middot; My personal notes ">
+<meta property="og:site_name" content="My personal notes"/>
+<meta property="og:url" content="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2019-04-08T00:00:00Z" />
+<meta property="og:article:modified_time" content="2019-04-08T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="angular">
+    
+<meta property="og:article:tag" content="dotnetcore">
+    
+<meta property="og:article:tag" content="gcp">
+    
+<meta property="og:article:tag" content="cloudbuilds">
+    
+<meta property="og:article:tag" content="docker">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Google Cloud Builds - First Attempts To Build .NET Core and Angular" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" />
+<meta name="twitter:domain" content="http://voloda.bazilisek.net/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Google Cloud Builds - First Attempts To Build .NET Core and Angular",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+VladimirKloz?rel=author"
+    },
+    "datePublished": "2019-04-08",
+    "description": "",
+    "wordCount": 550
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.47.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" >
+
+</head>
+<body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+              
+		<a href="http://voloda.bazilisek.net/"  title="Home">
+                  
+                  Home
+                </a>
+              
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="title-metas text-center">
+
+    <h1>Google Cloud Builds - First Attempts To Build .NET Core and Angular
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2019-04-08">8 Apr, 2019</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 3 min
+  &middot; (550 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Google%20Cloud%20Builds%20-%20First%20Attempts%20To%20Build%20.NET%20Core%20and%20Angular&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f&amp;title=Google%20Cloud%20Builds%20-%20First%20Attempts%20To%20Build%20.NET%20Core%20and%20Angular" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Google%20Cloud%20Builds%20-%20First%20Attempts%20To%20Build%20.NET%20Core%20and%20Angular&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+
+      <div class="content">
+  
+
+<p>Experience with setting up first cloud build for .NET Core &amp; Angular.</p>
+
+<h1 id="intro">Intro</h1>
+
+<ul>
+<li>Read manuals carefully - you can test your build locally using Google Cloud SDK
+<strong>but</strong> it doesn&rsquo;t work on Windows. So if you want to give it a try setup a Linux
+machine for it.</li>
+<li>I strongly recommend to setup Google Cloud SDK on your Linux machine manually and
+not thru a package manager - this may save you a lot of time since <code>gcloud components install</code>
+will work for you and thus examples can be followed easily.</li>
+<li>Rule of thumb - it is simple! Really - it is simple!
+
+<ul>
+<li>Individual cloud builders are just docker images which have
+the entrypoint configured to the given tool - you can use them directly assuming that you
+simply specify <code>entrypoint</code> in your YAML (this is pretty useful for initial playing with the builds):</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
+- name: gcr.io/$PROJECT_ID/ng:v7
+  dir: <span style="color:#a31515">&#39;./TestApp/ClientApp&#39;</span>
+  entrypoint: <span style="color:#a31515">&#39;npm&#39;</span>
+  args: [
+        <span style="color:#a31515">&#39;ci&#39;</span>, <span style="color:#a31515">&#39;--unsafe-perm&#39;</span>
+        ]</code></pre></div>
+<h1 id="angular-net-core-build-task-image">Angular &amp; .NET Core build task image</h1>
+
+<ul>
+<li>Create a git repository in GCP or just fork this <a href="https://github.com/voloda/CloudBuilderAngularDotNetCore">GitHub repository</a></li>
+<li>In <a href="https://console.cloud.google.com/cloud-build/builds">Google cloud console</a> setup a build hook pointing to <code>cloudbuild.yaml</code> in the repository</li>
+<li>Kick-off the build</li>
+
+<li><p>This should prepare for you an image in your project container registry which can be used to build Angular 7 &amp; .NET Core Application</p></li>
+
+<li><p><code>Dockerfile</code></p></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> microsoft/dotnet:sdk</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">CMD</span><span style="color:#a31515"> [ &#39;/bin/sh&#39;, &#39;-c&#39; ]</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> curl -sL https://deb.nodesource.com/setup_10.x | bash -<span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> apt-get install -y nodejs<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> npm install -g @angular/cli@7.2.2 --unsafe-perms<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;dotnet&#34;]</span></code></pre></div>
+<ul>
+<li><code>cloudbuild.yaml</code></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    
+steps:
+- name: gcr.io/cloud-builders/docker
+  args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
+
+images:
+  - <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&#39;</span></code></pre></div>
+<h1 id="building-asp-net-core-angular-image-from-google-cloud-builds">Building ASP.NET Core &amp; Angular image from Google Cloud Builds</h1>
+
+<h2 id="use-the-standard-dockerfile">Use the standard Dockerfile</h2>
+
+<ul>
+<li>This is easiest approach</li>
+<li>Nice thing is that it can be used even locally and on Windows</li>
+<li>It is simply <code>docker build</code> command - due to its caching mechanism &amp; layering it is pretty efficient</li>
+<li>The disadvantage is that output artifacts are just docker images</li>
+<li>The <code>Dockerfile</code> can be simply combined with cloud build YAML so the resulting image
+is pushed to container registry:</li>
+<li><code>Dockerfile</code></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> microsoft/dotnet:sdk AS build-env</span><span style="">
+</span><span style=""></span><span style="color:#00f">WORKDIR</span><span style="color:#a31515"> /app</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#008000"># Copy csproj and restore as distinct layers</span><span style="">
+</span><span style=""></span>COPY *.csproj ./<span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> dotnet restore<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#008000"># Copy everything else and build</span><span style="">
+</span><span style=""></span>COPY . ./<span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> dotnet publish -c Release -o out<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#008000"># Build runtime image</span><span style="">
+</span><span style=""></span><span style="color:#00f">FROM</span><span style="color:#a31515"> microsoft/dotnet:aspnetcore-runtime</span><span style="">
+</span><span style=""></span><span style="color:#00f">WORKDIR</span><span style="color:#a31515"> /app</span><span style="">
+</span><span style=""></span>COPY --from=build-env /app/out .<span style="">
+</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;dotnet&#34;, &#34;aspnetapp.dll&#34;]</span></code></pre></div>
+<ul>
+<li><code>cloudbuild.yaml</code></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
+- name: gcr.io/cloud-builders/docker
+  args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
+
+images:
+  - <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span></code></pre></div>
+<h2 id="use-cloud-build-with-steps">Use cloud build with steps</h2>
+
+<ul>
+<li>This fully leverages cloud build features</li>
+<li>The main difference is that while this still uses Docker for builds it leverages <code>docker run</code> command</li>
+<li>The source code is basically mounted to created container thru a volume located in <code>/workspace</code> directory
+which can be used to exchange content between individual steps</li>
+<li>The cloud build directly supports grabbing the artifacts from <code>/workspace</code> so the build output is not necessarily only docker image</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
+- name: gcr.io/cloud-builders/docker
+  args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
+
+images:
+  - <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span></code></pre></div>
+<ul>
+<li>Split the build into individual steps called explicitly:</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
+
+...
+<span style="color:#008000"># Restore packages</span>
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          <span style="color:#a31515">&#39;restore&#39;</span>
+        ]
+<span style="color:#008000"># Build the project</span>
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          <span style="color:#a31515">&#39;build&#39;</span>,
+          <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
+          <span style="color:#a31515">&#39;--no-restore&#39;</span>
+        ]
+
+<span style="color:#008000"># Run tests</span>
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          <span style="color:#a31515">&#39;test&#39;</span>,
+          <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
+          <span style="color:#a31515">&#39;--no-restore&#39;</span>
+        ]
+
+<span style="color:#008000"># Publish build result</span>
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          <span style="color:#a31515">&#39;publish&#39;</span>,
+          <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
+          <span style="color:#a31515">&#39;--no-restore&#39;</span>,
+          <span style="color:#a31515">&#39;-o&#39;</span>, <span style="color:#a31515">&#39;/workspace/publish&#39;</span>
+        ]
+....</code></pre></div>
+<h1 id="links">Links</h1>
+
+<ul>
+<li><a href="https://console.cloud.google.com/cloud-build/builds">Google cloud builds</a></li>
+<li><a href="https://console.cloud.google.com/gcr/images/">Google cloud container registry</a></li>
+<li><a href="https://cloud.google.com/cloud-build/">Google cloud builds documentation</a></li>
+</ul>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Google%20Cloud%20Builds%20-%20First%20Attempts%20To%20Build%20.NET%20Core%20and%20Angular&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f&amp;title=Google%20Cloud%20Builds%20-%20First%20Attempts%20To%20Build%20.NET%20Core%20and%20Angular" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Google%20Cloud%20Builds%20-%20First%20Attempts%20To%20Build%20.NET%20Core%20and%20Angular&amp;body=Check out this site http%3a%2f%2fvoloda.bazilisek.net%2f2019%2f04%2fgoogle-cloud-builds-first-attempts-to-build-dotnet-core-and-angular%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/" title="Kolo 2018 - zhodnocení sezóny">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/">Angular5 and ASP.NET Core 2.0 cheat sheet</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/">How to create Docker build agent image with SDK installed from MSI</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/">Is it good idea to throw an exception in .NET C# constructor?</a>
+          </li>
+        
+          <li>
+          <a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/">Handling detailed code reviews in GIT</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+    
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Year</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/year/2019">2019 (1)</a></li><li><a href="/year/2018">2018 (6)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>Tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    
+      
+      
+    
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var _gaq=[['_setAccount','UA-8950020-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+
+
+<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+  </body>
+</html>
+

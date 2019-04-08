@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2019 on My personal notes</title>
+    <link>http://voloda.bazilisek.net/year/2019/</link>
+    <description>Recent content in 2019 on My personal notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://voloda.bazilisek.net/year/2019/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular</title>
+      <link>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
+      <description>
+
+&lt;p&gt;Experience with setting up first cloud build for .NET Core &amp;amp; Angular.&lt;/p&gt;
+
+&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read manuals carefully - you can test your build locally using Google Cloud SDK
+&lt;strong&gt;but&lt;/strong&gt; it doesn&amp;rsquo;t work on Windows. So if you want to give it a try setup a Linux
+machine for it.&lt;/li&gt;
+&lt;li&gt;I strongly recommend to setup Google Cloud SDK on your Linux machine manually and
+not thru a package manager - this may save you a lot of time since &lt;code&gt;gcloud components install&lt;/code&gt;
+will work for you and thus examples can be followed easily.&lt;/li&gt;
+&lt;li&gt;Rule of thumb - it is simple! Really - it is simple!
+
+&lt;ul&gt;
+&lt;li&gt;Individual cloud builders are just docker images which have
+the entrypoint configured to the given tool - you can use them directly assuming that you
+simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty useful for initial playing with the builds):&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
+- name: gcr.io/$PROJECT_ID/ng:v7
+  dir: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;./TestApp/ClientApp&amp;#39;&lt;/span&gt;
+  entrypoint: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;npm&amp;#39;&lt;/span&gt;
+  args: [
+        &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;ci&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--unsafe-perm&amp;#39;&lt;/span&gt;
+        ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;angular-net-core-build-task-image&#34;&gt;Angular &amp;amp; .NET Core build task image&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a git repository in GCP or just fork this &lt;a href=&#34;https://github.com/voloda/CloudBuilderAngularDotNetCore&#34;&gt;GitHub repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;In &lt;a href=&#34;https://console.cloud.google.com/cloud-build/builds&#34;&gt;Google cloud console&lt;/a&gt; setup a build hook pointing to &lt;code&gt;cloudbuild.yaml&lt;/code&gt; in the repository&lt;/li&gt;
+&lt;li&gt;Kick-off the build&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;This should prepare for you an image in your project container registry which can be used to build Angular 7 &amp;amp; .NET Core Application&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:sdk&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;CMD&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [ &amp;#39;/bin/sh&amp;#39;, &amp;#39;-c&amp;#39; ]&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; curl -sL https://deb.nodesource.com/setup_10.x | bash -&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; apt-get install -y nodejs&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; npm install -g @angular/cli@7.2.2 --unsafe-perms&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;    
+steps:
+- name: gcr.io/cloud-builders/docker
+  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+
+images:
+  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;building-asp-net-core-angular-image-from-google-cloud-builds&#34;&gt;Building ASP.NET Core &amp;amp; Angular image from Google Cloud Builds&lt;/h1&gt;
+
+&lt;h2 id=&#34;use-the-standard-dockerfile&#34;&gt;Use the standard Dockerfile&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is easiest approach&lt;/li&gt;
+&lt;li&gt;Nice thing is that it can be used even locally and on Windows&lt;/li&gt;
+&lt;li&gt;It is simply &lt;code&gt;docker build&lt;/code&gt; command - due to its caching mechanism &amp;amp; layering it is pretty efficient&lt;/li&gt;
+&lt;li&gt;The disadvantage is that output artifacts are just docker images&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;Dockerfile&lt;/code&gt; can be simply combined with cloud build YAML so the resulting image
+is pushed to container registry:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:sdk AS build-env&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;# Copy csproj and restore as distinct layers&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;COPY *.csproj ./&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; dotnet restore&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;# Copy everything else and build&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;COPY . ./&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; dotnet publish -c Release -o out&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;# Build runtime image&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:aspnetcore-runtime&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;COPY --from=build-env /app/out .&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;, &amp;#34;aspnetapp.dll&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
+- name: gcr.io/cloud-builders/docker
+  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+
+images:
+  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;use-cloud-build-with-steps&#34;&gt;Use cloud build with steps&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This fully leverages cloud build features&lt;/li&gt;
+&lt;li&gt;The main difference is that while this still uses Docker for builds it leverages &lt;code&gt;docker run&lt;/code&gt; command&lt;/li&gt;
+&lt;li&gt;The source code is basically mounted to created container thru a volume located in &lt;code&gt;/workspace&lt;/code&gt; directory
+which can be used to exchange content between individual steps&lt;/li&gt;
+&lt;li&gt;The cloud build directly supports grabbing the artifacts from &lt;code&gt;/workspace&lt;/code&gt; so the build output is not necessarily only docker image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
+- name: gcr.io/cloud-builders/docker
+  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+
+images:
+  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Split the build into individual steps called explicitly:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
+
+...
+&lt;span style=&#34;color:#008000&#34;&gt;# Restore packages&lt;/span&gt;
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;restore&amp;#39;&lt;/span&gt;
+        ]
+&lt;span style=&#34;color:#008000&#34;&gt;# Build the project&lt;/span&gt;
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
+        ]
+
+&lt;span style=&#34;color:#008000&#34;&gt;# Run tests&lt;/span&gt;
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
+        ]
+
+&lt;span style=&#34;color:#008000&#34;&gt;# Publish build result&lt;/span&gt;
+- name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
+  args: [
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;publish&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-o&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;/workspace/publish&amp;#39;&lt;/span&gt;
+        ]
+....&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://console.cloud.google.com/cloud-build/builds&#34;&gt;Google cloud builds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://console.cloud.google.com/gcr/images/&#34;&gt;Google cloud container registry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cloud.google.com/cloud-build/&#34;&gt;Google cloud builds documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

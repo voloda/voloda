@@ -112,6 +112,54 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2019-04-08">8 Apr, 2019</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="http://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
+  
+  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Experience with setting up first cloud build for .NET Core &amp; Angular.
+Intro  Read manuals carefully - you can test your build locally using Google Cloud SDK but it doesn&rsquo;t work on Windows. So if you want to give it a try setup a Linux machine for it. I strongly recommend to setup Google Cloud SDK on your Linux machine manually and not thru a package manager - this may save you a lot of time since gcloud components install will work for you and thus examples can be followed easily.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
 </h2>
 
@@ -275,47 +323,6 @@ Please note that the image below is created with root user without a password sp
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-04-03">3 Apr, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="http://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
-  
-  <a href="http://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    pipeline { agent none environment { RELEASE_NUMBER = '17.1.1' VERSION_NUMBER = VersionNumber(versionNumberString: '17.1.1.${BUILDS_ALL_TIME}') } stages { stage('Checkout from GIT'){ agent any steps { script { currentBuild.displayName = &quot;#${VERSION_NUMBER}&quot; } checkout scm } } stage('NUGET package restore') { agent { label 'nuget' } steps { echo 'Restoring nuget packages' bat '&quot;%NUGET_PATH%&quot; restore TestSolution.sln' dir ('.') { stash 'sources' } } } stage('Build') { agent { label 'dotNET_4.7'} steps { dir ('.') { unstash 'sources' } bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -393,6 +400,10 @@ Please note that the image below is created with root user without a password sp
         <ul>
         
           <li>
+          <a href="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+          </li>
+        
+          <li>
           <a href="http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
           </li>
         
@@ -428,10 +439,6 @@ Please note that the image below is created with root user without a password sp
           <a href="http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/">Handling detailed code reviews in GIT</a>
           </li>
         
-          <li>
-          <a href="http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -451,7 +458,7 @@ Please note that the image below is created with root user without a password sp
 
         <div class="content">
           <ul>
-            <li><a href="/year/2018">2018 (6)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2019">2019 (1)</a></li><li><a href="/year/2018">2018 (6)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
@@ -468,7 +475,7 @@ Please note that the image below is created with root user without a password sp
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (8)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
           </ul>
         </div>
       </div>
@@ -483,7 +490,7 @@ Please note that the image below is created with root user without a password sp
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (5)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li><li><a href="/tags/chef">chef (1)</a></li>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
           </ul>
         </div>
       </div>

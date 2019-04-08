@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</loc>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</loc>
     <lastmod>2018-10-20T16:45:49+02:00</lastmod>
   </url>
@@ -159,8 +164,14 @@
   </url>
   
   <url>
+    <loc>http://voloda.bazilisek.net/year/2019/</loc>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://voloda.bazilisek.net/tags/angular/</loc>
-    <lastmod>2018-04-20T13:18:02+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -172,6 +183,12 @@
   <url>
     <loc>http://voloda.bazilisek.net/tags/chef/</loc>
     <lastmod>2017-11-18T07:44:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://voloda.bazilisek.net/tags/cloudbuilds/</loc>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -195,7 +212,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/docker/</loc>
-    <lastmod>2018-06-12T21:25:20+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -207,7 +224,13 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/dotnetcore/</loc>
-    <lastmod>2018-03-28T10:01:43+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://voloda.bazilisek.net/tags/gcp/</loc>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -237,19 +260,19 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/</loc>
-    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://voloda.bazilisek.net/categories/notes/</loc>
-    <lastmod>2018-06-12T21:25:20+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://voloda.bazilisek.net/post/</loc>
-    <lastmod>2018-10-20T16:45:49+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -273,7 +296,7 @@
   
   <url>
     <loc>http://voloda.bazilisek.net/tags/</loc>
-    <lastmod>2018-04-20T13:18:02+02:00</lastmod>
+    <lastmod>2019-04-08T23:02:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
