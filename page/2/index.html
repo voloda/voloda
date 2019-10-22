@@ -116,13 +116,54 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+  <h2><a href="https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/">Jenkinsfile Sample Utilizing Docker Slave Agent</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2019-04-08">8 Apr, 2019</time>
+  <time datetime="2018-04-03">3 Apr, 2018</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    pipeline { agent none environment { RELEASE_NUMBER = '17.1.1' VERSION_NUMBER = VersionNumber(versionNumberString: '17.1.1.${BUILDS_ALL_TIME}') } stages { stage('Checkout from GIT'){ agent any steps { script { currentBuild.displayName = &quot;#${VERSION_NUMBER}&quot; } checkout scm } } stage('NUGET package restore') { agent { label 'nuget' } steps { echo 'Restoring nuget packages' bat '&quot;%NUGET_PATH%&quot; restore TestSolution.sln' dir ('.') { stash 'sources' } } } stage('Build') { agent { label 'dotNET_4.7'} steps { dir ('.') { unstash 'sources' } bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/">Angular5 and ASP.NET Core 2.0 cheat sheet</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-03-26">26 Mar, 2018</time>
 </small>
 
     
@@ -132,53 +173,47 @@
   
   <a href="https://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
   
-  <a href="https://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
+
+
+  </div>
+</div>
+
+    <p>
   
-  <a href="https://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
+  
+    Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0 WebAPI.
+Code organization ProjectRootFolder | +.git | +-AngularProjectFolder | +-dotNetCoreProjectFolder | +-wwwroot  Project setup  Create project root folder with git repository:  mkdir ProjectRootFolder cd ProjectRootFolder git init  Create dotNet Core API application  dotnet new webapi -n ProjectWebApi  Create Angular 5 application  Assumes Angular5 CLI is available already (see https://angular.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/">How to create Docker build agent image with SDK installed from MSI</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-12-20">20 Dec, 2017</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
   
   <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
   
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Experience with setting up first cloud build for .NET Core &amp; Angular.
-Intro  Read manuals carefully - you can test your build locally using Google Cloud SDK but it doesn&rsquo;t work on Windows. So if you want to give it a try setup a Linux machine for it. I strongly recommend to setup Google Cloud SDK on your Linux machine manually and not thru a package manager - this may save you a lot of time since gcloud components install will work for you and thus examples can be followed easily.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-10-20">20 Oct, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/kolo" class="label label-primary">kolo</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/wattmetr" class="label label-primary">wattmetr</a>
+  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
   
 
 
@@ -188,16 +223,18 @@ Intro  Read manuals carefully - you can test your build locally using Google Clo
     <p>
   
   
-    Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&hellip;
-Jídlo a pití Co nefungovalo Sladké Jakékoliv větší množství cukru mě vždycky poslalo do kolen cca na hodinu možná déle (Seč na jaře, sám kolem Sázavy, Jeseníky s Pavlem). Sladké je v pohodě, ale je potřeba to občas proložit něčím normálním - bageta, chleba s sebou apod.
-Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká čisté vody.
+    When creating build agent docker image usually you need to install SDKs from MSI (like Infragistic, DevExpress, Active Reports etc.).
+There are couple of challenges here:
+ Windows Docker doesn&rsquo;t support UI. Also very often you have to populate UI with values.  For this purpose MSI supports so called unattended installs.
+For input values you can pass those as parameters to MSI on command line.
+Let&rsquo;s assume that we want to install SDK like Infragistic.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -207,22 +244,24 @@ Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
+  <h2><a href="https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/">Is it good idea to throw an exception in .NET C# constructor?</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-09-03">3 Sep, 2018</time>
+  <time datetime="2017-12-11">11 Dec, 2017</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
   
   <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
   
+  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/microsoft-unity" class="label label-primary">Microsoft Unity</a>
+  
 
 
   </div>
@@ -231,15 +270,16 @@ Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká
     <p>
   
   
-    Introduction Each project using database access solves how to distribute database schema and how to keep it up-to-date after upgrades. I was solving this problem multiple times, so I decided to write a common, easy to use, and freely available library. The result of this is the DbKeeperNet library which is pure ADO.NET framework (no dependency on Entity Framework).
-This article will briefly show how to use DbKeeperNet library to fulfill this task.
+    I got reminded recently about two cases why it may be actually a bad idea to do a complex initialization in a class constructor in C#.
+All the code samples below are written just for the purpose of this post but are based on real code I either written or came across at some point.
+Case 1 - instance resolved via an IoC container Recently I was facing an issue that application started but remained non-functional.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -249,19 +289,19 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+  <h2><a href="https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/">Handling detailed code reviews in GIT</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-06-13">13 Jun, 2018</time>
+  <time datetime="2017-11-23">23 Nov, 2017</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.bazilisek.net/tags/git" class="label label-primary">git</a>
   
 
 
@@ -271,57 +311,14 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
     <p>
   
   
-    I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but I found it pretty easily that the missing dependency on the image is Microsoft Visual C++ 2015 Redistributable Update 3.
-Below is Dockerfile I used to build the image.
-Into the same directory put download 8.0.11 Mysql server version https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip named as mysql.zip.
-Please note that the image below is created with root user without a password specified
+    Pull Requests are sometimes not sufficient - they allow to see changes, perhaps you can even see that a test build passed but these do not allow for actual functional testing or even navigating thru the code. Some times it is convenient to see all the changes in staging area (similar to TFS unshelve functionality) so functional test can be done and code can be reviewed more deeply.  Below steps allow to achieve the same state as for TFS unshelve - you end-up with code checked out and staged in GIT:
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-04-30">30 Apr, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Running tests  Run command from Angular5 project folder: ng test  Create an injectable service with an interface  This allows to define a typescript interface implemented by a class For injection is actually used the AUTHENTICATION_SERVICE token
-import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { HttpClient, HttpHeaders } from &#39;@angular/common/http&#39;; import { Observable } from &#39;rxjs/Observable&#39;; import &#39;rxjs/add/operator/map&#39;; export interface IAuthenticationService { login(username: string, password: string): Observable&lt;any&gt;; extendToken(): Observable&lt;any&gt;; logout(); isLoggedIn(): boolean; hasRole(role: string): boolean; } export const AUTHENTICATION_SERVICE = new InjectionToken&lt;IAuthenticationService&gt;(&#39;AUTHENTICATION_SERVICE&#39;); @Injectable() export class AuthenticationService implements IAuthenticationService { constructor(private http: HttpClient) { } // returns actually the token login(username: string, password: string): Observable&lt;any&gt; { return this.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -334,25 +331,25 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     
 
 
-<li  class="disabled" >
+<li >
   <a aria-label="First" href="https://voloda.bazilisek.net//">
     <span aria-hidden="true">&laquo;&laquo;</span>
   </a>
 </li>
 
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
+<li >
+  <a aria-label="Previous" href="https://voloda.bazilisek.net//">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
 
-<li  class="active" >
+<li >
   <a href="https://voloda.bazilisek.net//">
     1
     </a>
 </li>
 
-<li >
+<li  class="active" >
   <a href="https://voloda.bazilisek.net//page/2/">
     2
     </a>
@@ -378,7 +375,7 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
 
 
 <li >
-  <a aria-label="Next" href="https://voloda.bazilisek.net//page/2/">
+  <a aria-label="Next" href="https://voloda.bazilisek.net//page/3/">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>

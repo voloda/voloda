@@ -116,27 +116,21 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+  <h2><a href="https://voloda.bazilisek.net/2015/09/having-fun-with-chef/">Having fun with Chef</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2019-04-08">8 Apr, 2019</time>
+  <time datetime="2015-09-14">14 Sep, 2015</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
   
-  <a href="https://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.bazilisek.net/tags/chef" class="label label-primary">chef</a>
   
 
 
@@ -146,15 +140,17 @@
     <p>
   
   
-    Experience with setting up first cloud build for .NET Core &amp; Angular.
-Intro  Read manuals carefully - you can test your build locally using Google Cloud SDK but it doesn&rsquo;t work on Windows. So if you want to give it a try setup a Linux machine for it. I strongly recommend to setup Google Cloud SDK on your Linux machine manually and not thru a package manager - this may save you a lot of time since gcloud components install will work for you and thus examples can be followed easily.
+    Introduction Recently I had chance to evaluate usage of Chef for deployment of web service on project I am working on.
+There are plenty of resources available and this post is meant mostly as a serie of personal notes based on my current experience so I can easily return to it.
+Setup Client side Chef client can run in two modes:
+Standalone called chef solo  Uses chef-solo command without attempts to access the server Works greatly for development of cookbooks or just for simple setup of the environment.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2015/09/having-fun-with-chef/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -164,56 +160,13 @@ Intro  Read manuals carefully - you can test your build locally using Google Clo
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+  <h2><a href="https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/">Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-10-20">20 Oct, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/kolo" class="label label-primary">kolo</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/wattmetr" class="label label-primary">wattmetr</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&hellip;
-Jídlo a pití Co nefungovalo Sladké Jakékoliv větší množství cukru mě vždycky poslalo do kolen cca na hodinu možná déle (Seč na jaře, sám kolem Sázavy, Jeseníky s Pavlem). Sladké je v pohodě, ale je potřeba to občas proložit něčím normálním - bageta, chleba s sebou apod.
-Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká čisté vody.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-09-03">3 Sep, 2018</time>
+  <time datetime="2015-03-16">16 Mar, 2015</time>
 </small>
 
     
@@ -231,15 +184,16 @@ Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká
     <p>
   
   
-    Introduction Each project using database access solves how to distribute database schema and how to keep it up-to-date after upgrades. I was solving this problem multiple times, so I decided to write a common, easy to use, and freely available library. The result of this is the DbKeeperNet library which is pure ADO.NET framework (no dependency on Entity Framework).
-This article will briefly show how to use DbKeeperNet library to fulfill this task.
+    Introduction During past few months we introduced and heavily extended usage of Microsoft Unity IoC container in our code base as a part of the effort to make the code more loosely coupled.
+As a result of those changes we now even more than before also rely on Inversion Of Control or more specifically Dependency Injection.
+Thus both Microsoft Unity and IoC/DI are now crucial part of our toolbox. In order to bring everybody on our team up-to-speed as well as to have training material for newbies we decided to create a simple training material which should help us.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -249,19 +203,23 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+  <h2><a href="https://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/">Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-06-13">13 Jun, 2018</time>
+  <time datetime="2015-03-10">10 Mar, 2015</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/sql" class="label label-primary">SQL</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
   
 
 
@@ -271,17 +229,16 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
     <p>
   
   
-    I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but I found it pretty easily that the missing dependency on the image is Microsoft Visual C++ 2015 Redistributable Update 3.
-Below is Dockerfile I used to build the image.
-Into the same directory put download 8.0.11 Mysql server version https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip named as mysql.zip.
-Please note that the image below is created with root user without a password specified
+    Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in Team City.
+Setting up the data and parameters for stored procedure takes some time and there are many scenarios thus I started looking for a ways:
+ How to debug stored procedures using the existing infrastructure without necessity to extract everything out and use separated debugger in the SQL Server Management Studio.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -291,19 +248,55 @@ Please note that the image below is created with root user without a password sp
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+  <h2><a href="https://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/">How to post markdown article on blogspot/blogger with enabled code syntax highlighting</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-04-30">30 Apr, 2018</time>
+  <time datetime="2014-12-18">18 Dec, 2014</time>
+</small>
+
+    
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    How-to  Open StackEdit In blogger create a new post and get postId from the URL Setup post permalink to match the title Using # synchronize the document with google drive Using # publish the article to blogspot As you keep editing simply synchronize/re-publish the article In order to enable syntax highlighting for the C#/XML or any other code edit the blogspot template and insert the following script reference between &lt;head&gt;&lt;/head&gt; tags: &lt;script src='https://google-code-prettify.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/">Visual Studio 2012 debugger does not break after attaching to C#/.NET process</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2014-12-18">18 Dec, 2014</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
   
 
 
@@ -313,15 +306,16 @@ Please note that the image below is created with root user without a password sp
     <p>
   
   
-    Running tests  Run command from Angular5 project folder: ng test  Create an injectable service with an interface  This allows to define a typescript interface implemented by a class For injection is actually used the AUTHENTICATION_SERVICE token
-import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { HttpClient, HttpHeaders } from &#39;@angular/common/http&#39;; import { Observable } from &#39;rxjs/Observable&#39;; import &#39;rxjs/add/operator/map&#39;; export interface IAuthenticationService { login(username: string, password: string): Observable&lt;any&gt;; extendToken(): Observable&lt;any&gt;; logout(); isLoggedIn(): boolean; hasRole(role: string): boolean; } export const AUTHENTICATION_SERVICE = new InjectionToken&lt;IAuthenticationService&gt;(&#39;AUTHENTICATION_SERVICE&#39;); @Injectable() export class AuthenticationService implements IAuthenticationService { constructor(private http: HttpClient) { } // returns actually the token login(username: string, password: string): Observable&lt;any&gt; { return this.
+    I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.
+Symptoms were that the debugger attached to the process but neither &lsquo;Break All&rsquo; worked. The same applied for any preset breakpoint.
+For some time I thought that Visual Studio installation for somehow corrupted on my system but since I was always able to workaround it via Debug.Assert() or Debugger.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -334,19 +328,19 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     
 
 
-<li  class="disabled" >
+<li >
   <a aria-label="First" href="https://voloda.bazilisek.net//">
     <span aria-hidden="true">&laquo;&laquo;</span>
   </a>
 </li>
 
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
+<li >
+  <a aria-label="Previous" href="https://voloda.bazilisek.net//page/3/">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
 
-<li  class="active" >
+<li >
   <a href="https://voloda.bazilisek.net//">
     1
     </a>
@@ -364,7 +358,7 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     </a>
 </li>
 
-<li >
+<li  class="active" >
   <a href="https://voloda.bazilisek.net//page/4/">
     4
     </a>
@@ -378,7 +372,7 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
 
 
 <li >
-  <a aria-label="Next" href="https://voloda.bazilisek.net//page/2/">
+  <a aria-label="Next" href="https://voloda.bazilisek.net//page/5/">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>

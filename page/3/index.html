@@ -116,27 +116,21 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+  <h2><a href="https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/">Jenkinsfile and git authentication on Windows</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2019-04-08">8 Apr, 2019</time>
+  <time datetime="2017-11-20">20 Nov, 2017</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
   
-  <a href="https://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.bazilisek.net/tags/git" class="label label-primary">git</a>
   
 
 
@@ -146,15 +140,15 @@
     <p>
   
   
-    Experience with setting up first cloud build for .NET Core &amp; Angular.
-Intro  Read manuals carefully - you can test your build locally using Google Cloud SDK but it doesn&rsquo;t work on Windows. So if you want to give it a try setup a Linux machine for it. I strongly recommend to setup Google Cloud SDK on your Linux machine manually and not thru a package manager - this may save you a lot of time since gcloud components install will work for you and thus examples can be followed easily.
+    In this post are my notes on how to get working git commands from Jenkinsfile running on Windows build agents.
+Password authentication Setting up username and password in Jenkins server  First in Jenkins server add a new Credentials entry of type Username with password: . Set ID to repo_auth  This is later referenced in Jenkinsfile step withCredentials  Set Username Set Password  Sample Jenkinsfile  Now the system is ready to use above information from Jenkinsfile Build script then does following:
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -164,98 +158,13 @@ Intro  Read manuals carefully - you can test your build locally using Google Clo
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+  <h2><a href="https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/">Jenkins Docker Slave Windows Build Agent</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-10-20">20 Oct, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/kolo" class="label label-primary">kolo</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/wattmetr" class="label label-primary">wattmetr</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&hellip;
-Jídlo a pití Co nefungovalo Sladké Jakékoliv větší množství cukru mě vždycky poslalo do kolen cca na hodinu možná déle (Seč na jaře, sám kolem Sázavy, Jeseníky s Pavlem). Sladké je v pohodě, ale je potřeba to občas proložit něčím normálním - bageta, chleba s sebou apod.
-Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká čisté vody.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-09-03">3 Sep, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Introduction Each project using database access solves how to distribute database schema and how to keep it up-to-date after upgrades. I was solving this problem multiple times, so I decided to write a common, easy to use, and freely available library. The result of this is the DbKeeperNet library which is pure ADO.NET framework (no dependency on Entity Framework).
-This article will briefly show how to use DbKeeperNet library to fulfill this task.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-06-13">13 Jun, 2018</time>
+  <time datetime="2017-11-19">19 Nov, 2017</time>
 </small>
 
     
@@ -263,6 +172,8 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
   
   <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
   
+  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
+  
 
 
   </div>
@@ -271,17 +182,16 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
     <p>
   
   
-    I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but I found it pretty easily that the missing dependency on the image is Microsoft Visual C++ 2015 Redistributable Update 3.
-Below is Dockerfile I used to build the image.
-Into the same directory put download 8.0.11 Mysql server version https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip named as mysql.zip.
-Please note that the image below is created with root user without a password specified
+    I spent quite some time on getting this working on Windows with Windows Docker slaves.
+In the end it turned out to be mostly matter of using correct Jenkins docker plugin.
+Jenkins docker slave  Use Yet Another Docker Plugin  With this plugin it just works (Docker Plugin doesn&rsquo;t work)  Install JAVA into docker image and make it available on PATH In Configuration add Yet Another Docker Plugin as a Cloud  Point it to Docker server Test that it is available Add the docker image Add label which can be references from builds  Jenkins now automatically creates a docker container as a build is executed  It does not require any additional changes It properly handles the operating system (Windows)  For local only images make sure that the Pull option is set to Never  Base Dockerfile  This Dockerfile creates the base image for Windows build agent The only requirements is that java.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -291,19 +201,21 @@ Please note that the image below is created with root user without a password sp
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+  <h2><a href="https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/">Jenkins Server Setup On Windows</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-04-30">30 Apr, 2018</time>
+  <time datetime="2017-10-17">17 Oct, 2017</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
   
 
 
@@ -313,15 +225,85 @@ Please note that the image below is created with root user without a password sp
     <p>
   
   
-    Running tests  Run command from Angular5 project folder: ng test  Create an injectable service with an interface  This allows to define a typescript interface implemented by a class For injection is actually used the AUTHENTICATION_SERVICE token
-import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { HttpClient, HttpHeaders } from &#39;@angular/common/http&#39;; import { Observable } from &#39;rxjs/Observable&#39;; import &#39;rxjs/add/operator/map&#39;; export interface IAuthenticationService { login(username: string, password: string): Observable&lt;any&gt;; extendToken(): Observable&lt;any&gt;; logout(); isLoggedIn(): boolean; hasRole(role: string): boolean; } export const AUTHENTICATION_SERVICE = new InjectionToken&lt;IAuthenticationService&gt;(&#39;AUTHENTICATION_SERVICE&#39;); @Injectable() export class AuthenticationService implements IAuthenticationService { constructor(private http: HttpClient) { } // returns actually the token login(username: string, password: string): Observable&lt;any&gt; { return this.
+    Operating system preparation These notes assume since beginning separation of the Jenkins server and individual build agents so on the server will not be any build utilities except git which is necessary for repository polling.
+ Install Chocolatey (see instructions on web). Install Google Chrome (using Chocolatey is actually much easier than trying to download it from web).  choco install -y googlechrome  Install git  choco install -y git /NoShellIntegration   Jenkins Server Setup This is fairly simple:
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/">Chocolatey setup on DEV machine &#43; useful packages</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-10-04">4 Oct, 2017</time>
+</small>
+
+    
+
+  </div>
+</div>
+
+    <p>
+  
+  
+     Upgrade all packages  choco outdated  List available upgrades  cup all -y  List local Packages  chocolatey list -localonly  Packages choco install -y git --params='/NoShellIntegration' choco install -y poshgit choco install -y gittfs choco install -y far choco install -y atom choco install -y chefdk choco install -y winmerge choco install -y googlechrome choco install -y postman choco install -y 7zip  
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/">Cyclocomputer Garmin Edge 520 - experience</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2016-10-16">16 Oct, 2016</time>
+</small>
+
+    
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    I bought Garmin Edge 520 couple weeks ago. There are quite a few reviews on internet so this is not intended to be a general review.
+This is rather few comments on features I didn&rsquo;t find described elsewhere.
+Device configuration  I was used from Sigma Rox 9.0 that the configuration is done with convenience in a related software.  This served also for the configuration backup.  Unfortunately most of the setup for Garmin Edge 520 needs to be done manually on the device itself.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -334,19 +316,19 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     
 
 
-<li  class="disabled" >
+<li >
   <a aria-label="First" href="https://voloda.bazilisek.net//">
     <span aria-hidden="true">&laquo;&laquo;</span>
   </a>
 </li>
 
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
+<li >
+  <a aria-label="Previous" href="https://voloda.bazilisek.net//page/2/">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
 
-<li  class="active" >
+<li >
   <a href="https://voloda.bazilisek.net//">
     1
     </a>
@@ -358,7 +340,7 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     </a>
 </li>
 
-<li >
+<li  class="active" >
   <a href="https://voloda.bazilisek.net//page/3/">
     3
     </a>
@@ -378,7 +360,7 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
 
 
 <li >
-  <a aria-label="Next" href="https://voloda.bazilisek.net//page/2/">
+  <a aria-label="Next" href="https://voloda.bazilisek.net//page/4/">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>

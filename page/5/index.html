@@ -116,27 +116,21 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/">Google Cloud Builds - First Attempts To Build .NET Core and Angular</a>
+  <h2><a href="https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/">How to release unmanaged library loaded into managed .NET code</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2019-04-08">8 Apr, 2019</time>
+  <time datetime="2014-12-03">3 Dec, 2014</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
   
-  <a href="https://voloda.bazilisek.net/tags/dotnetcore" class="label label-primary">dotnetcore</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
   
 
 
@@ -146,15 +140,16 @@
     <p>
   
   
-    Experience with setting up first cloud build for .NET Core &amp; Angular.
-Intro  Read manuals carefully - you can test your build locally using Google Cloud SDK but it doesn&rsquo;t work on Windows. So if you want to give it a try setup a Linux machine for it. I strongly recommend to setup Google Cloud SDK on your Linux machine manually and not thru a package manager - this may save you a lot of time since gcloud components install will work for you and thus examples can be followed easily.
+    Motivation I had found this article on how to release DLL library already loaded into the process using P-Invoke. It uses LoadLibrary() and FreeLibrary() WINAPI calls to achieve this.
+And what is wrong with it?
+It forces to unload ALL instances of the DLL library currently loaded within process. Which means, that in the case you have more than one instance of the class using these external functions ALL these will stop working!
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -164,56 +159,13 @@ Intro  Read manuals carefully - you can test your build locally using Google Clo
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/">Kolo 2018 - zhodnocení sezóny</a>
+  <h2><a href="https://voloda.bazilisek.net/2014/11/unity-registration-validator/">Unity Registration Validator</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-10-20">20 Oct, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/kolo" class="label label-primary">kolo</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/wattmetr" class="label label-primary">wattmetr</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&hellip;
-Jídlo a pití Co nefungovalo Sladké Jakékoliv větší množství cukru mě vždycky poslalo do kolen cca na hodinu možná déle (Seč na jaře, sám kolem Sázavy, Jeseníky s Pavlem). Sladké je v pohodě, ale je potřeba to občas proložit něčím normálním - bageta, chleba s sebou apod.
-Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká čisté vody.
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/">DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-09-03">3 Sep, 2018</time>
+  <time datetime="2014-11-25">25 Nov, 2014</time>
 </small>
 
     
@@ -231,15 +183,17 @@ Tohle zahrnuje i cyklotyčky, ionťák - lepší malá láhav ionťáku a velká
     <p>
   
   
-    Introduction Each project using database access solves how to distribute database schema and how to keep it up-to-date after upgrades. I was solving this problem multiple times, so I decided to write a common, easy to use, and freely available library. The result of this is the DbKeeperNet library which is pure ADO.NET framework (no dependency on Entity Framework).
-This article will briefly show how to use DbKeeperNet library to fulfill this task.
+    Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).
+Introduction When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.
+Let&rsquo;s consider following classes:
+public interface IServiceDependency { } public interface IService { } public class ServiceDependency : IServiceDependency { private readonly string _dep1; public ServiceDependency(string dep1) { _dep1 = dep1; } } public class Service : IService { private readonly IServiceDependency _dependency; public Service(IServiceDependency dependency) { _dependency = dependency; } }  Now let&rsquo;s setup some test case:
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2014/11/unity-registration-validator/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -249,19 +203,21 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
+  <h2><a href="https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/">DbKeeperNet - How to seed ASP.NET users and roles</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-06-13">13 Jun, 2018</time>
+  <time datetime="2014-11-24">24 Nov, 2014</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
+  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
   
 
 
@@ -271,17 +227,15 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
     <p>
   
   
-    I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but I found it pretty easily that the missing dependency on the image is Microsoft Visual C++ 2015 Redistributable Update 3.
-Below is Dockerfile I used to build the image.
-Into the same directory put download 8.0.11 Mysql server version https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip named as mysql.zip.
-Please note that the image below is created with root user without a password specified
+    Introduction It is a common task that as a part of database setup you need to seed some default user accounts and roles into the database as a part of setup.
+DbKeeperNet is an opensource .NET/C# framework which helps you manage database schema for your database performing various types of upgrade steps. DbKeeperNet is designed with support for various database types in mind. Currently it supports most common databases: MSSQL, SQLite, Firebird, MySQL, Oracle.
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -291,19 +245,21 @@ Please note that the image below is created with root user without a password sp
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/">Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</a>
+  <h2><a href="https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/">Using CVS as source control for Sybase PowerBuilder</a>
 </h2>
 
   <div class="margin-10">
     <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2018-04-30">30 Apr, 2018</time>
+  <time datetime="2010-05-15">15 May, 2010</time>
 </small>
 
     
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/angular" class="label label-primary">angular</a>
+  <a href="https://voloda.bazilisek.net/tags/powerbuilder" class="label label-primary">powerbuilder</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/cvs" class="label label-primary">cvs</a>
   
 
 
@@ -313,15 +269,59 @@ Please note that the image below is created with root user without a password sp
     <p>
   
   
-    Running tests  Run command from Angular5 project folder: ng test  Create an injectable service with an interface  This allows to define a typescript interface implemented by a class For injection is actually used the AUTHENTICATION_SERVICE token
-import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { HttpClient, HttpHeaders } from &#39;@angular/common/http&#39;; import { Observable } from &#39;rxjs/Observable&#39;; import &#39;rxjs/add/operator/map&#39;; export interface IAuthenticationService { login(username: string, password: string): Observable&lt;any&gt;; extendToken(): Observable&lt;any&gt;; logout(); isLoggedIn(): boolean; hasRole(role: string): boolean; } export const AUTHENTICATION_SERVICE = new InjectionToken&lt;IAuthenticationService&gt;(&#39;AUTHENTICATION_SERVICE&#39;); @Injectable() export class AuthenticationService implements IAuthenticationService { constructor(private http: HttpClient) { } // returns actually the token login(username: string, password: string): Observable&lt;any&gt; { return this.
+    This article in short describes, how to use CVS for Powerbuilder. This solution we are using for about 6 years and it works very good.
+PBL problems The main difficulty of the Sybase Power Builder is in PBL libraries. PBL libraries are binary libraries containing both - sources and precompiled sources. This solution causes many problems:
+ PBLs are also very inclinable to faults (in Power Builder 7 it was not very surprissing that after fullrebuild failure were PBLs completely broken).
   
 
 
 </p>
 
 
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/" class="btn btn-default">Read more &rarr;</a></p>
+    <p class="lead"><a href="https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/">Using SVN as source control for Sybase PowerBuilder</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2010-05-15">15 May, 2010</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://voloda.bazilisek.net/tags/powerbuilder" class="label label-primary">powerbuilder</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/svn" class="label label-primary">svn</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another article).
+CVS we were are using for about 6 years and it was working perfectly.
+But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" class="btn btn-default">Read more &rarr;</a></p>
 
 
   </div>
@@ -334,19 +334,19 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     
 
 
-<li  class="disabled" >
+<li >
   <a aria-label="First" href="https://voloda.bazilisek.net//">
     <span aria-hidden="true">&laquo;&laquo;</span>
   </a>
 </li>
 
-<li  class="disabled" >
-  <a aria-label="Previous" href="#">
+<li >
+  <a aria-label="Previous" href="https://voloda.bazilisek.net//page/4/">
     <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
 
-<li  class="active" >
+<li >
   <a href="https://voloda.bazilisek.net//">
     1
     </a>
@@ -370,19 +370,19 @@ import { Injectable, InjectionToken } from &#39;@angular/core&#39;; import { Htt
     </a>
 </li>
 
-<li >
+<li  class="active" >
   <a href="https://voloda.bazilisek.net//page/5/">
     5
     </a>
 </li>
 
 
-<li >
-  <a aria-label="Next" href="https://voloda.bazilisek.net//page/2/">
+<li  class="disabled" >
+  <a aria-label="Next" href="#">
     <span aria-hidden="true">&raquo;</span>
     </a>
 </li>
-<li >
+<li  class="disabled" >
   <a aria-label="Last" href="https://voloda.bazilisek.net//page/5/">
     <span aria-hidden="true">&raquo;&raquo;</span>
   </a>
