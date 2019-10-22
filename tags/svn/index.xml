@@ -1,24 +1,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>svn on My personal notes</title>
-    <link>http://voloda.bazilisek.net/tags/svn/</link>
+    <link>https://voloda.bazilisek.net/tags/svn/</link>
     <description>Recent content in svn on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 May 2010 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/tags/svn/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/tags/svn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Using SVN as source control for Sybase PowerBuilder</title>
-      <link>http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</link>
+      <link>https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</guid>
+      <guid>https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</guid>
       <description>
 
-&lt;p&gt;This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another &lt;a href=&#34;http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/&#34;&gt;article&lt;/a&gt;).&lt;br /&gt;
+&lt;p&gt;This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another &lt;a href=&#34;https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/&#34;&gt;article&lt;/a&gt;).&lt;br /&gt;
 CVS we were are using for about 6 years and it was working perfectly.&lt;br /&gt;
 But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.&lt;/p&gt;
 

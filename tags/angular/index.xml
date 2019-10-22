@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>angular on My personal notes</title>
-    <link>http://voloda.bazilisek.net/tags/angular/</link>
+    <link>https://voloda.bazilisek.net/tags/angular/</link>
     <description>Recent content in angular on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/tags/angular/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/tags/angular/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular</title>
-      <link>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
+      <link>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
+      <guid>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
       <description>
 
 &lt;p&gt;Experience with setting up first cloud build for .NET Core &amp;amp; Angular.&lt;/p&gt;
@@ -180,10 +180,10 @@ args: [
     
     <item>
       <title>Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</title>
-      <link>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
       <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
       <description>
 
 &lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
@@ -298,10 +298,10 @@ describe(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AppComponent&amp;#39
     
     <item>
       <title>Angular5 and ASP.NET Core 2.0 cheat sheet</title>
-      <link>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
       <description>
 
 &lt;p&gt;Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0

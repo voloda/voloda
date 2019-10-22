@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jenkins on My personal notes</title>
-    <link>http://voloda.bazilisek.net/tags/jenkins/</link>
+    <link>https://voloda.bazilisek.net/tags/jenkins/</link>
     <description>Recent content in jenkins on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 03 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>
-      <link>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
+      <link>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
       <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
       <description>&lt;pre&gt;&lt;code&gt;pipeline {
   agent none
 
@@ -82,10 +82,10 @@
     
     <item>
       <title>How to create Docker build agent image with SDK installed from MSI</title>
-      <link>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
+      <link>https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
+      <guid>https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
       <description>
 
 &lt;p&gt;When creating build agent docker image usually you need to install SDKs
@@ -183,10 +183,10 @@ installation process finishes.&lt;/p&gt;
     
     <item>
       <title>Jenkinsfile and git authentication on Windows</title>
-      <link>http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</link>
+      <link>https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</guid>
+      <guid>https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</guid>
       <description>
 
 &lt;p&gt;In this post are my notes on how to get working &lt;code&gt;git&lt;/code&gt; commands from &lt;code&gt;Jenkinsfile&lt;/code&gt;
@@ -198,7 +198,7 @@ running on Windows build agents.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;First in Jenkins server add a new &lt;code&gt;Credentials&lt;/code&gt; entry of type &lt;code&gt;Username with password&lt;/code&gt;:
-&lt;img src=&#34;http://voloda.bazilisek.net/img/jenkins/jenkins_username_and_password.png&#34; alt=&#34;Jenkins username and password&#34; /&gt;.&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/jenkins/jenkins_username_and_password.png&#34; alt=&#34;Jenkins username and password&#34; /&gt;.&lt;/li&gt;
 &lt;li&gt;Set ID to &lt;code&gt;repo_auth&lt;/code&gt;
 
 &lt;ul&gt;
@@ -255,7 +255,7 @@ withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVa
 
 &lt;ul&gt;
 &lt;li&gt;First in Jenkins server add a new &lt;code&gt;Credentials&lt;/code&gt; entry of type &lt;code&gt;Secret text&lt;/code&gt;
-&lt;img src=&#34;http://voloda.bazilisek.net/img/jenkins/jenkins_ssh_known_hosts.png&#34; alt=&#34;Jenkins SSH known hosts&#34; /&gt;.&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/jenkins/jenkins_ssh_known_hosts.png&#34; alt=&#34;Jenkins SSH known hosts&#34; /&gt;.&lt;/li&gt;
 &lt;li&gt;Set ID to &lt;code&gt;github-knownhosts&lt;/code&gt;
 
 &lt;ul&gt;
@@ -268,7 +268,7 @@ withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVa
 
 &lt;ul&gt;
 &lt;li&gt;Now in Jenkins server add a new &lt;code&gt;Credentials&lt;/code&gt; entry of type &lt;code&gt;SSH Username with private key&lt;/code&gt;
-&lt;img src=&#34;http://voloda.bazilisek.net/img/jenkins/jenkins_ssh_key.png&#34; alt=&#34;Jenkins SSH username with private key&#34; /&gt;.&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/jenkins/jenkins_ssh_key.png&#34; alt=&#34;Jenkins SSH username with private key&#34; /&gt;.&lt;/li&gt;
 &lt;li&gt;Set ID to &lt;code&gt;github&lt;/code&gt;
 
 &lt;ul&gt;
@@ -329,10 +329,10 @@ withCredentials([
     
     <item>
       <title>Jenkins Docker Slave Windows Build Agent</title>
-      <link>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
+      <link>https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
       <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
       <description>
 
 &lt;p&gt;I spent quite some time on getting this working on Windows with Windows Docker
@@ -468,10 +468,10 @@ CMD [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-nologo&amp;quot;]
     
     <item>
       <title>Jenkins Server Setup On Windows</title>
-      <link>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
+      <link>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
+      <guid>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
       <description>
 
 &lt;h1 id=&#34;operating-system-preparation&#34;&gt;Operating system preparation&lt;/h1&gt;

@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My personal notes</title>
-    <link>http://voloda.bazilisek.net/post/</link>
+    <link>https://voloda.bazilisek.net/post/</link>
     <description>Recent content in Posts on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/post/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular</title>
-      <link>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
+      <link>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
+      <guid>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
       <description>
 
 &lt;p&gt;Experience with setting up first cloud build for .NET Core &amp;amp; Angular.&lt;/p&gt;
@@ -180,10 +180,10 @@ args: [
     
     <item>
       <title>Kolo 2018 - zhodnocení sezóny</title>
-      <link>http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</link>
+      <link>https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</link>
       <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</guid>
+      <guid>https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</guid>
       <description>
 
 &lt;p&gt;Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&amp;hellip;&lt;/p&gt;
@@ -322,10 +322,10 @@ a pořádně zapít, jinak platí to samé výše.&lt;/p&gt;
     
     <item>
       <title>DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</title>
-      <link>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
+      <link>https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
       <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
+      <guid>https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -510,10 +510,10 @@ of the .NET framework including .NET Core 2.1.&lt;/p&gt;
     
     <item>
       <title>Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</title>
-      <link>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
+      <link>https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
       <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
+      <guid>https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
       <description>&lt;p&gt;I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&amp;rsquo;t work out of the box but
 I found it pretty easily that the missing dependency on the image is &lt;code&gt;Microsoft Visual C++ 2015 Redistributable Update 3&lt;/code&gt;.&lt;/p&gt;
 
@@ -550,10 +550,10 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
     
     <item>
       <title>Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</title>
-      <link>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
       <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
       <description>
 
 &lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
@@ -668,10 +668,10 @@ describe(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AppComponent&amp;#39
     
     <item>
       <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>
-      <link>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
+      <link>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
       <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
       <description>&lt;pre&gt;&lt;code&gt;pipeline {
   agent none
 
@@ -738,10 +738,10 @@ describe(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AppComponent&amp;#39
     
     <item>
       <title>Angular5 and ASP.NET Core 2.0 cheat sheet</title>
-      <link>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
       <description>
 
 &lt;p&gt;Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0
@@ -846,10 +846,10 @@ and cannot be easily upgraded.&lt;/li&gt;
     
     <item>
       <title>How to create Docker build agent image with SDK installed from MSI</title>
-      <link>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
+      <link>https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
+      <guid>https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
       <description>
 
 &lt;p&gt;When creating build agent docker image usually you need to install SDKs
@@ -947,10 +947,10 @@ installation process finishes.&lt;/p&gt;
     
     <item>
       <title>Is it good idea to throw an exception in .NET C# constructor?</title>
-      <link>http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</link>
+      <link>https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</guid>
+      <guid>https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</guid>
       <description>
 
 &lt;p&gt;I got reminded recently about two cases why it may be actually a bad idea to
@@ -1242,10 +1242,10 @@ preferred way of coding.&lt;/p&gt;
     
     <item>
       <title>Handling detailed code reviews in GIT</title>
-      <link>http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/</link>
+      <link>https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/</link>
       <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/</guid>
+      <guid>https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;Pull Requests are sometimes not sufficient - they allow to see changes,
 perhaps you can even see that a test build passed but these do not allow
@@ -1289,10 +1289,10 @@ navigate thru references usign Resharper in Visual Studio etc.&lt;/p&gt;
     
     <item>
       <title>Jenkinsfile and git authentication on Windows</title>
-      <link>http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</link>
+      <link>https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</guid>
+      <guid>https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/</guid>
       <description>
 
 &lt;p&gt;In this post are my notes on how to get working &lt;code&gt;git&lt;/code&gt; commands from &lt;code&gt;Jenkinsfile&lt;/code&gt;
@@ -1304,7 +1304,7 @@ running on Windows build agents.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;First in Jenkins server add a new &lt;code&gt;Credentials&lt;/code&gt; entry of type &lt;code&gt;Username with password&lt;/code&gt;:
-&lt;img src=&#34;http://voloda.bazilisek.net/img/jenkins/jenkins_username_and_password.png&#34; alt=&#34;Jenkins username and password&#34; /&gt;.&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/jenkins/jenkins_username_and_password.png&#34; alt=&#34;Jenkins username and password&#34; /&gt;.&lt;/li&gt;
 &lt;li&gt;Set ID to &lt;code&gt;repo_auth&lt;/code&gt;
 
 &lt;ul&gt;
@@ -1361,7 +1361,7 @@ withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVa
 
 &lt;ul&gt;
 &lt;li&gt;First in Jenkins server add a new &lt;code&gt;Credentials&lt;/code&gt; entry of type &lt;code&gt;Secret text&lt;/code&gt;
-&lt;img src=&#34;http://voloda.bazilisek.net/img/jenkins/jenkins_ssh_known_hosts.png&#34; alt=&#34;Jenkins SSH known hosts&#34; /&gt;.&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/jenkins/jenkins_ssh_known_hosts.png&#34; alt=&#34;Jenkins SSH known hosts&#34; /&gt;.&lt;/li&gt;
 &lt;li&gt;Set ID to &lt;code&gt;github-knownhosts&lt;/code&gt;
 
 &lt;ul&gt;
@@ -1374,7 +1374,7 @@ withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVa
 
 &lt;ul&gt;
 &lt;li&gt;Now in Jenkins server add a new &lt;code&gt;Credentials&lt;/code&gt; entry of type &lt;code&gt;SSH Username with private key&lt;/code&gt;
-&lt;img src=&#34;http://voloda.bazilisek.net/img/jenkins/jenkins_ssh_key.png&#34; alt=&#34;Jenkins SSH username with private key&#34; /&gt;.&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/jenkins/jenkins_ssh_key.png&#34; alt=&#34;Jenkins SSH username with private key&#34; /&gt;.&lt;/li&gt;
 &lt;li&gt;Set ID to &lt;code&gt;github&lt;/code&gt;
 
 &lt;ul&gt;
@@ -1435,10 +1435,10 @@ withCredentials([
     
     <item>
       <title>Jenkins Docker Slave Windows Build Agent</title>
-      <link>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
+      <link>https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
       <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
       <description>
 
 &lt;p&gt;I spent quite some time on getting this working on Windows with Windows Docker
@@ -1574,10 +1574,10 @@ CMD [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-nologo&amp;quot;]
     
     <item>
       <title>Jenkins Server Setup On Windows</title>
-      <link>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
+      <link>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
+      <guid>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
       <description>
 
 &lt;h1 id=&#34;operating-system-preparation&#34;&gt;Operating system preparation&lt;/h1&gt;
@@ -1693,10 +1693,10 @@ to download it from web).
     
     <item>
       <title>Chocolatey setup on DEV machine &#43; useful packages</title>
-      <link>http://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/</link>
+      <link>https://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/</link>
       <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/</guid>
+      <guid>https://voloda.bazilisek.net/setup-on-dev-machine-and-useful-packages/</guid>
       <description>
 
 &lt;h2 id=&#34;upgrade-all-packages&#34;&gt;Upgrade all packages&lt;/h2&gt;
@@ -1734,17 +1734,17 @@ choco install -y 7zip
     
     <item>
       <title>Cyclocomputer Garmin Edge 520 - experience</title>
-      <link>http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/</link>
+      <link>https://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/</link>
       <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/</guid>
+      <guid>https://voloda.bazilisek.net/2016/10/cyclocomputer-garmin-edge-520-experience/</guid>
       <description>
 
 &lt;p&gt;I bought Garmin Edge 520 couple weeks ago. There are quite a few reviews on internet so this is not intended to be a general review.&lt;/p&gt;
 
 &lt;p&gt;This is rather few comments on features I didn&amp;rsquo;t find described elsewhere.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://voloda.bazilisek.net/img/mix/edge520.jpg&#34; alt=&#34;Garmin Edge 520&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://voloda.bazilisek.net/img/mix/edge520.jpg&#34; alt=&#34;Garmin Edge 520&#34; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;device-configuration&#34;&gt;Device configuration&lt;/h1&gt;
 
@@ -1798,10 +1798,10 @@ choco install -y 7zip
     
     <item>
       <title>Having fun with Chef</title>
-      <link>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</link>
+      <link>https://voloda.bazilisek.net/2015/09/having-fun-with-chef/</link>
       <pubDate>Mon, 14 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
+      <guid>https://voloda.bazilisek.net/2015/09/having-fun-with-chef/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -1901,10 +1901,10 @@ choco install -y 7zip
     
     <item>
       <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</title>
-      <link>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
+      <link>https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
+      <guid>https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -1985,10 +1985,10 @@ choco install -y 7zip
     
     <item>
       <title>Debugging T-SQL Stored Procedure Invoked From NUnit Tests In Visual Studio 2013 Debugger</title>
-      <link>http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</link>
+      <link>https://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</link>
       <pubDate>Tue, 10 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
+      <guid>https://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/</guid>
       <description>
 
 &lt;p&gt;Recently I had to write quite a few interesting stored procedures for MSSQL server which are covered by unit tests invoked as a part of continuous integration build in &lt;strong&gt;Team City&lt;/strong&gt;.&lt;/p&gt;
@@ -2052,17 +2052,17 @@ between markers with select from data stub (for example temporary table):&lt;/p&
 
 &lt;ul&gt;
 &lt;li&gt;Directly open &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; via Visual Studio menu &lt;em&gt;VIEW&lt;/em&gt;:
-&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png&#34; alt=&#34;Open SQL Server Object Explorer in VS 2013 menu&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer.png&#34; alt=&#34;Open SQL Server Object Explorer in VS 2013 menu&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;Alternatively use &lt;em&gt;Server Explorer&lt;/em&gt;:
 
 &lt;ul&gt;
 &lt;li&gt;Firstly add a connection to your database&lt;/li&gt;
 &lt;li&gt;Then right click using mouse on registered database and select &lt;em&gt;Browse in SQL Server Object Explorer&lt;/em&gt;:
-&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg&#34; alt=&#34;Open SQL Server Object Explorer from Server Explorer in VS2013&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_open_sql_server_object_explorer_from_server_explorer.jpg&#34; alt=&#34;Open SQL Server Object Explorer from Server Explorer in VS2013&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Once you get into the &lt;em&gt;SQL Server Object Explorer&lt;/em&gt; enable both debugging options as visible on picture below:
- &lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png&#34; alt=&#34;Enable debugging in SQL Server Object Explorer from VS2013&#34; /&gt;&lt;/li&gt;
+ &lt;img src=&#34;https://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_enable_sql_debugging_in_sql_server_object_explorer.png&#34; alt=&#34;Enable debugging in SQL Server Object Explorer from VS2013&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
@@ -2082,7 +2082,7 @@ between markers with select from data stub (for example temporary table):&lt;/p&
 &lt;li&gt;Load test assembly into NUnit runner.&lt;/li&gt;
 &lt;li&gt;Attach Visual Studio 2013 debugger to running process.&lt;/li&gt;
 &lt;li&gt;Important part here is to have enabled both - &lt;strong&gt;Managed code&lt;/strong&gt; and &lt;strong&gt;T-SQL&lt;/strong&gt; code debugging prior to attaching to he &lt;strong&gt;NUnit-x86.exe&lt;/strong&gt; process:
-&lt;img src=&#34;http://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg&#34; alt=&#34;Attaching to NUnit with enabled T-SQL debugging&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/sqldebugging/visual_studio_2013_attach_debugger_with_t_sql_debugging.jpg&#34; alt=&#34;Attaching to NUnit with enabled T-SQL debugging&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;Now set a .breakpoint in .NET code just around the code which is responsible for invocation of the stored procedure you are interested in, for example &lt;code&gt;SqlDbCommand.Execute()&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Run unit test from the NUnit runner and have it hit the breakpoint in Visual Studio.&lt;/li&gt;
 &lt;li&gt;Now from the _&lt;strong&gt;SQL Server Object Explorer&lt;/strong&gt; open the body of stored procedure (just double-click on it),&lt;/li&gt;
@@ -2111,10 +2111,10 @@ between markers with select from data stub (for example temporary table):&lt;/p&
     
     <item>
       <title>How to post markdown article on blogspot/blogger with enabled code syntax highlighting</title>
-      <link>http://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/</link>
+      <link>https://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/</guid>
+      <guid>https://voloda.bazilisek.net/2014/12/how-to-post-markdown-article-on-blogspot/blogger-with-enabled-code-syntax-highlighting/</guid>
       <description>
 
 &lt;h1 id=&#34;how-to&#34;&gt;How-to&lt;/h1&gt;
@@ -2157,10 +2157,10 @@ published: true
     
     <item>
       <title>Visual Studio 2012 debugger does not break after attaching to C#/.NET process</title>
-      <link>http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</link>
+      <link>https://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</guid>
+      <guid>https://voloda.bazilisek.net/2014/12/visual-studio-2012-debugger-does-not-break-after-attaching-to-csharp-dotnet-process/</guid>
       <description>&lt;p&gt;I had from time to time issue debug C#/.NET applications in Visual Studio 2012 after attaching Visual Studio 2012 debugger to a process.&lt;/p&gt;
 
 &lt;p&gt;Symptoms were that the debugger attached to the process but neither &amp;lsquo;Break All&amp;rsquo; worked. The same applied for any preset breakpoint.&lt;/p&gt;
@@ -2170,16 +2170,16 @@ published: true
 &lt;p&gt;Today I really wanted to attach to a process to see what is going on inside and the issue happened again.&lt;/p&gt;
 
 &lt;p&gt;After a bit of playing I realized that in the case that debugger works after attaching correctly the &amp;lsquo;Attach to Process&amp;rsquo; Visual Studio dialog looks like this (see &amp;lsquo;Attach to&amp;rsquo; field):
-&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For my process it didn&amp;rsquo;t work this time and &amp;lsquo;Attach to Process&amp;rsquo; dialog looked like this (again see &amp;lsquo;Attach to&amp;rsquo; field):
-&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_type.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Apparently Visual Studio in some cases does not properly detect the type of the process and does not use correct debugger settings.&lt;/p&gt;
 
 &lt;p&gt;In order to solve my issue I finally found the &amp;lsquo;Select&amp;hellip;&amp;rsquo; button following &amp;lsquo;Attach to&amp;rsquo; field where you can disable automatic detection of the process type and manually select a different one.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_select_code_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_select_code_type.png &#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://voloda.bazilisek.net/img/visual-studio/visual_studio_debugger_does_not_recognize_process_select_code_type.png&#34; alt=&#34;visual_studio_debugger_does_not_recognize_process_select_code_type.png &#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After selecting &amp;lsquo;Manager (v4.5, 4.0)&amp;rsquo; and attaching debugger to process again everything worked well.&lt;/p&gt;
 </description>
@@ -2187,10 +2187,10 @@ published: true
     
     <item>
       <title>How to release unmanaged library loaded into managed .NET code</title>
-      <link>http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</link>
+      <link>https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</link>
       <pubDate>Wed, 03 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</guid>
+      <guid>https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/</guid>
       <description>
 
 &lt;h1 id=&#34;motivation&#34;&gt;Motivation&lt;/h1&gt;
@@ -2363,10 +2363,10 @@ Console.ReadKey();
     
     <item>
       <title>Unity Registration Validator</title>
-      <link>http://voloda.bazilisek.net/2014/11/unity-registration-validator/</link>
+      <link>https://voloda.bazilisek.net/2014/11/unity-registration-validator/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
+      <guid>https://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
       <description>
 
 &lt;p&gt;Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you
@@ -2504,10 +2504,10 @@ rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;g
     
     <item>
       <title>DbKeeperNet - How to seed ASP.NET users and roles</title>
-      <link>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
+      <link>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
+      <guid>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -2681,10 +2681,10 @@ Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user tes
     
     <item>
       <title>Using CVS as source control for Sybase PowerBuilder</title>
-      <link>http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</link>
+      <link>https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</guid>
+      <guid>https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/</guid>
       <description>
 
 &lt;p&gt;This article in short describes, how to use CVS for Powerbuilder. This solution we are using for about 6 years and it works very good.&lt;/p&gt;
@@ -2747,13 +2747,13 @@ Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user tes
     
     <item>
       <title>Using SVN as source control for Sybase PowerBuilder</title>
-      <link>http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</link>
+      <link>https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</link>
       <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</guid>
+      <guid>https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/</guid>
       <description>
 
-&lt;p&gt;This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another &lt;a href=&#34;http://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/&#34;&gt;article&lt;/a&gt;).&lt;br /&gt;
+&lt;p&gt;This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another &lt;a href=&#34;https://voloda.bazilisek.net/2010/05/using-cvs-as-source-control-for-sybase-powerbuilder/&#34;&gt;article&lt;/a&gt;).&lt;br /&gt;
 CVS we were are using for about 6 years and it was working perfectly.&lt;br /&gt;
 But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.&lt;/p&gt;
 

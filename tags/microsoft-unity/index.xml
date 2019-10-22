@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Microsoft Unity on My personal notes</title>
-    <link>http://voloda.bazilisek.net/tags/microsoft-unity/</link>
+    <link>https://voloda.bazilisek.net/tags/microsoft-unity/</link>
     <description>Recent content in Microsoft Unity on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/tags/microsoft-unity/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/tags/microsoft-unity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Is it good idea to throw an exception in .NET C# constructor?</title>
-      <link>http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</link>
+      <link>https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</guid>
+      <guid>https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/</guid>
       <description>
 
 &lt;p&gt;I got reminded recently about two cases why it may be actually a bad idea to

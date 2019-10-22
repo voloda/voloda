@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on My personal notes</title>
-    <link>http://voloda.bazilisek.net/tags/docker/</link>
+    <link>https://voloda.bazilisek.net/tags/docker/</link>
     <description>Recent content in docker on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular</title>
-      <link>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
+      <link>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
+      <guid>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
       <description>
 
 &lt;p&gt;Experience with setting up first cloud build for .NET Core &amp;amp; Angular.&lt;/p&gt;
@@ -180,10 +180,10 @@ args: [
     
     <item>
       <title>Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</title>
-      <link>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
+      <link>https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
       <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
+      <guid>https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
       <description>&lt;p&gt;I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&amp;rsquo;t work out of the box but
 I found it pretty easily that the missing dependency on the image is &lt;code&gt;Microsoft Visual C++ 2015 Redistributable Update 3&lt;/code&gt;.&lt;/p&gt;
 
@@ -220,10 +220,10 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
     
     <item>
       <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>
-      <link>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
+      <link>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
       <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
       <description>&lt;pre&gt;&lt;code&gt;pipeline {
   agent none
 
@@ -290,10 +290,10 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
     
     <item>
       <title>How to create Docker build agent image with SDK installed from MSI</title>
-      <link>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
+      <link>https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
+      <guid>https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/</guid>
       <description>
 
 &lt;p&gt;When creating build agent docker image usually you need to install SDKs
@@ -391,10 +391,10 @@ installation process finishes.&lt;/p&gt;
     
     <item>
       <title>Jenkins Docker Slave Windows Build Agent</title>
-      <link>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
+      <link>https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</link>
       <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/</guid>
       <description>
 
 &lt;p&gt;I spent quite some time on getting this working on Windows with Windows Docker
@@ -530,10 +530,10 @@ CMD [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-nologo&amp;quot;]
     
     <item>
       <title>Jenkins Server Setup On Windows</title>
-      <link>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
+      <link>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
+      <guid>https://voloda.bazilisek.net/2017/10/jenkins-server-setup-on-windows/</guid>
       <description>
 
 &lt;h1 id=&#34;operating-system-preparation&#34;&gt;Operating system preparation&lt;/h1&gt;

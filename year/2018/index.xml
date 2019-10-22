@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2018 on My personal notes</title>
-    <link>http://voloda.bazilisek.net/year/2018/</link>
+    <link>https://voloda.bazilisek.net/year/2018/</link>
     <description>Recent content in 2018 on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Oct 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/year/2018/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/year/2018/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kolo 2018 - zhodnocení sezóny</title>
-      <link>http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</link>
+      <link>https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</link>
       <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</guid>
+      <guid>https://voloda.bazilisek.net/2018/10/kolo-2018-zhodnoceni-sezony/</guid>
       <description>
 
 &lt;p&gt;Pár poznámek k cyklosezoně 2018 - jen osobní poznámky&amp;hellip;&lt;/p&gt;
@@ -154,10 +154,10 @@ a pořádně zapít, jinak platí to samé výše.&lt;/p&gt;
     
     <item>
       <title>DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</title>
-      <link>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
+      <link>https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
       <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
+      <guid>https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -342,10 +342,10 @@ of the .NET framework including .NET Core 2.1.&lt;/p&gt;
     
     <item>
       <title>Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</title>
-      <link>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
+      <link>https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</link>
       <pubDate>Wed, 13 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
+      <guid>https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/</guid>
       <description>&lt;p&gt;I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&amp;rsquo;t work out of the box but
 I found it pretty easily that the missing dependency on the image is &lt;code&gt;Microsoft Visual C++ 2015 Redistributable Update 3&lt;/code&gt;.&lt;/p&gt;
 
@@ -382,10 +382,10 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
     
     <item>
       <title>Angular5 Materialized Design And Karma Unit Tests Cheat Sheet</title>
-      <link>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</link>
       <pubDate>Mon, 30 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/angular5-materialized-design-and-karma-unit-tests-cheat-sheet/</guid>
       <description>
 
 &lt;h1 id=&#34;running-tests&#34;&gt;Running tests&lt;/h1&gt;
@@ -500,10 +500,10 @@ describe(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AppComponent&amp;#39
     
     <item>
       <title>Jenkinsfile Sample Utilizing Docker Slave Agent</title>
-      <link>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
+      <link>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</link>
       <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
+      <guid>https://voloda.bazilisek.net/2018/04/jenkinsfile-sample-utilizing-docker-slave-agent/</guid>
       <description>&lt;pre&gt;&lt;code&gt;pipeline {
   agent none
 
@@ -570,10 +570,10 @@ describe(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AppComponent&amp;#39
     
     <item>
       <title>Angular5 and ASP.NET Core 2.0 cheat sheet</title>
-      <link>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
       <description>
 
 &lt;p&gt;Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0

@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CodeProject on My personal notes</title>
-    <link>http://voloda.bazilisek.net/categories/codeproject/</link>
+    <link>https://voloda.bazilisek.net/categories/codeproject/</link>
     <description>Recent content in CodeProject on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/categories/codeproject/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/categories/codeproject/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DbKeeperNet 3 - an alternative to perform database upgrade (migrations) with support of .NET Standard 2.0</title>
-      <link>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
+      <link>https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</link>
       <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
+      <guid>https://voloda.bazilisek.net/2018/09/dbkeepernet-3-an-alternative-to-perform-database-upgrade-migrations-with-support-of-dotnet-standard-2.0/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -200,10 +200,10 @@ of the .NET framework including .NET Core 2.1.&lt;/p&gt;
     
     <item>
       <title>Introducing .NET C# Inversion Of Control and Microsoft Unity Hands-On Lab</title>
-      <link>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
+      <link>https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</link>
       <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
+      <guid>https://voloda.bazilisek.net/2015/03/introducing-dotnet-csharp-inversion-of-control-and-microsoft-unity-hands-on-lab/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -284,10 +284,10 @@ of the .NET framework including .NET Core 2.1.&lt;/p&gt;
     
     <item>
       <title>Unity Registration Validator</title>
-      <link>http://voloda.bazilisek.net/2014/11/unity-registration-validator/</link>
+      <link>https://voloda.bazilisek.net/2014/11/unity-registration-validator/</link>
       <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
+      <guid>https://voloda.bazilisek.net/2014/11/unity-registration-validator/</guid>
       <description>
 
 &lt;p&gt;Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you
@@ -425,10 +425,10 @@ rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;g
     
     <item>
       <title>DbKeeperNet - How to seed ASP.NET users and roles</title>
-      <link>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
+      <link>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</link>
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
+      <guid>https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/</guid>
       <description>
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;

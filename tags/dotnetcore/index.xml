@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dotnetcore on My personal notes</title>
-    <link>http://voloda.bazilisek.net/tags/dotnetcore/</link>
+    <link>https://voloda.bazilisek.net/tags/dotnetcore/</link>
     <description>Recent content in dotnetcore on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://voloda.bazilisek.net/tags/dotnetcore/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://voloda.bazilisek.net/tags/dotnetcore/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular</title>
-      <link>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
+      <link>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
+      <guid>https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/</guid>
       <description>
 
 &lt;p&gt;Experience with setting up first cloud build for .NET Core &amp;amp; Angular.&lt;/p&gt;
@@ -180,10 +180,10 @@ args: [
     
     <item>
       <title>Angular5 and ASP.NET Core 2.0 cheat sheet</title>
-      <link>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
+      <link>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
+      <guid>https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/</guid>
       <description>
 
 &lt;p&gt;Couple of notes on setting up a project on Angular5 utilizing .NET Core 2.0
