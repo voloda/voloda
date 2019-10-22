@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>How to create Docker build agent image with SDK installed from MSI  &middot; My personal notes on various topics</title>
+  <title>Google Cloud Builds - Commit to GitHub repository  &middot; My personal notes on various topics</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,28 +14,32 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="docker, jenkins, ">
+<meta name="keywords" content="gcp, cloudbuilds, docker, github, ">
 
 
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="How to create Docker build agent image with SDK installed from MSI  &middot; My personal notes on various topics ">
+<meta property="og:title" content="Google Cloud Builds - Commit to GitHub repository  &middot; My personal notes on various topics ">
 <meta property="og:site_name" content="My personal notes on various topics"/>
-<meta property="og:url" content="https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" />
+<meta property="og:url" content="https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/" />
 <meta property="og:locale" content="en">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2017-12-20T00:00:00Z" />
-<meta property="og:article:modified_time" content="2017-12-20T00:00:00Z" />
+<meta property="og:article:published_time" content="2019-10-22T00:00:00Z" />
+<meta property="og:article:modified_time" content="2019-10-22T00:00:00Z" />
 
   
     
+<meta property="og:article:tag" content="gcp">
+    
+<meta property="og:article:tag" content="cloudbuilds">
+    
 <meta property="og:article:tag" content="docker">
     
-<meta property="og:article:tag" content="jenkins">
+<meta property="og:article:tag" content="github">
     
   
 
@@ -43,9 +47,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="How to create Docker build agent image with SDK installed from MSI" />
+<meta name="twitter:title" content="Google Cloud Builds - Commit to GitHub repository" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" />
+<meta name="twitter:url" content="https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/" />
 <meta name="twitter:domain" content="https://voloda.bazilisek.net/">
   
 
@@ -54,21 +58,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "How to create Docker build agent image with SDK installed from MSI",
+    "headline": "Google Cloud Builds - Commit to GitHub repository",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2017-12-20",
+    "datePublished": "2019-10-22",
     "description": "",
-    "wordCount":  470 
+    "wordCount":  232 
   }
 </script>
   
 
 
 
-<link rel="canonical" href="https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/" />
+<link rel="canonical" href="https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.58.3" />
@@ -154,37 +158,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="title-metas text-center">
 
-    <h1>How to create Docker build agent image with SDK installed from MSI
+    <h1>Google Cloud Builds - Commit to GitHub repository
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-12-20">20 Dec, 2017</time>
+  <time datetime="2019-10-22">22 Oct, 2019</time>
 </small>
 
 
   <small>
-  &middot; Read in about 3 min
-  &middot; (470 words)
+  &middot; Read in about 2 min
+  &middot; (232 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Google%20Cloud%20Builds%20-%20Commit%20to%20GitHub%20repository&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f&amp;title=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f&amp;title=Google%20Cloud%20Builds%20-%20Commit%20to%20GitHub%20repository" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Google%20Cloud%20Builds%20-%20Commit%20to%20GitHub%20repository&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -192,9 +196,13 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
+  <a href="https://voloda.bazilisek.net/tags/gcp" class="label label-primary">gcp</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/cloudbuilds" class="label label-primary">cloudbuilds</a>
+  
   <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
   
-  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
+  <a href="https://voloda.bazilisek.net/tags/github" class="label label-primary">github</a>
   
 
 
@@ -210,119 +218,87 @@
       <div class="content">
   
 
-<p>When creating build agent docker image usually you need to install SDKs
-from MSI (like Infragistic, DevExpress, Active Reports etc.).</p>
+<p>Setting up a cloud builder task to commit back to a Github repository using <code>Deploy keys</code>.</p>
 
-<p>There are couple of challenges here:</p>
-
-<ul>
-<li>Windows Docker doesn&rsquo;t support UI.</li>
-<li>Also very often you have to populate UI with values.</li>
-</ul>
-
-<p>For this purpose MSI supports so called unattended installs.</p>
-
-<p>For input values you can pass those as parameters to MSI on command line.</p>
-
-<p>Let&rsquo;s assume that we want to install SDK like Infragistic.</p>
-
-<h1 id="how-to-find-out-msi-command-line">How to find out MSI command line</h1>
-
-<h2 id="use-msi-logging">Use MSI logging</h2>
-
-<p>First run the SDK MSI from command line on a sandbox PC so it produced
-installation log:</p>
-
-<pre><code>msiexec /i NetAdvantage_WinForms_20112.msi /L*V infragistic.log
-</code></pre>
-
-<p>Now follow the installation</p>
-
-<p>Now looks into generated <code>infragistic.log</code> file and look for values you entered.</p>
-
-<p>Piece of log file:</p>
-
-<pre><code>...
-Action 20:16:29: ExecuteAction.
-Action start 20:16:29: ExecuteAction.
-MSI (c) (A4:F0) [20:16:29:526]: PROPERTY CHANGE: Adding SECONDSEQUENCE property. Its value is '1'.
-MSI (c) (A4:F0) [20:16:29:535]: Grabbed execution mutex.
-MSI (c) (A4:F0) [20:16:29:535]: Incrementing counter to disable shutdown. Counter after increment: 0
-MSI (c) (A4:F0) [20:16:29:535]: Switching to server: COMMON_DOCUMENTS_LOC=&quot;C:\Users\Public\Documents&quot; USER_DOCUMENTS_LOC=&quot;C:\Users\voloda\Documents&quot; INSTALLDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; AGREE_AND_INSTALL_OFFICE_2007_UI=&quot;No&quot; INSTALL_SERIALNUM=&quot;1234&quot; COMMONDOCUMENTS=&quot;C:\CommonDocuments\&quot; TARGETDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; ALLUSERS=&quot;1&quot; DOTNETV4=&quot;1&quot; IGSHORTCUTDIR=&quot;C:\Users\voloda\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Infragistics\&quot; INSTALLDIR.B2768727_084D_4283_A045_7A86BAF639DC=&quot;C:\Windows\SysWOW64\GAC\&quot; INSTALLDIR.4ED14E0A_AECA_4FCD_BEF6_35F299C4270E=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; _INSTALL_PROD_CODE=&quot;48&quot; INSTALLDIR.D348289C_580E_44C6_A617_A90FC315DB7D=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; INSTALLDIR.52DB8F59_5C03_491A_99D2_1A0565A67FD2=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; INSTALLDIR.96F9412E_4A28_4BF2_B6B7_66F921C4BE3C=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; INSTALLDIR.7295D7F7_BBA6_41D4_8E45_780AD1F07B46=&quot;C:\Windows\SysWOW64\UltimateKeys\&quot; CURRENTDIRECTORY=&quot;C:\Users\voloda\docker-tests\windows-nbo&quot; CLIENTUILEVEL=&quot;0&quot; CLIENTPROCESS
-MSI (s) (F0:94) [20:16:29:547]: Running installation inside multi-package transaction C:\Users\voloda\docker-tests\windows-nbo\NetAdvantage_WinForms_20112.msi
-MSI (s) (F0:94) [20:16:29:547]: Grabbed execution mutex.
-MSI (s) (F0:C8) [20:16:29:579]: Resetting cached policy values
-MSI (s) (F0:C8) [20:16:29:579]: Machine policy value 'Debug' is 0
-MSI (s) (F0:C8) [20:16:29:579]: ******* RunEngine:
-           ******* Product: C:\Users\voloda\docker-tests\windows-nbo\NetAdvantage_WinForms_20112.msi
-...
-</code></pre>
-
-<p>Keep in mind that for example passwords, serial numbers etc. might be in the log
-masked so you need to be a bit inventive to find all important values.</p>
-
-<p>General suggestion for MSI is that any properties which have upper-case names
-should be available on command line.</p>
-
-<p>MSI properties seems to be specified here:</p>
-
-<pre><code>MSI (c) (A4:F0) [20:16:29:535]: Switching to server: COMMON_DOCUMENTS_LOC=&quot;C:\Users\Public\Documents&quot; USER_DOCUMENTS_LOC=&quot;C:\Users\voloda\Documents&quot; INSTALLDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; AGREE_AND_INSTALL_OFFICE_2007_UI=&quot;No&quot; INSTALL_SERIALNUM=&quot;1234&quot; COMMONDOCUMENTS=&quot;C:\CommonDocuments\&quot; TARGETDIR=&quot;C:\Program Files (x86)\Infragistics\&quot; ALLUSERS=&quot;1&quot; DOTNETV4=&quot;1&quot; IGSHORTCUTDIR=&quot;C:\Users\voloda\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Infragistics\&quot;
-</code></pre>
-
-<p>For Infragistic and my build agent I am interested in following entries:</p>
+<h1 id="intro">Intro</h1>
 
 <ul>
-<li><code>INSTALL_SERIALNUM</code></li>
-<li><code>AGREE_AND_INSTALL_OFFICE_2007_UI</code></li>
-</ul>
+<li>Sometimes it is useful to be able perform write operations in github repositories (or access a private repository etc.)</li>
+<li>This requires setting up an account with permissions</li>
+<li>An alternative would be setting up a cloud builder with SSH key which will be authorized to access the repository</li>
 
-<h2 id="use-orca-editor">Use Orca editor</h2>
+<li><p>Cloud builder task below generates an RSA key which will be part of the task and can be allowed to access repository</p>
 
-<p>Microsoft provides as a part of MSI SDK <code>Orca.exe</code> which allows to edit MSI database.</p>
+<ul>
+<li><strong>Be aware that each key can be authorized to access a single repository only</strong></li>
+</ul></li>
 
-<p>Following the above rule about upper-case names you can find properties which
-can be specified on command line.</p>
-
-<p>This can be actually easier but requires MSI SDK with <code>Orca.exe</code> installed.</p>
-
-<h1 id="dockerfile">Dockerfile</h1>
-
-<p>Once we know parameters we can just update the <code>Dockerfile</code> so it copies SDK
-to the image and then executes unattended installation the SDK including the
-license (or whatever details you need).</p>
-
-<p>In this case we specify the license number (<code>INSTALL_SERIALNUM=1234</code>) and
-bunch of other properties.</p>
-
-<p>The example below ensures that during building the image we wait until the
-installation process finishes.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile">COPY NetAdvantage_WinForms_20112.msi <span style="color:#a31515">&#34;C:\\&#34;</span><span style="">
+<li><p><code>Dockerfile</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> gcr.io/cloud-builders/git</span><span style="">
 </span><span style="">
-</span><span style=""></span><span style="color:#00f">RUN</span> $ErrorActionPreference = <span style="color:#a31515">&#39;Stop&#39;</span>; <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>    $VerbosePreference = <span style="color:#a31515">&#39;Continue&#39;</span>; <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>    Start-Process -Wait -PassThru -FilePath c:<span style="color:#a31515">\w</span>indows<span style="color:#a31515">\s</span>ystem32<span style="color:#a31515">\m</span>siexec.exe -ArgumentList <span style="color:#a31515">&#39;/i c:\\NetAdvantage_WinForms_20112.msi  /q /l* c:\\infragistic.log INSTALL_SERIALNUM=1234 ALLUSERS=1 AGREE_AND_INSTALL_OFFICE_2007_UI=No&#39;</span></code></pre></div>
+</span><span style=""></span><span style="color:#00f">CMD</span><span style="color:#a31515"> [ &#39;/bin/sh&#39;, &#39;-c&#39; ]</span><span style="">
+</span><span style="">
+</span><span style=""></span>COPY known_hosts /root/.ssh/known_hosts<span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> ssh-keygen -t rsa -N <span style="color:#a31515">&#34;&#34;</span> -f ~/.ssh/id_rsa<span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> cat ~/.ssh/id_rsa.pub<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;git&#34;]</span></code></pre></div></li>
+
+<li><p><code>known_hosts</code> (collocated with <code>Dockerfile</code>)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">github.com,192.30.253.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==</code></pre></div></li>
+
+<li><p><code>cloudbuild.yaml</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
+- name: <span style="color:#a31515">&#39;gcr.io/cloud-builders/docker&#39;</span>
+args: [<span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;--tag=gcr.io/$PROJECT_ID/github&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span>]
+
+images:
+- <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/github:latest&#39;</span></code></pre></div></li>
+
+<li><p>Once you build your cloud builder check the log and look for the generated public key:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">Step 5/6 : RUN cat ~/.ssh/id_rsa.pub
+---&gt; Running in 32c7423c4915
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/XRz6pyjViympvwmj7Y2QWSO+ZeahAn3xlsJlmnY+3mODKXieHKnI6Zyt26MCrLpgZ30LhQ1m2WcVZJHGkmot+mYt70Lr1spD9AJ3RCaVOuphBsOhyKzRh9Qq6qtEBBiA+TnRYlRTxE51879/9WJXCbM6Bb27bUYRPRMWAAxeY+pF2zUjk5A/mgfHE/+OfHVeWkKlPjNIV+keZ8TlLvH51ntuTdwrC7rq3TFGkrkXJQ6tqNnlqaFORpJ6KiDkgCryqCByadZnJOsEbA1bFt9q2mpXVnyL6YjV8MuVf8XY+yYjs7xZCRtAMPZXtEcqv+S1JjTlDIOKX4BCeD/M4Ok3 root@cf525f31d11f</code></pre></div></li>
+
+<li><p>Take the line starting with <code>ssh-rsa</code> to clipboard and add it to your Github repository:</p></li>
+</ul>
+
+<p><img src="/img/mix/github_deploy_keys.jpg" alt="Github Deploy Keys setup" /></p>
+
+<ul>
+<li><strong>Be careful though - the secrets are now stored as a part of GCP project where the cloudbuilder task image is saved so if somebody gets access to your project or docker image she will get access to your Github repository</strong></li>
+</ul>
+
+<h1 id="links">Links</h1>
+
+<ul>
+<li><a href="https://console.cloud.google.com/cloud-build/builds">Google cloud builds</a></li>
+<li><a href="https://console.cloud.google.com/gcr/images/">Google cloud container registry</a></li>
+<li><a href="https://cloud.google.com/cloud-build/">Google cloud builds documentation</a></li>
+</ul>
+
 </div>
 
 
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Google%20Cloud%20Builds%20-%20Commit%20to%20GitHub%20repository&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f&amp;title=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f&amp;title=Google%20Cloud%20Builds%20-%20Commit%20to%20GitHub%20repository" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=How%20to%20create%20Docker%20build%20agent%20image%20with%20SDK%20installed%20from%20MSI&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f12%2fhow-to-create-docker-build-agent-image-with-sdk-installed-from-msi%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Google%20Cloud%20Builds%20-%20Commit%20to%20GitHub%20repository&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fgoogle-cloud-builds-commit-to-github-repository%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -331,18 +307,12 @@ installation process finishes.</p>
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" title="Is it good idea to throw an exception in .NET C# constructor?">
+          <a href="https://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" title="Google Cloud Builds - First Attempts To Build .NET Core and Angular">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="https://voloda.bazilisek.net/2018/03/angular5-and-aspnet-core-20-cheat-sheet/" title="Angular5 and ASP.NET Core 2.0 cheat sheet">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   

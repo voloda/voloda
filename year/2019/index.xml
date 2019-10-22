@@ -6,10 +6,79 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>(c) 2010-2019 Vladimir Kloz</copyright>
-    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://voloda.bazilisek.net/year/2019/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Google Cloud Builds - Commit to GitHub repository</title>
+      <link>https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/</guid>
+      <description>
+
+&lt;p&gt;Setting up a cloud builder task to commit back to a Github repository using &lt;code&gt;Deploy keys&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sometimes it is useful to be able perform write operations in github repositories (or access a private repository etc.)&lt;/li&gt;
+&lt;li&gt;This requires setting up an account with permissions&lt;/li&gt;
+&lt;li&gt;An alternative would be setting up a cloud builder with SSH key which will be authorized to access the repository&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Cloud builder task below generates an RSA key which will be part of the task and can be allowed to access repository&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Be aware that each key can be authorized to access a single repository only&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; gcr.io/cloud-builders/git&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;CMD&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [ &amp;#39;/bin/sh&amp;#39;, &amp;#39;-c&amp;#39; ]&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;COPY known_hosts /root/.ssh/known_hosts&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; ssh-keygen -t rsa -N &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; -f ~/.ssh/id_rsa&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; cat ~/.ssh/id_rsa.pub&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;git&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;known_hosts&lt;/code&gt; (collocated with &lt;code&gt;Dockerfile&lt;/code&gt;)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;github.com,192.30.253.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
+- name: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/cloud-builders/docker&amp;#39;&lt;/span&gt;
+args: [&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--tag=gcr.io/$PROJECT_ID/github&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;]
+
+images:
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/github:latest&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Once you build your cloud builder check the log and look for the generated public key:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;Step 5/6 : RUN cat ~/.ssh/id_rsa.pub
+---&amp;gt; Running in 32c7423c4915
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/XRz6pyjViympvwmj7Y2QWSO+ZeahAn3xlsJlmnY+3mODKXieHKnI6Zyt26MCrLpgZ30LhQ1m2WcVZJHGkmot+mYt70Lr1spD9AJ3RCaVOuphBsOhyKzRh9Qq6qtEBBiA+TnRYlRTxE51879/9WJXCbM6Bb27bUYRPRMWAAxeY+pF2zUjk5A/mgfHE/+OfHVeWkKlPjNIV+keZ8TlLvH51ntuTdwrC7rq3TFGkrkXJQ6tqNnlqaFORpJ6KiDkgCryqCByadZnJOsEbA1bFt9q2mpXVnyL6YjV8MuVf8XY+yYjs7xZCRtAMPZXtEcqv+S1JjTlDIOKX4BCeD/M4Ok3 root@cf525f31d11f&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Take the line starting with &lt;code&gt;ssh-rsa&lt;/code&gt; to clipboard and add it to your Github repository:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://voloda.bazilisek.net/img/mix/github_deploy_keys.jpg&#34; alt=&#34;Github Deploy Keys setup&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Be careful though - the secrets are now stored as a part of GCP project where the cloudbuilder task image is saved so if somebody gets access to your project or docker image she will get access to your Github repository&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://console.cloud.google.com/cloud-build/builds&#34;&gt;Google cloud builds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://console.cloud.google.com/gcr/images/&#34;&gt;Google cloud container registry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cloud.google.com/cloud-build/&#34;&gt;Google cloud builds documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Google Cloud Builds - First Attempts To Build .NET Core and Angular</title>

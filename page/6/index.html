@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Handling detailed code reviews in GIT  &middot; My personal notes on various topics</title>
+  <title>My personal notes on various topics </title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,59 +14,25 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="git, ">
+<meta name="keywords" content="">
 
 
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="Handling detailed code reviews in GIT  &middot; My personal notes on various topics ">
+<meta property="og:title" content="My personal notes on various topics ">
 <meta property="og:site_name" content="My personal notes on various topics"/>
-<meta property="og:url" content="https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" />
+<meta property="og:url" content="https://voloda.bazilisek.net/" />
 <meta property="og:locale" content="en">
 
 
-<meta property="og:type" content="article" />
-<meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2017-11-23T00:00:00Z" />
-<meta property="og:article:modified_time" content="2017-11-23T00:00:00Z" />
-
-  
-    
-<meta property="og:article:tag" content="git">
-    
-  
-
-  
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@" />
-<meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Handling detailed code reviews in GIT" />
-<meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" />
-<meta name="twitter:domain" content="https://voloda.bazilisek.net/">
-  
-
-  
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "headline": "Handling detailed code reviews in GIT",
-    "author": {
-      "@type": "Person",
-      "name": "http://profiles.google.com/+?rel=author"
-    },
-    "datePublished": "2017-11-23",
-    "description": "",
-    "wordCount":  145 
-  }
-</script>
-  
+<meta property="og:type" content="website" />
 
 
 
-<link rel="canonical" href="https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" />
+<link href="https://voloda.bazilisek.net/index.xml" rel="alternate" type="application/rss+xml" title="My personal notes on various topics" />
+
+<link rel="canonical" href="https://voloda.bazilisek.net/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.58.3" />
@@ -122,7 +88,7 @@
           <ul class="nav navbar-nav navbar-right">
             
             
-            <li class="">
+            <li class="active">
               
 		<a href="https://voloda.bazilisek.net/"  title="Home">
                   
@@ -141,183 +107,130 @@
   </header>
 
 
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-sm-9">
+        
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
+  <h2><a href="https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/">Using SVN as source control for Sybase PowerBuilder</a>
+</h2>
 
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-9">
-
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <div class="title-metas text-center">
-
-    <h1>Handling detailed code reviews in GIT
-</h1>
-
-    <div class="metas">
-<small>
+  <div class="margin-10">
+    <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-11-23">23 Nov, 2017</time>
+  <time datetime="2010-05-15">15 May, 2010</time>
 </small>
 
-
-  <small>
-  &middot; Read in about 1 min
-  &middot; (145 words)
-  &middot; 
-<span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
-
-    <a href="https://twitter.com/intent/tweet?text=Handling%20detailed%20code%20reviews%20in%20GIT&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
-
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
-
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
-
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f&amp;title=Handling%20detailed%20code%20reviews%20in%20GIT" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
-
-    <a href="mailto:?subject=Handling%20detailed%20code%20reviews%20in%20GIT&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
-  </span>
-
-  </small>
-
-<div class="margin-10">
+    
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/git" class="label label-primary">git</a>
+  <a href="https://voloda.bazilisek.net/tags/powerbuilder" class="label label-primary">powerbuilder</a>
+  
+  <a href="https://voloda.bazilisek.net/tags/svn" class="label label-primary">svn</a>
   
 
-
-</div>
-
-<br>
-</div>
 
   </div>
 </div>
 
+    <p>
+  
+  
+    This article in short describes an idea how to use SVN for Powerbuilder to improve development process. This solution is based on previously used CVS (described in another article).
+CVS we were are using for about 6 years and it was working perfectly.
+But currently we have to change hardware and operating system it was running on, so we decided to move forward and use a bit better but still free solution - SVN running on Windows.
+  
 
-      <div class="content">
-  <ul>
-<li>Pull Requests are sometimes not sufficient - they allow to see changes,
-perhaps you can even see that a test build passed but these do not allow
-for actual functional testing or even navigating thru the code.</li>
-<li>Some times it is convenient to see all the changes in staging area
-(similar to TFS unshelve functionality) so functional test can be done
-and code can be reviewed more deeply.</li>
-</ul>
 
-<p>Below steps allow to achieve the same state as for TFS unshelve - you end-up
-with code checked out and staged in GIT:</p>
+</p>
 
-<ol>
-<li>Fetch remote changes
 
-<ul>
-<li><code>git fetch origin</code></li>
-</ul></li>
-<li>Checkout target branch
+    <p class="lead"><a href="https://voloda.bazilisek.net/2010/05/using-svn-as-source-control-for-sybase-powerbuilder/" class="btn btn-default">Read more &rarr;</a></p>
 
-<ul>
-<li><code>git checkout TargetBranchName</code></li>
-</ul></li>
-<li>Do dry merge (without commit)
 
-<ul>
-<li><code>git merge --no-commit --no-ff origin/ReviewedBranchName</code></li>
-</ul></li>
-</ol>
-
-<p>Now you can do the detailed code review, put comments into PR, do testing,
-navigate thru references usign Resharper in Visual Studio etc.</p>
-
-<p>Once done just abort the merge:</p>
-
-<ul>
-<li><code>git merge --abort</code></li>
-</ul>
-
+  </div>
 </div>
 
+        
+        
+<nav>
+  <ul class="pagination">
+    
 
-      <footer>
-  
-<span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Handling%20detailed%20code%20reviews%20in%20GIT&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+<li >
+  <a aria-label="First" href="https://voloda.bazilisek.net//">
+    <span aria-hidden="true">&laquo;&laquo;</span>
+  </a>
+</li>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+<li >
+  <a aria-label="Previous" href="https://voloda.bazilisek.net//page/5/">
+    <span aria-hidden="true">&laquo;</span>
+    </a>
+</li>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+<li >
+  <a href="https://voloda.bazilisek.net//">
+    1
+    </a>
+</li>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f&amp;title=Handling%20detailed%20code%20reviews%20in%20GIT" onclick="window.open(this.href, 'mywin',
-'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+<li >
+  <a href="https://voloda.bazilisek.net//page/2/">
+    2
+    </a>
+</li>
 
-    <a href="mailto:?subject=Handling%20detailed%20code%20reviews%20in%20GIT&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fhandling-detailed-code-reviews-in-git%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
-  </span>
+<li >
+  <a href="https://voloda.bazilisek.net//page/3/">
+    3
+    </a>
+</li>
 
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<li >
+  <a href="https://voloda.bazilisek.net//page/4/">
+    4
+    </a>
+</li>
+
+<li >
+  <a href="https://voloda.bazilisek.net//page/5/">
+    5
+    </a>
+</li>
+
+<li  class="active" >
+  <a href="https://voloda.bazilisek.net//page/6/">
+    6
+    </a>
+</li>
+
+
+<li  class="disabled" >
+  <a aria-label="Next" href="#">
+    <span aria-hidden="true">&raquo;</span>
+    </a>
+</li>
+<li  class="disabled" >
+  <a aria-label="Last" href="https://voloda.bazilisek.net//page/6/">
+    <span aria-hidden="true">&raquo;&raquo;</span>
+  </a>
+</li>
+
+
+  </ul>
+</nav>
+
+
+      </div>
       
-  
-    <nav><ul class="pager">
-    
-        <li class="previous">
-          <a href="https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/" title="Jenkinsfile and git authentication on Windows">
-            <span aria-hidden="true">&larr;</span>Previous
-          </a>
-        </li>
-    
-
-    
-      <li class="next">
-        <a href="https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/" title="Is it good idea to throw an exception in .NET C# constructor?">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
-    
-    </ul> </nav>
-  
-
-
-</div>
-
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  (function() {
-    
-    
-    if (window.location.hostname == "localhost")
-      return;
-
-    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
-    dsq.src = '//voloda-bazilisek-net.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-</div>
-
-</footer>
-
-    </div>
-    
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-        <div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <div>
   
 
     <div class="section">
@@ -428,10 +341,12 @@ navigate thru references usign Resharper in Visual Studio etc.</p>
     
 </div>
 
-      </div>
-    
+        </div>
+      
+    </div>
+
   </div>
-</div>
+
     
 <footer class="footer hidden-print">
   <div class="container">
