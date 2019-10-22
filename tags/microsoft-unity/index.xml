@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Microsoft Unity on My personal notes</title>
@@ -73,7 +72,8 @@ following piece of code:&lt;/p&gt;
     }
 
     &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; Name { &lt;span style=&#34;color:#00f&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _name; } }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The above idea is pretty clear - load the data from local data service and since
 those cannot change just cache them.&lt;/p&gt;
 
@@ -109,7 +109,8 @@ load the actual data later like this:&lt;/p&gt;
     }
 
     &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; Name { &lt;span style=&#34;color:#00f&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _name.Value; } }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Which leads to much more readable log - and more importantly - &lt;strong&gt;the beginning
 of the message points quickly to actual issue&lt;/strong&gt;:&lt;/p&gt;
 
@@ -191,7 +192,8 @@ unmanaged/disposable resources within the class constructor.&lt;/p&gt;
     {
         _input.Dispose();
     }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The class seems to be pretty robust, right? It disposes the file properly so
 behaves nicely.&lt;/p&gt;
 
@@ -277,13 +279,17 @@ during garbage collection.&lt;/p&gt;
    {
        _input.Dispose();
    }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;But you will probably very quickly realize that with slightly more complex
-initialization this will become nightmare.
-Also - the object will not be actually properly constructed.&lt;/p&gt;&lt;/li&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;li&gt;&lt;p&gt;Much easier will actually be avoiding such stuff in constructor and leave
-it for later - similar to the first case.&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;But you will probably very quickly realize that with slightly more complex
+   initialization this will become nightmare.
+   Also - the object will not be actually properly constructed.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Much easier will actually be avoiding such stuff in constructor and leave
+it for later - similar to the first case.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;

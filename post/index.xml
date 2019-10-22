@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My personal notes</title>
@@ -30,21 +29,23 @@ machine for it.&lt;/li&gt;
 &lt;li&gt;I strongly recommend to setup Google Cloud SDK on your Linux machine manually and
 not thru a package manager - this may save you a lot of time since &lt;code&gt;gcloud components install&lt;/code&gt;
 will work for you and thus examples can be followed easily.&lt;/li&gt;
-&lt;li&gt;Rule of thumb - it is simple! Really - it is simple!
+
+&lt;li&gt;&lt;p&gt;Rule of thumb - it is simple! Really - it is simple!&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Individual cloud builders are just docker images which have
+&lt;li&gt;&lt;p&gt;Individual cloud builders are just docker images which have
 the entrypoint configured to the given tool - you can use them directly assuming that you
-simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty useful for initial playing with the builds):&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty useful for initial playing with the builds):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 - name: gcr.io/$PROJECT_ID/ng:v7
-  dir: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;./TestApp/ClientApp&amp;#39;&lt;/span&gt;
-  entrypoint: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;npm&amp;#39;&lt;/span&gt;
-  args: [
-        &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;ci&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--unsafe-perm&amp;#39;&lt;/span&gt;
-        ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+dir: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;./TestApp/ClientApp&amp;#39;&lt;/span&gt;
+entrypoint: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;npm&amp;#39;&lt;/span&gt;
+args: [
+&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;ci&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--unsafe-perm&amp;#39;&lt;/span&gt;
+]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;angular-net-core-build-task-image&#34;&gt;Angular &amp;amp; .NET Core build task image&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -54,8 +55,7 @@ simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty 
 
 &lt;li&gt;&lt;p&gt;This should prepare for you an image in your project container registry which can be used to build Angular 7 &amp;amp; .NET Core Application&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:sdk&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;CMD&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [ &amp;#39;/bin/sh&amp;#39;, &amp;#39;-c&amp;#39; ]&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
@@ -65,17 +65,18 @@ simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty 
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; npm install -g @angular/cli@7.2.2 --unsafe-perms&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;    
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
 
 images:
-  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;building-asp-net-core-angular-image-from-google-cloud-builds&#34;&gt;Building ASP.NET Core &amp;amp; Angular image from Google Cloud Builds&lt;/h1&gt;
 
 &lt;h2 id=&#34;use-the-standard-dockerfile&#34;&gt;Use the standard Dockerfile&lt;/h2&gt;
@@ -87,8 +88,8 @@ images:
 &lt;li&gt;The disadvantage is that output artifacts are just docker images&lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;Dockerfile&lt;/code&gt; can be simply combined with cloud build YAML so the resulting image
 is pushed to container registry:&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:sdk AS build-env&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
@@ -104,16 +105,17 @@ is pushed to container registry:&lt;/li&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:aspnetcore-runtime&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;COPY --from=build-env /app/out .&lt;span style=&#34;&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;, &amp;#34;aspnetapp.dll&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;, &amp;#34;aspnetapp.dll&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
 
 images:
-  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&#34;use-cloud-build-with-steps&#34;&gt;Use cloud build with steps&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -121,50 +123,51 @@ images:
 &lt;li&gt;The main difference is that while this still uses Docker for builds it leverages &lt;code&gt;docker run&lt;/code&gt; command&lt;/li&gt;
 &lt;li&gt;The source code is basically mounted to created container thru a volume located in &lt;code&gt;/workspace&lt;/code&gt; directory
 which can be used to exchange content between individual steps&lt;/li&gt;
-&lt;li&gt;The cloud build directly supports grabbing the artifacts from &lt;code&gt;/workspace&lt;/code&gt; so the build output is not necessarily only docker image&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;The cloud build directly supports grabbing the artifacts from &lt;code&gt;/workspace&lt;/code&gt; so the build output is not necessarily only docker image&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
 
 images:
-  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Split the build into individual steps called explicitly:&lt;/li&gt;
-&lt;/ul&gt;
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Split the build into individual steps called explicitly:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 
 ...
 &lt;span style=&#34;color:#008000&#34;&gt;# Restore packages&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;restore&amp;#39;&lt;/span&gt;
-        ]
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;restore&amp;#39;&lt;/span&gt;
+    ]
 &lt;span style=&#34;color:#008000&#34;&gt;# Build the project&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
-        ]
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
+    ]
 
 &lt;span style=&#34;color:#008000&#34;&gt;# Run tests&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
-        ]
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
+    ]
 
 &lt;span style=&#34;color:#008000&#34;&gt;# Publish build result&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;publish&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-o&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;/workspace/publish&amp;#39;&lt;/span&gt;
-        ]
-....&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;publish&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-o&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;/workspace/publish&amp;#39;&lt;/span&gt;
+    ]
+....&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -464,7 +467,8 @@ serviceCollection.AddLogging(c =&amp;gt; { c.AddConsole(); });
     DbDataReader reader = cmd.ExecuteReader();
     &lt;span style=&#34;color:#00f&#34;&gt;while&lt;/span&gt; (reader.Read())
         Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0}: {1}&amp;#34;&lt;/span&gt;, reader[0], reader[1]);
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And that is all - all database changes are executed automatically, only in the case that they were not already executed.&lt;/p&gt;
 
 &lt;h1 id=&#34;changes-from-previous-releases&#34;&gt;Changes from previous releases&lt;/h1&gt;
@@ -562,41 +566,42 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
 
 &lt;ul&gt;
 &lt;li&gt;This allows to define a typescript interface implemented by a class&lt;/li&gt;
-&lt;li&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Injectable, InjectionToken } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/core&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { HttpClient, HttpHeaders } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/common/http&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Observable } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/Observable&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/add/operator/map&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IAuthenticationService {
-    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
-    extendToken(): Observable&amp;lt;any&amp;gt;;
-    logout();
-    isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
-    hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
+extendToken(): Observable&amp;lt;any&amp;gt;;
+logout();
+isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
 }
 
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; AUTHENTICATION_SERVICE = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; InjectionToken&amp;lt;IAuthenticationService&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AUTHENTICATION_SERVICE&amp;#39;&lt;/span&gt;);
 
 &lt;span style=&#34;color:#00f&#34;&gt;@Injectable&lt;/span&gt;()
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; AuthenticationService &lt;span style=&#34;color:#00f&#34;&gt;implements&lt;/span&gt; IAuthenticationService {
-    &lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
+&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
 
-    &lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
-        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
-            .map(token =&amp;gt; {
-                &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
-                &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
-            });
-    }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
+    &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
+        .map(token =&amp;gt; {
+            &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
+            &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
+        });
+}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(
-    &lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;creating-a-spy-object-mock&#34;&gt;Creating a spy object/mock&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;...
 
@@ -1002,7 +1007,8 @@ following piece of code:&lt;/p&gt;
     }
 
     &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; Name { &lt;span style=&#34;color:#00f&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _name; } }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The above idea is pretty clear - load the data from local data service and since
 those cannot change just cache them.&lt;/p&gt;
 
@@ -1038,7 +1044,8 @@ load the actual data later like this:&lt;/p&gt;
     }
 
     &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; Name { &lt;span style=&#34;color:#00f&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _name.Value; } }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Which leads to much more readable log - and more importantly - &lt;strong&gt;the beginning
 of the message points quickly to actual issue&lt;/strong&gt;:&lt;/p&gt;
 
@@ -1120,7 +1127,8 @@ unmanaged/disposable resources within the class constructor.&lt;/p&gt;
     {
         _input.Dispose();
     }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The class seems to be pretty robust, right? It disposes the file properly so
 behaves nicely.&lt;/p&gt;
 
@@ -1206,13 +1214,17 @@ during garbage collection.&lt;/p&gt;
    {
        _input.Dispose();
    }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;But you will probably very quickly realize that with slightly more complex
-initialization this will become nightmare.
-Also - the object will not be actually properly constructed.&lt;/p&gt;&lt;/li&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;li&gt;&lt;p&gt;Much easier will actually be avoiding such stuff in constructor and leave
-it for later - similar to the first case.&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;But you will probably very quickly realize that with slightly more complex
+   initialization this will become nightmare.
+   Also - the object will not be actually properly constructed.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Much easier will actually be avoiding such stuff in constructor and leave
+it for later - similar to the first case.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
@@ -1306,40 +1318,42 @@ running on Windows build agents.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Now the system is ready to use above information from &lt;code&gt;Jenkinsfile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Build script then does following:
+
+&lt;li&gt;&lt;p&gt;Build script then does following:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Fetches username and password into environment variables&lt;/li&gt;
-&lt;li&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;pipeline {
-  agent { label &#39;vs2017&#39; }
+agent { label &#39;vs2017&#39; }
 
-  environment {
-    RELEASE_NUMBER = &#39;1.0&#39;
-    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
-  }
-
-  stages {
-    stage(&#39;Compile&#39;){
-      steps {
-        echo &#39;Compiling&#39;
-
-        bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; \&amp;quot;build.msbuild\&amp;quot; /p:BuildNumber=${VERSION_NUMBER}&amp;quot;
-      }
-    }
-    stage(&#39;Tagging&#39;) {
-      steps {
-        withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
-          bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
-          bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@repourl.com/test.git --tags&amp;quot;
-        }
-      }
-    }
+environment {
+RELEASE_NUMBER = &#39;1.0&#39;
+VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
 }
-&lt;/code&gt;&lt;/pre&gt;
+
+stages {
+stage(&#39;Compile&#39;){
+steps {
+echo &#39;Compiling&#39;
+
+bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; \&amp;quot;build.msbuild\&amp;quot; /p:BuildNumber=${VERSION_NUMBER}&amp;quot;
+}
+}
+stage(&#39;Tagging&#39;) {
+steps {
+withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
+  bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
+  bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@repourl.com/test.git --tags&amp;quot;
+}
+}
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;ssh-key-authentication-github&#34;&gt;SSH key authentication (Github)&lt;/h1&gt;
 
@@ -1372,48 +1386,50 @@ running on Windows build agents.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Now the system is ready to use above information from &lt;code&gt;Jenkinsfile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Build script then does following (I am using these from docker build agents
-so the build agent always starts from scratch):
+
+&lt;li&gt;&lt;p&gt;Build script then does following (I am using these from docker build agents
+so the build agent always starts from scratch):&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Populates &lt;code&gt;id_rsa&lt;/code&gt; key with received keyFileVariable&lt;/li&gt;
 &lt;li&gt;Populates &lt;code&gt;known_hosts&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;pipeline {
-  agent {label &#39;machine&#39;}
+agent {label &#39;machine&#39;}
 
-  environment {
-    RELEASE_NUMBER = &#39;1.0&#39;
-    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
-  }
-
-  stages {
-    stage(&#39;Build&#39;) {
-      steps {
-        bat &amp;quot;powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \&amp;quot;\$ErrorActionPreference=&#39;Stop&#39;;[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;.\\build.ps1;EXIT \$global:LastExitCode\&amp;quot;&amp;quot;
-      }
-    }
-    stage(&#39;Publish on Github&#39;) {
-      steps {
-        withCredentials([
-          string(credentialsId: &#39;github-knownhosts&#39;, variable: &#39;KNOWN_HOSTS&#39;),
-          sshUserPrivateKey(credentialsId: &#39;github&#39;, keyFileVariable: &#39;RSA_KEY&#39;, usernameVariable: &#39;SSH_USER&#39;)
-        ]) {
-          bat &amp;quot;mkdir ${USERPROFILE}\\.ssh&amp;quot;
-          bat &amp;quot;copy ${RSA_KEY} ${USERPROFILE}\\.ssh\\id_rsa&amp;quot;
-          bat &amp;quot;echo ${KNOWN_HOSTS} &amp;gt; ${USERPROFILE}\\.ssh\\known_hosts&amp;quot;
-
-          bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
-          bat &amp;quot;git push ${SSH_USER}@github.com:/project/repo.git --tags&amp;quot;
-        }
-      }
-    }
-  }
+environment {
+RELEASE_NUMBER = &#39;1.0&#39;
+VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
 }
-&lt;/code&gt;&lt;/pre&gt;
+
+stages {
+stage(&#39;Build&#39;) {
+steps {
+bat &amp;quot;powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \&amp;quot;\$ErrorActionPreference=&#39;Stop&#39;;[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;.\\build.ps1;EXIT \$global:LastExitCode\&amp;quot;&amp;quot;
+}
+}
+stage(&#39;Publish on Github&#39;) {
+steps {
+withCredentials([
+  string(credentialsId: &#39;github-knownhosts&#39;, variable: &#39;KNOWN_HOSTS&#39;),
+  sshUserPrivateKey(credentialsId: &#39;github&#39;, keyFileVariable: &#39;RSA_KEY&#39;, usernameVariable: &#39;SSH_USER&#39;)
+]) {
+  bat &amp;quot;mkdir ${USERPROFILE}\\.ssh&amp;quot;
+  bat &amp;quot;copy ${RSA_KEY} ${USERPROFILE}\\.ssh\\id_rsa&amp;quot;
+  bat &amp;quot;echo ${KNOWN_HOSTS} &amp;gt; ${USERPROFILE}\\.ssh\\known_hosts&amp;quot;
+
+  bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
+  bat &amp;quot;git push ${SSH_USER}@github.com:/project/repo.git --tags&amp;quot;
+}
+}
+}
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1461,12 +1477,11 @@ plugin.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; creates the base image for Windows build agent&lt;/li&gt;
-&lt;li&gt;The only requirements is that &lt;code&gt;java.exe&lt;/code&gt; must be accessible in path.
+
+&lt;li&gt;&lt;p&gt;The only requirements is that &lt;code&gt;java.exe&lt;/code&gt; must be accessible in path.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;It could be perhaps even installed using &lt;code&gt;Chocolatey&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;It could be perhaps even installed using &lt;code&gt;Chocolatey&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;FROM microsoft/windowsservercore
 
@@ -1484,62 +1499,62 @@ RUN start-process -filepath C:\\jre-8u91-windows-x64.exe -passthru -wait -argume
 RUN del C:\jre-8u91-windows-x64.exe
 
 RUN $env:PATH = $env:JAVA_HOME + &#39;\\bin;&#39; + $env:PATH; \
-    [Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
+	[Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
 
 RUN mkdir $env:JENKINS_HOME
 WORKDIR $JENKINS_HOME
 
 ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;visual-studio-2017-dockerfile&#34;&gt;Visual Studio 2017 Dockerfile&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; uses the above as the base image and installs VS 2017
+&lt;li&gt;&lt;p&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; uses the above as the base image and installs VS 2017&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;It add SDK for .NET 4.5.2 and 4.6.1&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;It add SDK for .NET 4.5.2 and 4.6.1&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;FROM vkloz/winjava
 
 SHELL [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-ExecutionPolicy&amp;quot;, &amp;quot;Bypass&amp;quot;, &amp;quot;-Command&amp;quot;]
 
 ENV TEST_CONTAINER=1 \
-    VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
-    VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
-    VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
+VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
+VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
+VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
 
 # Download log collection utility
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $ProgressPreference = &#39;SilentlyContinue&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
+$ProgressPreference = &#39;SilentlyContinue&#39;; \
+$VerbosePreference = &#39;Continue&#39;; \
+Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
 
 # Download vs_buildtools.exe
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $ProgressPreference = &#39;SilentlyContinue&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
-    if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw &#39;Download hash does not match&#39; }
+$ProgressPreference = &#39;SilentlyContinue&#39;; \
+$VerbosePreference = &#39;Continue&#39;; \
+Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
+if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw &#39;Download hash does not match&#39; }
 
 # https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools
 # Install Visual Studio Build Tools
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;--quiet --nocache --wait --installPath C:\BuildTools&#39;; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+$VerbosePreference = &#39;Continue&#39;; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;--quiet --nocache --wait --installPath C:\BuildTools&#39;; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
 
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools&#39;; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+$VerbosePreference = &#39;Continue&#39;; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools&#39;; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
 
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools&#39;; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+$VerbosePreference = &#39;Continue&#39;; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools&#39;; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
 
 RUN choco install -y netfx-4.5.2-devpack
 RUN choco install -y netfx-4.6.1-devpack
@@ -1551,7 +1566,9 @@ ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &amp;amp;&amp;amp;
 
 # Default to PowerShell console running within developer command prompt environment
 CMD [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-nologo&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1850,21 +1867,21 @@ choco install -y 7zip
 &lt;h2 id=&#34;create-cookbook&#34;&gt;Create cookbook&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;In git repository which will contain cookbook run:
-&lt;code&gt;cmd
-knife cookbook create COOKBOOK_NAME
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Review created files to add documentation as needed.&lt;/li&gt;
-&lt;li&gt;To install any dependencies run:
+&lt;li&gt;&lt;p&gt;In git repository which will contain cookbook run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;knife cookbook create COOKBOOK_NAME&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Review created files to add documentation as needed.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To install any dependencies run:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;This by default works with &lt;em&gt;master&lt;/em&gt; branch. See other parameters to make it working on current branch.&lt;/li&gt;
-&lt;li&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.
-&lt;code&gt;cmd
-knife cookbook site install COOKBOOK_NAME
-&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;knife cookbook site install COOKBOOK_NAME&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file
+
+&lt;li&gt;&lt;p&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Each dependency can contain version information to maintain compatibility.&lt;/li&gt;
@@ -2004,25 +2021,25 @@ knife cookbook site install COOKBOOK_NAME
 &lt;ul&gt;
 &lt;li&gt;Downside obviously is that since you are about to alter the stored procedure you have to be very careful.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;My colleague proposed a very simple way for this purpose which seems to work:
+
+&lt;li&gt;&lt;p&gt;My colleague proposed a very simple way for this purpose which seems to work:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Before running tests take a database snapshot so you can easily revert back.&lt;/li&gt;
-&lt;li&gt;Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
 &lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; [MyInvoices]
-[#Stub1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Next before you execute the stored procedure you fetch its source and replace the code
-between markers with select from data stub (for example temporary table):&lt;/li&gt;
-&lt;/ul&gt;
+[#Stub1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;[Stub1]
 &lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #MyInvoices
-[#Stub1] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.&lt;/li&gt;
+[#Stub1] &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;how-to-enable-t-sql-debugging-in-visual-studio-2013&#34;&gt;How to enable T-SQL debugging in Visual Studio 2013&lt;/h1&gt;
@@ -2079,15 +2096,15 @@ between markers with select from data stub (for example temporary table):&lt;/li
 
 &lt;ul&gt;
 &lt;li&gt;You can easily watch content of any variable inside the stored procedure.&lt;/li&gt;
-&lt;li&gt;I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+&lt;li&gt;&lt;p&gt;I found very simple trick which can be used to watch also content of temporary tables and table variables.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;At the place you would check the content add following statement (obviously adjusted for correct table/variable name):&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;At the place you would check the content add following statement (obviously adjusted for correct table/variable name):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;DECLARE&lt;/span&gt; @v XML = (&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #&lt;span style=&#34;color:#00f&#34;&gt;Parameters&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;FOR&lt;/span&gt; XML AUTO, ROOT(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;MyRoot&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Once you will hit the statement in the debugger you can easily watch the content of &lt;code&gt;@v&lt;/code&gt; and visualize it for example via &lt;em&gt;XML Visualizer&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;  &lt;span style=&#34;color:#00f&#34;&gt;DECLARE&lt;/span&gt; @v XML = (&lt;span style=&#34;color:#00f&#34;&gt;SELECT&lt;/span&gt; * &lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt; #&lt;span style=&#34;color:#00f&#34;&gt;Parameters&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;FOR&lt;/span&gt; XML AUTO, ROOT(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;MyRoot&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Once you will hit the statement in the debugger you can easily watch the content of &lt;code&gt;@v&lt;/code&gt; and visualize it for example via &lt;em&gt;XML Visualizer&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -2111,15 +2128,17 @@ between markers with select from data stub (for example temporary table):&lt;/li
 &lt;li&gt;As you keep editing simply synchronize/re-publish the article&lt;/li&gt;
 &lt;li&gt;In order to enable syntax highlighting for the C#/XML or any other code edit the blogspot template and insert the following script reference between &lt;code&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/code&gt; tags:
 &lt;code&gt;&amp;lt;script src=&#39;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#39;/&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Use following at the top of markdown post to define whether the article is published, title and tags:
-&lt;code&gt;
----
+
+&lt;li&gt;&lt;p&gt;Use following at the top of markdown post to define whether the article is published, title and tags:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
 title: My article title
 tags: tag1,tag2
 published: true
 ---
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Submit article URL to directories:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Submit article URL to directories:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.geekarticles.com/submit_link.php&#34;&gt;Geek articles&lt;/a&gt;&lt;/li&gt;
@@ -2190,125 +2209,148 @@ published: true
 You can use P-Invoke to import following standard WinAPI functions for dynamical function loading:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;LoadLibrary()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FreeLibrary()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GetProcAddress()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-LoadLibrary()```&#34; data-lang=&#34;LoadLibrary()```&#34;&gt;* ```FreeLibrary()```
+* ```GetProcAddress()```
+
+We will use following wrapping class:&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;csharp&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;We will use following wrapping class:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;UnsafeMethods&lt;/span&gt;
+&lt;p&gt;internal static class UnsafeMethods
 {
-    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
-    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr LoadLibrary(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; libraryName);
-    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
-    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; FreeLibrary(IntPtr hModule);
-    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
-    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr GetProcAddress(IntPtr hModule, &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; procName);
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
-&lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now we can create implement our class calling external DLL functionality with &lt;code&gt;IDisposable&lt;/code&gt; interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as &lt;code&gt;Multiply()&lt;/code&gt; and &lt;code&gt;Str2Int()&lt;/code&gt;).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;ExternalHelpers&lt;/span&gt;: IDisposable
-{
-    &lt;span style=&#34;color:#00f&#34;&gt;#region Private members
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; IntPtr _libraryHandle;
-    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; MultiplyDelegate _multiply;
-    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; Str2IntDelegate _str2Int;
-    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
-    &lt;span style=&#34;color:#00f&#34;&gt;#region External functions delegates
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
-    &lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);
-    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; ExternalHelpers()
-    {
-        &lt;span style=&#34;color:#008000&#34;&gt;// dynamically load DLL using WinAPI
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _libraryHandle = UnsafeMethods.LoadLibrary(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;testing.dll&amp;#34;&lt;/span&gt;);
+    [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;, SetLastError = true)]
+    internal extern static IntPtr LoadLibrary(string libraryName);
+    [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;, SetLastError = true)]
+    internal extern static bool FreeLibrary(IntPtr hModule);
+    [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;, SetLastError = true)]
+    internal extern static IntPtr GetProcAddress(IntPtr hModule, string procName);
+}&lt;/p&gt;
 
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle == IntPtr.Zero)
+&lt;pre&gt;&lt;code&gt;We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;csharp
+// int multiply(int value1, int value2);
+private delegate int MultiplyDelegate(int value1, int value2);
+// int str2int(const char *input);
+private delegate int Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]string source);&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Now we can create implement our class calling external DLL functionality with ```IDisposable``` interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as ```Multiply()``` and ```Str2Int()```).
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;csharp
+public class ExternalHelpers: IDisposable
+{
+    #region Private members
+    private IntPtr _libraryHandle;
+    private MultiplyDelegate _multiply;
+    private Str2IntDelegate _str2Int;
+    #endregion&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#region External functions delegates
+// int multiply(int value1, int value2);
+private delegate int MultiplyDelegate(int value1, int value2);
+// int str2int(const char *input);
+private delegate int Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]string source);
+#endregion
+
+public ExternalHelpers()
+{
+    // dynamically load DLL using WinAPI
+    _libraryHandle = UnsafeMethods.LoadLibrary(@&amp;quot;testing.dll&amp;quot;);
+
+    if (_libraryHandle == IntPtr.Zero)
+        Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+    // import functions as delegates using GetProcAddress
+    _multiply = LoadExternalFunction&amp;lt;MultiplyDelegate&amp;gt;(@&amp;quot;multiply&amp;quot;);
+    _str2Int = LoadExternalFunction&amp;lt;Str2IntDelegate&amp;gt;(@&amp;quot;str2int&amp;quot;);
+}
+
+public int Multiply(int value1, int value2)
+{
+    // call method using delegate
+    return _multiply(value1, value2);
+}
+
+public int Str2Int(string source)
+{
+    // call method using delegate
+    return _str2Int(source);
+}
+
+public void Dispose()
+{
+    Dispose(true);
+
+    GC.SuppressFinalize(this);
+}
+
+~ExternalHelpers()
+{
+    Dispose(false);
+}
+
+#region Private helper methods
+private T LoadExternalFunction&amp;lt;T&amp;gt;(string functionName)
+    where T: class
+{
+    Debug.Assert(!String.IsNullOrEmpty(functionName));
+    // load function pointer
+    IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
+
+    if (functionPointer == IntPtr.Zero)
+        Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+    // Marshal to requested delegate
+    return Marshal.GetDelegateForFunctionPointer(functionPointer, typeof(T)) as T;
+}
+
+private void Dispose(bool disposing)
+{
+    if (disposing)
+    {
+        _multiply = null;
+        _str2Int = null;
+    }
+
+    if (_libraryHandle != IntPtr.Zero)
+    {
+        if (!UnsafeMethods.FreeLibrary(_libraryHandle))
             Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        &lt;span style=&#34;color:#008000&#34;&gt;// import functions as delegates using GetProcAddress
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _multiply = LoadExternalFunction&amp;lt;MultiplyDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;multiply&amp;#34;&lt;/span&gt;);
-        _str2Int = LoadExternalFunction&amp;lt;Str2IntDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;str2int&amp;#34;&lt;/span&gt;);
+
+        _libraryHandle = IntPtr.Zero;
     }
+}
+#endregion
+&lt;/code&gt;&lt;/pre&gt;
 
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Multiply(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2)
-    {
-        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _multiply(value1, value2);
-    }
+&lt;p&gt;}&lt;/p&gt;
 
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2Int(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source)
-    {
-        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _str2Int(source);
-    }
+&lt;pre&gt;&lt;code&gt;
+And finally - we can use it:
 
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose()
-    {
-        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;true&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;
 
-        GC.SuppressFinalize(&lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;);
-    }
-
-    ~ExternalHelpers()
-    {
-        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;);
-    }
-
-    &lt;span style=&#34;color:#00f&#34;&gt;#region Private helper methods
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; T LoadExternalFunction&amp;lt;T&amp;gt;(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; functionName)
-        &lt;span style=&#34;color:#00f&#34;&gt;where&lt;/span&gt; T: &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt;
-    {
-        Debug.Assert(!String.IsNullOrEmpty(functionName));
-        &lt;span style=&#34;color:#008000&#34;&gt;// load function pointer
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
-
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (functionPointer == IntPtr.Zero)
-            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        &lt;span style=&#34;color:#008000&#34;&gt;// Marshal to requested delegate
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; Marshal.GetDelegateForFunctionPointer(functionPointer, &lt;span style=&#34;color:#00f&#34;&gt;typeof&lt;/span&gt;(T)) &lt;span style=&#34;color:#00f&#34;&gt;as&lt;/span&gt; T;
-    }
-
-    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose(&lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; disposing)
-    {
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (disposing)
-        {
-            _multiply = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
-            _str2Int = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
-        }
-
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle != IntPtr.Zero)
-        {
-            &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (!UnsafeMethods.FreeLibrary(_libraryHandle))
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-
-            _libraryHandle = IntPtr.Zero;
-        }
-    }
-    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And finally - we can use it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;[] args)
+&lt;p&gt;csharp
+static void Main(string[] args)
 {
-    using(ExternalHelpers e = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ExternalHelpers())
+    using(ExternalHelpers e = new ExternalHelpers())
     {
-        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1 = 2;
-        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2 = 3;
-        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; strValue = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;345&amp;#34;&lt;/span&gt;;
+        const int value1 = 2;
+        const int value2 = 3;
+        const string strValue = &amp;ldquo;345&amp;rdquo;;&lt;/p&gt;
 
-        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} * {1} = {2}&amp;#34;&lt;/span&gt;, value1, value2, e.Multiply(value1, value2));
-        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} =&amp;gt; {1}&amp;#34;&lt;/span&gt;, strValue, e.Str2Int(strValue));
-    }
+&lt;pre&gt;&lt;code&gt;    Console.WriteLine(&amp;quot;{0} * {1} = {2}&amp;quot;, value1, value2, e.Multiply(value1, value2));
+    Console.WriteLine(&amp;quot;{0} =&amp;gt; {1}&amp;quot;, strValue, e.Str2Int(strValue));
+}
 
-    Console.ReadKey();
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Console.ReadKey();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+```&lt;/p&gt;
+
 &lt;p&gt;Looks easy? Yes it is :-)&lt;/p&gt;
 
 &lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
@@ -2361,7 +2403,8 @@ accidently inject a dependency from a child container to the parent container wh
     {
         _dependency = dependency;
     }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now let&amp;rsquo;s setup some test case:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;[Test]
 &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; ServiceResolutionViaTwoDifferentChildContainersShouldFail()
@@ -2385,7 +2428,8 @@ accidently inject a dependency from a child container to the parent container wh
     Assert.AreEqual(childContainer2Result1, childContainer2Result2);
 
     Assert.AreEqual(childContainer2Result1, childContainerResult1);
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;This actually will pass all the assertions.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;let-s-analyze-it-a-bit&#34;&gt;Let&amp;rsquo;s analyze it a bit:&lt;/h2&gt;
@@ -2415,14 +2459,17 @@ accidently inject a dependency from a child container to the parent container wh
 
 &lt;ul&gt;
 &lt;li&gt;Reference the &lt;code&gt;UnityRegistrationValidator.dll&lt;/code&gt; in your project.&lt;/li&gt;
-&lt;li&gt;Call the registration below.
+
+&lt;li&gt;&lt;p&gt;Call the registration below.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;The extension is available as a &lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;&lt;strong&gt;Nuget package&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The extension is available as a &lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;&lt;strong&gt;Nuget package&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
+rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
-rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;gt;();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;h1 id=&#34;following-rules-are-enforced-after-registering-extension&#34;&gt;Following rules are enforced after registering extension&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -2568,7 +2615,8 @@ rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;g
 Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Can login as TestUser2: &amp;#34;&lt;/span&gt; + Membership.Provider.ValidateUser(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;SeededPassword2&amp;#34;&lt;/span&gt;));
 Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Can login as TestUser2: &amp;#34;&lt;/span&gt; + Membership.Provider.ValidateUser(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;InvalidPassword&amp;#34;&lt;/span&gt;));
 Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole1: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole1&amp;#34;&lt;/span&gt;));
-Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole2: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole2&amp;#34;&lt;/span&gt;));&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole2: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole2&amp;#34;&lt;/span&gt;));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And appropriate App.Config portion:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&lt;/span&gt;
 &amp;lt;configuration&amp;gt;

@@ -65,7 +65,7 @@
     },
     "datePublished": "2015-03-10",
     "description": "",
-    "wordCount": 760
+    "wordCount":  760 
   }
 </script>
   
@@ -75,7 +75,7 @@
 <link rel="canonical" href="http://voloda.bazilisek.net/2015/03/debugging-t-sql-stored-procedure-invoked-from-nunit-tests-in-visual-studio-2013-debugger/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
-<meta name="generator" content="Hugo 0.47.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -97,7 +97,7 @@
 
 
 
-<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" >
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.068a8fc80b9e5f1229c330b7ccc5bb5c4d69668e9fba710b25928c253bbd7b48c7396b69680a3ec5a3adb868d800de683bb75cf17e2d2d4c615c4320d0911c14.css" >
 
 </head>
 <body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
@@ -240,25 +240,25 @@
 <ul>
 <li>Downside obviously is that since you are about to alter the stored procedure you have to be very careful.</li>
 </ul></li>
-<li>My colleague proposed a very simple way for this purpose which seems to work:
+
+<li><p>My colleague proposed a very simple way for this purpose which seems to work:</p>
 
 <ul>
 <li>Before running tests take a database snapshot so you can easily revert back.</li>
-<li>Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:</li>
-</ul></li>
-</ul>
+
+<li><p>Inside procedures use some markers which can be quickly identified and the content between them can be replaced - for example:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">[Stub1]
 <span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> [MyInvoices]
-[#Stub1]</code></pre></div>
-<ul>
-<li>Next before you execute the stored procedure you fetch its source and replace the code
-between markers with select from data stub (for example temporary table):</li>
-</ul>
+[#Stub1]</code></pre></div></li>
+</ul></li>
+
+<li><p>Next before you execute the stored procedure you fetch its source and replace the code
+between markers with select from data stub (for example temporary table):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">[Stub1]
 <span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> #MyInvoices
-[#Stub1] </code></pre></div>
-<ul>
-<li>Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.</li>
+[#Stub1] </code></pre></div></li>
+
+<li><p>Before you exercise the stored procedure you simply populate content of #MyInvoices temporary table and run it.</p></li>
 </ul>
 
 <h1 id="how-to-enable-t-sql-debugging-in-visual-studio-2013">How to enable T-SQL debugging in Visual Studio 2013</h1>
@@ -315,15 +315,15 @@ between markers with select from data stub (for example temporary table):</li>
 
 <ul>
 <li>You can easily watch content of any variable inside the stored procedure.</li>
-<li>I found very simple trick which can be used to watch also content of temporary tables and table variables.
+
+<li><p>I found very simple trick which can be used to watch also content of temporary tables and table variables.</p>
 
 <ul>
-<li>At the place you would check the content add following statement (obviously adjusted for correct table/variable name):</li>
+<li><p>At the place you would check the content add following statement (obviously adjusted for correct table/variable name):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">DECLARE</span> @v XML = (<span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> #<span style="color:#00f">Parameters</span> <span style="color:#00f">FOR</span> XML AUTO, ROOT(<span style="color:#a31515">&#39;MyRoot&#39;</span>))</code></pre></div></li>
+
+<li><p>Once you will hit the statement in the debugger you can easily watch the content of <code>@v</code> and visualize it for example via <em>XML Visualizer</em>.</p></li>
 </ul></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">  <span style="color:#00f">DECLARE</span> @v XML = (<span style="color:#00f">SELECT</span> * <span style="color:#00f">FROM</span> #<span style="color:#00f">Parameters</span> <span style="color:#00f">FOR</span> XML AUTO, ROOT(<span style="color:#a31515">&#39;MyRoot&#39;</span>))</code></pre></div>
-<ul>
-<li>Once you will hit the statement in the debugger you can easily watch the content of <code>@v</code> and visualize it for example via <em>XML Visualizer</em>.</li>
 </ul>
 
 </div>
@@ -484,7 +484,7 @@ between markers with select from data stub (for example temporary table):</li>
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+            <li><a href="/categories/notes">notes (9)</a></li><li><a href="/categories/codeproject">codeproject (4)</a></li>
           </ul>
         </div>
       </div>
@@ -499,7 +499,7 @@ between markers with select from data stub (for example temporary table):</li>
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotnet (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/cloudbuilds">cloudbuilds (1)</a></li>
           </ul>
         </div>
       </div>
@@ -571,23 +571,23 @@ between markers with select from data stub (for example temporary table):</li>
 </script>
 
 <script>
-var ENABLE_POPOVER = "", 
-EXPIRE_COOKIE = "", 
-SHOW_MODAL_TIMEOUT = "", 
-MOUSE_LEAVE = "", 
-MODAL_SIZE = "", 
-POST_URL = "", 
-SIGNUP_HEADER = "",
-HEADER_IMAGE = "",
-IMG_DESCRIPTION = "",
-SIGNUP_TEXT = "",
-INPUT_PLACEHOLDER = "",
-SUBMIT_BUTTON = "",
-SUCCESS_MESSAGE = "",
-ERROR_MESSAGE = "",
-OPTIN = "",
-COOKIE_NAME = "",
-CONTENTLANGUAGE = ""; 
+var ENABLE_POPOVER =  null , 
+EXPIRE_COOKIE =  null , 
+SHOW_MODAL_TIMEOUT =  null , 
+MOUSE_LEAVE =  null , 
+MODAL_SIZE =  null , 
+POST_URL =  null , 
+SIGNUP_HEADER =  null ,
+HEADER_IMAGE =  null ,
+IMG_DESCRIPTION =  null ,
+SIGNUP_TEXT =  null ,
+INPUT_PLACEHOLDER =  null ,
+SUBMIT_BUTTON =  null ,
+SUCCESS_MESSAGE =  null ,
+ERROR_MESSAGE =  null ,
+OPTIN =  null ,
+COOKIE_NAME =  null ,
+CONTENTLANGUAGE =  null ; 
 </script>
 
 
@@ -596,7 +596,7 @@ CONTENTLANGUAGE = "";
 
 
 
-<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+<script  src="http://voloda.bazilisek.net/js/bundle.min.bc5960fdb0e04a2806026a317569a41d3e1757f01180209bb41d2a9b208ff0da68a292a6d35e8917ee58bdc091b1ace06fd1d6aa79350ebc515593615dcdbd75.js" ></script>
 
 
 

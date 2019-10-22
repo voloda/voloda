@@ -63,7 +63,7 @@
     },
     "datePublished": "2017-11-19",
     "description": "",
-    "wordCount": 502
+    "wordCount":  502 
   }
 </script>
   
@@ -73,7 +73,7 @@
 <link rel="canonical" href="http://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
-<meta name="generator" content="Hugo 0.47.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -95,7 +95,7 @@
 
 
 
-<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" >
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.068a8fc80b9e5f1229c330b7ccc5bb5c4d69668e9fba710b25928c253bbd7b48c7396b69680a3ec5a3adb868d800de683bb75cf17e2d2d4c615c4320d0911c14.css" >
 
 </head>
 <body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
@@ -242,12 +242,11 @@ plugin.</p>
 
 <ul>
 <li>This <code>Dockerfile</code> creates the base image for Windows build agent</li>
-<li>The only requirements is that <code>java.exe</code> must be accessible in path.
+
+<li><p>The only requirements is that <code>java.exe</code> must be accessible in path.</p>
 
 <ul>
-<li>It could be perhaps even installed using <code>Chocolatey</code></li>
-</ul></li>
-</ul>
+<li><p>It could be perhaps even installed using <code>Chocolatey</code></p>
 
 <pre><code>FROM microsoft/windowsservercore
 
@@ -265,62 +264,62 @@ RUN start-process -filepath C:\\jre-8u91-windows-x64.exe -passthru -wait -argume
 RUN del C:\jre-8u91-windows-x64.exe
 
 RUN $env:PATH = $env:JAVA_HOME + '\\bin;' + $env:PATH; \
-    [Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine);
+	[Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine);
 
 RUN mkdir $env:JENKINS_HOME
 WORKDIR $JENKINS_HOME
 
 ENTRYPOINT [&quot;cmd.exe&quot;]
-</code></pre>
+</code></pre></li>
+</ul></li>
+</ul>
 
 <h1 id="visual-studio-2017-dockerfile">Visual Studio 2017 Dockerfile</h1>
 
 <ul>
-<li>This <code>Dockerfile</code> uses the above as the base image and installs VS 2017
+<li><p>This <code>Dockerfile</code> uses the above as the base image and installs VS 2017</p>
 
 <ul>
-<li>It add SDK for .NET 4.5.2 and 4.6.1</li>
-</ul></li>
-</ul>
+<li><p>It add SDK for .NET 4.5.2 and 4.6.1</p>
 
 <pre><code>FROM vkloz/winjava
 
 SHELL [&quot;powershell.exe&quot;, &quot;-ExecutionPolicy&quot;, &quot;Bypass&quot;, &quot;-Command&quot;]
 
 ENV TEST_CONTAINER=1 \
-    VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
-    VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
-    VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
+VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
+VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
+VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
 
 # Download log collection utility
 RUN $ErrorActionPreference = 'Stop'; \
-    $ProgressPreference = 'SilentlyContinue'; \
-    $VerbosePreference = 'Continue'; \
-    Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
+$ProgressPreference = 'SilentlyContinue'; \
+$VerbosePreference = 'Continue'; \
+Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
 
 # Download vs_buildtools.exe
 RUN $ErrorActionPreference = 'Stop'; \
-    $ProgressPreference = 'SilentlyContinue'; \
-    $VerbosePreference = 'Continue'; \
-    Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
-    if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw 'Download hash does not match' }
+$ProgressPreference = 'SilentlyContinue'; \
+$VerbosePreference = 'Continue'; \
+Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
+if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw 'Download hash does not match' }
 
 # https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools
 # Install Visual Studio Build Tools
 RUN $ErrorActionPreference = 'Stop'; \
-    $VerbosePreference = 'Continue'; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList '--quiet --nocache --wait --installPath C:\BuildTools'; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
+$VerbosePreference = 'Continue'; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList '--quiet --nocache --wait --installPath C:\BuildTools'; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
 
 RUN $ErrorActionPreference = 'Stop'; \
-    $VerbosePreference = 'Continue'; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList 'modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools'; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
+$VerbosePreference = 'Continue'; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList 'modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools'; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
 
 RUN $ErrorActionPreference = 'Stop'; \
-    $VerbosePreference = 'Continue'; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList 'modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools'; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
+$VerbosePreference = 'Continue'; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList 'modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools'; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw ('Install failed with exit code 0x{0:x}' -f $ret) }
 
 RUN choco install -y netfx-4.5.2-devpack
 RUN choco install -y netfx-4.6.1-devpack
@@ -332,7 +331,9 @@ ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &amp;&amp;
 
 # Default to PowerShell console running within developer command prompt environment
 CMD [&quot;powershell.exe&quot;, &quot;-nologo&quot;]
-</code></pre>
+</code></pre></li>
+</ul></li>
+</ul>
 
 </div>
 
@@ -492,7 +493,7 @@ CMD [&quot;powershell.exe&quot;, &quot;-nologo&quot;]
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+            <li><a href="/categories/notes">notes (9)</a></li><li><a href="/categories/codeproject">codeproject (4)</a></li>
           </ul>
         </div>
       </div>
@@ -507,7 +508,7 @@ CMD [&quot;powershell.exe&quot;, &quot;-nologo&quot;]
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotnet (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/cloudbuilds">cloudbuilds (1)</a></li>
           </ul>
         </div>
       </div>
@@ -579,23 +580,23 @@ CMD [&quot;powershell.exe&quot;, &quot;-nologo&quot;]
 </script>
 
 <script>
-var ENABLE_POPOVER = "", 
-EXPIRE_COOKIE = "", 
-SHOW_MODAL_TIMEOUT = "", 
-MOUSE_LEAVE = "", 
-MODAL_SIZE = "", 
-POST_URL = "", 
-SIGNUP_HEADER = "",
-HEADER_IMAGE = "",
-IMG_DESCRIPTION = "",
-SIGNUP_TEXT = "",
-INPUT_PLACEHOLDER = "",
-SUBMIT_BUTTON = "",
-SUCCESS_MESSAGE = "",
-ERROR_MESSAGE = "",
-OPTIN = "",
-COOKIE_NAME = "",
-CONTENTLANGUAGE = ""; 
+var ENABLE_POPOVER =  null , 
+EXPIRE_COOKIE =  null , 
+SHOW_MODAL_TIMEOUT =  null , 
+MOUSE_LEAVE =  null , 
+MODAL_SIZE =  null , 
+POST_URL =  null , 
+SIGNUP_HEADER =  null ,
+HEADER_IMAGE =  null ,
+IMG_DESCRIPTION =  null ,
+SIGNUP_TEXT =  null ,
+INPUT_PLACEHOLDER =  null ,
+SUBMIT_BUTTON =  null ,
+SUCCESS_MESSAGE =  null ,
+ERROR_MESSAGE =  null ,
+OPTIN =  null ,
+COOKIE_NAME =  null ,
+CONTENTLANGUAGE =  null ; 
 </script>
 
 
@@ -604,7 +605,7 @@ CONTENTLANGUAGE = "";
 
 
 
-<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+<script  src="http://voloda.bazilisek.net/js/bundle.min.bc5960fdb0e04a2806026a317569a41d3e1757f01180209bb41d2a9b208ff0da68a292a6d35e8917ee58bdc091b1ace06fd1d6aa79350ebc515593615dcdbd75.js" ></script>
 
 
 

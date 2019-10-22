@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Notes on My personal notes</title>
@@ -30,21 +29,23 @@ machine for it.&lt;/li&gt;
 &lt;li&gt;I strongly recommend to setup Google Cloud SDK on your Linux machine manually and
 not thru a package manager - this may save you a lot of time since &lt;code&gt;gcloud components install&lt;/code&gt;
 will work for you and thus examples can be followed easily.&lt;/li&gt;
-&lt;li&gt;Rule of thumb - it is simple! Really - it is simple!
+
+&lt;li&gt;&lt;p&gt;Rule of thumb - it is simple! Really - it is simple!&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Individual cloud builders are just docker images which have
+&lt;li&gt;&lt;p&gt;Individual cloud builders are just docker images which have
 the entrypoint configured to the given tool - you can use them directly assuming that you
-simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty useful for initial playing with the builds):&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty useful for initial playing with the builds):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 - name: gcr.io/$PROJECT_ID/ng:v7
-  dir: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;./TestApp/ClientApp&amp;#39;&lt;/span&gt;
-  entrypoint: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;npm&amp;#39;&lt;/span&gt;
-  args: [
-        &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;ci&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--unsafe-perm&amp;#39;&lt;/span&gt;
-        ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+dir: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;./TestApp/ClientApp&amp;#39;&lt;/span&gt;
+entrypoint: &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;npm&amp;#39;&lt;/span&gt;
+args: [
+&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;ci&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--unsafe-perm&amp;#39;&lt;/span&gt;
+]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;angular-net-core-build-task-image&#34;&gt;Angular &amp;amp; .NET Core build task image&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -54,8 +55,7 @@ simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty 
 
 &lt;li&gt;&lt;p&gt;This should prepare for you an image in your project container registry which can be used to build Angular 7 &amp;amp; .NET Core Application&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:sdk&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;CMD&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [ &amp;#39;/bin/sh&amp;#39;, &amp;#39;-c&amp;#39; ]&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
@@ -65,17 +65,18 @@ simply specify &lt;code&gt;entrypoint&lt;/code&gt; in your YAML (this is pretty 
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;RUN&lt;/span&gt; npm install -g @angular/cli@7.2.2 --unsafe-perms&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;    
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
 
 images:
-  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;building-asp-net-core-angular-image-from-google-cloud-builds&#34;&gt;Building ASP.NET Core &amp;amp; Angular image from Google Cloud Builds&lt;/h1&gt;
 
 &lt;h2 id=&#34;use-the-standard-dockerfile&#34;&gt;Use the standard Dockerfile&lt;/h2&gt;
@@ -87,8 +88,8 @@ images:
 &lt;li&gt;The disadvantage is that output artifacts are just docker images&lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;Dockerfile&lt;/code&gt; can be simply combined with cloud build YAML so the resulting image
 is pushed to container registry:&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:sdk AS build-env&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;
@@ -104,16 +105,17 @@ is pushed to container registry:&lt;/li&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; microsoft/dotnet:aspnetcore-runtime&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;COPY --from=build-env /app/out .&lt;span style=&#34;&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;, &amp;#34;aspnetapp.dll&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/span&gt;&lt;span style=&#34;&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;ENTRYPOINT&lt;/span&gt;&lt;span style=&#34;color:#a31515&#34;&gt; [&amp;#34;dotnet&amp;#34;, &amp;#34;aspnetapp.dll&amp;#34;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cloudbuild.yaml&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
 
 images:
-  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&#34;use-cloud-build-with-steps&#34;&gt;Use cloud build with steps&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -121,50 +123,51 @@ images:
 &lt;li&gt;The main difference is that while this still uses Docker for builds it leverages &lt;code&gt;docker run&lt;/code&gt; command&lt;/li&gt;
 &lt;li&gt;The source code is basically mounted to created container thru a volume located in &lt;code&gt;/workspace&lt;/code&gt; directory
 which can be used to exchange content between individual steps&lt;/li&gt;
-&lt;li&gt;The cloud build directly supports grabbing the artifacts from &lt;code&gt;/workspace&lt;/code&gt; so the build output is not necessarily only docker image&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;The cloud build directly supports grabbing the artifacts from &lt;code&gt;/workspace&lt;/code&gt; so the build output is not necessarily only docker image&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
+args: [ &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-t&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-f&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Dockerfile&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt; ]
 
 images:
-  - &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Split the build into individual steps called explicitly:&lt;/li&gt;
-&lt;/ul&gt;
+- &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;gcr.io/$PROJECT_ID/testweb:current&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Split the build into individual steps called explicitly:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;steps:
 
 ...
 &lt;span style=&#34;color:#008000&#34;&gt;# Restore packages&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;restore&amp;#39;&lt;/span&gt;
-        ]
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;restore&amp;#39;&lt;/span&gt;
+    ]
 &lt;span style=&#34;color:#008000&#34;&gt;# Build the project&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
-        ]
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
+    ]
 
 &lt;span style=&#34;color:#008000&#34;&gt;# Run tests&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
-        ]
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;
+    ]
 
 &lt;span style=&#34;color:#008000&#34;&gt;# Publish build result&lt;/span&gt;
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;publish&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;,
-          &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-o&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;/workspace/publish&amp;#39;&lt;/span&gt;
-        ]
-....&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+args: [
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;publish&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;Release&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;--no-restore&amp;#39;&lt;/span&gt;,
+      &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;-o&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;/workspace/publish&amp;#39;&lt;/span&gt;
+    ]
+....&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -233,41 +236,42 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
 
 &lt;ul&gt;
 &lt;li&gt;This allows to define a typescript interface implemented by a class&lt;/li&gt;
-&lt;li&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Injectable, InjectionToken } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/core&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { HttpClient, HttpHeaders } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/common/http&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Observable } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/Observable&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/add/operator/map&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IAuthenticationService {
-    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
-    extendToken(): Observable&amp;lt;any&amp;gt;;
-    logout();
-    isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
-    hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
+extendToken(): Observable&amp;lt;any&amp;gt;;
+logout();
+isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
 }
 
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; AUTHENTICATION_SERVICE = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; InjectionToken&amp;lt;IAuthenticationService&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AUTHENTICATION_SERVICE&amp;#39;&lt;/span&gt;);
 
 &lt;span style=&#34;color:#00f&#34;&gt;@Injectable&lt;/span&gt;()
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; AuthenticationService &lt;span style=&#34;color:#00f&#34;&gt;implements&lt;/span&gt; IAuthenticationService {
-    &lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
+&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
 
-    &lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
-        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
-            .map(token =&amp;gt; {
-                &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
-                &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
-            });
-    }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
+    &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
+        .map(token =&amp;gt; {
+            &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
+            &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
+        });
+}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(
-    &lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;creating-a-spy-object-mock&#34;&gt;Creating a spy object/mock&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;...
 
@@ -632,12 +636,11 @@ plugin.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; creates the base image for Windows build agent&lt;/li&gt;
-&lt;li&gt;The only requirements is that &lt;code&gt;java.exe&lt;/code&gt; must be accessible in path.
+
+&lt;li&gt;&lt;p&gt;The only requirements is that &lt;code&gt;java.exe&lt;/code&gt; must be accessible in path.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;It could be perhaps even installed using &lt;code&gt;Chocolatey&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;It could be perhaps even installed using &lt;code&gt;Chocolatey&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;FROM microsoft/windowsservercore
 
@@ -655,62 +658,62 @@ RUN start-process -filepath C:\\jre-8u91-windows-x64.exe -passthru -wait -argume
 RUN del C:\jre-8u91-windows-x64.exe
 
 RUN $env:PATH = $env:JAVA_HOME + &#39;\\bin;&#39; + $env:PATH; \
-    [Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
+	[Environment]::SetEnvironmentVariable(&#39;PATH&#39;, $env:PATH, [EnvironmentVariableTarget]::Machine);
 
 RUN mkdir $env:JENKINS_HOME
 WORKDIR $JENKINS_HOME
 
 ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;visual-studio-2017-dockerfile&#34;&gt;Visual Studio 2017 Dockerfile&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; uses the above as the base image and installs VS 2017
+&lt;li&gt;&lt;p&gt;This &lt;code&gt;Dockerfile&lt;/code&gt; uses the above as the base image and installs VS 2017&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;It add SDK for .NET 4.5.2 and 4.6.1&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;It add SDK for .NET 4.5.2 and 4.6.1&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;FROM vkloz/winjava
 
 SHELL [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-ExecutionPolicy&amp;quot;, &amp;quot;Bypass&amp;quot;, &amp;quot;-Command&amp;quot;]
 
 ENV TEST_CONTAINER=1 \
-    VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
-    VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
-    VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
+VS_CHANNEL_URI=https://aka.ms/vs/15/release/799c44140/channel \
+VS_BUILDTOOLS_URI=https://aka.ms/vs/15/release/799c44140/vs_buildtools.exe \
+VS_BUILDTOOLS_SHA256=FA29EB83297AECADB0C4CD41E54512C953164E64EEDD9FB9D3BF9BD70C9A2D29
 
 # Download log collection utility
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $ProgressPreference = &#39;SilentlyContinue&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
+$ProgressPreference = &#39;SilentlyContinue&#39;; \
+$VerbosePreference = &#39;Continue&#39;; \
+Invoke-WebRequest -Uri https://aka.ms/vscollect.exe -OutFile C:\collect.exe
 
 # Download vs_buildtools.exe
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $ProgressPreference = &#39;SilentlyContinue&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
-    if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw &#39;Download hash does not match&#39; }
+$ProgressPreference = &#39;SilentlyContinue&#39;; \
+$VerbosePreference = &#39;Continue&#39;; \
+Invoke-WebRequest -Uri $env:VS_BUILDTOOLS_URI -OutFile C:\vs_buildtools.exe; \
+if ((Get-FileHash -Path C:\vs_buildtools.exe -Algorithm SHA256).Hash -ne $env:VS_BUILDTOOLS_SHA256) { throw &#39;Download hash does not match&#39; }
 
 # https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools
 # Install Visual Studio Build Tools
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;--quiet --nocache --wait --installPath C:\BuildTools&#39;; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+$VerbosePreference = &#39;Continue&#39;; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;--quiet --nocache --wait --installPath C:\BuildTools&#39;; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
 
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools&#39;; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+$VerbosePreference = &#39;Continue&#39;; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Workload.MSBuildTools&#39;; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
 
 RUN $ErrorActionPreference = &#39;Stop&#39;; \
-    $VerbosePreference = &#39;Continue&#39;; \
-    $p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools&#39;; \
-    if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
+$VerbosePreference = &#39;Continue&#39;; \
+$p = Start-Process -Wait -PassThru -FilePath C:\vs_buildtools.exe -ArgumentList &#39;modify --quiet --nocache --wait --installPath C:\BuildTools --add Microsoft.VisualStudio.Component.Static.Analysis.Tools&#39;; \
+if ($ret = $p.ExitCode) { c:\collect.exe; throw (&#39;Install failed with exit code 0x{0:x}&#39; -f $ret) }
 
 RUN choco install -y netfx-4.5.2-devpack
 RUN choco install -y netfx-4.6.1-devpack
@@ -722,7 +725,9 @@ ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &amp;amp;&amp;amp;
 
 # Default to PowerShell console running within developer command prompt environment
 CMD [&amp;quot;powershell.exe&amp;quot;, &amp;quot;-nologo&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

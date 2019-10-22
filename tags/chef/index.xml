@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Chef on My personal notes</title>
+    <title>chef on My personal notes</title>
     <link>http://voloda.bazilisek.net/tags/chef/</link>
-    <description>Recent content in Chef on My personal notes</description>
+    <description>Recent content in chef on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 00:00:00 +0000</lastBuildDate>
@@ -82,21 +81,21 @@
 &lt;h2 id=&#34;create-cookbook&#34;&gt;Create cookbook&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;In git repository which will contain cookbook run:
-&lt;code&gt;cmd
-knife cookbook create COOKBOOK_NAME
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Review created files to add documentation as needed.&lt;/li&gt;
-&lt;li&gt;To install any dependencies run:
+&lt;li&gt;&lt;p&gt;In git repository which will contain cookbook run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;knife cookbook create COOKBOOK_NAME&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Review created files to add documentation as needed.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To install any dependencies run:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;This by default works with &lt;em&gt;master&lt;/em&gt; branch. See other parameters to make it working on current branch.&lt;/li&gt;
-&lt;li&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.
-&lt;code&gt;cmd
-knife cookbook site install COOKBOOK_NAME
-&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Dependency can be installed/managed manually as well if &lt;em&gt;git&lt;/em&gt; is not available.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;knife cookbook site install COOKBOOK_NAME&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file
+
+&lt;li&gt;&lt;p&gt;Define dependencies in &lt;em&gt;metadata.rb&lt;/em&gt; file&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Each dependency can contain version information to maintain compatibility.&lt;/li&gt;

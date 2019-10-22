@@ -69,7 +69,7 @@
     },
     "datePublished": "2019-04-08",
     "description": "",
-    "wordCount": 550
+    "wordCount":  550 
   }
 </script>
   
@@ -79,7 +79,7 @@
 <link rel="canonical" href="http://voloda.bazilisek.net/2019/04/google-cloud-builds-first-attempts-to-build-dotnet-core-and-angular/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
-<meta name="generator" content="Hugo 0.47.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -101,7 +101,7 @@
 
 
 
-<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" >
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.068a8fc80b9e5f1229c330b7ccc5bb5c4d69668e9fba710b25928c253bbd7b48c7396b69680a3ec5a3adb868d800de683bb75cf17e2d2d4c615c4320d0911c14.css" >
 
 </head>
 <body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
@@ -229,21 +229,23 @@ machine for it.</li>
 <li>I strongly recommend to setup Google Cloud SDK on your Linux machine manually and
 not thru a package manager - this may save you a lot of time since <code>gcloud components install</code>
 will work for you and thus examples can be followed easily.</li>
-<li>Rule of thumb - it is simple! Really - it is simple!
+
+<li><p>Rule of thumb - it is simple! Really - it is simple!</p>
 
 <ul>
-<li>Individual cloud builders are just docker images which have
+<li><p>Individual cloud builders are just docker images which have
 the entrypoint configured to the given tool - you can use them directly assuming that you
-simply specify <code>entrypoint</code> in your YAML (this is pretty useful for initial playing with the builds):</li>
-</ul></li>
-</ul>
+simply specify <code>entrypoint</code> in your YAML (this is pretty useful for initial playing with the builds):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
 - name: gcr.io/$PROJECT_ID/ng:v7
-  dir: <span style="color:#a31515">&#39;./TestApp/ClientApp&#39;</span>
-  entrypoint: <span style="color:#a31515">&#39;npm&#39;</span>
-  args: [
-        <span style="color:#a31515">&#39;ci&#39;</span>, <span style="color:#a31515">&#39;--unsafe-perm&#39;</span>
-        ]</code></pre></div>
+dir: <span style="color:#a31515">&#39;./TestApp/ClientApp&#39;</span>
+entrypoint: <span style="color:#a31515">&#39;npm&#39;</span>
+args: [
+<span style="color:#a31515">&#39;ci&#39;</span>, <span style="color:#a31515">&#39;--unsafe-perm&#39;</span>
+]</code></pre></div></li>
+</ul></li>
+</ul>
+
 <h1 id="angular-net-core-build-task-image">Angular &amp; .NET Core build task image</h1>
 
 <ul>
@@ -253,8 +255,7 @@ simply specify <code>entrypoint</code> in your YAML (this is pretty useful for i
 
 <li><p>This should prepare for you an image in your project container registry which can be used to build Angular 7 &amp; .NET Core Application</p></li>
 
-<li><p><code>Dockerfile</code></p></li>
-</ul>
+<li><p><code>Dockerfile</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> microsoft/dotnet:sdk</span><span style="">
 </span><span style="">
 </span><span style=""></span><span style="color:#00f">CMD</span><span style="color:#a31515"> [ &#39;/bin/sh&#39;, &#39;-c&#39; ]</span><span style="">
@@ -264,17 +265,18 @@ simply specify <code>entrypoint</code> in your YAML (this is pretty useful for i
 </span><span style="">
 </span><span style=""></span><span style="color:#00f">RUN</span> npm install -g @angular/cli@7.2.2 --unsafe-perms<span style="">
 </span><span style="">
-</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;dotnet&#34;]</span></code></pre></div>
-<ul>
-<li><code>cloudbuild.yaml</code></li>
-</ul>
+</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;dotnet&#34;]</span></code></pre></div></li>
+
+<li><p><code>cloudbuild.yaml</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
+args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
 
 images:
-  - <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&#39;</span></code></pre></div>
+- <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current&#39;</span></code></pre></div></li>
+</ul>
+
 <h1 id="building-asp-net-core-angular-image-from-google-cloud-builds">Building ASP.NET Core &amp; Angular image from Google Cloud Builds</h1>
 
 <h2 id="use-the-standard-dockerfile">Use the standard Dockerfile</h2>
@@ -286,8 +288,8 @@ images:
 <li>The disadvantage is that output artifacts are just docker images</li>
 <li>The <code>Dockerfile</code> can be simply combined with cloud build YAML so the resulting image
 is pushed to container registry:</li>
-<li><code>Dockerfile</code></li>
-</ul>
+
+<li><p><code>Dockerfile</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> microsoft/dotnet:sdk AS build-env</span><span style="">
 </span><span style=""></span><span style="color:#00f">WORKDIR</span><span style="color:#a31515"> /app</span><span style="">
 </span><span style="">
@@ -303,16 +305,17 @@ is pushed to container registry:</li>
 </span><span style=""></span><span style="color:#00f">FROM</span><span style="color:#a31515"> microsoft/dotnet:aspnetcore-runtime</span><span style="">
 </span><span style=""></span><span style="color:#00f">WORKDIR</span><span style="color:#a31515"> /app</span><span style="">
 </span><span style=""></span>COPY --from=build-env /app/out .<span style="">
-</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;dotnet&#34;, &#34;aspnetapp.dll&#34;]</span></code></pre></div>
-<ul>
-<li><code>cloudbuild.yaml</code></li>
-</ul>
+</span><span style=""></span><span style="color:#00f">ENTRYPOINT</span><span style="color:#a31515"> [&#34;dotnet&#34;, &#34;aspnetapp.dll&#34;]</span></code></pre></div></li>
+
+<li><p><code>cloudbuild.yaml</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
+args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
 
 images:
-  - <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span></code></pre></div>
+- <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span></code></pre></div></li>
+</ul>
+
 <h2 id="use-cloud-build-with-steps">Use cloud build with steps</h2>
 
 <ul>
@@ -320,50 +323,51 @@ images:
 <li>The main difference is that while this still uses Docker for builds it leverages <code>docker run</code> command</li>
 <li>The source code is basically mounted to created container thru a volume located in <code>/workspace</code> directory
 which can be used to exchange content between individual steps</li>
-<li>The cloud build directly supports grabbing the artifacts from <code>/workspace</code> so the build output is not necessarily only docker image</li>
-</ul>
+
+<li><p>The cloud build directly supports grabbing the artifacts from <code>/workspace</code> so the build output is not necessarily only docker image</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
+args: [ <span style="color:#a31515">&#39;build&#39;</span>, <span style="color:#a31515">&#39;-t&#39;</span>, <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span>, <span style="color:#a31515">&#39;-f&#39;</span>, <span style="color:#a31515">&#39;Dockerfile&#39;</span>, <span style="color:#a31515">&#39;.&#39;</span> ]
 
 images:
-  - <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span></code></pre></div>
-<ul>
-<li>Split the build into individual steps called explicitly:</li>
-</ul>
+- <span style="color:#a31515">&#39;gcr.io/$PROJECT_ID/testweb:current&#39;</span></code></pre></div></li>
+
+<li><p>Split the build into individual steps called explicitly:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">steps:
 
 ...
 <span style="color:#008000"># Restore packages</span>
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          <span style="color:#a31515">&#39;restore&#39;</span>
-        ]
+args: [
+      <span style="color:#a31515">&#39;restore&#39;</span>
+    ]
 <span style="color:#008000"># Build the project</span>
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          <span style="color:#a31515">&#39;build&#39;</span>,
-          <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
-          <span style="color:#a31515">&#39;--no-restore&#39;</span>
-        ]
+args: [
+      <span style="color:#a31515">&#39;build&#39;</span>,
+      <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
+      <span style="color:#a31515">&#39;--no-restore&#39;</span>
+    ]
 
 <span style="color:#008000"># Run tests</span>
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          <span style="color:#a31515">&#39;test&#39;</span>,
-          <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
-          <span style="color:#a31515">&#39;--no-restore&#39;</span>
-        ]
+args: [
+      <span style="color:#a31515">&#39;test&#39;</span>,
+      <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
+      <span style="color:#a31515">&#39;--no-restore&#39;</span>
+    ]
 
 <span style="color:#008000"># Publish build result</span>
 - name: gcr.io/$PROJECT_ID/cloudbuilderangulardotnetcore:current
-  args: [
-          <span style="color:#a31515">&#39;publish&#39;</span>,
-          <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
-          <span style="color:#a31515">&#39;--no-restore&#39;</span>,
-          <span style="color:#a31515">&#39;-o&#39;</span>, <span style="color:#a31515">&#39;/workspace/publish&#39;</span>
-        ]
-....</code></pre></div>
+args: [
+      <span style="color:#a31515">&#39;publish&#39;</span>,
+      <span style="color:#a31515">&#39;-c&#39;</span>, <span style="color:#a31515">&#39;Release&#39;</span>,
+      <span style="color:#a31515">&#39;--no-restore&#39;</span>,
+      <span style="color:#a31515">&#39;-o&#39;</span>, <span style="color:#a31515">&#39;/workspace/publish&#39;</span>
+    ]
+....</code></pre></div></li>
+</ul>
+
 <h1 id="links">Links</h1>
 
 <ul>
@@ -524,7 +528,7 @@ images:
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+            <li><a href="/categories/notes">notes (9)</a></li><li><a href="/categories/codeproject">codeproject (4)</a></li>
           </ul>
         </div>
       </div>
@@ -539,7 +543,7 @@ images:
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotnet (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/cloudbuilds">cloudbuilds (1)</a></li>
           </ul>
         </div>
       </div>
@@ -611,23 +615,23 @@ images:
 </script>
 
 <script>
-var ENABLE_POPOVER = "", 
-EXPIRE_COOKIE = "", 
-SHOW_MODAL_TIMEOUT = "", 
-MOUSE_LEAVE = "", 
-MODAL_SIZE = "", 
-POST_URL = "", 
-SIGNUP_HEADER = "",
-HEADER_IMAGE = "",
-IMG_DESCRIPTION = "",
-SIGNUP_TEXT = "",
-INPUT_PLACEHOLDER = "",
-SUBMIT_BUTTON = "",
-SUCCESS_MESSAGE = "",
-ERROR_MESSAGE = "",
-OPTIN = "",
-COOKIE_NAME = "",
-CONTENTLANGUAGE = ""; 
+var ENABLE_POPOVER =  null , 
+EXPIRE_COOKIE =  null , 
+SHOW_MODAL_TIMEOUT =  null , 
+MOUSE_LEAVE =  null , 
+MODAL_SIZE =  null , 
+POST_URL =  null , 
+SIGNUP_HEADER =  null ,
+HEADER_IMAGE =  null ,
+IMG_DESCRIPTION =  null ,
+SIGNUP_TEXT =  null ,
+INPUT_PLACEHOLDER =  null ,
+SUBMIT_BUTTON =  null ,
+SUCCESS_MESSAGE =  null ,
+ERROR_MESSAGE =  null ,
+OPTIN =  null ,
+COOKIE_NAME =  null ,
+CONTENTLANGUAGE =  null ; 
 </script>
 
 
@@ -636,7 +640,7 @@ CONTENTLANGUAGE = "";
 
 
 
-<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+<script  src="http://voloda.bazilisek.net/js/bundle.min.bc5960fdb0e04a2806026a317569a41d3e1757f01180209bb41d2a9b208ff0da68a292a6d35e8917ee58bdc091b1ace06fd1d6aa79350ebc515593615dcdbd75.js" ></script>
 
 
 

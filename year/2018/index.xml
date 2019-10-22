@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2018 on My personal notes</title>
@@ -300,7 +299,8 @@ serviceCollection.AddLogging(c =&amp;gt; { c.AddConsole(); });
     DbDataReader reader = cmd.ExecuteReader();
     &lt;span style=&#34;color:#00f&#34;&gt;while&lt;/span&gt; (reader.Read())
         Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0}: {1}&amp;#34;&lt;/span&gt;, reader[0], reader[1]);
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And that is all - all database changes are executed automatically, only in the case that they were not already executed.&lt;/p&gt;
 
 &lt;h1 id=&#34;changes-from-previous-releases&#34;&gt;Changes from previous releases&lt;/h1&gt;
@@ -398,41 +398,42 @@ ENTRYPOINT [&amp;quot;cmd.exe&amp;quot;]
 
 &lt;ul&gt;
 &lt;li&gt;This allows to define a typescript interface implemented by a class&lt;/li&gt;
-&lt;li&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;For injection is actually used the &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt; token&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Injectable, InjectionToken } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/core&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { HttpClient, HttpHeaders } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;@angular/common/http&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; { Observable } from &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/Observable&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#00f&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;rxjs/add/operator/map&amp;#39;&lt;/span&gt;;
 
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;interface&lt;/span&gt; IAuthenticationService {
-    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
-    extendToken(): Observable&amp;lt;any&amp;gt;;
-    logout();
-    isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
-    hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt;;
+extendToken(): Observable&amp;lt;any&amp;gt;;
+logout();
+isLoggedIn(): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
+hasRole(role: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): &lt;span style=&#34;color:#00f&#34;&gt;boolean&lt;/span&gt;;
 }
 
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; AUTHENTICATION_SERVICE = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; InjectionToken&amp;lt;IAuthenticationService&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;AUTHENTICATION_SERVICE&amp;#39;&lt;/span&gt;);
 
 &lt;span style=&#34;color:#00f&#34;&gt;@Injectable&lt;/span&gt;()
 &lt;span style=&#34;color:#00f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; AuthenticationService &lt;span style=&#34;color:#00f&#34;&gt;implements&lt;/span&gt; IAuthenticationService {
-    &lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
+&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; http: &lt;span style=&#34;color:#2b91af&#34;&gt;HttpClient&lt;/span&gt;) { }
 
-    &lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
-        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
-            .map(token =&amp;gt; {
-                &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
-                &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
-            });
-    }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;span style=&#34;color:#008000&#34;&gt;// returns actually the token
+&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;login(username: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;): Observable&amp;lt;any&amp;gt; {
+    &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.http.post&amp;lt;any&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#39;api/sign-in&amp;#39;&lt;/span&gt;, { username: &lt;span style=&#34;color:#2b91af&#34;&gt;username&lt;/span&gt;, password: &lt;span style=&#34;color:#2b91af&#34;&gt;password&lt;/span&gt; })
+        .map(token =&amp;gt; {
+            &lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;.updateToken(token);
+            &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; token;
+        });
+}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Injecting the dependency utilizing interface &lt;code&gt;IAuthenticationService&lt;/code&gt; and injection token &lt;code&gt;AUTHENTICATION_SERVICE&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;constructor&lt;/span&gt;(
-    &lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span style=&#34;color:#00f&#34;&gt;@Inject&lt;/span&gt;(AUTHENTICATION_SERVICE) &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; authenticationService: &lt;span style=&#34;color:#2b91af&#34;&gt;IAuthenticationService&lt;/span&gt;) { }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;creating-a-spy-object-mock&#34;&gt;Creating a spy object/mock&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;...
 

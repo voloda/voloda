@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Git on My personal notes</title>
+    <title>git on My personal notes</title>
     <link>http://voloda.bazilisek.net/tags/git/</link>
-    <description>Recent content in Git on My personal notes</description>
+    <description>Recent content in git on My personal notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Nov 2017 00:00:00 +0000</lastBuildDate>
@@ -89,40 +88,42 @@ running on Windows build agents.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Now the system is ready to use above information from &lt;code&gt;Jenkinsfile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Build script then does following:
+
+&lt;li&gt;&lt;p&gt;Build script then does following:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Fetches username and password into environment variables&lt;/li&gt;
-&lt;li&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;pipeline {
-  agent { label &#39;vs2017&#39; }
+agent { label &#39;vs2017&#39; }
 
-  environment {
-    RELEASE_NUMBER = &#39;1.0&#39;
-    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
-  }
-
-  stages {
-    stage(&#39;Compile&#39;){
-      steps {
-        echo &#39;Compiling&#39;
-
-        bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; \&amp;quot;build.msbuild\&amp;quot; /p:BuildNumber=${VERSION_NUMBER}&amp;quot;
-      }
-    }
-    stage(&#39;Tagging&#39;) {
-      steps {
-        withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
-          bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
-          bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@repourl.com/test.git --tags&amp;quot;
-        }
-      }
-    }
+environment {
+RELEASE_NUMBER = &#39;1.0&#39;
+VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
 }
-&lt;/code&gt;&lt;/pre&gt;
+
+stages {
+stage(&#39;Compile&#39;){
+steps {
+echo &#39;Compiling&#39;
+
+bat &amp;quot;\&amp;quot;${tool name: &#39;Default&#39;, type: &#39;msbuild&#39;}\\msbuild.exe\&amp;quot; \&amp;quot;build.msbuild\&amp;quot; /p:BuildNumber=${VERSION_NUMBER}&amp;quot;
+}
+}
+stage(&#39;Tagging&#39;) {
+steps {
+withCredentials([usernamePassword(credentialsId: &#39;repo_auth&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;, usernameVariable: &#39;GIT_USERNAME&#39;)]) {
+  bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
+  bat &amp;quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@repourl.com/test.git --tags&amp;quot;
+}
+}
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;ssh-key-authentication-github&#34;&gt;SSH key authentication (Github)&lt;/h1&gt;
 
@@ -155,48 +156,50 @@ running on Windows build agents.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Now the system is ready to use above information from &lt;code&gt;Jenkinsfile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Build script then does following (I am using these from docker build agents
-so the build agent always starts from scratch):
+
+&lt;li&gt;&lt;p&gt;Build script then does following (I am using these from docker build agents
+so the build agent always starts from scratch):&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Populates &lt;code&gt;id_rsa&lt;/code&gt; key with received keyFileVariable&lt;/li&gt;
 &lt;li&gt;Populates &lt;code&gt;known_hosts&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
+&lt;li&gt;&lt;p&gt;Invokes any &lt;code&gt;git&lt;/code&gt; command which requires authentication&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;pipeline {
-  agent {label &#39;machine&#39;}
+agent {label &#39;machine&#39;}
 
-  environment {
-    RELEASE_NUMBER = &#39;1.0&#39;
-    VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
-  }
-
-  stages {
-    stage(&#39;Build&#39;) {
-      steps {
-        bat &amp;quot;powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \&amp;quot;\$ErrorActionPreference=&#39;Stop&#39;;[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;.\\build.ps1;EXIT \$global:LastExitCode\&amp;quot;&amp;quot;
-      }
-    }
-    stage(&#39;Publish on Github&#39;) {
-      steps {
-        withCredentials([
-          string(credentialsId: &#39;github-knownhosts&#39;, variable: &#39;KNOWN_HOSTS&#39;),
-          sshUserPrivateKey(credentialsId: &#39;github&#39;, keyFileVariable: &#39;RSA_KEY&#39;, usernameVariable: &#39;SSH_USER&#39;)
-        ]) {
-          bat &amp;quot;mkdir ${USERPROFILE}\\.ssh&amp;quot;
-          bat &amp;quot;copy ${RSA_KEY} ${USERPROFILE}\\.ssh\\id_rsa&amp;quot;
-          bat &amp;quot;echo ${KNOWN_HOSTS} &amp;gt; ${USERPROFILE}\\.ssh\\known_hosts&amp;quot;
-
-          bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
-          bat &amp;quot;git push ${SSH_USER}@github.com:/project/repo.git --tags&amp;quot;
-        }
-      }
-    }
-  }
+environment {
+RELEASE_NUMBER = &#39;1.0&#39;
+VERSION_NUMBER = VersionNumber(versionNumberString: &#39;1.0.${BUILDS_ALL_TIME}.0&#39;)
 }
-&lt;/code&gt;&lt;/pre&gt;
+
+stages {
+stage(&#39;Build&#39;) {
+steps {
+bat &amp;quot;powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \&amp;quot;\$ErrorActionPreference=&#39;Stop&#39;;[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;.\\build.ps1;EXIT \$global:LastExitCode\&amp;quot;&amp;quot;
+}
+}
+stage(&#39;Publish on Github&#39;) {
+steps {
+withCredentials([
+  string(credentialsId: &#39;github-knownhosts&#39;, variable: &#39;KNOWN_HOSTS&#39;),
+  sshUserPrivateKey(credentialsId: &#39;github&#39;, keyFileVariable: &#39;RSA_KEY&#39;, usernameVariable: &#39;SSH_USER&#39;)
+]) {
+  bat &amp;quot;mkdir ${USERPROFILE}\\.ssh&amp;quot;
+  bat &amp;quot;copy ${RSA_KEY} ${USERPROFILE}\\.ssh\\id_rsa&amp;quot;
+  bat &amp;quot;echo ${KNOWN_HOSTS} &amp;gt; ${USERPROFILE}\\.ssh\\known_hosts&amp;quot;
+
+  bat &amp;quot;git tag &#39;build-${VERSION_NUMBER}&#39;&amp;quot;
+  bat &amp;quot;git push ${SSH_USER}@github.com:/project/repo.git --tags&amp;quot;
+}
+}
+}
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

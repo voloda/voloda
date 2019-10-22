@@ -63,7 +63,7 @@
     },
     "datePublished": "2014-11-25",
     "description": "",
-    "wordCount": 441
+    "wordCount":  441 
   }
 </script>
   
@@ -73,7 +73,7 @@
 <link rel="canonical" href="http://voloda.bazilisek.net/2014/11/unity-registration-validator/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
-<meta name="generator" content="Hugo 0.47.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -95,7 +95,7 @@
 
 
 
-<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" >
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.068a8fc80b9e5f1229c330b7ccc5bb5c4d69668e9fba710b25928c253bbd7b48c7396b69680a3ec5a3adb868d800de683bb75cf17e2d2d4c615c4320d0911c14.css" >
 
 </head>
 <body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
@@ -240,7 +240,8 @@ accidently inject a dependency from a child container to the parent container wh
     {
         _dependency = dependency;
     }
-}</code></pre></div>
+}
+</code></pre></div>
 <p>Now let&rsquo;s setup some test case:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">[Test]
 <span style="color:#00f">public</span> <span style="color:#00f">void</span> ServiceResolutionViaTwoDifferentChildContainersShouldFail()
@@ -264,7 +265,8 @@ accidently inject a dependency from a child container to the parent container wh
     Assert.AreEqual(childContainer2Result1, childContainer2Result2);
 
     Assert.AreEqual(childContainer2Result1, childContainerResult1);
-}</code></pre></div>
+}
+</code></pre></div>
 <p><strong>This actually will pass all the assertions.</strong></p>
 
 <h2 id="let-s-analyze-it-a-bit">Let&rsquo;s analyze it a bit:</h2>
@@ -294,14 +296,17 @@ accidently inject a dependency from a child container to the parent container wh
 
 <ul>
 <li>Reference the <code>UnityRegistrationValidator.dll</code> in your project.</li>
-<li>Call the registration below.
+
+<li><p>Call the registration below.</p>
 
 <ul>
-<li>The extension is available as a <a href="https://www.nuget.org/packages/UnityRegistrationValidator"><strong>Nuget package</strong></a>.</li>
+<li><p>The extension is available as a <a href="https://www.nuget.org/packages/UnityRegistrationValidator"><strong>Nuget package</strong></a>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#2b91af">var</span> rootContainer = <span style="color:#00f">new</span> UnityContainer();
+rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();
+</code></pre></div></li>
 </ul></li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#2b91af">var</span> rootContainer = <span style="color:#00f">new</span> UnityContainer();
-rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();</code></pre></div>
+
 <h1 id="following-rules-are-enforced-after-registering-extension">Following rules are enforced after registering extension</h1>
 
 <ul>
@@ -490,7 +495,7 @@ rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();</c
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+            <li><a href="/categories/notes">notes (9)</a></li><li><a href="/categories/codeproject">codeproject (4)</a></li>
           </ul>
         </div>
       </div>
@@ -505,7 +510,7 @@ rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();</c
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotnet (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/cloudbuilds">cloudbuilds (1)</a></li>
           </ul>
         </div>
       </div>
@@ -577,23 +582,23 @@ rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();</c
 </script>
 
 <script>
-var ENABLE_POPOVER = "", 
-EXPIRE_COOKIE = "", 
-SHOW_MODAL_TIMEOUT = "", 
-MOUSE_LEAVE = "", 
-MODAL_SIZE = "", 
-POST_URL = "", 
-SIGNUP_HEADER = "",
-HEADER_IMAGE = "",
-IMG_DESCRIPTION = "",
-SIGNUP_TEXT = "",
-INPUT_PLACEHOLDER = "",
-SUBMIT_BUTTON = "",
-SUCCESS_MESSAGE = "",
-ERROR_MESSAGE = "",
-OPTIN = "",
-COOKIE_NAME = "",
-CONTENTLANGUAGE = ""; 
+var ENABLE_POPOVER =  null , 
+EXPIRE_COOKIE =  null , 
+SHOW_MODAL_TIMEOUT =  null , 
+MOUSE_LEAVE =  null , 
+MODAL_SIZE =  null , 
+POST_URL =  null , 
+SIGNUP_HEADER =  null ,
+HEADER_IMAGE =  null ,
+IMG_DESCRIPTION =  null ,
+SIGNUP_TEXT =  null ,
+INPUT_PLACEHOLDER =  null ,
+SUBMIT_BUTTON =  null ,
+SUCCESS_MESSAGE =  null ,
+ERROR_MESSAGE =  null ,
+OPTIN =  null ,
+COOKIE_NAME =  null ,
+CONTENTLANGUAGE =  null ; 
 </script>
 
 
@@ -602,7 +607,7 @@ CONTENTLANGUAGE = "";
 
 
 
-<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+<script  src="http://voloda.bazilisek.net/js/bundle.min.bc5960fdb0e04a2806026a317569a41d3e1757f01180209bb41d2a9b208ff0da68a292a6d35e8917ee58bdc091b1ace06fd1d6aa79350ebc515593615dcdbd75.js" ></script>
 
 
 

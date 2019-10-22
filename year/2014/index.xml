@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2014 on My personal notes</title>
@@ -30,15 +29,17 @@
 &lt;li&gt;As you keep editing simply synchronize/re-publish the article&lt;/li&gt;
 &lt;li&gt;In order to enable syntax highlighting for the C#/XML or any other code edit the blogspot template and insert the following script reference between &lt;code&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/code&gt; tags:
 &lt;code&gt;&amp;lt;script src=&#39;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#39;/&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Use following at the top of markdown post to define whether the article is published, title and tags:
-&lt;code&gt;
----
+
+&lt;li&gt;&lt;p&gt;Use following at the top of markdown post to define whether the article is published, title and tags:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
 title: My article title
 tags: tag1,tag2
 published: true
 ---
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Submit article URL to directories:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Submit article URL to directories:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.geekarticles.com/submit_link.php&#34;&gt;Geek articles&lt;/a&gt;&lt;/li&gt;
@@ -109,125 +110,148 @@ published: true
 You can use P-Invoke to import following standard WinAPI functions for dynamical function loading:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;LoadLibrary()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FreeLibrary()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GetProcAddress()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-LoadLibrary()```&#34; data-lang=&#34;LoadLibrary()```&#34;&gt;* ```FreeLibrary()```
+* ```GetProcAddress()```
+
+We will use following wrapping class:&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;csharp&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;We will use following wrapping class:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;UnsafeMethods&lt;/span&gt;
+&lt;p&gt;internal static class UnsafeMethods
 {
-    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
-    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr LoadLibrary(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; libraryName);
-    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
-    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; FreeLibrary(IntPtr hModule);
-    [DllImport(&amp;#34;kernel32.dll&amp;#34;, SetLastError = true)]
-    &lt;span style=&#34;color:#00f&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; IntPtr GetProcAddress(IntPtr hModule, &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; procName);
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
-&lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now we can create implement our class calling external DLL functionality with &lt;code&gt;IDisposable&lt;/code&gt; interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as &lt;code&gt;Multiply()&lt;/code&gt; and &lt;code&gt;Str2Int()&lt;/code&gt;).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;ExternalHelpers&lt;/span&gt;: IDisposable
-{
-    &lt;span style=&#34;color:#00f&#34;&gt;#region Private members
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; IntPtr _libraryHandle;
-    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; MultiplyDelegate _multiply;
-    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; Str2IntDelegate _str2Int;
-    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
-    &lt;span style=&#34;color:#00f&#34;&gt;#region External functions delegates
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#008000&#34;&gt;// int multiply(int value1, int value2);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; MultiplyDelegate(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2);
-    &lt;span style=&#34;color:#008000&#34;&gt;// int str2int(const char *input);
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source);
-    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; ExternalHelpers()
-    {
-        &lt;span style=&#34;color:#008000&#34;&gt;// dynamically load DLL using WinAPI
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _libraryHandle = UnsafeMethods.LoadLibrary(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;testing.dll&amp;#34;&lt;/span&gt;);
+    [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;, SetLastError = true)]
+    internal extern static IntPtr LoadLibrary(string libraryName);
+    [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;, SetLastError = true)]
+    internal extern static bool FreeLibrary(IntPtr hModule);
+    [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;, SetLastError = true)]
+    internal extern static IntPtr GetProcAddress(IntPtr hModule, string procName);
+}&lt;/p&gt;
 
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle == IntPtr.Zero)
+&lt;pre&gt;&lt;code&gt;We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;csharp
+// int multiply(int value1, int value2);
+private delegate int MultiplyDelegate(int value1, int value2);
+// int str2int(const char *input);
+private delegate int Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]string source);&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Now we can create implement our class calling external DLL functionality with ```IDisposable``` interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as ```Multiply()``` and ```Str2Int()```).
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;csharp
+public class ExternalHelpers: IDisposable
+{
+    #region Private members
+    private IntPtr _libraryHandle;
+    private MultiplyDelegate _multiply;
+    private Str2IntDelegate _str2Int;
+    #endregion&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#region External functions delegates
+// int multiply(int value1, int value2);
+private delegate int MultiplyDelegate(int value1, int value2);
+// int str2int(const char *input);
+private delegate int Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]string source);
+#endregion
+
+public ExternalHelpers()
+{
+    // dynamically load DLL using WinAPI
+    _libraryHandle = UnsafeMethods.LoadLibrary(@&amp;quot;testing.dll&amp;quot;);
+
+    if (_libraryHandle == IntPtr.Zero)
+        Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+    // import functions as delegates using GetProcAddress
+    _multiply = LoadExternalFunction&amp;lt;MultiplyDelegate&amp;gt;(@&amp;quot;multiply&amp;quot;);
+    _str2Int = LoadExternalFunction&amp;lt;Str2IntDelegate&amp;gt;(@&amp;quot;str2int&amp;quot;);
+}
+
+public int Multiply(int value1, int value2)
+{
+    // call method using delegate
+    return _multiply(value1, value2);
+}
+
+public int Str2Int(string source)
+{
+    // call method using delegate
+    return _str2Int(source);
+}
+
+public void Dispose()
+{
+    Dispose(true);
+
+    GC.SuppressFinalize(this);
+}
+
+~ExternalHelpers()
+{
+    Dispose(false);
+}
+
+#region Private helper methods
+private T LoadExternalFunction&amp;lt;T&amp;gt;(string functionName)
+    where T: class
+{
+    Debug.Assert(!String.IsNullOrEmpty(functionName));
+    // load function pointer
+    IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
+
+    if (functionPointer == IntPtr.Zero)
+        Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+    // Marshal to requested delegate
+    return Marshal.GetDelegateForFunctionPointer(functionPointer, typeof(T)) as T;
+}
+
+private void Dispose(bool disposing)
+{
+    if (disposing)
+    {
+        _multiply = null;
+        _str2Int = null;
+    }
+
+    if (_libraryHandle != IntPtr.Zero)
+    {
+        if (!UnsafeMethods.FreeLibrary(_libraryHandle))
             Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        &lt;span style=&#34;color:#008000&#34;&gt;// import functions as delegates using GetProcAddress
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        _multiply = LoadExternalFunction&amp;lt;MultiplyDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;multiply&amp;#34;&lt;/span&gt;);
-        _str2Int = LoadExternalFunction&amp;lt;Str2IntDelegate&amp;gt;(&lt;span style=&#34;color:#a31515&#34;&gt;@&amp;#34;str2int&amp;#34;&lt;/span&gt;);
+
+        _libraryHandle = IntPtr.Zero;
     }
+}
+#endregion
+&lt;/code&gt;&lt;/pre&gt;
 
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Multiply(&lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1, &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2)
-    {
-        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _multiply(value1, value2);
-    }
+&lt;p&gt;}&lt;/p&gt;
 
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; Str2Int(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; source)
-    {
-        &lt;span style=&#34;color:#008000&#34;&gt;// call method using delegate
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; _str2Int(source);
-    }
+&lt;pre&gt;&lt;code&gt;
+And finally - we can use it:
 
-    &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose()
-    {
-        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;true&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;
 
-        GC.SuppressFinalize(&lt;span style=&#34;color:#00f&#34;&gt;this&lt;/span&gt;);
-    }
-
-    ~ExternalHelpers()
-    {
-        Dispose(&lt;span style=&#34;color:#00f&#34;&gt;false&lt;/span&gt;);
-    }
-
-    &lt;span style=&#34;color:#00f&#34;&gt;#region Private helper methods
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; T LoadExternalFunction&amp;lt;T&amp;gt;(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; functionName)
-        &lt;span style=&#34;color:#00f&#34;&gt;where&lt;/span&gt; T: &lt;span style=&#34;color:#00f&#34;&gt;class&lt;/span&gt;
-    {
-        Debug.Assert(!String.IsNullOrEmpty(functionName));
-        &lt;span style=&#34;color:#008000&#34;&gt;// load function pointer
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
-
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (functionPointer == IntPtr.Zero)
-            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        &lt;span style=&#34;color:#008000&#34;&gt;// Marshal to requested delegate
-&lt;/span&gt;&lt;span style=&#34;color:#008000&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#00f&#34;&gt;return&lt;/span&gt; Marshal.GetDelegateForFunctionPointer(functionPointer, &lt;span style=&#34;color:#00f&#34;&gt;typeof&lt;/span&gt;(T)) &lt;span style=&#34;color:#00f&#34;&gt;as&lt;/span&gt; T;
-    }
-
-    &lt;span style=&#34;color:#00f&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Dispose(&lt;span style=&#34;color:#2b91af&#34;&gt;bool&lt;/span&gt; disposing)
-    {
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (disposing)
-        {
-            _multiply = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
-            _str2Int = &lt;span style=&#34;color:#00f&#34;&gt;null&lt;/span&gt;;
-        }
-
-        &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (_libraryHandle != IntPtr.Zero)
-        {
-            &lt;span style=&#34;color:#00f&#34;&gt;if&lt;/span&gt; (!UnsafeMethods.FreeLibrary(_libraryHandle))
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-
-            _libraryHandle = IntPtr.Zero;
-        }
-    }
-    &lt;span style=&#34;color:#00f&#34;&gt;#endregion
-&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And finally - we can use it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt;[] args)
+&lt;p&gt;csharp
+static void Main(string[] args)
 {
-    using(ExternalHelpers e = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; ExternalHelpers())
+    using(ExternalHelpers e = new ExternalHelpers())
     {
-        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value1 = 2;
-        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;int&lt;/span&gt; value2 = 3;
-        &lt;span style=&#34;color:#00f&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#2b91af&#34;&gt;string&lt;/span&gt; strValue = &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;345&amp;#34;&lt;/span&gt;;
+        const int value1 = 2;
+        const int value2 = 3;
+        const string strValue = &amp;ldquo;345&amp;rdquo;;&lt;/p&gt;
 
-        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} * {1} = {2}&amp;#34;&lt;/span&gt;, value1, value2, e.Multiply(value1, value2));
-        Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;{0} =&amp;gt; {1}&amp;#34;&lt;/span&gt;, strValue, e.Str2Int(strValue));
-    }
+&lt;pre&gt;&lt;code&gt;    Console.WriteLine(&amp;quot;{0} * {1} = {2}&amp;quot;, value1, value2, e.Multiply(value1, value2));
+    Console.WriteLine(&amp;quot;{0} =&amp;gt; {1}&amp;quot;, strValue, e.Str2Int(strValue));
+}
 
-    Console.ReadKey();
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Console.ReadKey();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+```&lt;/p&gt;
+
 &lt;p&gt;Looks easy? Yes it is :-)&lt;/p&gt;
 
 &lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
@@ -280,7 +304,8 @@ accidently inject a dependency from a child container to the parent container wh
     {
         _dependency = dependency;
     }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now let&amp;rsquo;s setup some test case:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;[Test]
 &lt;span style=&#34;color:#00f&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;void&lt;/span&gt; ServiceResolutionViaTwoDifferentChildContainersShouldFail()
@@ -304,7 +329,8 @@ accidently inject a dependency from a child container to the parent container wh
     Assert.AreEqual(childContainer2Result1, childContainer2Result2);
 
     Assert.AreEqual(childContainer2Result1, childContainerResult1);
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;This actually will pass all the assertions.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;let-s-analyze-it-a-bit&#34;&gt;Let&amp;rsquo;s analyze it a bit:&lt;/h2&gt;
@@ -334,14 +360,17 @@ accidently inject a dependency from a child container to the parent container wh
 
 &lt;ul&gt;
 &lt;li&gt;Reference the &lt;code&gt;UnityRegistrationValidator.dll&lt;/code&gt; in your project.&lt;/li&gt;
-&lt;li&gt;Call the registration below.
+
+&lt;li&gt;&lt;p&gt;Call the registration below.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;The extension is available as a &lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;&lt;strong&gt;Nuget package&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The extension is available as a &lt;a href=&#34;https://www.nuget.org/packages/UnityRegistrationValidator&#34;&gt;&lt;strong&gt;Nuget package&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
+rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#2b91af&#34;&gt;var&lt;/span&gt; rootContainer = &lt;span style=&#34;color:#00f&#34;&gt;new&lt;/span&gt; UnityContainer();
-rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;gt;();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;h1 id=&#34;following-rules-are-enforced-after-registering-extension&#34;&gt;Following rules are enforced after registering extension&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -487,7 +516,8 @@ rootContainer.AddNewExtension&amp;lt;EnsureRegistrationDepthOrderExtension&amp;g
 Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Can login as TestUser2: &amp;#34;&lt;/span&gt; + Membership.Provider.ValidateUser(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;SeededPassword2&amp;#34;&lt;/span&gt;));
 Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Can login as TestUser2: &amp;#34;&lt;/span&gt; + Membership.Provider.ValidateUser(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;InvalidPassword&amp;#34;&lt;/span&gt;));
 Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole1: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole1&amp;#34;&lt;/span&gt;));
-Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole2: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole2&amp;#34;&lt;/span&gt;));&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Console.WriteLine(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;Is user testuser2 in role testrole2: &amp;#34;&lt;/span&gt; + Roles.Provider.IsUserInRole(&lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testuser2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a31515&#34;&gt;&amp;#34;testrole2&amp;#34;&lt;/span&gt;));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And appropriate App.Config portion:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&lt;/span&gt;
 &amp;lt;configuration&amp;gt;

@@ -63,7 +63,7 @@
     },
     "datePublished": "2014-12-03",
     "description": "",
-    "wordCount": 505
+    "wordCount":  511 
   }
 </script>
   
@@ -73,7 +73,7 @@
 <link rel="canonical" href="http://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
-<meta name="generator" content="Hugo 0.47.1" />
+<meta name="generator" content="Hugo 0.58.3" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
@@ -95,7 +95,7 @@
 
 
 
-<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.0daa6ad4d5e99054e856928e6cf6681fc85cc769ba610ec05d0d40db9813ec7dd34ee4100e9e7a0cf13399fcbf6a71257aedca49bad9b8b2daf00ace7d4af4a5.css" >
+<link rel="stylesheet" href="http://voloda.bazilisek.net/css/bundle.min.068a8fc80b9e5f1229c330b7ccc5bb5c4d69668e9fba710b25928c253bbd7b48c7396b69680a3ec5a3adb868d800de683bb75cf17e2d2d4c615c4320d0911c14.css" >
 
 </head>
 <body class="map[name:simplex]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
@@ -162,7 +162,7 @@
 
   <small>
   &middot; Read in about 3 min
-  &middot; (505 words)
+  &middot; (511 words)
   &middot; 
 <span class="share-box">Share this on:
     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fvoloda.bazilisek.net%2f2014%2f12%2fhow-to-release-unmanaged-library-loaded-into-managed-dotnet-code%2f" onclick="window.open(this.href, 'mywin',
@@ -222,125 +222,148 @@
 You can use P-Invoke to import following standard WinAPI functions for dynamical function loading:</p>
 
 <ul>
-<li><code>LoadLibrary()</code></li>
-<li><code>FreeLibrary()</code></li>
-<li><code>GetProcAddress()</code></li>
+<li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-LoadLibrary()```" data-lang="LoadLibrary()```">* ```FreeLibrary()```
+* ```GetProcAddress()```
+
+We will use following wrapping class:</code></pre></div>
+<p>csharp</p></li>
 </ul>
 
-<p>We will use following wrapping class:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">internal</span> <span style="color:#00f">static</span> <span style="color:#00f">class</span> <span style="color:#2b91af">UnsafeMethods</span>
+<p>internal static class UnsafeMethods
 {
-    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]
-    <span style="color:#00f">internal</span> <span style="color:#00f">extern</span> <span style="color:#00f">static</span> IntPtr LoadLibrary(<span style="color:#2b91af">string</span> libraryName);
-    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]
-    <span style="color:#00f">internal</span> <span style="color:#00f">extern</span> <span style="color:#00f">static</span> <span style="color:#2b91af">bool</span> FreeLibrary(IntPtr hModule);
-    [DllImport(&#34;kernel32.dll&#34;, SetLastError = true)]
-    <span style="color:#00f">internal</span> <span style="color:#00f">extern</span> <span style="color:#00f">static</span> IntPtr GetProcAddress(IntPtr hModule, <span style="color:#2b91af">string</span> procName);
-}</code></pre></div>
-<p>We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#008000">// int multiply(int value1, int value2);
-</span><span style="color:#008000"></span><span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> MultiplyDelegate(<span style="color:#2b91af">int</span> value1, <span style="color:#2b91af">int</span> value2);
-<span style="color:#008000">// int str2int(const char *input);
-</span><span style="color:#008000"></span><span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]<span style="color:#2b91af">string</span> source);</code></pre></div>
-<p>Now we can create implement our class calling external DLL functionality with <code>IDisposable</code> interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as <code>Multiply()</code> and <code>Str2Int()</code>).</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">ExternalHelpers</span>: IDisposable
-{
-    <span style="color:#00f">#region Private members
-</span><span style="color:#00f"></span>    <span style="color:#00f">private</span> IntPtr _libraryHandle;
-    <span style="color:#00f">private</span> MultiplyDelegate _multiply;
-    <span style="color:#00f">private</span> Str2IntDelegate _str2Int;
-    <span style="color:#00f">#endregion
-</span><span style="color:#00f"></span>
-    <span style="color:#00f">#region External functions delegates
-</span><span style="color:#00f"></span>    <span style="color:#008000">// int multiply(int value1, int value2);
-</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> MultiplyDelegate(<span style="color:#2b91af">int</span> value1, <span style="color:#2b91af">int</span> value2);
-    <span style="color:#008000">// int str2int(const char *input);
-</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> <span style="color:#00f">delegate</span> <span style="color:#2b91af">int</span> Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]<span style="color:#2b91af">string</span> source);
-    <span style="color:#00f">#endregion
-</span><span style="color:#00f"></span>
-    <span style="color:#00f">public</span> ExternalHelpers()
-    {
-        <span style="color:#008000">// dynamically load DLL using WinAPI
-</span><span style="color:#008000"></span>        _libraryHandle = UnsafeMethods.LoadLibrary(<span style="color:#a31515">@&#34;testing.dll&#34;</span>);
+    [DllImport(&ldquo;kernel32.dll&rdquo;, SetLastError = true)]
+    internal extern static IntPtr LoadLibrary(string libraryName);
+    [DllImport(&ldquo;kernel32.dll&rdquo;, SetLastError = true)]
+    internal extern static bool FreeLibrary(IntPtr hModule);
+    [DllImport(&ldquo;kernel32.dll&rdquo;, SetLastError = true)]
+    internal extern static IntPtr GetProcAddress(IntPtr hModule, string procName);
+}</p>
 
-        <span style="color:#00f">if</span> (_libraryHandle == IntPtr.Zero)
+<pre><code>We also need signatures of imported functions - we will convert them into delegates (following ones come from sample project):
+</code></pre>
+
+<p>csharp
+// int multiply(int value1, int value2);
+private delegate int MultiplyDelegate(int value1, int value2);
+// int str2int(const char *input);
+private delegate int Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]string source);</p>
+
+<pre><code>
+Now we can create implement our class calling external DLL functionality with ```IDisposable``` interface so it will automatically release used DLL library when it will go out-of-scope or it will be finalized (in example project are two functions which we will publish as ```Multiply()``` and ```Str2Int()```).
+
+</code></pre>
+
+<p>csharp
+public class ExternalHelpers: IDisposable
+{
+    #region Private members
+    private IntPtr _libraryHandle;
+    private MultiplyDelegate _multiply;
+    private Str2IntDelegate _str2Int;
+    #endregion</p>
+
+<pre><code>#region External functions delegates
+// int multiply(int value1, int value2);
+private delegate int MultiplyDelegate(int value1, int value2);
+// int str2int(const char *input);
+private delegate int Str2IntDelegate([MarshalAs(UnmanagedType.LPStr)]string source);
+#endregion
+
+public ExternalHelpers()
+{
+    // dynamically load DLL using WinAPI
+    _libraryHandle = UnsafeMethods.LoadLibrary(@&quot;testing.dll&quot;);
+
+    if (_libraryHandle == IntPtr.Zero)
+        Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+    // import functions as delegates using GetProcAddress
+    _multiply = LoadExternalFunction&lt;MultiplyDelegate&gt;(@&quot;multiply&quot;);
+    _str2Int = LoadExternalFunction&lt;Str2IntDelegate&gt;(@&quot;str2int&quot;);
+}
+
+public int Multiply(int value1, int value2)
+{
+    // call method using delegate
+    return _multiply(value1, value2);
+}
+
+public int Str2Int(string source)
+{
+    // call method using delegate
+    return _str2Int(source);
+}
+
+public void Dispose()
+{
+    Dispose(true);
+
+    GC.SuppressFinalize(this);
+}
+
+~ExternalHelpers()
+{
+    Dispose(false);
+}
+
+#region Private helper methods
+private T LoadExternalFunction&lt;T&gt;(string functionName)
+    where T: class
+{
+    Debug.Assert(!String.IsNullOrEmpty(functionName));
+    // load function pointer
+    IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
+
+    if (functionPointer == IntPtr.Zero)
+        Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+    // Marshal to requested delegate
+    return Marshal.GetDelegateForFunctionPointer(functionPointer, typeof(T)) as T;
+}
+
+private void Dispose(bool disposing)
+{
+    if (disposing)
+    {
+        _multiply = null;
+        _str2Int = null;
+    }
+
+    if (_libraryHandle != IntPtr.Zero)
+    {
+        if (!UnsafeMethods.FreeLibrary(_libraryHandle))
             Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        <span style="color:#008000">// import functions as delegates using GetProcAddress
-</span><span style="color:#008000"></span>        _multiply = LoadExternalFunction&lt;MultiplyDelegate&gt;(<span style="color:#a31515">@&#34;multiply&#34;</span>);
-        _str2Int = LoadExternalFunction&lt;Str2IntDelegate&gt;(<span style="color:#a31515">@&#34;str2int&#34;</span>);
+
+        _libraryHandle = IntPtr.Zero;
     }
+}
+#endregion
+</code></pre>
 
-    <span style="color:#00f">public</span> <span style="color:#2b91af">int</span> Multiply(<span style="color:#2b91af">int</span> value1, <span style="color:#2b91af">int</span> value2)
-    {
-        <span style="color:#008000">// call method using delegate
-</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> _multiply(value1, value2);
-    }
+<p>}</p>
 
-    <span style="color:#00f">public</span> <span style="color:#2b91af">int</span> Str2Int(<span style="color:#2b91af">string</span> source)
-    {
-        <span style="color:#008000">// call method using delegate
-</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> _str2Int(source);
-    }
+<pre><code>
+And finally - we can use it:
 
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> Dispose()
-    {
-        Dispose(<span style="color:#00f">true</span>);
+</code></pre>
 
-        GC.SuppressFinalize(<span style="color:#00f">this</span>);
-    }
-
-    ~ExternalHelpers()
-    {
-        Dispose(<span style="color:#00f">false</span>);
-    }
-
-    <span style="color:#00f">#region Private helper methods
-</span><span style="color:#00f"></span>    <span style="color:#00f">private</span> T LoadExternalFunction&lt;T&gt;(<span style="color:#2b91af">string</span> functionName)
-        <span style="color:#00f">where</span> T: <span style="color:#00f">class</span>
-    {
-        Debug.Assert(!String.IsNullOrEmpty(functionName));
-        <span style="color:#008000">// load function pointer
-</span><span style="color:#008000"></span>        IntPtr functionPointer = UnsafeMethods.GetProcAddress(_libraryHandle, functionName);
-
-        <span style="color:#00f">if</span> (functionPointer == IntPtr.Zero)
-            Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-        <span style="color:#008000">// Marshal to requested delegate
-</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> Marshal.GetDelegateForFunctionPointer(functionPointer, <span style="color:#00f">typeof</span>(T)) <span style="color:#00f">as</span> T;
-    }
-
-    <span style="color:#00f">private</span> <span style="color:#00f">void</span> Dispose(<span style="color:#2b91af">bool</span> disposing)
-    {
-        <span style="color:#00f">if</span> (disposing)
-        {
-            _multiply = <span style="color:#00f">null</span>;
-            _str2Int = <span style="color:#00f">null</span>;
-        }
-
-        <span style="color:#00f">if</span> (_libraryHandle != IntPtr.Zero)
-        {
-            <span style="color:#00f">if</span> (!UnsafeMethods.FreeLibrary(_libraryHandle))
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-
-            _libraryHandle = IntPtr.Zero;
-        }
-    }
-    <span style="color:#00f">#endregion
-</span><span style="color:#00f"></span>}</code></pre></div>
-<p>And finally - we can use it:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">static</span> <span style="color:#00f">void</span> Main(<span style="color:#2b91af">string</span>[] args)
+<p>csharp
+static void Main(string[] args)
 {
-    using(ExternalHelpers e = <span style="color:#00f">new</span> ExternalHelpers())
+    using(ExternalHelpers e = new ExternalHelpers())
     {
-        <span style="color:#00f">const</span> <span style="color:#2b91af">int</span> value1 = 2;
-        <span style="color:#00f">const</span> <span style="color:#2b91af">int</span> value2 = 3;
-        <span style="color:#00f">const</span> <span style="color:#2b91af">string</span> strValue = <span style="color:#a31515">&#34;345&#34;</span>;
+        const int value1 = 2;
+        const int value2 = 3;
+        const string strValue = &ldquo;345&rdquo;;</p>
 
-        Console.WriteLine(<span style="color:#a31515">&#34;{0} * {1} = {2}&#34;</span>, value1, value2, e.Multiply(value1, value2));
-        Console.WriteLine(<span style="color:#a31515">&#34;{0} =&gt; {1}&#34;</span>, strValue, e.Str2Int(strValue));
-    }
+<pre><code>    Console.WriteLine(&quot;{0} * {1} = {2}&quot;, value1, value2, e.Multiply(value1, value2));
+    Console.WriteLine(&quot;{0} =&gt; {1}&quot;, strValue, e.Str2Int(strValue));
+}
 
-    Console.ReadKey();
-}</code></pre></div>
+Console.ReadKey();
+</code></pre>
+
+<p>}
+```</p>
+
 <p>Looks easy? Yes it is :-)</p>
 
 <h1 id="links">Links</h1>
@@ -507,7 +530,7 @@ You can use P-Invoke to import following standard WinAPI functions for dynamical
 
         <div class="content">
           <ul>
-            <li><a href="/categories/notes">Notes (9)</a></li><li><a href="/categories/codeproject">CodeProject (4)</a></li>
+            <li><a href="/categories/notes">notes (9)</a></li><li><a href="/categories/codeproject">codeproject (4)</a></li>
           </ul>
         </div>
       </div>
@@ -522,7 +545,7 @@ You can use P-Invoke to import following standard WinAPI functions for dynamical
 
         <div class="content">
           <ul>
-            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotNET (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/microsoft-unity">Microsoft Unity (1)</a></li><li><a href="/tags/sql">SQL (1)</a></li>
+            <li><a href="/tags/development">development (9)</a></li><li><a href="/tags/dotnet">dotnet (8)</a></li><li><a href="/tags/docker">docker (6)</a></li><li><a href="/tags/jenkins">jenkins (5)</a></li><li><a href="/tags/angular">angular (3)</a></li><li><a href="/tags/dotnetcore">dotnetcore (2)</a></li><li><a href="/tags/git">git (2)</a></li><li><a href="/tags/powerbuilder">powerbuilder (2)</a></li><li><a href="/tags/chef">chef (1)</a></li><li><a href="/tags/cloudbuilds">cloudbuilds (1)</a></li>
           </ul>
         </div>
       </div>
@@ -594,23 +617,23 @@ You can use P-Invoke to import following standard WinAPI functions for dynamical
 </script>
 
 <script>
-var ENABLE_POPOVER = "", 
-EXPIRE_COOKIE = "", 
-SHOW_MODAL_TIMEOUT = "", 
-MOUSE_LEAVE = "", 
-MODAL_SIZE = "", 
-POST_URL = "", 
-SIGNUP_HEADER = "",
-HEADER_IMAGE = "",
-IMG_DESCRIPTION = "",
-SIGNUP_TEXT = "",
-INPUT_PLACEHOLDER = "",
-SUBMIT_BUTTON = "",
-SUCCESS_MESSAGE = "",
-ERROR_MESSAGE = "",
-OPTIN = "",
-COOKIE_NAME = "",
-CONTENTLANGUAGE = ""; 
+var ENABLE_POPOVER =  null , 
+EXPIRE_COOKIE =  null , 
+SHOW_MODAL_TIMEOUT =  null , 
+MOUSE_LEAVE =  null , 
+MODAL_SIZE =  null , 
+POST_URL =  null , 
+SIGNUP_HEADER =  null ,
+HEADER_IMAGE =  null ,
+IMG_DESCRIPTION =  null ,
+SIGNUP_TEXT =  null ,
+INPUT_PLACEHOLDER =  null ,
+SUBMIT_BUTTON =  null ,
+SUCCESS_MESSAGE =  null ,
+ERROR_MESSAGE =  null ,
+OPTIN =  null ,
+COOKIE_NAME =  null ,
+CONTENTLANGUAGE =  null ; 
 </script>
 
 
@@ -619,7 +642,7 @@ CONTENTLANGUAGE = "";
 
 
 
-<script  src="http://voloda.bazilisek.net/js/bundle.min.a0761bf8598edda2bb2c0e348a3160c418f2bc30908f40740ee7f30dabbdeed27d82ee58e16400badd1ae84ce7be7ce10702c9be216abe5de1cb497de995e850.js" ></script>
+<script  src="http://voloda.bazilisek.net/js/bundle.min.bc5960fdb0e04a2806026a317569a41d3e1757f01180209bb41d2a9b208ff0da68a292a6d35e8917ee58bdc091b1ace06fd1d6aa79350ebc515593615dcdbd75.js" ></script>
 
 
 
