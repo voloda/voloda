@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Unity Registration Validator  &middot; My personal notes on various topics</title>
+  <title>Event sourcing and command sourcing  &middot; My personal notes on various topics</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,28 +14,26 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="dotNET, development, ">
+<meta name="keywords" content="microservices, ">
 
 
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="Unity Registration Validator  &middot; My personal notes on various topics ">
+<meta property="og:title" content="Event sourcing and command sourcing  &middot; My personal notes on various topics ">
 <meta property="og:site_name" content="My personal notes on various topics"/>
-<meta property="og:url" content="https://voloda.bazilisek.net/2014/11/unity-registration-validator/" />
+<meta property="og:url" content="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/" />
 <meta property="og:locale" content="en">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2014-11-25T00:00:00Z" />
-<meta property="og:article:modified_time" content="2014-11-25T00:00:00Z" />
+<meta property="og:article:published_time" content="2019-10-23T00:00:00Z" />
+<meta property="og:article:modified_time" content="2019-10-23T00:00:00Z" />
 
   
     
-<meta property="og:article:tag" content="dotNET">
-    
-<meta property="og:article:tag" content="development">
+<meta property="og:article:tag" content="microservices">
     
   
 
@@ -43,9 +41,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Unity Registration Validator" />
+<meta name="twitter:title" content="Event sourcing and command sourcing" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://voloda.bazilisek.net/2014/11/unity-registration-validator/" />
+<meta name="twitter:url" content="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/" />
 <meta name="twitter:domain" content="https://voloda.bazilisek.net/">
   
 
@@ -54,21 +52,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Unity Registration Validator",
+    "headline": "Event sourcing and command sourcing",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2014-11-25",
+    "datePublished": "2019-10-23",
     "description": "",
-    "wordCount":  441 
+    "wordCount":  500 
   }
 </script>
   
 
 
 
-<link rel="canonical" href="https://voloda.bazilisek.net/2014/11/unity-registration-validator/" />
+<link rel="canonical" href="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.58.3" />
@@ -154,37 +152,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="title-metas text-center">
 
-    <h1>Unity Registration Validator
+    <h1>Event sourcing and command sourcing
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2014-11-25">25 Nov, 2014</time>
+  <time datetime="2019-10-23">23 Oct, 2019</time>
 </small>
 
 
   <small>
   &middot; Read in about 3 min
-  &middot; (441 words)
+  &middot; (500 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Unity%20Registration%20Validator&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Event%20sourcing%20and%20command%20sourcing&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f&amp;title=Unity%20Registration%20Validator" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f&amp;title=Event%20sourcing%20and%20command%20sourcing" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Unity%20Registration%20Validator&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Event%20sourcing%20and%20command%20sourcing&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -192,9 +190,7 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
-  
-  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
+  <a href="https://voloda.bazilisek.net/tags/microservices" class="label label-primary">microservices</a>
   
 
 
@@ -210,135 +206,100 @@
       <div class="content">
   
 
-<p>Microsoft Unity Extension which verifies registrations between parent and child containers. This is mainly issue when you
-accidently inject a dependency from a child container to the parent container while using ContainerControlledLifetimeManager (singleton).</p>
+<p>Notes based on playing and researching the Event Sourcing &amp; Command Sourcing.</p>
 
-<h1 id="introduction">Introduction</h1>
+<p>This is closely related to microservices if applied properly.</p>
 
-<p>When using Microsoft Unity IoC container you may face some weird issues when dealing with &lsquo;singletons&rsquo; (ContainerControlledLifetimeManager) and child containers. It may or may not be what you expected.</p>
+<h1 id="event-sourcing-and-command-sourcing">Event sourcing and command sourcing</h1>
 
-<p>Let&rsquo;s consider following classes:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">public</span> <span style="color:#00f">interface</span> IServiceDependency
-{
-}
-
-<span style="color:#00f">public</span> <span style="color:#00f">interface</span> IService
-{
-}
-
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">ServiceDependency</span> : IServiceDependency
-{
-    <span style="color:#00f">private</span> <span style="color:#00f">readonly</span> <span style="color:#2b91af">string</span> _dep1;
-
-    <span style="color:#00f">public</span> ServiceDependency(<span style="color:#2b91af">string</span> dep1)
-    {
-        _dep1 = dep1;
-    }
-}
-
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Service</span> : IService
-{
-    <span style="color:#00f">private</span> <span style="color:#00f">readonly</span> IServiceDependency _dependency;
-
-    <span style="color:#00f">public</span> Service(IServiceDependency dependency)
-    {
-        _dependency = dependency;
-    }
-}
-</code></pre></div>
-<p>Now let&rsquo;s setup some test case:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">[Test]
-<span style="color:#00f">public</span> <span style="color:#00f">void</span> ServiceResolutionViaTwoDifferentChildContainersShouldFail()
-{
-    <span style="color:#2b91af">var</span> rootContainer = <span style="color:#00f">new</span> UnityContainer();
-
-    rootContainer.RegisterType&lt;IService, Service&gt;(<span style="color:#00f">new</span> ContainerControlledLifetimeManager());
-    <span style="color:#2b91af">var</span> childContainer = rootContainer.CreateChildContainer();
-    <span style="color:#2b91af">var</span> childContainer2 = rootContainer.CreateChildContainer();
-
-    childContainer.RegisterInstance&lt;IServiceDependency&gt;(<span style="color:#00f">new</span> ServiceDependency(<span style="color:#a31515">&#34;Dep1&#34;</span>));
-    childContainer2.RegisterInstance&lt;IServiceDependency&gt;(<span style="color:#00f">new</span> ServiceDependency(<span style="color:#a31515">&#34;Dep2&#34;</span>));
-
-    <span style="color:#2b91af">var</span> childContainerResult1 = childContainer.Resolve&lt;IService&gt;();
-    <span style="color:#2b91af">var</span> childContainerResult2 = childContainer.Resolve&lt;IService&gt;();
-
-    <span style="color:#2b91af">var</span> childContainer2Result1 = childContainer.Resolve&lt;IService&gt;();
-    <span style="color:#2b91af">var</span> childContainer2Result2 = childContainer.Resolve&lt;IService&gt;();
-
-    Assert.AreEqual(childContainerResult1, childContainerResult2);
-    Assert.AreEqual(childContainer2Result1, childContainer2Result2);
-
-    Assert.AreEqual(childContainer2Result1, childContainerResult1);
-}
-</code></pre></div>
-<p><strong>This actually will pass all the assertions.</strong></p>
-
-<h2 id="let-s-analyze-it-a-bit">Let&rsquo;s analyze it a bit:</h2>
+<h2 id="overview">Overview</h2>
 
 <ul>
-<li>Let&rsquo;s step thru the test case in debugger.</li>
-<li>Setup some watches:
+<li>Good segregation of application logic in terms of data modification and querying
 
 <ul>
-<li><code>((ServiceDependency)((Service)childContainerResult1)._dependency)._dep1</code></li>
-<li><code>((ServiceDependency)((Service)childContainer2Result1)._dependency)._dep1</code></li>
+<li>This should simplify reasoning about the application logic</li>
+<li>Since all modifications are just a stream of events it avoids side-effects people tend to put into read logic</li>
+<li>Also allows to have optimal models for each of above</li>
 </ul></li>
-<li>You can see that both of them point to <code>Dep1</code>.
+<li>Improved scalability - write part is append-only so it reduces locking complexity</li>
+<li>If read model is updated asynchronously then not very well suited for complex screens where user can edit many fields and assumes upon save to get refreshed data</li>
+<li>Well suited for task oriented UI</li>
+<li><strong>Commands</strong> - requested actions to be performed on the model, should be named as verbs
 
 <ul>
-<li>Is that what you really wanted?</li>
-<li>Consider the following case:</li>
-<li>You disposed <code>childContainer</code> and your <code>ServiceDependency</code> is disposable registered as <code>ContainerControlledLifetimeManager</code>.</li>
-<li><strong>At this point you have invalid instance of <code>IService</code></strong> (it has injected disposed ServiceDependency).</li>
-<li><strong>This is most likely a side effect of unwanted changes and you want to avoid it</strong>.</li>
-<li><strong>And this is exactly what is this extension trying to solve</strong>.</li>
-<li><strong>By enabling this extension the build operation will fail</strong>.</li>
+<li>Commands are immutable - they live just for short time of transfer from caller to command handler</li>
+</ul></li>
+<li><strong>Events</strong> - performed model state changes, should use past tense (something happened and it cannot be undone)
+
+<ul>
+<li>Events are immutable - past cannot be changed</li>
+<li>Stored in a sequential log which can be later used for analysis of what happened in the system</li>
+<li>Can be used later to update for example querying model</li>
+<li>Fixing a state change should be done by adding another event which reverts the previous operation</li>
 </ul></li>
 </ul>
 
-<h1 id="how-to-enable-extension">How to enable extension</h1>
+<h2 id="dealing-with-concurrency">Dealing with concurrency</h2>
 
 <ul>
-<li>Reference the <code>UnityRegistrationValidator.dll</code> in your project.</li>
-
-<li><p>Call the registration below.</p>
+<li>Pretty simple:
 
 <ul>
-<li><p>The extension is available as a <a href="https://www.nuget.org/packages/UnityRegistrationValidator"><strong>Nuget package</strong></a>.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#2b91af">var</span> rootContainer = <span style="color:#00f">new</span> UnityContainer();
-rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();
-</code></pre></div></li>
+<li>Event can contain &lsquo;version&rsquo; of model which is being updated</li>
+<li>Event log then can have a unique constraint for each aggregate id and model version</li>
+<li>Assuming two or more concurrent actions updated the same aggregate on same version one of the updates will fail</li>
+<li>Command handler then can decide:
+
+<ul>
+<li>Retry the same operation with some merge logic</li>
+<li>Fail the operation</li>
+</ul></li>
+<li>This constraint can be implemented in relation database as well as other services (like Google Firebase).</li>
 </ul></li>
 </ul>
 
-<h1 id="following-rules-are-enforced-after-registering-extension">Following rules are enforced after registering extension</h1>
+<h2 id="operations-which-require-multiple-aggregates">Operations which require multiple aggregates</h2>
 
 <ul>
-<li>For each registration is tracked depth in containers (starting the container in which resolve starts).</li>
-<li>If you register an object which
+<li>In monoliths usually a transaction covering multiple tables</li>
+<li>In microservices this would usually mean at least distributed transaction
 
 <ul>
-<li>has dependency resolvable only inside the child container</li>
-<li>and has ContainerControlledLifetimeManager()</li>
+<li>Often this is just not possible since some systems simply do not support it or even worse - have just limited or no transactional support</li>
 </ul></li>
-<li>the resolve will fail.</li>
-<li>If you do this without the extension the resolve will succeed but the dependencies were most likely resolved in unexpected way (unless you really know what are you doing).</li>
-</ul>
-
-<h1 id="conclusion">Conclusion</h1>
+<li>This can be to some degree solved by <a href="https://microservices.io/patterns/data/saga.html">saga pattern</a>
 
 <ul>
-<li>This extension allows you to validate the expected behavior.</li>
-<li>Since it may have performance impact (it needs to track all the registrations as well as build operations) it may have negative performance impact.</li>
-<li>This extension is intended to help you ensure expected behavior - but you have to always consider your circumstanes.</li>
-<li><strong>You are using this extension on your own risk :-).</strong></li>
+<li>Either flow of events processed asynchronously as the individual services progress in processing</li>
+<li>Or performed from one place as a sequence of steps which subsequently update states</li>
+</ul></li>
 </ul>
 
-<h1 id="references">References</h1>
+<h2 id="challenges">Challenges</h2>
 
 <ul>
-<li><a href="https://www.nuget.org/packages/UnityRegistrationValidator">https://www.nuget.org/packages/UnityRegistrationValidator</a></li>
-<li><a href="https://github.com/voloda/UnityRegistrationValidator">https://github.com/voloda/UnityRegistrationValidator</a></li>
+<li>Defining right aggregate
+
+<ul>
+<li>This is crucial since each aggregate then has own event log etc.</li>
+<li>Aggregate should never perform operations outside itself</li>
+<li>As result in relation database this wouldn&rsquo;t need FK constraints</li>
+</ul></li>
+<li>What belongs to command handler vs. event handler?
+
+<ul>
+<li>This seems to be sometimes a bit unclear and even various sources have various requirements - e.g. where belongs sending an email - to command handler or to event handler?</li>
+</ul></li>
+<li>Rebuilding model from events each time may be slow - some kind of caching may be needed - memory cache can be used for this.</li>
+<li>Dealing with structural changes of commands and events due to bugfixing etc.</li>
+</ul>
+
+<h2 id="links">Links</h2>
+
+<ul>
+<li><a href="https://microservices.io/">https://microservices.io/</a></li>
+<li><a href="https://cqrs.nu/">https://cqrs.nu/</a></li>
 </ul>
 
 </div>
@@ -347,22 +308,22 @@ rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Unity%20Registration%20Validator&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=Event%20sourcing%20and%20command%20sourcing&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f&amp;title=Unity%20Registration%20Validator" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f&amp;title=Event%20sourcing%20and%20command%20sourcing" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Unity%20Registration%20Validator&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2014%2f11%2funity-registration-validator%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=Event%20sourcing%20and%20command%20sourcing&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f10%2fevent-sourcing-and-command-sourcing%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -371,18 +332,12 @@ rootContainer.AddNewExtension&lt;EnsureRegistrationDepthOrderExtension&gt;();
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="https://voloda.bazilisek.net/2014/11/dbkeepernet-how-to-seed-aspdotnet-users-and-roles/" title="DbKeeperNet - How to seed ASP.NET users and roles">
+          <a href="https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/" title="Google Cloud Builds - Commit to GitHub repository">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="https://voloda.bazilisek.net/2014/12/how-to-release-unmanaged-library-loaded-into-managed-dotnet-code/" title="How to release unmanaged library loaded into managed .NET code">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   

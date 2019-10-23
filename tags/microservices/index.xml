@@ -1,0 +1,121 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>microservices on My personal notes on various topics</title>
+    <link>https://voloda.bazilisek.net/tags/microservices/</link>
+    <description>Recent content in microservices on My personal notes on various topics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>(c) 2010-2019 Vladimir Kloz</copyright>
+    <lastBuildDate>Wed, 23 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://voloda.bazilisek.net/tags/microservices/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Event sourcing and command sourcing</title>
+      <link>https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/</link>
+      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/</guid>
+      <description>
+
+&lt;p&gt;Notes based on playing and researching the Event Sourcing &amp;amp; Command Sourcing.&lt;/p&gt;
+
+&lt;p&gt;This is closely related to microservices if applied properly.&lt;/p&gt;
+
+&lt;h1 id=&#34;event-sourcing-and-command-sourcing&#34;&gt;Event sourcing and command sourcing&lt;/h1&gt;
+
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Good segregation of application logic in terms of data modification and querying
+
+&lt;ul&gt;
+&lt;li&gt;This should simplify reasoning about the application logic&lt;/li&gt;
+&lt;li&gt;Since all modifications are just a stream of events it avoids side-effects people tend to put into read logic&lt;/li&gt;
+&lt;li&gt;Also allows to have optimal models for each of above&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Improved scalability - write part is append-only so it reduces locking complexity&lt;/li&gt;
+&lt;li&gt;If read model is updated asynchronously then not very well suited for complex screens where user can edit many fields and assumes upon save to get refreshed data&lt;/li&gt;
+&lt;li&gt;Well suited for task oriented UI&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commands&lt;/strong&gt; - requested actions to be performed on the model, should be named as verbs
+
+&lt;ul&gt;
+&lt;li&gt;Commands are immutable - they live just for short time of transfer from caller to command handler&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Events&lt;/strong&gt; - performed model state changes, should use past tense (something happened and it cannot be undone)
+
+&lt;ul&gt;
+&lt;li&gt;Events are immutable - past cannot be changed&lt;/li&gt;
+&lt;li&gt;Stored in a sequential log which can be later used for analysis of what happened in the system&lt;/li&gt;
+&lt;li&gt;Can be used later to update for example querying model&lt;/li&gt;
+&lt;li&gt;Fixing a state change should be done by adding another event which reverts the previous operation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;dealing-with-concurrency&#34;&gt;Dealing with concurrency&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pretty simple:
+
+&lt;ul&gt;
+&lt;li&gt;Event can contain &amp;lsquo;version&amp;rsquo; of model which is being updated&lt;/li&gt;
+&lt;li&gt;Event log then can have a unique constraint for each aggregate id and model version&lt;/li&gt;
+&lt;li&gt;Assuming two or more concurrent actions updated the same aggregate on same version one of the updates will fail&lt;/li&gt;
+&lt;li&gt;Command handler then can decide:
+
+&lt;ul&gt;
+&lt;li&gt;Retry the same operation with some merge logic&lt;/li&gt;
+&lt;li&gt;Fail the operation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;This constraint can be implemented in relation database as well as other services (like Google Firebase).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;operations-which-require-multiple-aggregates&#34;&gt;Operations which require multiple aggregates&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In monoliths usually a transaction covering multiple tables&lt;/li&gt;
+&lt;li&gt;In microservices this would usually mean at least distributed transaction
+
+&lt;ul&gt;
+&lt;li&gt;Often this is just not possible since some systems simply do not support it or even worse - have just limited or no transactional support&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;This can be to some degree solved by &lt;a href=&#34;https://microservices.io/patterns/data/saga.html&#34;&gt;saga pattern&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Either flow of events processed asynchronously as the individual services progress in processing&lt;/li&gt;
+&lt;li&gt;Or performed from one place as a sequence of steps which subsequently update states&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;challenges&#34;&gt;Challenges&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Defining right aggregate
+
+&lt;ul&gt;
+&lt;li&gt;This is crucial since each aggregate then has own event log etc.&lt;/li&gt;
+&lt;li&gt;Aggregate should never perform operations outside itself&lt;/li&gt;
+&lt;li&gt;As result in relation database this wouldn&amp;rsquo;t need FK constraints&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;What belongs to command handler vs. event handler?
+
+&lt;ul&gt;
+&lt;li&gt;This seems to be sometimes a bit unclear and even various sources have various requirements - e.g. where belongs sending an email - to command handler or to event handler?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Rebuilding model from events each time may be slow - some kind of caching may be needed - memory cache can be used for this.&lt;/li&gt;
+&lt;li&gt;Dealing with structural changes of commands and events due to bugfixing etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://microservices.io/&#34;&gt;https://microservices.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cqrs.nu/&#34;&gt;https://cqrs.nu/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

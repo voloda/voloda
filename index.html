@@ -116,6 +116,47 @@
           <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div>
+  <h2><a href="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/">Event sourcing and command sourcing</a>
+</h2>
+
+  <div class="margin-10">
+    <small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2019-10-23">23 Oct, 2019</time>
+</small>
+
+    
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://voloda.bazilisek.net/tags/microservices" class="label label-primary">microservices</a>
+  
+
+
+  </div>
+</div>
+
+    <p>
+  
+  
+    Notes based on playing and researching the Event Sourcing &amp; Command Sourcing.
+This is closely related to microservices if applied properly.
+Event sourcing and command sourcing Overview  Good segregation of application logic in terms of data modification and querying  This should simplify reasoning about the application logic Since all modifications are just a stream of events it avoids side-effects people tend to put into read logic Also allows to have optimal models for each of above  Improved scalability - write part is append-only so it reduces locking complexity If read model is updated asynchronously then not very well suited for complex screens where user can edit many fields and assumes upon save to get refreshed data Well suited for task oriented UI Commands - requested actions to be performed on the model, should be named as verbs  Commands are immutable - they live just for short time of transfer from caller to command handler  Events - performed model state changes, should use past tense (something happened and it cannot be undone)  Events are immutable - past cannot be changed Stored in a sequential log which can be later used for analysis of what happened in the system Can be used later to update for example querying model Fixing a state change should be done by adding another event which reverts the previous operation   Dealing with concurrency  Pretty simple:  Event can contain &lsquo;version&rsquo; of model which is being updated Event log then can have a unique constraint for each aggregate id and model version Assuming two or more concurrent actions updated the same aggregate on same version one of the updates will fail Command handler then can decide:  Retry the same operation with some merge logic Fail the operation  This constraint can be implemented in relation database as well as other services (like Google Firebase).
+  
+
+
+</p>
+
+
+    <p class="lead"><a href="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/" class="btn btn-default">Read more &rarr;</a></p>
+
+
+  </div>
+</div>
+
+        
+          <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div>
   <h2><a href="https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/">Google Cloud Builds - Commit to GitHub repository</a>
 </h2>
 
@@ -292,48 +333,6 @@ This article will briefly show how to use DbKeeperNet library to fulfill this ta
 </div>
 
         
-          <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-  <h2><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/">Building Docker Image For MySql 8.0.11 From Microsoft/Windowsservercore Base Image</a>
-</h2>
-
-  <div class="margin-10">
-    <small>
-  <i class="fa fa-calendar"></i>
-  <time datetime="2018-06-13">13 Jun, 2018</time>
-</small>
-
-    
-  <i class="fa fa-tags"></i>
-  
-  <a href="https://voloda.bazilisek.net/tags/docker" class="label label-primary">docker</a>
-  
-
-
-  </div>
-</div>
-
-    <p>
-  
-  
-    I wanted to setup a testing docker image for .NET and MySql 8.0.11. Unfortunatelly it didn&rsquo;t work out of the box but I found it pretty easily that the missing dependency on the image is Microsoft Visual C++ 2015 Redistributable Update 3.
-Below is Dockerfile I used to build the image.
-Into the same directory put download 8.0.11 Mysql server version https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.11-winx64.zip named as mysql.zip.
-Please note that the image below is created with root user without a password specified
-  
-
-
-</p>
-
-
-    <p class="lead"><a href="https://voloda.bazilisek.net/2018/06/building-docker-image-for-mysql-8-0-11-from-microsoft-windowsservercore-base-image/" class="btn btn-default">Read more &rarr;</a></p>
-
-
-  </div>
-</div>
-
-        
         
 <nav>
   <ul class="pagination">
@@ -417,6 +416,10 @@ Please note that the image below is created with root user without a password sp
         <ul>
         
           <li>
+          <a href="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/">Event sourcing and command sourcing</a>
+          </li>
+        
+          <li>
           <a href="https://voloda.bazilisek.net/2019/10/google-cloud-builds-commit-to-github-repository/">Google Cloud Builds - Commit to GitHub repository</a>
           </li>
         
@@ -452,10 +455,6 @@ Please note that the image below is created with root user without a password sp
           <a href="https://voloda.bazilisek.net/2017/12/how-to-create-docker-build-agent-image-with-sdk-installed-from-msi/">How to create Docker build agent image with SDK installed from MSI</a>
           </li>
         
-          <li>
-          <a href="https://voloda.bazilisek.net/2017/12/is-it-good-idea-to-throw-an-exception-in-dotnet-csharp-constructor/">Is it good idea to throw an exception in .NET C# constructor?</a>
-          </li>
-        
         </ul>
       </div>
     </div>
@@ -475,7 +474,7 @@ Please note that the image below is created with root user without a password sp
 
         <div class="content">
           <ul>
-            <li><a href="/year/2019">2019 (2)</a></li><li><a href="/year/2018">2018 (6)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
+            <li><a href="/year/2019">2019 (3)</a></li><li><a href="/year/2018">2018 (6)</a></li><li><a href="/year/2017">2017 (7)</a></li><li><a href="/year/2016">2016 (1)</a></li><li><a href="/year/2015">2015 (3)</a></li><li><a href="/year/2014">2014 (5)</a></li><li><a href="/year/2010">2010 (2)</a></li>
           </ul>
         </div>
       </div>
