@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Jenkinsfile and git authentication on Windows  &middot; My personal notes on various topics</title>
+  <title>ASP.NET Core 2.2 to 3.0 migration  &middot; My personal notes on various topics</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,28 +14,28 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="jenkins, git, ">
+<meta name="keywords" content="development, dotNET, ">
 
 
 <meta name="google-site-verification" content="H9GNef3SnULYbdbfX3_Z7rX9uUMLokNWzjxaVBooPBk" />
 
 
-<meta property="og:title" content="Jenkinsfile and git authentication on Windows  &middot; My personal notes on various topics ">
+<meta property="og:title" content="ASP.NET Core 2.2 to 3.0 migration  &middot; My personal notes on various topics ">
 <meta property="og:site_name" content="My personal notes on various topics"/>
-<meta property="og:url" content="https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/" />
+<meta property="og:url" content="https://voloda.bazilisek.net/2019/11/asp-net-core-2-2-to-3-0-migration/" />
 <meta property="og:locale" content="en">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2017-11-20T00:00:00Z" />
-<meta property="og:article:modified_time" content="2017-11-20T00:00:00Z" />
+<meta property="og:article:published_time" content="2019-11-13T00:00:00Z" />
+<meta property="og:article:modified_time" content="2019-11-13T00:00:00Z" />
 
   
     
-<meta property="og:article:tag" content="jenkins">
+<meta property="og:article:tag" content="development">
     
-<meta property="og:article:tag" content="git">
+<meta property="og:article:tag" content="dotNET">
     
   
 
@@ -43,9 +43,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Jenkinsfile and git authentication on Windows" />
+<meta name="twitter:title" content="ASP.NET Core 2.2 to 3.0 migration" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/" />
+<meta name="twitter:url" content="https://voloda.bazilisek.net/2019/11/asp-net-core-2-2-to-3-0-migration/" />
 <meta name="twitter:domain" content="https://voloda.bazilisek.net/">
   
 
@@ -54,21 +54,21 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Jenkinsfile and git authentication on Windows",
+    "headline": "ASP.NET Core 2.2 to 3.0 migration",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2017-11-20",
+    "datePublished": "2019-11-13",
     "description": "",
-    "wordCount":  358 
+    "wordCount":  452 
   }
 </script>
   
 
 
 
-<link rel="canonical" href="https://voloda.bazilisek.net/2017/11/jenkinsfile-and-git-authentication-on-windows/" />
+<link rel="canonical" href="https://voloda.bazilisek.net/2019/11/asp-net-core-2-2-to-3-0-migration/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.58.3" />
@@ -154,37 +154,37 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="title-metas text-center">
 
-    <h1>Jenkinsfile and git authentication on Windows
+    <h1>ASP.NET Core 2.2 to 3.0 migration
 </h1>
 
     <div class="metas">
 <small>
   <i class="fa fa-calendar"></i>
-  <time datetime="2017-11-20">20 Nov, 2017</time>
+  <time datetime="2019-11-13">13 Nov, 2019</time>
 </small>
 
 
   <small>
-  &middot; Read in about 2 min
-  &middot; (358 words)
+  &middot; Read in about 3 min
+  &middot; (452 words)
   &middot; 
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20and%20git%20authentication%20on%20Windows&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=ASP.NET%20Core%202.2%20to%203.0%20migration&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f&amp;title=Jenkinsfile%20and%20git%20authentication%20on%20Windows" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f&amp;title=ASP.NET%20Core%202.2%20to%203.0%20migration" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Jenkinsfile%20and%20git%20authentication%20on%20Windows&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=ASP.NET%20Core%202.2%20to%203.0%20migration&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   </small>
@@ -192,9 +192,9 @@
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="https://voloda.bazilisek.net/tags/jenkins" class="label label-primary">jenkins</a>
+  <a href="https://voloda.bazilisek.net/tags/development" class="label label-primary">development</a>
   
-  <a href="https://voloda.bazilisek.net/tags/git" class="label label-primary">git</a>
+  <a href="https://voloda.bazilisek.net/tags/dotnet" class="label label-primary">dotNET</a>
   
 
 
@@ -210,140 +210,69 @@
       <div class="content">
   
 
-<p>In this post are my notes on how to get working <code>git</code> commands from <code>Jenkinsfile</code>
-running on Windows build agents.</p>
-
-<h1 id="password-authentication">Password authentication</h1>
-
-<h2 id="setting-up-username-and-password-in-jenkins-server">Setting up username and password in Jenkins server</h2>
+<h1 id="introduction">Introduction</h1>
 
 <ul>
-<li>First in Jenkins server add a new <code>Credentials</code> entry of type <code>Username with password</code>:
-<img src="/img/jenkins/jenkins_username_and_password.png" alt="Jenkins username and password" />.</li>
-<li>Set ID to <code>repo_auth</code>
+<li>Notes below are kind of switching between .NET Core &amp; .NET Standard &amp; ASP.NET Core as it makes sense. Those are all closely related although perhaps not really&hellip;</li>
+<li>There is still some confusion on my part so some of the information below may not be fully accurate - I would hear back to learn.</li>
+</ul>
+
+<h1 id="lessons-re-learned-asp-net-core-is-not-net-core">Lessons (re-)learned - ASP.NET Core is not .NET Core</h1>
 
 <ul>
-<li>This is later referenced in <code>Jenkinsfile</code> step <code>withCredentials</code></li>
+<li><strong>None</strong> of the ASP.NET Core APIs is considered to be part of .NET Standard
+
+<ul>
+<li>It is obvious but it is easy to forget about it. Things like: <code>Microsoft.Extensions.Logging.Abstractions</code>, <code>Microsoft.Extensions.DependencyInjection.Abstractions</code> etc. are part of ASP.NET Core and thus are not covered by .NET Standard 2.0</li>
 </ul></li>
-<li>Set <code>Username</code></li>
-<li>Set <code>Password</code></li>
+<li>Things are not made simpler since ASP.NET Core has same major version as new .NET Core (3.0)</li>
+<li>ASP.NET Core 3.0 implements breaking changes (logging, service setup, &hellip;) - intent is clearly stated by major version change</li>
 </ul>
 
-<h2 id="sample-jenkinsfile">Sample Jenkinsfile</h2>
+<h2 id="implications">Implications</h2>
 
 <ul>
-<li>Now the system is ready to use above information from <code>Jenkinsfile</code></li>
-
-<li><p>Build script then does following:</p>
-
-<ol>
-<li>Fetches username and password into environment variables</li>
-
-<li><p>Invokes any <code>git</code> command which requires authentication</p>
-
-<pre><code>pipeline {
-agent { label 'vs2017' }
-
-environment {
-RELEASE_NUMBER = '1.0'
-VERSION_NUMBER = VersionNumber(versionNumberString: '1.0.${BUILDS_ALL_TIME}.0')
-}
-
-stages {
-stage('Compile'){
-steps {
-echo 'Compiling'
-
-bat &quot;\&quot;${tool name: 'Default', type: 'msbuild'}\\msbuild.exe\&quot; \&quot;build.msbuild\&quot; /p:BuildNumber=${VERSION_NUMBER}&quot;
-}
-}
-stage('Tagging') {
-steps {
-withCredentials([usernamePassword(credentialsId: 'repo_auth', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-  bat &quot;git tag 'build-${VERSION_NUMBER}'&quot;
-  bat &quot;git push http://${GIT_USERNAME}:${GIT_PASSWORD}@repourl.com/test.git --tags&quot;
-}
-}
-}
-}
-</code></pre></li>
-</ol></li>
-</ul>
-
-<h1 id="ssh-key-authentication-github">SSH key authentication (Github)</h1>
-
-<h2 id="setting-up-known-hosts-in-jenkins-server">Setting up known hosts in Jenkins server</h2>
+<li>Third party libraries which state that are .NET Standard 2.0 are not necessarily compatible with ASP.NET Core 3.0
 
 <ul>
-<li>First in Jenkins server add a new <code>Credentials</code> entry of type <code>Secret text</code>
-<img src="/img/jenkins/jenkins_ssh_known_hosts.png" alt="Jenkins SSH known hosts" />.</li>
-<li>Set ID to <code>github-knownhosts</code>
-
-<ul>
-<li>This is later referenced in <code>Jenkinsfile</code> step <code>withCredentials</code></li>
+<li>The reason is that ASP.NET Core 3.0 allows safely reference .NET Standard 2.0 assemblies but upgrades references according to built-in versioning policies</li>
+<li>So in compile time things will pass while in runtime some of the libraries my start throwing runtime exception like missing methods etc. since those are now using ASP.NET Core 3.0 libraries instead of ASP.NET Core 2.2.</li>
 </ul></li>
-<li>Set the content of <code>known_hosts</code> file as value</li>
-</ul>
-
-<h2 id="setting-up-the-ssh-key-in-jenkins-server">Setting up the SSH key in Jenkins server</h2>
+<li>There is a change in some of the areas - with older version of ASP.NET Core it was possible to easily write unit tests or expand functionality since majority of event internal things was exposed as public - I came across places which heavily moved towards the <code>internal</code> implementation.</li>
+<li>The safest way how to avoid issues above seems to be re-target all the libraries to .NET Standard 2.1 and re-compile.
 
 <ul>
-<li>Now in Jenkins server add a new <code>Credentials</code> entry of type <code>SSH Username with private key</code>
-<img src="/img/jenkins/jenkins_ssh_key.png" alt="Jenkins SSH username with private key" />.</li>
-<li>Set ID to <code>github</code>
+<li>Suggestion in some ASP.NET Core forums is to rather re-target to ASP.NET Core 2.2</li>
+<li>This means that it will be never possible to consume such libraries in full .NET Framework</li>
+</ul></li>
+<li>General suggestion for library creators is to stay with .NET Standard 2.0
 
 <ul>
-<li>This is later referenced in <code>Jenkinsfile</code> step <code>withCredentials</code></li>
+<li>Which implies that C# 8 features cannot be used</li>
+<li>Or to split and target two platforms utilizing old style <code>#if</code> and/or project changes.</li>
 </ul></li>
 </ul>
 
-<h2 id="sample-jenkinsfile-1">Sample Jenkinsfile</h2>
+<h1 id="links">Links</h1>
 
 <ul>
-<li>Now the system is ready to use above information from <code>Jenkinsfile</code></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard">https://docs.microsoft.com/en-us/dotnet/standard/net-standard</a>
 
-<li><p>Build script then does following (I am using these from docker build agents
-so the build agent always starts from scratch):</p>
+<ul>
+<li>Full .NET Framework will never support .NET Standard 2.1 but will be supported with Xamarin and Mono</li>
+</ul></li>
+<li><a href="https://devblogs.microsoft.com/dotnet/announcing-net-standard-2-1/">https://devblogs.microsoft.com/dotnet/announcing-net-standard-2-1/</a>
 
-<ol>
-<li>Populates <code>id_rsa</code> key with received keyFileVariable</li>
-<li>Populates <code>known_hosts</code></li>
+<ul>
+<li>Full .NET Framework is going to stay on .NET Standard 2.0</li>
+</ul></li>
+<li><a href="https://devblogs.microsoft.com/dotnet/introducing-net-5/">https://devblogs.microsoft.com/dotnet/introducing-net-5/</a>
 
-<li><p>Invokes any <code>git</code> command which requires authentication</p>
-
-<pre><code>pipeline {
-agent {label 'machine'}
-
-environment {
-RELEASE_NUMBER = '1.0'
-VERSION_NUMBER = VersionNumber(versionNumberString: '1.0.${BUILDS_ALL_TIME}.0')
-}
-
-stages {
-stage('Build') {
-steps {
-bat &quot;powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \&quot;\$ErrorActionPreference='Stop';[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;.\\build.ps1;EXIT \$global:LastExitCode\&quot;&quot;
-}
-}
-stage('Publish on Github') {
-steps {
-withCredentials([
-  string(credentialsId: 'github-knownhosts', variable: 'KNOWN_HOSTS'),
-  sshUserPrivateKey(credentialsId: 'github', keyFileVariable: 'RSA_KEY', usernameVariable: 'SSH_USER')
-]) {
-  bat &quot;mkdir ${USERPROFILE}\\.ssh&quot;
-  bat &quot;copy ${RSA_KEY} ${USERPROFILE}\\.ssh\\id_rsa&quot;
-  bat &quot;echo ${KNOWN_HOSTS} &gt; ${USERPROFILE}\\.ssh\\known_hosts&quot;
-
-  bat &quot;git tag 'build-${VERSION_NUMBER}'&quot;
-  bat &quot;git push ${SSH_USER}@github.com:/project/repo.git --tags&quot;
-}
-}
-}
-}
-}
-</code></pre></li>
-</ol></li>
+<ul>
+<li>Produce a single .NET runtime and framework that can be used everywhere and that has uniform runtime behaviors and developer experiences.</li>
+<li>Expand the capabilities of .NET by taking the best of .NET Core, .NET Framework, Xamarin and Mono.</li>
+<li>Build that product out of a single code-base that developers (Microsoft and the community) can work on and expand together and that improves all scenarios.</li>
+</ul></li>
 </ul>
 
 </div>
@@ -352,22 +281,22 @@ withCredentials([
       <footer>
   
 <span class="share-box">Share this on:
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
 
-    <a href="https://twitter.com/intent/tweet?text=Jenkinsfile%20and%20git%20authentication%20on%20Windows&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://twitter.com/intent/tweet?text=ASP.NET%20Core%202.2%20to%203.0%20migration&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
 
-    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
 
-    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" onclick="window.open(this.href, 'mywin',
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
 
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f&amp;title=Jenkinsfile%20and%20git%20authentication%20on%20Windows" onclick="window.open(this.href, 'mywin',
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f&amp;title=ASP.NET%20Core%202.2%20to%203.0%20migration" onclick="window.open(this.href, 'mywin',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
 
-    <a href="mailto:?subject=Jenkinsfile%20and%20git%20authentication%20on%20Windows&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2017%2f11%2fjenkinsfile-and-git-authentication-on-windows%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+    <a href="mailto:?subject=ASP.NET%20Core%202.2%20to%203.0%20migration&amp;body=Check out this site https%3a%2f%2fvoloda.bazilisek.net%2f2019%2f11%2fasp-net-core-2-2-to-3-0-migration%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
   </span>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -376,18 +305,12 @@ withCredentials([
     <nav><ul class="pager">
     
         <li class="previous">
-          <a href="https://voloda.bazilisek.net/2017/11/jenkins-docker-slave-windows-build-agent/" title="Jenkins Docker Slave Windows Build Agent">
+          <a href="https://voloda.bazilisek.net/2019/10/event-sourcing-and-command-sourcing/" title="Event sourcing and command sourcing">
             <span aria-hidden="true">&larr;</span>Previous
           </a>
         </li>
     
 
-    
-      <li class="next">
-        <a href="https://voloda.bazilisek.net/2017/11/handling-detailed-code-reviews-in-git/" title="Handling detailed code reviews in GIT">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
     
     </ul> </nav>
   

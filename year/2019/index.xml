@@ -6,10 +6,85 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>(c) 2010-2019 Vladimir Kloz</copyright>
-    <lastBuildDate>Wed, 23 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Nov 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://voloda.bazilisek.net/year/2019/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ASP.NET Core 2.2 to 3.0 migration</title>
+      <link>https://voloda.bazilisek.net/2019/11/asp-net-core-2-2-to-3-0-migration/</link>
+      <pubDate>Wed, 13 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://voloda.bazilisek.net/2019/11/asp-net-core-2-2-to-3-0-migration/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Notes below are kind of switching between .NET Core &amp;amp; .NET Standard &amp;amp; ASP.NET Core as it makes sense. Those are all closely related although perhaps not really&amp;hellip;&lt;/li&gt;
+&lt;li&gt;There is still some confusion on my part so some of the information below may not be fully accurate - I would hear back to learn.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;lessons-re-learned-asp-net-core-is-not-net-core&#34;&gt;Lessons (re-)learned - ASP.NET Core is not .NET Core&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;None&lt;/strong&gt; of the ASP.NET Core APIs is considered to be part of .NET Standard
+
+&lt;ul&gt;
+&lt;li&gt;It is obvious but it is easy to forget about it. Things like: &lt;code&gt;Microsoft.Extensions.Logging.Abstractions&lt;/code&gt;, &lt;code&gt;Microsoft.Extensions.DependencyInjection.Abstractions&lt;/code&gt; etc. are part of ASP.NET Core and thus are not covered by .NET Standard 2.0&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Things are not made simpler since ASP.NET Core has same major version as new .NET Core (3.0)&lt;/li&gt;
+&lt;li&gt;ASP.NET Core 3.0 implements breaking changes (logging, service setup, &amp;hellip;) - intent is clearly stated by major version change&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;implications&#34;&gt;Implications&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Third party libraries which state that are .NET Standard 2.0 are not necessarily compatible with ASP.NET Core 3.0
+
+&lt;ul&gt;
+&lt;li&gt;The reason is that ASP.NET Core 3.0 allows safely reference .NET Standard 2.0 assemblies but upgrades references according to built-in versioning policies&lt;/li&gt;
+&lt;li&gt;So in compile time things will pass while in runtime some of the libraries my start throwing runtime exception like missing methods etc. since those are now using ASP.NET Core 3.0 libraries instead of ASP.NET Core 2.2.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;There is a change in some of the areas - with older version of ASP.NET Core it was possible to easily write unit tests or expand functionality since majority of event internal things was exposed as public - I came across places which heavily moved towards the &lt;code&gt;internal&lt;/code&gt; implementation.&lt;/li&gt;
+&lt;li&gt;The safest way how to avoid issues above seems to be re-target all the libraries to .NET Standard 2.1 and re-compile.
+
+&lt;ul&gt;
+&lt;li&gt;Suggestion in some ASP.NET Core forums is to rather re-target to ASP.NET Core 2.2&lt;/li&gt;
+&lt;li&gt;This means that it will be never possible to consume such libraries in full .NET Framework&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;General suggestion for library creators is to stay with .NET Standard 2.0
+
+&lt;ul&gt;
+&lt;li&gt;Which implies that C# 8 features cannot be used&lt;/li&gt;
+&lt;li&gt;Or to split and target two platforms utilizing old style &lt;code&gt;#if&lt;/code&gt; and/or project changes.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/standard/net-standard&#34;&gt;https://docs.microsoft.com/en-us/dotnet/standard/net-standard&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Full .NET Framework will never support .NET Standard 2.1 but will be supported with Xamarin and Mono&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://devblogs.microsoft.com/dotnet/announcing-net-standard-2-1/&#34;&gt;https://devblogs.microsoft.com/dotnet/announcing-net-standard-2-1/&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Full .NET Framework is going to stay on .NET Standard 2.0&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://devblogs.microsoft.com/dotnet/introducing-net-5/&#34;&gt;https://devblogs.microsoft.com/dotnet/introducing-net-5/&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Produce a single .NET runtime and framework that can be used everywhere and that has uniform runtime behaviors and developer experiences.&lt;/li&gt;
+&lt;li&gt;Expand the capabilities of .NET by taking the best of .NET Core, .NET Framework, Xamarin and Mono.&lt;/li&gt;
+&lt;li&gt;Build that product out of a single code-base that developers (Microsoft and the community) can work on and expand together and that improves all scenarios.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Event sourcing and command sourcing</title>
